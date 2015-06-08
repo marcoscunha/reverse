@@ -1,0 +1,20 @@
+To compile:
+===========
+update LIBDWARF_BASE in Makefile.
+make
+
+To execute the example:
+======================
+./section_annotation_test fft_cluster_elf_example .lock_annotation .unlock_annotation
+
+To execute the appli_test example:
+==================================
+(for 64b)
+cd appli_test
+make
+update MAX_ADDR to 8 in debughelperlib/src/dwarf_nfo.c
+compile libdebughelper.a
+compile section_annotation_test
+./section_annotation_test appli_test/appli_test .lock_annotation .unlock_annotation
+
+

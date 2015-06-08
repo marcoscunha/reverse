@@ -1,0 +1,5 @@
+.cproject
+.project
+obj/
+libcstack.a
+

@@ -1,0 +1,116 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+DBG_HDR	avl_tree.c	46;"	d	file:
+DBG_HDR	calls.c	47;"	d	file:
+DBG_HDR	counters.c	46;"	d	file:
+DBG_HDR	debug_helper.c	8;"	d	file:
+DBG_HDR	debug_nfo.c	52;"	d	file:
+DBG_HDR	dwarf_nfo.c	56;"	d	file:
+DBG_HDR	functions.c	47;"	d	file:
+DBG_HDR	generic_olist.c	46;"	d	file:
+DBG_HDR	insn.c	57;"	d	file:
+DBG_HDR	insn_list.c	47;"	d	file:
+DBG_HDR	insn_tree.c	47;"	d	file:
+DBG_HDR	symbols.c	47;"	d	file:
+DEBUG	avl_tree.c	43;"	d	file:
+DEBUG	calls.c	44;"	d	file:
+DEBUG	counters.c	43;"	d	file:
+DEBUG	debug_helper.c	5;"	d	file:
+DEBUG	debug_nfo.c	49;"	d	file:
+DEBUG	dwarf_nfo.c	53;"	d	file:
+DEBUG	functions.c	44;"	d	file:
+DEBUG	generic_olist.c	43;"	d	file:
+DEBUG	insn.c	54;"	d	file:
+DEBUG	insn_list.c	44;"	d	file:
+DEBUG	insn_tree.c	44;"	d	file:
+DEBUG	symbols.c	44;"	d	file:
+MAX_ADDR	dwarf_nfo.c	59;"	d	file:
+MAX	avl_tree.c	49;"	d	file:
+avl_balance	avl_tree.c	/^avl_balance(avl_tree_t **root){$/;"	f
+avl_dump	avl_tree.c	/^avl_dump(avl_tree_t *root, long lvl){$/;"	f
+avl_free_node	avl_tree.c	/^avl_free_node(avl_tree_t *node){$/;"	f
+avl_free	avl_tree.c	/^avl_free(avl_tree_t *root){$/;"	f
+avl_insert	avl_tree.c	/^avl_insert(avl_tree_t **root, avl_tree_t *node){$/;"	f
+avl_left_rotate	avl_tree.c	/^avl_left_rotate(avl_tree_t **root){$/;"	f
+avl_new	avl_tree.c	/^avl_new(unsigned long key, void *data){$/;"	f
+avl_right_rotate	avl_tree.c	/^avl_right_rotate(avl_tree_t **root){$/;"	f
+avl_search	avl_tree.c	/^avl_search(avl_tree_t *root, unsigned long search){$/;"	f
+avl_walk	avl_tree.c	/^avl_walk(avl_tree_t *root, void(*hook)(void *)){$/;"	f
+call_free	calls.c	/^call_free(call_t *call){$/;"	f
+call_new	calls.c	/^call_new(insn_t *caller, insn_t *callee){$/;"	f
+clist_add_head	calls.c	/^clist_add_head(call_t **list, call_t *new){$/;"	f
+clist_free	calls.c	/^clist_free(call_t *list){$/;"	f
+clist_search	calls.c	/^clist_search(call_t *list, unsigned int caddr){$/;"	f
+counters_clear	counters.c	/^counters_clear(counters_t *count) {$/;"	f
+counters_free	counters.c	/^counters_free(counters_t *count){$/;"	f
+counters_new	counters.c	/^counters_new(void) {$/;"	f
+counters_sum	counters.c	/^counters_sum(counters_t *a, counters_t *b) {$/;"	f
+debug_nfo_closure	debug_nfo.c	/^debug_nfo_closure(debug_nfo_t *dbg)$/;"	f
+debug_nfo_dump_func	debug_nfo.c	/^debug_nfo_dump_func(debug_nfo_t *dbg)$/;"	f
+debug_nfo_dump_src	debug_nfo.c	/^debug_nfo_dump_src(debug_nfo_t *dbg)$/;"	f
+debug_nfo_free_functions	debug_nfo.c	/^debug_nfo_free_functions(function_t *funcs){$/;"	f
+debug_nfo_free_src_lines	debug_nfo.c	/^debug_nfo_free_src_lines(src_tab_t *lines){$/;"	f
+debug_nfo_get_loc	debug_nfo.c	/^debug_nfo_get_loc(debug_nfo_t *dbg, uint32_t addr, char *sym,$/;"	f
+debug_nfo_init	debug_nfo.c	/^debug_nfo_init(char *fname)$/;"	f
+debug_nfo_process	debug_nfo.c	/^debug_nfo_process(debug_nfo_t *dbg)$/;"	f
+dh_add	debug_helper.c	/^dh_add(debug_helper_t *dh, pc_t key){$/;"	f
+dh_addr2line	debug_helper.c	/^dh_addr2line(debug_helper_t *dh, insn_desc_t *insn){$/;"	f
+dh_fileno2filename	debug_helper.c	/^dh_fileno2filename(debug_helper_t *dh, line_nfo_t *insn){$/;"	f
+dh_fix_functions	debug_helper.c	/^dh_fix_functions(debug_helper_t *dh){$/;"	f	file:
+dh_free	debug_helper.c	/^dh_free(debug_helper_t *dh){$/;"	f
+dh_function_register	debug_helper.c	/^dh_function_register(debug_helper_t *dh, function_t *func){$/;"	f	file:
+dh_get_loc	debug_helper.c	/^dh_get_loc(debug_helper_t *dh, uint32_t addr, char *sym, Dwarf_Locdesc **loc){$/;"	f
+dh_init	debug_helper.c	/^dh_init(char *exec_fname){$/;"	f
+dh_pretty_print	debug_helper.c	/^dh_pretty_print(debug_helper_t *dh){$/;"	f
+dh_search_add	debug_helper.c	/^dh_search_add(debug_helper_t *dh, pc_t addr){$/;"	f
+dh_search	debug_helper.c	/^dh_search(debug_helper_t *dh, pc_t addr){$/;"	f
+dh_src_line_register	debug_helper.c	/^dh_src_line_register(debug_helper_t *dh){$/;"	f	file:
+dwarf_nfo_closure	dwarf_nfo.c	/^dwarf_nfo_closure(dwarf_nfo_t *dw){$/;"	f
+dwarf_nfo_get_loc	dwarf_nfo.c	/^dwarf_nfo_get_loc(dwarf_nfo_t *dw, function_t *func, uint32_t addr, char *sym,$/;"	f
+dwarf_nfo_init	dwarf_nfo.c	/^dwarf_nfo_init(Elf *elf)$/;"	f
+dwarf_nfo_process_funcs	dwarf_nfo.c	/^dwarf_nfo_process_funcs(dwarf_nfo_t *dw, function_t **funcs){$/;"	f
+dwarf_nfo_process_src	dwarf_nfo.c	/^dwarf_nfo_process_src(dwarf_nfo_t *dw, src_tab_t **lines)$/;"	f
+dwarf_on_error	dwarf_nfo.c	/^dwarf_on_error(Dwarf_Error error, __attribute__((__unused__)) Dwarf_Ptr arg){$/;"	f
+dwarf_walk	dwarf_nfo.c	/^dwarf_walk(dwarf_nfo_t *dw, function_t **funcs, Dwarf_Die die,$/;"	f
+flist_add_head	functions.c	/^flist_add_head(function_t **list, function_t *new){$/;"	f
+flist_dump	functions.c	/^flist_dump(function_t *list){$/;"	f
+flist_free	functions.c	/^flist_free(function_t *list){$/;"	f
+flist_lookup_addr	functions.c	/^flist_lookup_addr(function_t *list, addr_t addr){$/;"	f
+flist_lookup_entry	functions.c	/^flist_lookup_entry(function_t *list, unsigned long entry){$/;"	f
+flist_lookup_name	functions.c	/^flist_lookup_name(function_t *list, char *sym){$/;"	f
+flist_lookup	functions.c	/^flist_lookup(function_t *list, unsigned long CU_idx, unsigned long die_off){$/;"	f
+flist_walk	functions.c	/^flist_walk(function_t *list, void (*hook)(void *hookarg, function_t *func), void *hookarg){$/;"	f
+function_dump	functions.c	/^function_dump(function_t *func){$/;"	f
+function_free	functions.c	/^function_free(function_t *func){$/;"	f
+function_new	functions.c	/^function_new(void){$/;"	f
+ilist_dump_elt	insn_list.c	/^ilist_dump_elt(ilist_elt_t *elt){$/;"	f
+ilist_dump	insn_list.c	/^ilist_dump(ilist_elt_t *list){$/;"	f
+ilist_free	insn_list.c	/^ilist_free(ilist_elt_t *list){$/;"	f
+insn_dump	insn.c	/^insn_dump(insn_t *pinsn){$/;"	f
+insn_free	insn.c	/^insn_free(insn_t *pinsn){$/;"	f
+insn_new	insn.c	/^insn_new(pc_t pc){$/;"	f
+itree_search_filtered_l	insn_tree.c	/^itree_search_filtered_l(itree_node_t *tree, unsigned long skey, unsigned long sfilter){$/;"	f
+itree_search_filtered_u	insn_tree.c	/^itree_search_filtered_u(itree_node_t *tree __attribute__((unused)),$/;"	f
+olist_add	generic_olist.c	/^olist_add(olist_elt_t *list, olist_elt_t *new){$/;"	f
+olist_for_each	generic_olist.c	/^olist_for_each(olist_elt_t *list, void (*hook)(void *elt)){$/;"	f
+olist_free_elt	generic_olist.c	/^olist_free_elt(olist_elt_t *list){$/;"	f
+olist_new	generic_olist.c	/^olist_new(unsigned int key, void *data) {$/;"	f
+olist_search	generic_olist.c	/^olist_search(olist_elt_t *list, unsigned int key){$/;"	f
+process_die	dwarf_nfo.c	/^process_die(dwarf_nfo_t *dw, function_t **funcs, Dwarf_Die die, unsigned long cu_idx)$/;"	f
+process_lines	dwarf_nfo.c	/^process_lines(Dwarf_Debug dbg, Dwarf_Die die, src_tab_t *tab){$/;"	f
+process_subprogram_entry	dwarf_nfo.c	/^process_subprogram_entry(dwarf_nfo_t *dw, function_t *funcs,$/;"	f
+process_variable_entry	dwarf_nfo.c	/^process_variable_entry(dwarf_nfo_t *dw, Dwarf_Die die){$/;"	f
+slist_add_head	symbols.c	/^slist_add_head(symbol_t **list, symbol_t *new){$/;"	f
+slist_dump	symbols.c	/^slist_dump(symbol_t *list){$/;"	f
+slist_free	symbols.c	/^slist_free(symbol_t *list){$/;"	f
+slist_lookup_name	symbols.c	/^slist_lookup_name(symbol_t *list, char *sym){$/;"	f
+slist_lookup	symbols.c	/^slist_lookup(symbol_t *list, unsigned long CU_idx, unsigned long die_off){$/;"	f
+slist_walk	symbols.c	/^slist_walk(symbol_t *list, void (*hook)(void *hookarg, symbol_t *sym), void *hookarg){$/;"	f
+symbol_dump	symbols.c	/^symbol_dump(symbol_t *sym){$/;"	f
+symbol_free	symbols.c	/^symbol_free(symbol_t *sym){$/;"	f
+symbol_new	symbols.c	/^symbol_new(void){$/;"	f
+symtab_process	debug_nfo.c	/^symtab_process(debug_nfo_t *dbg, function_t **funcs)$/;"	f

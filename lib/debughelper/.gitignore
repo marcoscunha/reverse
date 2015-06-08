@@ -1,0 +1,7 @@
+*.a
+*swp
+obj
+
+test/test
+section_annotation_test/section_annotation_test
+section_annotation_test/appli_test/appli_test

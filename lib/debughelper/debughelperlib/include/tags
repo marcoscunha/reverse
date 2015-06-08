@@ -1,0 +1,182 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+AVL_FLAGS_BALANCED	avl_tree.h	46;"	d
+AVL_FLAGS_LEFT_HEAVY	avl_tree.h	47;"	d
+AVL_FLAGS_LEFT_UNBAL	avl_tree.h	49;"	d
+AVL_FLAGS_RIGHT_HEAVY	avl_tree.h	48;"	d
+AVL_FLAGS_RIGHT_UNBAL	avl_tree.h	50;"	d
+CU_idx	functions.h	/^	unsigned long  CU_idx;$/;"	m	struct:function
+CU_idx	symbols.h	/^	unsigned long  CU_idx;$/;"	m	struct:symbol
+DBG_FILE	debug.h	53;"	d
+DBG_HDR	debug.h	45;"	d
+DBG_HDR_SZ	debug.h	57;"	d
+DBG_NFO_LOC_FOUND	dwarf_nfo.h	71;"	d
+DBG_NFO_NO_FUNC	dwarf_nfo.h	72;"	d
+DBG_NFO_NO_LOC	dwarf_nfo.h	74;"	d
+DBG_NFO_NO_SYM	dwarf_nfo.h	73;"	d
+DEBUG	debug.h	49;"	d
+DH_ERROR	libdebughelper.h	/^   DH_ERROR$/;"	e	enum:get_loc_ret
+DH_LOC_FOUND	libdebughelper.h	/^   DH_LOC_FOUND,$/;"	e	enum:get_loc_ret
+DH_NO_FUNC	libdebughelper.h	/^   DH_NO_FUNC,$/;"	e	enum:get_loc_ret
+DH_NO_LOC	libdebughelper.h	/^   DH_NO_LOC,$/;"	e	enum:get_loc_ret
+DH_NO_SYM	libdebughelper.h	/^   DH_NO_SYM,$/;"	e	enum:get_loc_ret
+DMSG	debug.h	65;"	d
+DMSG	debug.h	68;"	d
+EMSG	debug.h	61;"	d
+FORCE_INLINE	insn_list.h	45;"	d
+FORCE_INLINE	insn_tree.h	45;"	d
+FUNCTION_TYPE_FUNC	functions.h	49;"	d
+FUNCTION_TYPE_INLINE	functions.h	50;"	d
+FUNCTION_TYPE_NONE	functions.h	48;"	d
+FUNCTION_TYPE_SCOPE	functions.h	51;"	d
+HMSG	debug.h	72;"	d
+HMSG	debug.h	75;"	d
+IL_ADDR	insn_list.h	88;"	d
+IL_INSN	insn_list.h	86;"	d
+IL_NEXT	insn_list.h	87;"	d
+IMSG	debug.h	80;"	d
+INSN_FLAGS_EXC	libdebughelper.h	14;"	d
+INSN_FLAGS_FUNC_CALL	insn.h	57;"	d
+INSN_FLAGS_FUNC_END	insn.h	56;"	d
+INSN_FLAGS_FUNC_ENTRY	insn.h	55;"	d
+INSN_FLAGS_JUMP	insn.h	58;"	d
+INSN_FLAGS_NEW_LINE	insn.h	59;"	d
+INSN_FLAGS_NONE	insn.h	53;"	d
+INSN_FLAGS_NSEQ	libdebughelper.h	13;"	d
+INSN_FLAGS_UNUSED	insn.h	54;"	d
+IS_IN_FUNCTION_RANGE	functions.h	89;"	d
+IS_IN_LOCATION_RANGE	symbols.h	72;"	d
+IT_INSN	insn_tree.h	115;"	d
+_AVL_TREE_H	avl_tree.h	40;"	d
+_CALLS_H	calls.h	40;"	d
+_COMMON_TYPES_H	common_types.h	40;"	d
+_COUNTERS_H	counters.h	40;"	d
+_DEBUG_H	debug.h	40;"	d
+_DEBUG_NFO_H	debug_nfo.h	40;"	d
+_DWARF_NFO_H	dwarf_nfo.h	40;"	d
+_FUNCTIONS_H	functions.h	40;"	d
+_GENERIC_OLIST_H	generic_olist.h	40;"	d
+_INSN_H	insn.h	40;"	d
+_INSN_LIST_H	insn_list.h	40;"	d
+_INSN_TREE_H	insn_tree.h	40;"	d
+_SRC_LINES_H	src_lines.h	40;"	d
+_SYMBOLS_H	symbols.h	40;"	d
+__LIBDEBUGHELPER_H__	libdebughelper.h	2;"	d
+abstr_func	functions.h	/^	function_t    *abstr_func;$/;"	m	struct:function
+addr	insn.h	/^	pc_t           addr;$/;"	m	struct:insn
+addr	src_lines.h	/^	addr_t    addr;     \/* Program counter *\/$/;"	m	struct:line_nfo
+addr_t	common_types.h	/^typedef uint32_t addr_t;$/;"	t
+avl_tree	avl_tree.h	/^struct avl_tree {$/;"	s
+avl_tree_t	avl_tree.h	/^typedef struct avl_tree avl_tree_t;$/;"	t	typeref:struct:avl_tree
+call	calls.h	/^struct call{$/;"	s
+call_t	calls.h	/^typedef struct call call_t;$/;"	t	typeref:struct:call
+callee	calls.h	/^	insn_t     *callee;$/;"	m	struct:call
+caller	calls.h	/^	insn_t     *caller;$/;"	m	struct:call
+calls	insn.h	/^	call_t        *calls;$/;"	m	struct:insn
+costs	calls.h	/^	counters_t *costs;$/;"	m	struct:call
+costs	insn.h	/^	counters_t    *costs;$/;"	m	struct:insn
+counters	counters.h	/^struct counters {$/;"	s
+counters_t	counters.h	/^typedef struct counters counters_t;$/;"	t	typeref:struct:counters
+curr_func	dwarf_nfo.h	/^   function_t   *curr_func;$/;"	m	struct:dwarf_nfo
+data	avl_tree.h	/^	void          *data;$/;"	m	struct:avl_tree
+data	generic_olist.h	/^	void        *data;$/;"	m	struct:olist_elt
+dbg	dwarf_nfo.h	/^	Dwarf_Debug   dbg;$/;"	m	struct:dwarf_nfo
+dbg	libdebughelper.h	/^   debug_nfo_t *dbg;$/;"	m	struct:debug_helper
+debug_helper	libdebughelper.h	/^struct debug_helper {$/;"	s
+debug_helper_t	libdebughelper.h	/^typedef struct debug_helper debug_helper_t;$/;"	t	typeref:struct:debug_helper
+debug_nfo	debug_nfo.h	/^struct debug_nfo{$/;"	s
+debug_nfo_t	debug_nfo.h	/^typedef struct debug_nfo debug_nfo_t;$/;"	t	typeref:struct:debug_nfo
+decl_file	functions.h	/^	unsigned long  decl_file;$/;"	m	struct:function
+decl_line	functions.h	/^	unsigned long  decl_line;$/;"	m	struct:function
+declaration	functions.h	/^   int            declaration;$/;"	m	struct:function
+depth	avl_tree.h	/^	unsigned long  depth;$/;"	m	struct:avl_tree
+die_off	functions.h	/^	unsigned long  die_off;$/;"	m	struct:function
+die_off	symbols.h	/^	unsigned long  die_off;$/;"	m	struct:symbol
+die_origin	functions.h	/^	unsigned long  die_origin;$/;"	m	struct:function
+die_origin	symbols.h	/^	unsigned long  die_origin;$/;"	m	struct:symbol
+dw	symbols.h	/^   dwarf_nfo_t   *dw;$/;"	m	struct:symbol
+dwarf_nfo	dwarf_nfo.h	/^struct dwarf_nfo{$/;"	s
+dwarf_nfo_t	dwarf_nfo.h	/^typedef struct dwarf_nfo dwarf_nfo_t;$/;"	t	typeref:struct:dwarf_nfo
+dwarfs	debug_nfo.h	/^	dwarf_nfo_t  *dwarfs;$/;"	m	struct:debug_nfo
+elf	debug_nfo.h	/^	Elf  *elf;$/;"	m	struct:debug_nfo
+elf	dwarf_nfo.h	/^	Elf          *elf;$/;"	m	struct:dwarf_nfo
+exec_fd	debug_nfo.h	/^	int   exec_fd;$/;"	m	struct:debug_nfo
+exec_fname	debug_nfo.h	/^	char *exec_fname;$/;"	m	struct:debug_nfo
+fileno	src_lines.h	/^	uint16_t  fileno;   \/* idx in current CU file list *\/$/;"	m	struct:line_nfo
+files	src_lines.h	/^	char      **files;    \/* Filenames *\/$/;"	m	struct:src_tab
+flags	avl_tree.h	/^	long           flags;$/;"	m	struct:avl_tree
+flags	insn.h	/^	uint32_t       flags;$/;"	m	struct:insn
+flags	libdebughelper.h	/^   uint32_t flags;$/;"	m	struct:insn_desc
+fname	insn.h	/^	char          *fname;$/;"	m	struct:insn
+func	calls.h	/^   function_t   *func;$/;"	m	struct:call
+func	insn.h	/^	function_t    *func;$/;"	m	struct:insn
+funcs	debug_nfo.h	/^	function_t  *funcs;$/;"	m	struct:debug_nfo
+function	functions.h	/^struct function{$/;"	s
+function_t	functions.h	/^typedef struct function function_t;$/;"	t	typeref:struct:function
+get_loc_ret	libdebughelper.h	/^enum get_loc_ret {$/;"	g
+get_loc_ret_t	libdebughelper.h	/^typedef enum get_loc_ret get_loc_ret_t;$/;"	t	typeref:enum:get_loc_ret
+highpc	functions.h	/^	addr_t         highpc;$/;"	m	struct:function
+ilist_add	insn_list.h	/^ilist_add(ilist_elt_t *list, ilist_elt_t *elt){$/;"	f
+ilist_elt_t	insn_list.h	/^typedef olist_elt_t ilist_elt_t;$/;"	t
+ilist_free_elt	insn_list.h	/^ilist_free_elt(ilist_elt_t *list){$/;"	f
+ilist_new	insn_list.h	/^ilist_new(insn_t *insn) {$/;"	f
+ilist_search	insn_list.h	/^ilist_search(ilist_elt_t *list, pc_t key){$/;"	f
+insn	insn.h	/^struct insn{$/;"	s
+insn_desc	libdebughelper.h	/^struct insn_desc {$/;"	s
+insn_desc_t	libdebughelper.h	/^typedef struct insn_desc      insn_desc_t;$/;"	t	typeref:struct:insn_desc
+insn_list	libdebughelper.h	/^   ilist_elt_t       *insn_list;$/;"	m	struct:debug_helper
+insn_t	insn.h	/^typedef struct insn  insn_t;$/;"	t	typeref:struct:insn
+insn_tree	libdebughelper.h	/^   itree_node_t      *insn_tree;$/;"	m	struct:debug_helper
+itree_dump	insn_tree.h	/^itree_dump(itree_node_t *tree){$/;"	f
+itree_free	insn_tree.h	/^itree_free(itree_node_t *node){$/;"	f
+itree_free_node	insn_tree.h	/^itree_free_node(itree_node_t *node){$/;"	f
+itree_insert	insn_tree.h	/^itree_insert(itree_node_t **tree, itree_node_t *node){$/;"	f
+itree_new	insn_tree.h	/^itree_new(unsigned long key, ilist_elt_t *data){$/;"	f
+itree_node_t	insn_tree.h	/^typedef avl_tree_t itree_node_t;$/;"	t
+itree_ordered_dump	insn_tree.h	/^itree_ordered_dump(itree_node_t *tree){$/;"	f
+itree_search	insn_tree.h	/^itree_search(itree_node_t *tree, unsigned long key){$/;"	f
+key	avl_tree.h	/^	unsigned long  key;$/;"	m	struct:avl_tree
+key	generic_olist.h	/^	unsigned int key;$/;"	m	struct:olist_elt
+left	avl_tree.h	/^	avl_tree_t    *left;$/;"	m	struct:avl_tree
+line	insn.h	/^	line_nfo_t    *line;$/;"	m	struct:insn
+line_nfo	src_lines.h	/^struct line_nfo{$/;"	s
+line_nfo_t	src_lines.h	/^typedef struct line_nfo line_nfo_t;$/;"	t	typeref:struct:line_nfo
+lineno	src_lines.h	/^	uint16_t  lineno;   \/* Line number *\/$/;"	m	struct:line_nfo
+lines	src_lines.h	/^	line_nfo_t *lines;    \/* lines *\/$/;"	m	struct:src_tab
+locs	symbols.h	/^   Dwarf_Locdesc **locs;$/;"	m	struct:symbol
+lowpc	functions.h	/^	addr_t         lowpc;$/;"	m	struct:function
+name	functions.h	/^	char          *name;$/;"	m	struct:function
+name	symbols.h	/^	char          *name;$/;"	m	struct:symbol
+nb_DC_miss	counters.h	/^	uint32_t nb_DC_miss;$/;"	m	struct:counters
+nb_DT_miss	counters.h	/^	uint32_t nb_DT_miss;$/;"	m	struct:counters
+nb_IC_miss	counters.h	/^	uint32_t nb_IC_miss;$/;"	m	struct:counters
+nb_IT_miss	counters.h	/^	uint32_t nb_IT_miss;$/;"	m	struct:counters
+nb_files	src_lines.h	/^	uint16_t    nb_files; \/* number of file entries *\/$/;"	m	struct:src_tab
+nb_lines	src_lines.h	/^	uint16_t    nb_lines; \/* number of line entries *\/$/;"	m	struct:src_tab
+nb_locs	symbols.h	/^   int             nb_locs;$/;"	m	struct:symbol
+next	calls.h	/^	call_t     *next;$/;"	m	struct:call
+next	functions.h	/^	function_t    *next;$/;"	m	struct:function
+next	generic_olist.h	/^	olist_elt_t *next;$/;"	m	struct:olist_elt
+next	src_lines.h	/^	src_tab_t  *next;     \/* List structure *\/$/;"	m	struct:src_tab
+next	symbols.h	/^	symbol_t      *next;$/;"	m	struct:symbol
+olist_elt	generic_olist.h	/^struct olist_elt {$/;"	s
+olist_elt_t	generic_olist.h	/^typedef struct olist_elt olist_elt_t;$/;"	t	typeref:struct:olist_elt
+pc	libdebughelper.h	/^   addr_t   pc;$/;"	m	struct:insn_desc
+pc_t	common_types.h	/^typedef uint32_t pc_t;$/;"	t
+rep_counter	counters.h	/^	uint32_t rep_counter;$/;"	m	struct:counters
+ret_addr	insn.h	/^	pc_t           ret_addr;$/;"	m	struct:insn
+right	avl_tree.h	/^	avl_tree_t    *right;$/;"	m	struct:avl_tree
+src_tab	src_lines.h	/^struct src_tab{$/;"	s
+src_tab_t	src_lines.h	/^typedef struct src_tab src_tab_t;$/;"	t	typeref:struct:src_tab
+src_tabs	debug_nfo.h	/^	src_tab_t   *src_tabs;$/;"	m	struct:debug_nfo
+symbol	symbols.h	/^struct symbol{$/;"	s
+symbol_t	symbols.h	/^typedef struct symbol symbol_t;$/;"	t	typeref:struct:symbol
+syms	functions.h	/^	symbol_t      *syms;$/;"	m	struct:function
+total_cyc	counters.h	/^	uint64_t total_cyc;$/;"	m	struct:counters
+total_en	counters.h	/^	uint64_t total_en;$/;"	m	struct:counters
+total_ir	counters.h	/^	uint64_t total_ir;$/;"	m	struct:counters
+type	functions.h	/^	uint8_t        type;$/;"	m	struct:function

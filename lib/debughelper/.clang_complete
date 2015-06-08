@@ -1,0 +1,2 @@
+-std=c99
+-I/work/cunha/devel/debughelper/debughelperlib/include/
