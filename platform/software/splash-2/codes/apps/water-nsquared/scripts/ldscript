@@ -1,0 +1,146 @@
+ENTRY (_start)
+/*GROUP(-lc -lgcc -linstrument)*/
+GROUP(-lc -lm -lgcc)
+
+SYSSTACK_SIZE = 0x01000000;
+KHEAP_SIZE    = 0x10000000; /*0x80000000;*/
+UHEAP_SIZE    = 0x18000000; /*0x80000000;*/
+
+SECTIONS
+{
+  .reset 0x00000000 : { *(.reset) }
+  .excep ALIGN(8) : { *(.excep) }
+
+  /* RO segment (+ execute) */
+  .jcr ALIGN(8) : { *(.jcr*) }
+
+  /* Sections for constr and destr */
+  .init ALIGN(8) : { *(.init*) }
+  .fini ALIGN(8) : { *(.fini*) }
+  .ctors ALIGN(8) : { *(.ctors*) }
+  .dtors ALIGN(8) : { *(.dtors*) }
+  
+  .text ALIGN(8) : { *(.text* .gnu.linkonce.t.*) }
+
+  /* Exception handling (for C++ mainly) */
+  .ARM.extab : { *(.ARM.extab* .gnu.linkonce.armextab.*) }
+  PROVIDE_HIDDEN(__exidx_start = .);
+  .ARM.exidx : { *(.ARM.exidx* .gnu.linkonce.armexidx.*) }
+  PROVIDE_HIDDEN (__exidx_end = .);
+
+  .eh_frame_hdr : { *(.eh_frame_hdr) }
+  .eh_frame : ONLY_IF_RO { KEEP (*(.eh_frame)) }
+  .gcc_except_table : ONLY_IF_RO { *(.gcc_except_table .gcc_except_table.*) }
+
+  .rodata ALIGN(0x8) : { *(.rodata*) } 
+
+  /* RW segment */
+  .eh_frame       : ONLY_IF_RW { KEEP (*(.eh_frame)) }
+  .gcc_except_table   : ONLY_IF_RW { *(.gcc_except_table .gcc_except_table.*) }
+
+  .data ALIGN(0x8) : { *(.data*) *(.glue_7*) } 
+
+  /* Thread Local Storage sections  */
+  /* ==> to be tested */
+  .tdata : { *(.tdata .tdata.* .gnu.linkonce.td.*) }
+  .tbss : { *(.tbss .tbss.* .gnu.linkonce.tb.*) *(.tcommon) }
+
+  /* Next sections should be RO */
+  .os_config ALIGN(0x8): {
+         /* For Marcos: Copy from your old File */
+        OS_N_DRIVERS = .; LONG(0x4)
+        OS_DRIVERS_LIST = .; LONG(soclib_platform_module) LONG(rdv_module)
+                         LONG(soclib_block_device_module) LONG(soclib_fb_module)
+
+        OS_N_FILESYSTEMS = .; LONG(0x2)
+        OS_FILESYSTEMS_LIST = .; LONG(devfs_module) LONG(rootfs_module)
+
+        OS_N_EXTENSIONS = .; LONG(0x0)
+        OS_EXTENSIONS_LIST = .;
+
+        OS_THREAD_STACK_SIZE = .; LONG(0x8000)
+
+        OS_KERNEL_HEAP_ADDRESS = .; LONG(ADDR(.kheap))
+        OS_USER_HEAP_ADDRESS = .; LONG(ADDR(.uheap))
+
+		OS_KERNEL_HEAP_SIZE = .; LONG(KHEAP_SIZE)
+		OS_USER_HEAP_SIZE = .; LONG(UHEAP_SIZE)
+ } 
+
+  .hal ALIGN(0x8): {
+
+    PLATFORM_DEBUG_CHARPORT = .; LONG(0xC1000000)
+    APP_ENTRY_POINT = .; LONG(_main);
+
+    CPU_ARMV6_COUNT = .; LONG(0x1)
+    CPU_SVC_STACK_ADDR  = __hal_sysstack_begin;
+
+/*    CPU_ARMV6_COUNT = .; LONG(12)*/
+/*    CPU_SVC_STACK_ADDR  = ABSOLUTE(ADDR(.sysstack));*/
+
+/*    CPU_BSS_START = .; LONG(ADDR(.bss))*/
+
+    CPU_BSS_START = .; LONG(__hal_bss_begin)
+    CPU_BSS_END = .; LONG(__hal_bss_end)
+
+    PLATFORM_TIMER_BASE = .; LONG(0xC2000000)
+    PLATFORM_IPI_BASE = .; LONG(0xC3000000)
+    PLATFORM_AICU_BASE = .; LONG(0xC4000000)
+
+    SOCLIB_TTY_NDEV = .; LONG(0x1)
+    SOCLIB_TTY_DEVICES = .; LONG(2) LONG(0xC1000000)
+
+    SOCLIB_BLOCK_DEVICES_NDEV = .; LONG(0x1)
+    SOCLIB_BLOCK_DEVICES = .; LONG(0x1) LONG(0x4) LONG(0xC6000000)
+
+    SOCLIB_FB_NDEV = .; LONG(0x1)
+    SOCLIB_FB_DEVICES = .; LONG(256) LONG(144) LONG(0xC5001000)
+     
+/*    SOCLIB_FB_DEVICES = .; LONG(320) LONG(240) LONG(0xC5001000) */
+
+    CHANNEL_RDV_NDEV = .; LONG(24);
+     
+  } 
+
+  /* RW parts */
+  .sysstack ALIGN(0x8) (NOLOAD): {
+     __hal_sysstack_end = .;
+     . = . + SYSSTACK_SIZE - 8;
+     __hal_sysstack_begin = .;
+     . = . + 8;
+  }
+
+  .bss ALIGN(0x8) (NOLOAD) : {
+    __hal_bss_begin = .;
+    *(.bss*) *(.rel*) *(COMMON)
+    __hal_bss_end = .;
+  } 
+
+  .kheap ALIGN(0x8) (NOLOAD) : {
+       . = . + KHEAP_SIZE;
+  } 
+
+  .streaming ALIGN(0x8) (NOLOAD) : {
+    *(.streaming*)
+  } 
+
+  .uheap ALIGN(0x8) (NOLOAD) : {
+        _end = .;
+		__hal_uheap_start = .;
+		. = . + UHEAP_SIZE;
+  } 
+
+  .debug_aranges 0x0 : { *(.debug_aranges*) } 
+  .debug_info 0x0 : { *(.debug_info*) } 
+  .debug_abbrev 0x0 : { *(.debug_abbrev*) } 
+  .debug_line 0x0 : { *(.debug_line*) } 
+  .debug_ranges 0x0 : { *(.debug_ranges*) } 
+  .debug_str 0x0 : { *(.debug_str*) } 
+  .debug_frame 0x0 : { *(.debug_frame*) } 
+  .debug_loc 0x0 : { *(.debug_loc*) } 
+  .debug_pubnames 0x0 : { *(.debug_pubnames*) } 
+  .pdr 0x0 : { *(.pdr*) } 
+  .comment 0x0 : { *(.comment*) } 
+  .gnu.attributes 0x0 : { *(.gnu.attributes*) } 
+}
+

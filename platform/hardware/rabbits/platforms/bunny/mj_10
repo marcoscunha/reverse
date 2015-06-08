@@ -1,0 +1,10 @@
+================================================================================
+|  This simulation uses the QEMU/SystemC Wrapper from the RABBITS' framework   |
+|                     Copyright (c) 2009 - 2010 Tima SLS                       |
+================================================================================
+QEMU 0 called QEMU has 10 arm cpus ([node_id, cpu_id] = [0, 0], [1, 1], [2, 2], [3, 3], [4, 4], [5, 5], [6, 6], [7, 7], [8, 8], [9, 9])
+mem_shared file created
+a
+a
+SIGINT
+Rabbits Exiting

@@ -1,0 +1,17 @@
+================================================================================
+|  This simulation uses the QEMU/SystemC Wrapper from the RABBITS' framework   |
+|                     Copyright (c) 2009 - 2010 Tima SLS                       |
+================================================================================
+QEMU 0 called QEMU has 2 arm cpus ([node_id, cpu_id] = [0, 0], [1, 1])
+mem_shared file created
+a
+a
+===== Simulation Summary =====
+Clocks          : 2.04304e+08 clocks
+Execut. time    : 6048338709685 ps
+===== Performance Summary =====
+DBT     Time    :    85.2147 s   12.5231 %
+TLM Time        :   595.2467 s   87.4769 %
+Total Time      :   680.4614 s  100.0000 %
+===============================
+Shutdown requested!

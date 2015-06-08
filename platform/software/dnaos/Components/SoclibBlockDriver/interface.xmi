@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<APES:Interface
+  xmlns:xmi="http://www.omg.org/XMI"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:APES="http://www.ocm.org/APES"
+  xsi:schemaLocation="http://www.ocm.org/APES APESInterface.ecore"
+  author="guillaume.godetbar@gmail.com"
+  unique="true"
+  wrapper="false">
+
+
+  <id name="SoclibBlockDeviceDriver" version="1.0"/>
+
+  <provide>
+    <context name="Driver">
+      <variable name="soclib_block_device_module" type="driver_t"/>
+    </context>
+  </provide>
+
+  <require>
+
+    <type name="driver_t" />
+    <type name="device_cmd_t" />
+
+
+    <!-- Memory hooks -->
+
+    <method name="kernel_malloc" result="access">
+      <argument name="size" type="int32_t" direction="In"/>
+      <argument name="erase" type="boolean" direction="In"/>
+    </method>
+
+    <method name="kernel_free" result="status_t">
+      <argument name="area" type="access" direction="In"/>
+    </method>
+
+    
+
+  </require>
+
+</component>

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1" />
+<link rel="stylesheet" href="../robodoc.css" type="text/css" />
+<title>./Core/Sources/scheduler_switch.c</title>
+<!-- Source: ./Core/Sources/scheduler_switch.c -->
+</head>
+<body>
+<div id="logo">
+<a name="robo_top_of_doc">DNA-OS Core Component</a>
+</div> <!-- logo -->
+<div id="navigation">
+<a class="menuitem" href="../toc_index.html#top">Table of Contents</a>
+<a class="menuitem" href="../sources.html#top">Source files</a>
+<a class="menuitem" href="../index.html#top">Index Page</a>
+<a class="menuitem" href="../robo_definitions.html#top">Definitions</a>
+<a class="menuitem" href="../robo_functions.html#top">Functions</a>
+<a class="menuitem" href="../robo_modules.html#top">Modules</a>
+<a class="menuitem" href="../robo_types.html#top">Types</a>
+<a class="menuitem" href="../robo_variables.html#top">Variables</a>
+</div> <!-- navigation -->
+<div id="content">
+<hr />
+<a name="SchedulerPrivate2fscheduler5fswitch"></a>
+<a name="robo54"></a><h2>SchedulerPrivate/scheduler_switch [ Functions ]</h2>
+
+<p>[ <a href="#robo_top_of_doc">Top</a> ] [ <a href="../Headers/Private/Scheduler_h.html#robo10">SchedulerPrivate</a> ] [ <a href="../robo_functions.html#robo_top_of_doc">Functions</a> ]</p>
+<p class="item_name">SUMMARY</p>
+<p> Switches contexts between a thread and the current running thread.
+</p>
+<p class="item_name">SYNOPSIS</p>
+<pre class="source"><span class="line_number">29 </span>status_t <strong>scheduler_switch</strong> <span class="sign">(</span><a href="../Headers/Private/Thread_h.html#robo95">thread_t</a> thread<span class="sign">,</span> queue_t <span class="sign">*</span> queue<span class="sign">)</span>
+</pre>
+<p class="item_name">ARGUMENTS</p>
+<ul><li> thread : a valid ready thread
+</li>
+<li> queue : the waiting queue where the current thread has to be stored
+</li>
+</ul>
+<p>
+ RETURN
+ * DNA_BAD_ARGUMENT: thread is not valid
+ * DNA_OK: the operation succeeded
+</p>
+<p class="item_name">SOURCE</p>
+<pre class="source"><span class="line_number"> 43 </span><span class="sign">{</span>
+<span class="line_number"> 44 </span>  <span class="keyword">uint32_t</span> current_cpuid <span class="sign">=</span> cpu_mp_id <span class="sign">(</span><span class="sign">)</span><span class="sign">;</span>
+<span class="line_number"> 45 </span>  bigtime_t current_time <span class="sign">=</span> 0<span class="sign">;</span>
+<span class="line_number"> 46 </span>  <span class="keyword">extern</span> <span class="keyword">uint32_t</span> __scheduler_switch_end<span class="sign">;</span>
+<span class="line_number"> 47 </span>  <a href="../Headers/Private/Cpu_h.html#robo29">cpu_t</a> <span class="sign">*</span> cpu <span class="sign">=</span> <span class="sign">&amp;</span> <a href="./core_variables_c.html#robo26">cpu_pool</a> <span class="sign">.</span> cpu<span class="sign">[</span>current_cpuid<span class="sign">]</span><span class="sign">;</span>
+<span class="line_number"> 48 </span>  <a href="../Headers/Private/Thread_h.html#robo95">thread_t</a> self <span class="sign">=</span> cpu <span class="sign">-</span><span class="sign">&gt;</span> current_thread<span class="sign">;</span>
+<span class="line_number"> 49 </span>
+<span class="line_number"> 50 </span>  <span class="keyword">watch</span> <span class="sign">(</span>status_t<span class="sign">)</span>
+<span class="line_number"> 51 </span>  <span class="sign">{</span>
+<span class="line_number"> 52 </span>    <span class="keyword">ensure</span> <span class="sign">(</span>thread <span class="sign">!</span><span class="sign">=</span> NULL<span class="sign">,</span> DNA_BAD_ARGUMENT<span class="sign">)</span><span class="sign">;</span>
+<span class="line_number"> 53 </span>
+<span class="line_number"> 54 </span>    <span class="comment">/*
+<span class="line_number"> 55 </span>     * Compute the correct times if necessary
+<span class="line_number"> 56 </span>     */</span>
+<span class="line_number"> 57 </span>
+<span class="line_number"> 58 </span>    cpu_timer_get <span class="sign">(</span>current_cpuid<span class="sign">,</span> <span class="sign">&amp;</span> current_time<span class="sign">)</span><span class="sign">;</span>
+<span class="line_number"> 59 </span>    self <span class="sign">-</span><span class="sign">&gt;</span> info <span class="sign">.</span> kernel_time <span class="sign">=</span> current_time<span class="sign">;</span>
+<span class="line_number"> 60 </span>    self <span class="sign">-</span><span class="sign">&gt;</span> info <span class="sign">.</span> kernel_time <span class="sign">-</span><span class="sign">=</span> cpu <span class="sign">-</span><span class="sign">&gt;</span> lap_date<span class="sign">;</span>
+<span class="line_number"> 61 </span>    <a href="./lock_release_c.html#robo48">lock_release</a> <span class="sign">(</span><span class="sign">&amp;</span> self <span class="sign">-</span><span class="sign">&gt;</span> lock<span class="sign">)</span><span class="sign">;</span>
+<span class="line_number"> 62 </span>
+<span class="line_number"> 63 </span>    <span class="comment">/*
+<span class="line_number"> 64 </span>     * Update the status of the target thread
+<span class="line_number"> 65 </span>     */</span>
+<span class="line_number"> 66 </span>
+<span class="line_number"> 67 </span>    thread <span class="sign">-</span><span class="sign">&gt;</span> info <span class="sign">.</span> status <span class="sign">=</span> DNA_THREAD_RUNNING<span class="sign">;</span>
+<span class="line_number"> 68 </span>    thread <span class="sign">-</span><span class="sign">&gt;</span> info <span class="sign">.</span> cpu_id <span class="sign">=</span> current_cpuid<span class="sign">;</span>
+<span class="line_number"> 69 </span>    <a href="./lock_release_c.html#robo48">lock_release</a> <span class="sign">(</span><span class="sign">&amp;</span> thread <span class="sign">-</span><span class="sign">&gt;</span> lock<span class="sign">)</span><span class="sign">;</span>
+<span class="line_number"> 70 </span>
+<span class="line_number"> 71 </span>    <span class="comment">/*
+<span class="line_number"> 72 </span>     * Update the processor's status
+<span class="line_number"> 73 </span>     */</span>
+<span class="line_number"> 74 </span>
+<span class="line_number"> 75 </span>    cpu <span class="sign">-</span><span class="sign">&gt;</span> lap_date <span class="sign">=</span> current_time<span class="sign">;</span>
+<span class="line_number"> 76 </span>    cpu <span class="sign">-</span><span class="sign">&gt;</span> current_thread <span class="sign">=</span> thread<span class="sign">;</span>
+<span class="line_number"> 77 </span>
+<span class="line_number"> 78 </span>    <span class="comment">/*
+<span class="line_number"> 79 </span>     * Save the current context
+<span class="line_number"> 80 </span>     */</span>
+<span class="line_number"> 81 </span>
+<span class="line_number"> 82 </span>    cpu_context_save <span class="sign">(</span><span class="sign">&amp;</span> self <span class="sign">-</span><span class="sign">&gt;</span> context<span class="sign">,</span> <span class="sign">&amp;</span> __scheduler_switch_end<span class="sign">)</span><span class="sign">;</span>
+<span class="line_number"> 83 </span>
+<span class="line_number"> 84 </span>    <span class="comment">/*
+<span class="line_number"> 85 </span>     * If queue is not NULL, then add the current thread to this queue
+<span class="line_number"> 86 </span>     */</span>
+<span class="line_number"> 87 </span>
+<span class="line_number"> 88 </span>    <span class="keyword">if</span> <span class="sign">(</span>queue <span class="sign">!</span><span class="sign">=</span> NULL<span class="sign">)</span>
+<span class="line_number"> 89 </span>    <span class="sign">{</span>
+<span class="line_number"> 90 </span>      queue_add <span class="sign">(</span>queue<span class="sign">,</span> self<span class="sign">)</span><span class="sign">;</span>
+<span class="line_number"> 91 </span>      <a href="./lock_release_c.html#robo48">lock_release</a> <span class="sign">(</span><span class="sign">&amp;</span> queue <span class="sign">-</span><span class="sign">&gt;</span> lock<span class="sign">)</span><span class="sign">;</span>
+<span class="line_number"> 92 </span>    <span class="sign">}</span>
+<span class="line_number"> 93 </span>
+<span class="line_number"> 94 </span>    <span class="comment">/*
+<span class="line_number"> 95 </span>     * Load the target context
+<span class="line_number"> 96 </span>     */</span>
+<span class="line_number"> 97 </span>
+<span class="line_number"> 98 </span>    cpu_context_load <span class="sign">(</span><span class="sign">&amp;</span> thread <span class="sign">-</span><span class="sign">&gt;</span> context<span class="sign">)</span><span class="sign">;</span>
+<span class="line_number"> 99 </span>
+<span class="line_number">100 </span>    <span class="comment">/*
+<span class="line_number">101 </span>     * FIXME: Find a better idea for what follows 
+<span class="line_number">102 </span>     */</span>
+<span class="line_number">103 </span>
+<span class="line_number">104 </span>    <span class="keyword">__asm__</span> <span class="keyword">volatile</span> <span class="sign">(</span><span class="quote">"__scheduler_switch_end:"</span><span class="sign">)</span><span class="sign">;</span>
+<span class="line_number">105 </span>    <span class="keyword">return</span> DNA_OK<span class="sign">;</span>
+<span class="line_number">106 </span>  <span class="sign">}</span>
+<span class="line_number">107 </span><span class="sign">}</span>
+</pre>
+
+</div> <!-- content -->
+<div id="footer">
+<p>Generated from ./Core/Sources/scheduler_switch.c on Mon Mar 01 2010 13:57:34
+</p>
+</div> <!-- footer -->
+</body>
+</html>

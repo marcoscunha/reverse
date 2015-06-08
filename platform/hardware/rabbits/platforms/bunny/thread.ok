@@ -1,0 +1,138 @@
+$2 ={ link = {next = 0x0 <_start>},
+      wait = {lock = 0,
+              head = 0x0 <_start>, 
+              tail = 0x0 <_start>, 
+              status = 0}, 
+      lock = 1, 
+      resource_queue = 0x0 <_start>, 
+      id = {raw = 50331652,
+            s = {value = 4, 
+                group = 0 '\000', 
+                index = 3 '\003'}},
+      info = { name = "pthread_0\000\000\200PW\003\001LW\003\001\037\000\000\000\001\000\000\000`D\003", 
+          cpu_id = 1,
+          group = 0,
+          affinity = 2, 
+          sem_tokens = 0,
+          status = DNA_THREAD_RUNNING,
+          resource = DNA_NO_RESOURCE, 
+          resource_id = -1, 
+          kernel_time = 0, 
+          user_time = 0, 
+          stack_base = 0x1f57b1f8, 
+          stack_size = 32768},
+      stack_allocated = false,
+      signature = {handler = 0x5708 <slave>,
+          it_restore = 19, 
+          arguments = 0x0 <_start>,
+          return_value = 0}, 
+      context = { 17280028,  525840888,        32768,    112192,    17280028,
+          0,      22280,   4294967295,         0,    17279912, 
+          17279280, 1610613011,     17404344, 525873648,      112192, 
+          1610613203,          0,            0,         0}}
+
+
+==================
+
+$4 = { link = {next = 0x0 <_start>}, 
+       wait = {lock = 0, 
+               head = 0x0 <_start>,
+               tail = 0x0 <_start>, 
+               status = 0}, 
+       lock = 1,
+       resource_queue = 0x0 <_start>,
+       id = {raw = 16777218, 
+             s = {value = 2,
+                  group = 0 '\000', 
+                  index = 1 '\001'}},
+        info = {name = "IdleThread", '\000' <repeats 21 times>, 
+                cpu_id = 1, 
+                group = 0, 
+                affinity = 1,
+                sem_tokens = 0,
+                status = DNA_THREAD_RUNNING,
+                resource = DNA_NO_RESOURCE,
+                resource_id = -1, 
+                kernel_time = 11888610,
+                user_time = 0, 
+                stack_base = 0x1089328,
+                stack_size = 32768},
+        stack_allocated = true, 
+        signature = {handler = 0x19ab4 <thread_idle>, 
+                     it_restore = 19,
+                     arguments = 0x0 <_start>, 
+                     return_value = 0}, 
+        context = {17279628,   114604, 11888610,        0, 17292616,
+                 4294950639,        0,        8, 17279912,        1,
+                   17293192, 17279496, 17339144, 17371752,   114604,
+                        467,        0,        0,        0}}
+
+==================
+
+$5 = { link = {next = 0x0 <_start>},
+       wait = {lock = 0,
+               head = 0x0 <_start>,
+               tail = 0x0 <_start>, 
+               status = 0}, 
+        lock = 1,
+        resource_queue = 0x0 <_start>, 
+        id = {raw = 50331652, 
+              s = {value = 4,
+              group = 0 '\000', 
+              index = 3 '\003'}}, 
+         info = { name = "pthread_0\000\000\200PW\003\001LW\003\001\037\000\000\000\001\000\000\000`D\003", 
+                  cpu_id = 1, 
+                  group = 0, 
+                  affinity = 2, 
+                  sem_tokens = 0,
+                  status = DNA_THREAD_RUNNING,
+                  resource = DNA_NO_RESOURCE, 
+                  resource_id = -1,
+                  kernel_time = 96660,
+                  user_time = 0,
+                  stack_base = 0x1f57b1f8,
+                  stack_size = 32768}, 
+         stack_allocated = false,
+         signature = {handler = 0x5708 <slave>, 
+                      it_restore = 19,
+                      arguments = 0x0 <_start>, 
+                      return_value = 0},
+          context = {17280044,   114604, 96660,         0, 17292616,
+                   4294950639, 16996176,     8,  17279496,        1, 
+                     17293192, 17279912,     1, 525873168,   114604,
+                          467,        0,     0,         0}}
+
+
+===================
+
+$6 = {link = {next = 0x0 <_start>}, wait = {lock = 0, head = 0x0 <_start>, tail = 0x0 <_start>, status = 0}, 
+  lock = 1, resource_queue = 0x0 <_start>, id = {raw = 1, s = {value = 1, group = 0 '\000', index = 0 '\000'}}, 
+  info = {name = "IdleThread", '\000' <repeats 21 times>, cpu_id = 0, group = 0, affinity = 0, sem_tokens = 0, 
+    status = DNA_THREAD_RUNNING, resource = DNA_NO_RESOURCE, resource_id = -1, kernel_time = 0, user_time = 0, 
+    stack_base = 0x1081308, stack_size = 32768}, stack_allocated = true, signature = {
+    handler = 0x19ab4 <thread_idle>, it_restore = 19, arguments = 0x0 <_start>, return_value = 0}, context = {
+    17279404, 17306376, 32768, 112192, 17279404, 0, 105140, 0, 0, 17279288, 17279280, 1610613011, 17306344, 
+    17339136, 112192, 467, 0, 0, 0}}
+
+
+====================
+$8 = {link = {next = 0x0 <_start>}, wait = {lock = 0, head = 0x0 <_start>, tail = 0x0 <_start>, status = 0}, 
+  lock = 1, resource_queue = 0x0 <_start>, id = {raw = 33554435, s = {value = 3, group = 0 '\000', 
+      index = 2 '\002'}}, info = {name = "Main\000hread", '\000' <repeats 21 times>, cpu_id = 0, group = 0, 
+    affinity = 2, sem_tokens = 0, status = DNA_THREAD_RUNNING, resource = DNA_NO_RESOURCE, resource_id = -1, 
+    kernel_time = 12086000, user_time = 0, stack_base = 0x1091348, stack_size = 32768}, stack_allocated = true, 
+  signature = {handler = 0x378 <_main>, it_restore = 19, arguments = 0x0 <_start>, return_value = 0}, context = {
+    17279836, 114604, 12086000, 0, 17292616, 4294950639, 16996176, 0, 17279288, 0, 17292616, 17279704, 1, 17403656, 
+    114604, 467, 0, 0, 0}}
+
+====================
+
+$9 = {link = {next = 0x0 <_start>}, wait = {lock = 0, head = 0x0 <_start>, tail = 0x0 <_start>, status = 0}, 
+  lock = 1, resource_queue = 0x0 <_start>, id = {raw = 16777218, s = {value = 2, group = 0 '\000', 
+      index = 1 '\001'}}, info = {name = "IdleThread", '\000' <repeats 21 times>, cpu_id = 1, group = 0, 
+    affinity = 1, sem_tokens = 0, status = DNA_THREAD_RUNNING, resource = DNA_NO_RESOURCE, resource_id = -1, 
+    kernel_time = 11955200, user_time = 0, stack_base = 0x1089328, stack_size = 32768}, stack_allocated = true, 
+  signature = {handler = 0x19ab4 <thread_idle>, it_restore = 19, arguments = 0x0 <_start>, return_value = 0}, 
+  context = {17279628, 114604, 11955200, 0, 17292616, 4294950639, 0, 8, 17279912, 1, 17293192, 17279496, 17339144, 
+    17371752, 114604, 467, 0, 0, 0}}
+

@@ -1,0 +1,6 @@
+#!/bin/bash
+
+#cp ../../Rabbits/platforms/bunny/mem_init .
+cp ../../Rabbits/platforms/bunny/mem_shared .
+
+./sherlock --pg watson ../../Rabbits/platforms/bunny/OC.hwe --elf /work/cunha/devel/Rabbits/platforms/bunny/soft/splash-2/codes/apps/ocean/contiguous_partitions/ocean

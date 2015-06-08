@@ -1,0 +1,129 @@
+[submodule "Components/ArmV6Processor"]
+	path = Components/ArmV6Processor
+	url = ../components/ArmV6Processor.git
+[submodule "Components/D940ArmProcessor"]
+	path = Components/D940ArmProcessor
+	url = ../components/D940ArmProcessor.git
+[submodule "Components/D940EthernetDriver"]
+	path = Components/D940EthernetDriver
+	url = ../components/D940EthernetDriver.git
+[submodule "Components/D940MmcDriver"]
+	path = Components/D940MmcDriver
+	url = ../components/D940MmcDriver.git
+[submodule "Components/D940Platform"]
+	path = Components/D940Platform
+	url = ../components/D940Platform.git
+[submodule "Components/D940RdmaDriver"]
+	path = Components/D940RdmaDriver
+	url = ../components/D940RdmaDriver.git
+[submodule "Components/D940SystemDriver"]
+	path = Components/D940SystemDriver
+	url = ../components/D940SystemDriver.git
+[submodule "Components/DeviceFileSystem"]
+	path = Components/DeviceFileSystem
+	url = ../components/DeviceFileSystem.git
+[submodule "Components/DnaCore"]
+	path = Components/DnaCore
+	url = ../components/DnaCore.git
+[submodule "Components/DnaCoreRT-RM"]
+	path = Components/DnaCoreRT-RM
+	url = ../components/DnaCoreRT-RM.git
+[submodule "Components/DnaKickStart"]
+	path = Components/DnaKickStart
+	url = ../components/DnaKickStart.git
+[submodule "Components/DnaLibrary"]
+	path = Components/DnaLibrary
+	url = ../components/DnaLibrary.git
+[submodule "Components/DnaMM-WorstFit"]
+	path = Components/DnaMM-WorstFit
+	url = ../components/DnaMM-WorstFit.git
+[submodule "Components/DnaTools"]
+	path = Components/DnaTools
+	url = ../components/DnaTools.git
+[submodule "Components/DnaVirtualFileSystem"]
+	path = Components/DnaVirtualFileSystem
+	url = ../components/DnaVirtualFileSystem.git
+[submodule "Components/KahnProcessNetworkLibrary"]
+	path = Components/KahnProcessNetworkLibrary
+	url = ../components/KahnProcessNetworkLibrary.git
+[submodule "Components/LwIP"]
+	path = Components/LwIP
+	url = ../components/LwIP.git
+[submodule "Components/MasterBootRecordModule"]
+	path = Components/MasterBootRecordModule
+	url = ../components/MasterBootRecordModule.git
+[submodule "Components/MicroBlaze81iProcessor"]
+	path = Components/MicroBlaze81iProcessor
+	url = ../components/MicroBlaze81iProcessor.git
+[submodule "Components/MultiMediaCardModule"]
+	path = Components/MultiMediaCardModule
+	url = ../components/MultiMediaCardModule.git
+[submodule "Components/Mips32Processor"]
+	path = Components/Mips32Processor
+	url = ../components/Mips32Processor.git
+[submodule "Components/NewlibCLibrary"]
+	path = Components/NewlibCLibrary
+	url = ../components/NewlibCLibrary.git
+[submodule "Components/NiosIIProcessor"]
+	path = Components/NiosIIProcessor
+	url = ../components/NiosIIProcessor.git
+[submodule "Components/PosixThreadsLibrary"]
+	path = Components/PosixThreadsLibrary
+	url = ../components/PosixThreadsLibrary.git
+[submodule "Components/RendezVousChannelDriver"]
+	path = Components/RendezVousChannelDriver
+	url = ../components/RendezVousChannelDriver.git
+[submodule "Components/RootFileSystem"]
+	path = Components/RootFileSystem
+	url = ../components/RootFileSystem.git
+[submodule "Components/SoclibFramebufferDriver"]
+	path = Components/SoclibFramebufferDriver
+	url = ../components/SoclibFramebufferDriver.git
+[submodule "Components/SoclibBlockDriver"]
+	path = Components/SoclibBlockDriver
+	url = ../components/SoclibBlockDriver.git
+[submodule "Components/SoclibHostAccessDriver"]
+	path = Components/SoclibHostAccessDriver
+	url = ../components/SoclibHostAccessDriver.git
+[submodule "Components/SoclibPlatformDriver"]
+	path = Components/SoclibPlatformDriver
+	url = ../components/SoclibPlatformDriver.git
+[submodule "Components/SoclibPlatform"]
+	path = Components/SoclibPlatform
+	url = ../components/SoclibPlatform.git
+[submodule "Components/DolLibrary"]
+	path = Components/DolLibrary
+	url = ../components/DolLibrary.git
+[submodule "Components/FATFileSystem"]
+	path = Components/FATFileSystem
+	url = ../components/FATFileSystem.git
+[submodule "Components/LibELF"]
+	path = Components/LibELF
+	url = ../components/LibELF.git
+[submodule "Components/NativeProcessor"]
+	path = Components/NativeProcessor
+	url = ../components/NativeProcessor.git
+[submodule "Components/PosixSemaphoresLibrary"]
+	path = Components/PosixSemaphoresLibrary
+	url = ../components/PosixSemaphoresLibrary.git
+[submodule "Components/SoclibDmaDriver"]
+	path = Components/SoclibDmaDriver
+	url = ../components/SoclibDmaDriver.git
+[submodule "Components/SoclibTtyDriver"]
+	path = Components/SoclibTtyDriver
+	url = ../components/SoclibTtyDriver.git
+[submodule "Components/ix86Processor"]
+	path = Components/ix86Processor
+	url = ../components/ix86Processor.git
+[submodule "Components/PCPlatform"]
+	path = Components/PCPlatform
+	url = ../components/PCPlatform.git
+[submodule "Components/PCPlatformDriver"]
+	path = Components/PCPlatformDriver
+	url = ../components/PCPlatformDriver.git
+[submodule "Components/DalLibrary"]
+	path = Components/DalLibrary
+	url = ../components/DalLibrary.git
+[submodule "Components/DnpRdmaDriver"]
+	path = Components/DnpRdmaDriver
+	url = ../components/DnpRdmaDriver.git

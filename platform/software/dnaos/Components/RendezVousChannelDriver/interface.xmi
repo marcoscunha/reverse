@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<APES:Interface
+  xmlns:xmi="http://www.omg.org/XMI"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:APES="http://www.ocm.org/APES"
+  xsi:schemaLocation="http://www.ocm.org/APES APESInterface.ecore"
+  author="xavier.guerin@imag.fr"
+  unique="false"
+  wrapper="false">
+
+  <id name="RendezVousChannelDriver" version="1.0"/>
+
+  <provide>
+    <context name="Driver">
+      <variable name="rdv_module" type="driver_t"/>
+    </context>
+  </provide>
+
+  <require>
+    <type name="driver_t"/>
+    <type name="device_cmd_t"/>
+
+    <method name="kernel_malloc" result="access">
+      <argument name="size" type="int32_t" direction="In"/>
+      <argument name="erase" type="boolean" direction="In"/>
+    </method>
+
+    <method name="semaphore_create" result="int32_t">
+      <argument name="name" type="string" direction="In"/>
+      <argument name="tokens" type="int32_t" direction="In"/>
+    </method>
+
+    <method name="semaphore_acquire" result="status_t">
+      <argument name="sid" type="int32_t" direction="In"/>
+      <argument name="tokens" type="int32_t" direction="In"/>
+      <argument name="flags" type="int32_t" direction="In"/>
+      <argument name="timeout" type="bigtime_t" direction="In"/>
+    </method>
+
+    <method name="semaphore_release" result="status_t">
+      <argument name="sid" type="int32_t" direction="In"/>
+      <argument name="n_tokens" type="int32_t" direction="In"/>
+      <argument name="flags" type="int32_t" direction="In"/>
+    </method>
+
+  </require>
+
+</APES:Interface>

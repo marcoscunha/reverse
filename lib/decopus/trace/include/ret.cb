@@ -1,0 +1,126 @@
+hwe_handle_header.h:	return e->hwe;
+hwe_handle_header.h:	return e->comp;
+hwe_handle_header.h:	return &e->data;
+hwe_handle_header.h:   return e->nrefs;
+hwe_handle_header.h:		hwe = hwe->refnext;
+hwe_handle_header.h:	if (idx >= e->nrefs)
+hwe_handle_header.h:		return (event_t *) hwe_getref(&e->hwe->common, idx);
+hwe_handle_header.h:	return event_mult_ref(e->hwe->common.refnext, idx - HWE_REF_MAX);
+hwe_handle_header.h:	e->go.cb = cb;
+hwe_handle_header.h:	e->ret.cb = cb;
+hwe_handle_implem.h:	return ((event_t *)ref)->hwe->common.id;
+hwe_handle_implem.h:	hwe_print(f, e->hwe, hwe_ref2id, NULL, NULL); \
+hwe_handle_implem.h:   hwe_cont *hwe = e->hwe;
+hwe_handle_implem.h:   comp_t *c = e->comp;
+hwe_handle_implem.h:		for (unsigned i = 0; i < hwe_getnref(&hwe->common); i += 1) {
+hwe_handle_implem.h:			ids[i] = hwe_ref2id(hwe_getref(&hwe->common, i));
+hwe_handle_implem.h:      if (!hwe_head_rid_compute(&hwe->common, c->lastid)) {
+hwe_handle_implem.h:         hwe_id_write(&hwe->common, dump_buffer + dump_bufsize);
+hwe_handle_implem.h:      c->lastid = hwe->common.id.index;
+hwe_handle_implem.h:   while ((hwe = ((hwe_cont *) hwe->common.refnext))) {
+hwe_handle_implem.h:		for (unsigned i = 0; i < hwe_getnref(&hwe->common); i += 1) {
+hwe_handle_implem.h:			ids[i] = hwe_ref2id(hwe_getref(&hwe->common, i));
+hwe_handle_implem.h:      hwe_head_rid_zero(&hwe->common);
+hwe_handle_implem.h:   if (e->commited)
+hwe_handle_implem.h:   if (e->go.done)
+hwe_handle_implem.h:   hwe_print(stderr, e->hwe, hwe_ref2id, NULL, NULL);
+hwe_handle_implem.h:   e->comp = NULL;
+hwe_handle_implem.h:   e->next = NULL;
+hwe_handle_implem.h:	e->nrefs = -1;
+hwe_handle_implem.h:   e->missfol = 0;
+hwe_handle_implem.h:   e->followers = NULL;
+hwe_handle_implem.h:   e->commited = false;
+hwe_handle_implem.h:   e->missref = 0;
+hwe_handle_implem.h:	e->init = tmp;
+hwe_handle_implem.h:	e->go = tmp;
+hwe_handle_implem.h:	e->ret = tmp;
+hwe_handle_implem.h:   e->rep_next = NULL;
+hwe_handle_implem.h:   e->rep_prev = NULL;
+hwe_handle_implem.h:   e->rep_cnext = NULL;
+hwe_handle_implem.h:   e->rep_cprev = NULL;
+hwe_handle_implem.h:		events.list = e->next;
+hwe_handle_implem.h:             e->hwe = hwe_pool_get(&events.hwe_pool);
+hwe_handle_implem.h:             e->hwe->common.self = (hwe_ref_t) e;
+hwe_handle_implem.h:	HANDLE_SAFEASSERT(((event_t *)e->hwe->common.self) == e, "bad link between event and hwe");
+hwe_handle_implem.h:   memset(&e->data, 0, sizeof(e->data));
+hwe_handle_implem.h:	e->next = events.list;
+hwe_handle_implem.h:      for (event_t *e = rep_queue; e != NULL; e = e->rep_next) {
+hwe_handle_implem.h:         if (e->missref != 0)
+hwe_handle_implem.h:         if (e->missfol != 0)
+hwe_handle_implem.h:      for (event_t *e = rep_queue; e != NULL; e = e->rep_next) {
+hwe_handle_implem.h:         hwe_desc(e->hwe, hwe_ref2id, &desc[0], 70);
+hwe_handle_implem.h:         for (hwe_cont *cur = e->hwe; cur != NULL; cur = (hwe_cont *) cur->common.refnext)
+hwe_handle_implem.h:         unsigned nfol = e->hwe->common.head.expected;
+hwe_handle_implem.h:               e->go.done ? 'G' : 'C',
+hwe_handle_implem.h:               e->missref, nref,
+hwe_handle_implem.h:               e->missfol, nfol,
+hwe_handle_implem.h:   event_t *e = (event_t *) hwe->common.self;
+hwe_handle_implem.h:	HANDLE_ASSERT(e->hwe == hwe, "Fatal error: invalid link");
+hwe_handle_implem.h:	hwe_print(stdout, e->hwe, hwe_ref2id, NULL, NULL);
+hwe_handle_implem.h:      if (hwe->common.head.type == HWE_INFO) {
+hwe_handle_implem.h:         unsigned id = hwe->common.id.devid;
+hwe_handle_implem.h:         hwe_info_cont *info = &hwe->info;
+hwe_handle_implem.h:         if (hwe->common.head.nrefs) {
+hwe_handle_implem.h:			if (hwe->common.head.expected) {
+hwe_handle_implem.h:         e->comp = comp[id];
+hwe_handle_implem.h:      unsigned id = hwe->common.id.devid;
+hwe_handle_implem.h:   comp_t *c = comp[hwe->common.id.devid];
+hwe_handle_implem.h:   e->comp = c;
+hwe_handle_implem.h:			HANDLE_SAFEASSERT((cur->common.head.type == e->hwe->common.head.type) ||
+hwe_handle_implem.h:		e->nrefs = refcnt;
+hwe_handle_implem.h:   hwe_desc(e->hwe, hwe_ref2id, e->desc, 60);
+hwe_handle_implem.h:   e->desc[59] = '\0';
+hwe_handle_implem.h:	memset(&e->data, 0, sizeof(EVENT_DATA_T));
+hwe_handle_implem.h:	e->init.cb = e->comp->init;
+hwe_handle_implem.h:	put_infifo(&e->comp->init_fifo, e, STAGE_INIT);
+hwe_handle_implem.h:   e->comp->rep_nevhdl += 1;
+hwe_handle_implem.h:   e->rep_next = NULL;
+hwe_handle_implem.h:   e->rep_prev = rep_head;
+hwe_handle_implem.h:   e->rep_cnext = NULL;
+hwe_handle_implem.h:   e->rep_cprev = e->comp->rep_head;
+hwe_handle_implem.h:   if (e->comp->rep_head)
+hwe_handle_implem.h:      e->comp->rep_head->rep_cnext = e;
+hwe_handle_implem.h:      e->comp->rep_queue = e;
+hwe_handle_implem.h:   e->comp->rep_head = e;
+hwe_handle_implem.h:   e->missfol += hwe->common.head.expected;
+hwe_handle_implem.h:				e->missref += 1;
+hwe_handle_implem.h:				e->go.cnt += 1;
+hwe_handle_implem.h:   for (evptr_t *ptr = e->followers; ptr != NULL; ptr = ptr->next) {
+hwe_handle_implem.h:   e->commited = true;
+hwe_handle_implem.h:			ptr->event->hwe->common.id.devid, ptr->event->hwe->common.id.index,
+hwe_handle_implem.h:	if (!e->commited || e->missref != 0)
+hwe_handle_implem.h:	if (e->init.cnt != 0)
+hwe_handle_implem.h:   e->init.cb(e);
+hwe_handle_implem.h:      evptr_t *ptr = e->init.usrfol;
+hwe_handle_implem.h:      e->init.usrfol = NULL;
+hwe_handle_implem.h:	e->init.done = true;
+hwe_handle_implem.h:   if (!e->init.done)
+hwe_handle_implem.h:   if (e->go.cnt != 0)
+hwe_handle_implem.h:   e->go.cb(e);
+hwe_handle_implem.h:      evptr_t *ptr = e->go.usrfol;
+hwe_handle_implem.h:      e->go.usrfol = NULL;
+hwe_handle_implem.h:      evptr_t *ptr = e->followers;
+hwe_handle_implem.h:      e->followers = NULL;
+hwe_handle_implem.h:   e->go.done = true;
+hwe_handle_implem.h:   if (!e->go.done || e->missfol != 0)
+hwe_handle_implem.h:   if (e->ret.cnt != 0)
+hwe_handle_implem.h:   e->ret.cb(e);
+hwe_handle_implem.h:   evptr_t *ptr = e->ret.usrfol;
+hwe_handle_implem.h:   e->ret.usrfol = NULL;
+hwe_handle_implem.h:   if (e->rep_next)
+hwe_handle_implem.h:      e->rep_next->rep_prev = e->rep_prev;
+hwe_handle_implem.h:      rep_head = e->rep_prev;
+hwe_handle_implem.h:   if (e->rep_prev)
+hwe_handle_implem.h:      e->rep_prev->rep_next = e->rep_next;
+hwe_handle_implem.h:      rep_queue = e->rep_next;
+hwe_handle_implem.h:   if (e->rep_cnext)
+hwe_handle_implem.h:      e->rep_cnext->rep_cprev = e->rep_cprev;
+hwe_handle_implem.h:      e->comp->rep_head = e->rep_cprev;
+hwe_handle_implem.h:   if (e->rep_cprev)
+hwe_handle_implem.h:      e->rep_cprev->rep_cnext = e->rep_cnext;
+hwe_handle_implem.h:      e->comp->rep_queue = e->rep_cnext;
+hwe_handle_implem.h:	for (hwe_cont *cur = e->hwe; cur != NULL; cur = (hwe_cont *) cur->common.refnext) {
+hwe_handle_implem.h:         evsrc->hwe->common.id.devid, evsrc->hwe->common.id.index,
+hwe_handle_implem.h:         evdst->hwe->common.id.devid, evdst->hwe->common.id.index,
+hwe_handle_implem.h:         ev->hwe->common.id.devid, ev->hwe->common.id.index,
+hwe_handle_implem.h:			ev->hwe->common.id.devid, ev->hwe->common.id.index);

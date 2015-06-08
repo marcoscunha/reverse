@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<APES:Interface
+  xmlns:xmi="http://www.omg.org/XMI"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:APES="http://www.ocm.org/APES"
+  xsi:schemaLocation="http://www.ocm.org/APES APESInterface.ecore"
+  author="xavier.guerin@imag.fr"
+  unique="true"
+  wrapper="false">
+
+  <id name="MultiMediaCardModule" version="1.0"/>
+
+  <provide>
+    <context name="Module">
+      <type name="mmc_extension_t" />
+    </context>
+  </provide>
+
+  <require>
+    <type name="status_t" />
+  </require>
+
+</APES:Interface>

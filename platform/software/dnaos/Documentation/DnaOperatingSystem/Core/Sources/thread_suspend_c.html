@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1" />
+<link rel="stylesheet" href="../robodoc.css" type="text/css" />
+<title>./Core/Sources/thread_suspend.c</title>
+<!-- Source: ./Core/Sources/thread_suspend.c -->
+</head>
+<body>
+<div id="logo">
+<a name="robo_top_of_doc">DNA-OS Core Component</a>
+</div> <!-- logo -->
+<div id="navigation">
+<a class="menuitem" href="../toc_index.html#top">Table of Contents</a>
+<a class="menuitem" href="../sources.html#top">Source files</a>
+<a class="menuitem" href="../index.html#top">Index Page</a>
+<a class="menuitem" href="../robo_definitions.html#top">Definitions</a>
+<a class="menuitem" href="../robo_functions.html#top">Functions</a>
+<a class="menuitem" href="../robo_modules.html#top">Modules</a>
+<a class="menuitem" href="../robo_types.html#top">Types</a>
+<a class="menuitem" href="../robo_variables.html#top">Variables</a>
+</div> <!-- navigation -->
+<div id="content">
+<hr />
+<a name="Thread2fthread5fsuspend"></a>
+<a name="robo84"></a><h2>Thread/thread_suspend [ Functions ]</h2>
+
+<p>[ <a href="#robo_top_of_doc">Top</a> ] [ <a href="../Headers/Public/Core/Thread_h.html#robo5">Thread</a> ] [ <a href="../robo_functions.html#robo_top_of_doc">Functions</a> ]</p>
+<p class="item_name">SUMMARY</p>
+<p> Suspend a thread.
+</p>
+<p class="item_name">SYNOPSIS</p>
+<pre class="source"><span class="line_number">30 </span>status_t <strong>thread_suspend</strong> <span class="sign">(</span><span class="keyword">int32_t</span> id<span class="sign">)</span>
+</pre>
+<p class="item_name">ARGUMENTS</p>
+<ul><li> id : a thread id.
+</li>
+</ul>
+<p></p>
+<p class="item_name">RESULT</p>
+<ul><li> DNA_BAD_ARGUMENT: the ID argument is invalid
+</li>
+<li> DNA_INVALID_THREAD_ID: the ID argument is not a valid thread ID
+</li>
+<li> DNA_ERROR: the thread status is not valid
+</li>
+<li> DNA_OK: the operation succeeded.
+</li>
+</ul>
+<p></p>
+<p class="item_name">SOURCE</p>
+<pre class="source"><span class="line_number"> 45 </span><span class="sign">{</span>
+<span class="line_number"> 46 </span>  status_t status<span class="sign">,</span> result<span class="sign">;</span>
+<span class="line_number"> 47 </span>  <a href="../Headers/Private/Thread_h.html#robo95">thread_t</a> target <span class="sign">=</span> NULL<span class="sign">;</span>
+<span class="line_number"> 48 </span>  <span class="keyword">uint32_t</span> current_cpuid <span class="sign">=</span> 0<span class="sign">,</span> next_cpuid <span class="sign">=</span> 0<span class="sign">;</span>
+<span class="line_number"> 49 </span>  <a href="../Headers/Private/Thread_h.html#robo95">thread_t</a> thread<span class="sign">;</span>
+<span class="line_number"> 50 </span>  bool restart_stabilization_loop <span class="sign">=</span> true<span class="sign">;</span>
+<span class="line_number"> 51 </span>  <a href="../Headers/Private/Thread_h.html#robo89">thread_id_t</a> tid <span class="sign">=</span> <span class="sign">{</span> <span class="sign">.</span>raw <span class="sign">=</span> id <span class="sign">}</span><span class="sign">;</span>
+<span class="line_number"> 52 </span>  interrupt_status_t it_status <span class="sign">=</span> 0<span class="sign">;</span>
+<span class="line_number"> 53 </span>
+<span class="line_number"> 54 </span>  <span class="keyword">watch</span> <span class="sign">(</span>status_t<span class="sign">)</span>
+<span class="line_number"> 55 </span>  <span class="sign">{</span>
+<span class="line_number"> 56 </span>    <span class="keyword">ensure</span> <span class="sign">(</span>tid <span class="sign">.</span> s <span class="sign">.</span> group <span class="sign">&gt;</span><span class="sign">=</span> 0<span class="sign">,</span> DNA_BAD_ARGUMENT<span class="sign">)</span><span class="sign">;</span>
+<span class="line_number"> 57 </span>    <span class="keyword">ensure</span> <span class="sign">(</span>tid <span class="sign">.</span> s <span class="sign">.</span> group <span class="sign">&lt;</span> DNA_MAX_GROUP<span class="sign">,</span> DNA_BAD_ARGUMENT<span class="sign">)</span><span class="sign">;</span>
+<span class="line_number"> 58 </span>    <span class="keyword">ensure</span> <span class="sign">(</span>tid <span class="sign">.</span> s <span class="sign">.</span> index <span class="sign">&gt;</span><span class="sign">=</span> 0<span class="sign">,</span> DNA_BAD_ARGUMENT<span class="sign">)</span><span class="sign">;</span>
+<span class="line_number"> 59 </span>    <span class="keyword">ensure</span> <span class="sign">(</span>tid <span class="sign">.</span> s <span class="sign">.</span> index <span class="sign">&lt;</span> DNA_MAX_THREAD<span class="sign">,</span> DNA_BAD_ARGUMENT<span class="sign">)</span><span class="sign">;</span>
+<span class="line_number"> 60 </span>
+<span class="line_number"> 61 </span>    <span class="comment">/*
+<span class="line_number"> 62 </span>     * Get some information about the execution.
+<span class="line_number"> 63 </span>     */</span>
+<span class="line_number"> 64 </span>
+<span class="line_number"> 65 </span>    it_status <span class="sign">=</span> cpu_trap_mask_and_backup <span class="sign">(</span><span class="sign">)</span><span class="sign">;</span>
+<span class="line_number"> 66 </span>    current_cpuid <span class="sign">=</span> cpu_mp_id <span class="sign">(</span><span class="sign">)</span><span class="sign">;</span>
+<span class="line_number"> 67 </span>
+<span class="line_number"> 68 </span>    <span class="comment">/*
+<span class="line_number"> 69 </span>     * Stabilization loop: depending on the current status of
+<span class="line_number"> 70 </span>     * the thread, we will have to apply the banker algorithm
+<span class="line_number"> 71 </span>     * in several different ways.
+<span class="line_number"> 72 </span>     */</span>
+<span class="line_number"> 73 </span>
+<span class="line_number"> 74 </span>    do
+<span class="line_number"> 75 </span>    <span class="sign">{</span>
+<span class="line_number"> 76 </span>      <a href="./lock_acquire_c.html#robo45">lock_acquire</a> <span class="sign">(</span><span class="sign">&amp;</span> <a href="./core_variables_c.html#robo91">thread_pool</a> <span class="sign">.</span> lock<span class="sign">)</span><span class="sign">;</span>
+<span class="line_number"> 77 </span>      thread <span class="sign">=</span> <a href="./core_variables_c.html#robo91">thread_pool</a> <span class="sign">.</span> thread<span class="sign">[</span>tid <span class="sign">.</span> s <span class="sign">.</span> group<span class="sign">]</span><span class="sign">[</span>tid <span class="sign">.</span> s <span class="sign">.</span> index<span class="sign">]</span><span class="sign">;</span>
+<span class="line_number"> 78 </span>
+<span class="line_number"> 79 </span>      <span class="keyword">check</span> <span class="sign">(</span>bad_thread<span class="sign">,</span> thread <span class="sign">!</span><span class="sign">=</span> NULL <span class="sign">&amp;</span><span class="sign">&amp;</span>
+<span class="line_number"> 80 </span>          thread <span class="sign">-</span><span class="sign">&gt;</span> id <span class="sign">.</span> raw <span class="sign">=</span><span class="sign">=</span> tid <span class="sign">.</span> raw <span class="sign">,</span> DNA_INVALID_THREAD_ID<span class="sign">)</span><span class="sign">;</span>
+<span class="line_number"> 81 </span>
+<span class="line_number"> 82 </span>      <span class="comment">/*
+<span class="line_number"> 83 </span>       * <a href="../Headers/Public/Core/Lock_h.html#robo3">Lock</a> the thread and check its status.
+<span class="line_number"> 84 </span>       */</span>
+<span class="line_number"> 85 </span>
+<span class="line_number"> 86 </span>      <a href="./lock_acquire_c.html#robo45">lock_acquire</a> <span class="sign">(</span><span class="sign">&amp;</span> thread <span class="sign">-</span><span class="sign">&gt;</span> lock<span class="sign">)</span><span class="sign">;</span>
+<span class="line_number"> 87 </span>      <a href="./lock_release_c.html#robo48">lock_release</a> <span class="sign">(</span><span class="sign">&amp;</span> <a href="./core_variables_c.html#robo91">thread_pool</a> <span class="sign">.</span> lock<span class="sign">)</span><span class="sign">;</span>
+<span class="line_number"> 88 </span>
+<span class="line_number"> 89 </span>      <span class="keyword">check</span> <span class="sign">(</span>thread_error<span class="sign">,</span>
+<span class="line_number"> 90 </span>          thread <span class="sign">-</span><span class="sign">&gt;</span> info <span class="sign">.</span> status <span class="sign">!</span><span class="sign">=</span> DNA_THREAD_ENDED <span class="sign">&amp;</span><span class="sign">&amp;</span>
+<span class="line_number"> 91 </span>          thread <span class="sign">-</span><span class="sign">&gt;</span> info <span class="sign">.</span> status <span class="sign">!</span><span class="sign">=</span> DNA_THREAD_SUSPENDED<span class="sign">,</span>
+<span class="line_number"> 92 </span>          DNA_ERROR<span class="sign">)</span><span class="sign">;</span>
+<span class="line_number"> 93 </span>
+<span class="line_number"> 94 </span>      <span class="comment">/*
+<span class="line_number"> 95 </span>       * Discriminate in function of its status.
+<span class="line_number"> 96 </span>       */</span>
+<span class="line_number"> 97 </span>
+<span class="line_number"> 98 </span>      <span class="keyword">switch</span> <span class="sign">(</span>thread <span class="sign">-</span><span class="sign">&gt;</span> info <span class="sign">.</span> status<span class="sign">)</span>
+<span class="line_number"> 99 </span>      <span class="sign">{</span>
+<span class="line_number">100 </span>        <span class="keyword">case</span> DNA_THREAD_RUNNING <span class="keyword">:</span>
+<span class="line_number">101 </span>          <span class="sign">{</span>
+<span class="line_number">102 </span>            <span class="keyword">if</span> <span class="sign">(</span>thread <span class="sign">-</span><span class="sign">&gt;</span> info <span class="sign">.</span> cpu_id <span class="sign">=</span><span class="sign">=</span> current_cpuid<span class="sign">)</span>
+<span class="line_number">103 </span>            <span class="sign">{</span>
+<span class="line_number">104 </span>              log <span class="sign">(</span>VERBOSE_LEVEL<span class="sign">,</span> <span class="quote">"Local RUN suspend 0x%x."</span><span class="sign">,</span> thread <span class="sign">-</span><span class="sign">&gt;</span> id<span class="sign">)</span><span class="sign">;</span>
+<span class="line_number">105 </span>
+<span class="line_number">106 </span>              thread <span class="sign">-</span><span class="sign">&gt;</span> info <span class="sign">.</span> status <span class="sign">=</span> DNA_THREAD_SUSPENDED<span class="sign">;</span>
+<span class="line_number">107 </span>
+<span class="line_number">108 </span>              status <span class="sign">=</span> <a href="./scheduler_elect_c.html#robo53">scheduler_elect</a> <span class="sign">(</span><span class="sign">&amp;</span> target<span class="sign">,</span> true<span class="sign">)</span><span class="sign">;</span>
+<span class="line_number">109 </span>              <span class="keyword">check</span> <span class="sign">(</span>thread_error<span class="sign">,</span> status <span class="sign">!</span><span class="sign">=</span> DNA_BAD_ARGUMENT<span class="sign">,</span> status<span class="sign">)</span><span class="sign">;</span>
+<span class="line_number">110 </span>
+<span class="line_number">111 </span>              status <span class="sign">=</span> <a href="./scheduler_switch_c.html#robo54">scheduler_switch</a> <span class="sign">(</span>target<span class="sign">,</span> NULL<span class="sign">)</span><span class="sign">;</span>
+<span class="line_number">112 </span>              <span class="keyword">check</span> <span class="sign">(</span>thread_error<span class="sign">,</span> status <span class="sign">=</span><span class="sign">=</span> DNA_OK<span class="sign">,</span> status<span class="sign">)</span><span class="sign">;</span>
+<span class="line_number">113 </span>            <span class="sign">}</span>
+<span class="line_number">114 </span>            <span class="keyword">else</span>
+<span class="line_number">115 </span>            <span class="sign">{</span>
+<span class="line_number">116 </span>              log <span class="sign">(</span>VERBOSE_LEVEL<span class="sign">,</span> <span class="quote">"Remote suspend %d on %d."</span><span class="sign">,</span>
+<span class="line_number">117 </span>                  thread <span class="sign">-</span><span class="sign">&gt;</span> id<span class="sign">,</span> thread <span class="sign">-</span><span class="sign">&gt;</span> info <span class="sign">.</span> cpu_id<span class="sign">)</span><span class="sign">;</span>
+<span class="line_number">118 </span>
+<span class="line_number">119 </span>              next_cpuid <span class="sign">=</span> thread <span class="sign">-</span><span class="sign">&gt;</span> info <span class="sign">.</span> cpu_id<span class="sign">;</span>
+<span class="line_number">120 </span>              <a href="./lock_release_c.html#robo48">lock_release</a> <span class="sign">(</span><span class="sign">&amp;</span> thread <span class="sign">-</span><span class="sign">&gt;</span> lock<span class="sign">)</span><span class="sign">;</span>
+<span class="line_number">121 </span>
+<span class="line_number">122 </span>              cpu_mp_send_ipi <span class="sign">(</span>next_cpuid<span class="sign">,</span> <a href="../Headers/Private/Interrupt_h.html#robo38">DNA_IPI_SUSPEND</a><span class="sign">,</span>
+<span class="line_number">123 </span>                  <span class="sign">(</span>void <span class="sign">*</span><span class="sign">)</span> thread <span class="sign">-</span><span class="sign">&gt;</span> id <span class="sign">.</span> raw<span class="sign">)</span><span class="sign">;</span>
+<span class="line_number">124 </span>            <span class="sign">}</span>
+<span class="line_number">125 </span>
+<span class="line_number">126 </span>            restart_stabilization_loop <span class="sign">=</span> false<span class="sign">;</span>
+<span class="line_number">127 </span>            <span class="keyword">break</span><span class="sign">;</span>
+<span class="line_number">128 </span>          <span class="sign">}</span>
+<span class="line_number">129 </span>
+<span class="line_number">130 </span>        <span class="keyword">case</span> DNA_THREAD_READY <span class="keyword">:</span>
+<span class="line_number">131 </span>          <span class="sign">{</span>
+<span class="line_number">132 </span>            <span class="comment">/*
+<span class="line_number">133 </span>             * Apply the banker's algorithm to lock both the thread
+<span class="line_number">134 </span>             * and the ready queue.
+<span class="line_number">135 </span>             */</span>
+<span class="line_number">136 </span>
+<span class="line_number">137 </span>            result <span class="sign">=</span> <a href="./lock_try_c.html#robo49">lock_try</a>
+<span class="line_number">138 </span>              <span class="sign">(</span><span class="sign">&amp;</span> <a href="./core_variables_c.html#robo51">scheduler</a> <span class="sign">.</span> queue<span class="sign">[</span>thread <span class="sign">-</span><span class="sign">&gt;</span> info <span class="sign">.</span> affinity<span class="sign">]</span> <span class="sign">.</span> lock<span class="sign">,</span> true<span class="sign">)</span><span class="sign">;</span>
+<span class="line_number">139 </span>
+<span class="line_number">140 </span>            <span class="keyword">if</span> <span class="sign">(</span>result <span class="sign">!</span><span class="sign">=</span> DNA_ERROR<span class="sign">)</span>
+<span class="line_number">141 </span>            <span class="sign">{</span>
+<span class="line_number">142 </span>              log <span class="sign">(</span>VERBOSE_LEVEL<span class="sign">,</span> <span class="quote">"Local READY suspend 0x%x."</span><span class="sign">,</span> thread <span class="sign">-</span><span class="sign">&gt;</span> id<span class="sign">)</span><span class="sign">;</span>
+<span class="line_number">143 </span>
+<span class="line_number">144 </span>              queue_extract
+<span class="line_number">145 </span>                <span class="sign">(</span><span class="sign">&amp;</span> <a href="./core_variables_c.html#robo51">scheduler</a> <span class="sign">.</span> queue<span class="sign">[</span>thread <span class="sign">-</span><span class="sign">&gt;</span> info <span class="sign">.</span> affinity<span class="sign">]</span><span class="sign">,</span> thread<span class="sign">)</span><span class="sign">;</span>
+<span class="line_number">146 </span>              <a href="./lock_release_c.html#robo48">lock_release</a>
+<span class="line_number">147 </span>                <span class="sign">(</span><span class="sign">&amp;</span> <a href="./core_variables_c.html#robo51">scheduler</a> <span class="sign">.</span> queue<span class="sign">[</span>thread <span class="sign">-</span><span class="sign">&gt;</span> info <span class="sign">.</span> affinity<span class="sign">]</span> <span class="sign">.</span> lock<span class="sign">)</span><span class="sign">;</span>
+<span class="line_number">148 </span>
+<span class="line_number">149 </span>              thread <span class="sign">-</span><span class="sign">&gt;</span> info <span class="sign">.</span> status <span class="sign">=</span> DNA_THREAD_SUSPENDED<span class="sign">;</span>
+<span class="line_number">150 </span>              restart_stabilization_loop <span class="sign">=</span> false<span class="sign">;</span>
+<span class="line_number">151 </span>            <span class="sign">}</span>
+<span class="line_number">152 </span>
+<span class="line_number">153 </span>            <a href="./lock_release_c.html#robo48">lock_release</a> <span class="sign">(</span><span class="sign">&amp;</span> thread <span class="sign">-</span><span class="sign">&gt;</span> lock<span class="sign">)</span><span class="sign">;</span>
+<span class="line_number">154 </span>            <span class="keyword">break</span><span class="sign">;</span>
+<span class="line_number">155 </span>          <span class="sign">}</span>
+<span class="line_number">156 </span>
+<span class="line_number">157 </span>        <span class="keyword">case</span> DNA_THREAD_SLEEPING <span class="keyword">:</span>
+<span class="line_number">158 </span>          <span class="sign">{</span>
+<span class="line_number">159 </span>            log <span class="sign">(</span>VERBOSE_LEVEL<span class="sign">,</span> <span class="quote">"Local SLEEP suspend %d."</span><span class="sign">,</span> thread <span class="sign">-</span><span class="sign">&gt;</span> id<span class="sign">)</span><span class="sign">;</span>
+<span class="line_number">160 </span>
+<span class="line_number">161 </span>            <span class="comment">/*
+<span class="line_number">162 </span>             * We don't cancel the alarm here, <a href="./thread_snooze_c.html#robo82">thread_snooze</a> uses
+<span class="line_number">163 </span>             * <a href="./alarm_destroy_c.html#robo17">alarm_destroy</a> to check wether the alarm has fired or not.
+<span class="line_number">164 </span>             */</span>
+<span class="line_number">165 </span>
+<span class="line_number">166 </span>            thread <span class="sign">-</span><span class="sign">&gt;</span> info <span class="sign">.</span> status <span class="sign">=</span> DNA_THREAD_SUSPENDED<span class="sign">;</span>
+<span class="line_number">167 </span>            <a href="./lock_release_c.html#robo48">lock_release</a> <span class="sign">(</span><span class="sign">&amp;</span> thread <span class="sign">-</span><span class="sign">&gt;</span> lock<span class="sign">)</span><span class="sign">;</span>
+<span class="line_number">168 </span>
+<span class="line_number">169 </span>            restart_stabilization_loop <span class="sign">=</span> false<span class="sign">;</span>
+<span class="line_number">170 </span>            <span class="keyword">break</span><span class="sign">;</span>
+<span class="line_number">171 </span>          <span class="sign">}</span>
+<span class="line_number">172 </span>
+<span class="line_number">173 </span>        <span class="keyword">case</span> DNA_THREAD_WAITING <span class="keyword">:</span>
+<span class="line_number">174 </span>          <span class="sign">{</span>
+<span class="line_number">175 </span>            <span class="comment">/*
+<span class="line_number">176 </span>             * Apply the banker's algorithm to lock both the thread
+<span class="line_number">177 </span>             * and the resource queue.
+<span class="line_number">178 </span>             */</span>
+<span class="line_number">179 </span>
+<span class="line_number">180 </span>            <span class="keyword">check</span> <span class="sign">(</span>thread_error<span class="sign">,</span> thread <span class="sign">-</span><span class="sign">&gt;</span> resource_queue <span class="sign">!</span><span class="sign">=</span> NULL<span class="sign">,</span> DNA_ERROR<span class="sign">)</span><span class="sign">;</span>
+<span class="line_number">181 </span>            result <span class="sign">=</span> <a href="./lock_try_c.html#robo49">lock_try</a> <span class="sign">(</span><span class="sign">&amp;</span> thread <span class="sign">-</span><span class="sign">&gt;</span> resource_queue <span class="sign">-</span><span class="sign">&gt;</span> lock<span class="sign">,</span> true<span class="sign">)</span><span class="sign">;</span>
+<span class="line_number">182 </span>
+<span class="line_number">183 </span>            <span class="keyword">if</span> <span class="sign">(</span>result <span class="sign">!</span><span class="sign">=</span> DNA_ERROR<span class="sign">)</span>
+<span class="line_number">184 </span>            <span class="sign">{</span>
+<span class="line_number">185 </span>              log <span class="sign">(</span>VERBOSE_LEVEL<span class="sign">,</span> <span class="quote">"Local WAIT suspend %d."</span><span class="sign">,</span> thread <span class="sign">-</span><span class="sign">&gt;</span> id<span class="sign">)</span><span class="sign">;</span>
+<span class="line_number">186 </span>
+<span class="line_number">187 </span>              queue_extract <span class="sign">(</span>thread <span class="sign">-</span><span class="sign">&gt;</span> resource_queue<span class="sign">,</span> thread<span class="sign">)</span><span class="sign">;</span>
+<span class="line_number">188 </span>              <a href="./lock_release_c.html#robo48">lock_release</a> <span class="sign">(</span><span class="sign">&amp;</span> thread <span class="sign">-</span><span class="sign">&gt;</span> resource_queue <span class="sign">-</span><span class="sign">&gt;</span> lock<span class="sign">)</span><span class="sign">;</span>
+<span class="line_number">189 </span>
+<span class="line_number">190 </span>              thread <span class="sign">-</span><span class="sign">&gt;</span> info <span class="sign">.</span> status <span class="sign">=</span> DNA_THREAD_SUSPENDED<span class="sign">;</span>
+<span class="line_number">191 </span>              restart_stabilization_loop <span class="sign">=</span> false<span class="sign">;</span>
+<span class="line_number">192 </span>            <span class="sign">}</span>
+<span class="line_number">193 </span>
+<span class="line_number">194 </span>            <a href="./lock_release_c.html#robo48">lock_release</a> <span class="sign">(</span><span class="sign">&amp;</span> thread <span class="sign">-</span><span class="sign">&gt;</span> lock<span class="sign">)</span><span class="sign">;</span>
+<span class="line_number">195 </span>            <span class="keyword">break</span><span class="sign">;</span>
+<span class="line_number">196 </span>          <span class="sign">}</span>
+<span class="line_number">197 </span>
+<span class="line_number">198 </span>        default <span class="keyword">:</span>
+<span class="line_number">199 </span>          <span class="sign">{</span>
+<span class="line_number">200 </span>            log <span class="sign">(</span>PANIC_LEVEL<span class="sign">,</span> <span class="quote">"unknown thread status."</span><span class="sign">)</span><span class="sign">;</span>
+<span class="line_number">201 </span>            <span class="keyword">break</span><span class="sign">;</span>
+<span class="line_number">202 </span>          <span class="sign">}</span>
+<span class="line_number">203 </span>      <span class="sign">}</span>
+<span class="line_number">204 </span>    <span class="sign">}</span>
+<span class="line_number">205 </span>    <span class="keyword">while</span> <span class="sign">(</span>restart_stabilization_loop<span class="sign">)</span><span class="sign">;</span>
+<span class="line_number">206 </span>
+<span class="line_number">207 </span>    cpu_trap_restore <span class="sign">(</span>it_status<span class="sign">)</span><span class="sign">;</span>
+<span class="line_number">208 </span>    <span class="keyword">return</span> DNA_OK<span class="sign">;</span>
+<span class="line_number">209 </span>  <span class="sign">}</span>
+<span class="line_number">210 </span>
+<span class="line_number">211 </span>  <span class="keyword">rescue</span> <span class="sign">(</span>thread_error<span class="sign">)</span>
+<span class="line_number">212 </span>  <span class="sign">{</span>
+<span class="line_number">213 </span>    <a href="./lock_release_c.html#robo48">lock_release</a> <span class="sign">(</span><span class="sign">&amp;</span> thread <span class="sign">-</span><span class="sign">&gt;</span> lock<span class="sign">)</span><span class="sign">;</span>
+<span class="line_number">214 </span>  <span class="sign">}</span>
+<span class="line_number">215 </span>
+<span class="line_number">216 </span>  <span class="keyword">rescue</span> <span class="sign">(</span>bad_thread<span class="sign">)</span>
+<span class="line_number">217 </span>  <span class="sign">{</span>
+<span class="line_number">218 </span>    <a href="./lock_release_c.html#robo48">lock_release</a> <span class="sign">(</span><span class="sign">&amp;</span> <a href="./core_variables_c.html#robo91">thread_pool</a> <span class="sign">.</span> lock<span class="sign">)</span><span class="sign">;</span>
+<span class="line_number">219 </span>    cpu_trap_restore <span class="sign">(</span>it_status<span class="sign">)</span><span class="sign">;</span>
+<span class="line_number">220 </span>    <span class="keyword">leave</span><span class="sign">;</span>
+<span class="line_number">221 </span>  <span class="sign">}</span>
+<span class="line_number">222 </span><span class="sign">}</span>
+</pre>
+
+</div> <!-- content -->
+<div id="footer">
+<p>Generated from ./Core/Sources/thread_suspend.c on Mon Mar 01 2010 13:57:34
+</p>
+</div> <!-- footer -->
+</body>
+</html>

@@ -1,0 +1,121 @@
+\documentclass[a4paper,11pt]{report}
+
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{pslatex}
+\usepackage{bold-extra}
+\usepackage{ae,aecompl}
+\usepackage{graphicx}
+\usepackage{ifthen}
+\usepackage{amsmath,amssymb}
+\usepackage{xspace}
+\usepackage[usenames]{color}
+\usepackage{framed}
+\usepackage{url}
+\usepackage[left=3cm,right=2cm,top=3cm,bottom=3cm]{geometry}
+
+\title{\textbf {Hardware Abstraction Layer}}
+\author {TIMA Laboratory - SLS Group}
+\date{\today}
+
+%\def\thesection {\Roman {section}}
+
+\setlength {\parindent}{0cm}
+
+\newcommand{\skipoff}{\setlength{\parskip}{.0cm}}
+\newcommand{\skipon}{\setlength{\parskip}{.3cm}}
+
+\definecolor{light-gray}{gray}{0.92}
+\definecolor{dark-gray}{gray}{0.35}
+
+\makeatletter 
+\newenvironment{highbox}{
+	\def\FrameCommand{
+		\fboxrule=1pt
+		\fboxsep=5pt
+		\color{black}
+		\fcolorbox{dark-gray}{light-gray}
+	}
+ 
+	\setlength {\parindent}{.75cm}
+	\setlength\FrameSep{5pt} 
+	\setlength\FrameRule{1pt}
+
+	%\centering
+	\begin {minipage}{.8\linewidth}
+	\begin {ttfamily}	
+
+	\MakeFramed{
+		\FrameRestore
+	}
+}{
+	\endMakeFramed
+	\end {ttfamily}
+	\end{minipage}
+	
+	\setlength {\parindent}{0cm}
+} 
+
+% Pseudo-ADA command definitions
+\newcommand{\definition}[1]{
+	\begin{highbox}
+		{\bf definition} #1
+	\end{highbox}
+}
+
+\newcommand{\type}[1]{
+	\begin{highbox}
+		{\bf type} #1
+	\end{highbox}
+}
+
+\newenvironment{procedure}[2]{
+	\begin{highbox}
+		{\bf procedure} #1
+		\ifthenelse{\equal{#2}{0}}{}{\\}
+}{
+	\end{highbox}
+}
+
+\newenvironment{function}[3]{
+	\begin{highbox}
+		{\bf function} #1 {\bf return} #2
+		\ifthenelse{\equal{#3}{0}}{}{\\}
+}{
+	\end{highbox}
+}
+
+\newcommand{\pin}[3]{
+	\hspace*{1cm}#1: {\bf in} #2
+	\ifthenelse{\equal{#3}{}}{}{- \small{#3}}
+}
+
+\newcommand{\pout}[3]{
+	\hspace*{1cm}#1: {\bf out} #2
+	\ifthenelse{\equal{#3}{}}{}{- \small{#3}}
+}
+
+\newcommand{\pinout}[3]{
+	\hspace*{1cm}#1: {\bf inout} #2
+	\ifthenelse{\equal{#3}{}}{}{- \small{#3}}
+}
+
+\newcommand{\separator}{
+	\skipoff
+	\begin{center}
+	\begin {minipage}{.35\linewidth}
+		\hfill\hrule\hfill
+	\end{minipage}
+	\end{center}
+	\skipon
+}
+
+\begin{document}
+\maketitle
+
+\tableofcontents
+
+\include {platform}
+\include {processor}
+
+\end{document}

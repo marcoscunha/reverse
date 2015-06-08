@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<APES:Interface
+  xmlns:xmi="http://www.omg.org/XMI"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:APES="http://www.ocm.org/APES"
+  xsi:schemaLocation="http://www.ocm.org/APES APESInterface.ecore"
+  author="xavier.guerin@imag.fr"
+  unique="true"
+  wrapper="false">
+
+  <id name="DnaMM_WorstFit" version="1.0"/>
+
+  <provide>
+    <context name="LifeCycle">
+      <method name="memory_create" result="status_t"/>
+      <method name="memory_destroy" result="status_t"/>
+      <method name="memory_start" result="status_t"/>
+      <method name="memory_stop" result="status_t"/>
+    </context>
+
+    <context name="Allocator">
+      <method name="kernel_malloc" result="access">
+        <argument name="size" type="int32_t" direction="In"/>
+        <argument name="erase" type="boolean" direction="In"/>
+      </method>
+
+      <method name="kernel_free" result="status_t">
+        <argument name="area" type="access" direction="In"/>
+      </method>
+    </context>
+  </provide>
+
+  <require>
+    <type name="component_t"/>
+    <type name="spinlock_t"/>
+
+    <method name="cpu_trap_mask_and_backup" result="interrupt_status_t"/>
+
+    <method name="cpu_trap_restore" result="">
+      <argument name="status" type="interrupt_status_t" direction="In"/>
+    </method>
+
+    <method name="lock_acquire" result="void">
+      <argument name="lock" type="spinlock_t" direction="InOut"/>
+    </method>
+
+    <method name="lock_release" result="void">
+      <argument name="lock" type="spinlock_t" direction="InOut"/>
+    </method>
+  </require>
+
+</APES:Interface>

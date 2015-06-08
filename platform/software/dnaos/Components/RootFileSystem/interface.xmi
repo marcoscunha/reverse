@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<APES:Interface
+  xmlns:xmi="http://www.omg.org/XMI"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:APES="http://www.ocm.org/APES"
+  xsi:schemaLocation="http://www.ocm.org/APES APESInterface.ecore"
+  author="xavier.guerin@imag.fr"
+  unique="false"
+  wrapper="false">
+
+  <id name="RootFileSystem" version="1.0"/>
+
+  <provide>
+    <context name="Filesystem">
+      <variable name="rootfs_module" type="filesystem_t"/>
+    </context>
+  </provide>
+
+  <require>
+    <type name="filesystem_t"/>
+
+    <!-- Memory hooks -->
+
+    <method name="kernel_malloc" result="access">
+      <argument name="size" type="int32_t" direction="In"/>
+      <argument name="erase" type="boolean" direction="In"/>
+    </method>
+
+    <method name="kernel_free" result="status_t">
+      <argument name="area" type="access" direction="In"/>
+    </method>
+
+    <!-- VNode hooks -->
+
+    <method name="vnode_create" result="status_t">
+      <argument name="vnid" type="int64_t" direction="In"/>
+      <argument name="vid" type="int32_t" direction="In"/>
+      <argument name="data" type="access" direction="In"/>
+    </method>
+
+  </require>
+
+</component>

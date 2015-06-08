@@ -1,0 +1,6 @@
+<parameters>
+    <parameter key=ncpu>3</parameter>
+    <parameter key=cpu_arch>arm</parameter>
+    <parameter key=cpu_spec>cortex-a9</parameter>
+    <parameter key=mem_size>512</mem>
+</parameters>

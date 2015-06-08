@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<APES:Interface
+  xmlns:xmi="http://www.omg.org/XMI"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:APES="http://www.ocm.org/APES"
+  xsi:schemaLocation="http://www.ocm.org/APES APESInterface.ecore"
+  author="RedHat, Inc."
+  unique="true"
+  wrapper="false">
+
+  <id name="NewlibCLibrary" version="1.0"/> 
+
+  <provide>
+    <context name="OSInterface">
+      <method name="_main" result="int32_t">
+        <argument name="argc" type="int32_t" direction="In"/>
+        <argument name="argv" type="string array" direction="In"/>
+      </method>
+    </context>
+
+    <context name="stdio">
+      <method name="printf" result="int32_t">
+        <argument name="format" type="string" direction="In"/>
+        <argument name="..." type="array of void" direction="In"/>
+      </method>
+    </context>
+
+  </provide>
+
+  <require>
+
+    <method name="__libthread_start" result="int32_t"/>
+
+    <method name="vfs_read" result="status_t">
+      <argument name="fd" type="int16_t" direction="In"/>
+      <argument name="data" type="access" direction="In"/>
+      <argument name="count" type="int32_t" direction="In"/>
+      <argument name="p_ret" type="int32_t" direction="Out"/>
+    </method>
+
+    <method name="vfs_write" result="status_t">
+      <argument name="fd" type="int16_t" direction="In"/>
+      <argument name="data" type="access" direction="In"/>
+      <argument name="count" type="int32_t" direction="In"/>
+      <argument name="p_ret" type="int32_t" direction="Out"/>
+    </method>
+
+    <method name="vfs_open" result="status_t">
+      <argument name="path" type="string" direction="In"/>
+      <argument name="mode" type="int32_t" direction="In"/>
+      <argument name="perms" type="int32_t" direction="In"/>
+      <argument name="p_fd" type="int16_t" direction="Out"/>
+    </method>
+
+    <method name="vfs_close" result="status_t">
+      <argument name="fd" type="int16_t" direction="In"/>
+    </method>
+  </require>
+
+</APES:Interface>

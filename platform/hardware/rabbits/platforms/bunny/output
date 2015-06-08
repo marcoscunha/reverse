@@ -1,0 +1,40 @@
+EXECUTION 1
+./run.x -cpu arm11mpcore -kernel soft/ParallelMjpeg/MJPEG -ncpu 12
+================================================================================
+|  This simulation uses the QEMU/SystemC Wrapper from the RABBITS' framework   |
+|                     Copyright (c) 2009 - 2010 Tima SLS                       |
+================================================================================
+QEMU 0 called QEMU has 12 arm cpus ([node_id, cpu_id] = [0, 0], [1, 1], [2, 2], [3, 3], [4, 4], [5, 5], [6, 6], [7, 7], [8, 8], [9, 9], [10, 10], [11, 11])
+SIGABRT signal received! (6)
+EXECUTION 2
+./run.x -cpu arm11mpcore -kernel soft/ParallelMjpeg/MJPEG -ncpu 12
+================================================================================
+|  This simulation uses the QEMU/SystemC Wrapper from the RABBITS' framework   |
+|                     Copyright (c) 2009 - 2010 Tima SLS                       |
+================================================================================
+QEMU 0 called QEMU has 12 arm cpus ([node_id, cpu_id] = [0, 0], [1, 1], [2, 2], [3, 3], [4, 4], [5, 5], [6, 6], [7, 7], [8, 8], [9, 9], [10, 10], [11, 11])
+SIGABRT signal received! (6)
+EXECUTION 3
+./run.x -cpu arm11mpcore -kernel soft/ParallelMjpeg/MJPEG -ncpu 12
+================================================================================
+|  This simulation uses the QEMU/SystemC Wrapper from the RABBITS' framework   |
+|                     Copyright (c) 2009 - 2010 Tima SLS                       |
+================================================================================
+QEMU 0 called QEMU has 12 arm cpus ([node_id, cpu_id] = [0, 0], [1, 1], [2, 2], [3, 3], [4, 4], [5, 5], [6, 6], [7, 7], [8, 8], [9, 9], [10, 10], [11, 11])
+SIGABRT signal received! (6)
+EXECUTION 4
+./run.x -cpu arm11mpcore -kernel soft/ParallelMjpeg/MJPEG -ncpu 12
+================================================================================
+|  This simulation uses the QEMU/SystemC Wrapper from the RABBITS' framework   |
+|                     Copyright (c) 2009 - 2010 Tima SLS                       |
+================================================================================
+QEMU 0 called QEMU has 12 arm cpus ([node_id, cpu_id] = [0, 0], [1, 1], [2, 2], [3, 3], [4, 4], [5, 5], [6, 6], [7, 7], [8, 8], [9, 9], [10, 10], [11, 11])
+SIGABRT signal received! (6)
+EXECUTION 5
+./run.x -cpu arm11mpcore -kernel soft/ParallelMjpeg/MJPEG -ncpu 12
+================================================================================
+|  This simulation uses the QEMU/SystemC Wrapper from the RABBITS' framework   |
+|                     Copyright (c) 2009 - 2010 Tima SLS                       |
+================================================================================
+QEMU 0 called QEMU has 12 arm cpus ([node_id, cpu_id] = [0, 0], [1, 1], [2, 2], [3, 3], [4, 4], [5, 5], [6, 6], [7, 7], [8, 8], [9, 9], [10, 10], [11, 11])
+SIGABRT signal received! (6)

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<component author="xavier.guerin@imag.fr" unique="false" wrapper="false">
+
+  <id name="SoclibTtyDriver" short_name="STD" version="1.0"/>
+
+  <provide>
+    <method name="init_hardware" return_type="status_t"/>
+    <method name="init_driver" return_type="status_t"/>
+    <method name="uninit_driver" return_type="access void"/>
+    <method name="publish_devices" return_type="access string"/>
+    <method name="find_device" return_type="access device_cmd_t"/>
+  </provide>
+
+  <require>
+    <type name="driver_t"/>
+    <type name="device_cmd_t"/>
+
+    <method name="cpu_write" return_type="">
+      <argument name="size" type="int32_t" direction="in"/>
+      <argument name="address" type="access" direction="in"/>
+      <argument name="value" type="access" direction="in"/>
+    </method>
+
+    <method name="kernel_malloc" return_type="access">
+      <argument name="size" type="int32_t" direction="in"/>
+      <argument name="erase" type="boolean" direction="in"/>
+    </method>
+
+    <method name="interrupt_attach" return_type="status_t">
+      <argument name="id" type="interrupt_id_t" direction="in"/>
+      <argument name="mode" type="uint32_t" direction="in"/>
+      <argument name="handler" type="interrupt_handler_t" direction="in"/>
+    </method>
+
+    <method name="semaphore_create" return_type="int32_t">
+      <argument name="name" type="string" direction="in"/>
+      <argument name="tokens" type="int32_t" direction="in"/>
+    </method>
+
+    <method name="semaphore_acquire" return_type="status_t">
+      <argument name="sid" type="int32_t" direction="in"/>
+      <argument name="tokens" type="int32_t" direction="in"/>
+      <argument name="flags" type="int32_t" direction="in"/>
+      <argument name="timeout" type="bigtime_t" direction="in"/>
+    </method>
+
+    <method name="semaphore_release" return_type="status_t">
+      <argument name="sid" type="int32_t" direction="in"/>
+      <argument name="n_tokens" type="int32_t" direction="in"/>
+      <argument name="flags" type="int32_t" direction="in"/>
+    </method>
+
+  </require>
+
+</component>

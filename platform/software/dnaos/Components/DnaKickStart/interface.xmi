@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<APES:Interface
+  xmlns:xmi="http://www.omg.org/XMI"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:APES="http://www.ocm.org/APES"
+  xsi:schemaLocation="http://www.ocm.org/APES APESInterface.ecore"
+  author="xavier.guerin@imag.fr"
+  unique="true"
+  wrapper="false">
+
+  <id name="DnaKickStart" version="1.0"/>
+
+  <provide>
+    <context name="Bootstrap">
+      <method name="system_kickstart" result=""/>
+    </context>
+  </provide>
+
+  <require>
+    <type name="status_t"/>
+
+    <method name="cpu_mp_id" result="int32_t"/>
+
+    <method name="cpu_mp_wait" result="">
+      <argument name="sync" type="int32_t" direction="InOut"/>
+    </method>
+
+    <method name="cpu_mp_proceed" result="">
+      <argument name="sync" type="int32_t" direction="InOut"/>
+    </method>
+
+    <method name="core_create" result="status_t"/>
+    <method name="core_start" result="status_t"/>
+    <method name="vfs_create" result="status_t"/>
+    <method name="vfs_start" result="status_t"/>
+    <method name="memory_create" result="status_t"/>
+    <method name="memory_start" result="status_t"/>
+  </require>
+
+</APES:Interface>

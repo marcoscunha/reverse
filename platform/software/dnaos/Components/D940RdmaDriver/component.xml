@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<component author="xavier.guerin@imag.fr" unique="false" wrapper="false">
+
+  <id name="RdmaChannelDriver" short_name="RDMA" version="1.0"/>
+
+  <provide>
+    <method name="init_hardware" return_type="status_t"/>
+    <method name="init_driver" return_type="status_t"/>
+    <method name="uninit_driver" return_type="access void"/>
+    <method name="publish_devices" return_type="access string"/>
+    <method name="find_device" return_type="access device_cmd_t"/>
+  </provide>
+
+  <require>
+    <type name="driver_t"/>
+    <type name="device_cmd_t"/>
+
+    <method name="kernel_malloc" return_type="access">
+      <argument name="size" type="int32_t" direction="in"/>
+      <argument name="erase" type="boolean" direction="in"/>
+    </method>
+
+    <method name="kernel_free" return_type="status_t">
+      <argument name="area" type="access" direction="in"/>
+    </method>
+
+
+    <method name="thread_yield" return_type="status_t">
+    </method>
+
+    <method name="cpu_trap_mask_and_backup" return_type="interrupt_status_t"/>
+
+    <method name="cpu_trap_restore" return_type="">
+      <argument name="status" type="interrupt_status_t" direction="in"/>
+    </method>
+
+    <method name="cpu_write" return_type="">
+       <argument name="size" type="int32_t" direction="in"/>
+       <argument name="address" type="access" direction="in"/>
+       <argument name="value" type="access" direction="in"/>
+     </method>
+
+     <method name="cpu_vector_write" return_type="">
+       <argument name="mode" type="vector_mode_t" direction="in"/>
+       <argument name="to" type="access" direction="in"/>
+       <argument name="from" type="access" direction="in"/>
+       <argument name="size" type="int32_t" direction="in"/>
+     </method>
+
+     <method name="cpu_read" return_type="">
+       <argument name="size" type="int32_t" direction="in"/>
+       <argument name="address" type="access" direction="in"/>
+       <argument name="result" type="access" direction="out"/>
+     </method>
+
+    <method name="cpu_vector_read" return_type="">
+      <argument name="mode" type="vector_mode_t" direction="in"/>
+      <argument name="from" type="access" direction="in"/>
+      <argument name="to" type="access" direction="in"/>
+      <argument name="size" type="int32_t" direction="in"/>
+    </method>
+
+  </require>
+
+</component>

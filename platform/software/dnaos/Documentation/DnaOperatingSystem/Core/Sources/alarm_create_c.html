@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1" />
+<link rel="stylesheet" href="../robodoc.css" type="text/css" />
+<title>./Core/Sources/alarm_create.c</title>
+<!-- Source: ./Core/Sources/alarm_create.c -->
+</head>
+<body>
+<div id="logo">
+<a name="robo_top_of_doc">DNA-OS Core Component</a>
+</div> <!-- logo -->
+<div id="navigation">
+<a class="menuitem" href="../toc_index.html#top">Table of Contents</a>
+<a class="menuitem" href="../sources.html#top">Source files</a>
+<a class="menuitem" href="../index.html#top">Index Page</a>
+<a class="menuitem" href="../robo_definitions.html#top">Definitions</a>
+<a class="menuitem" href="../robo_functions.html#top">Functions</a>
+<a class="menuitem" href="../robo_modules.html#top">Modules</a>
+<a class="menuitem" href="../robo_types.html#top">Types</a>
+<a class="menuitem" href="../robo_variables.html#top">Variables</a>
+</div> <!-- navigation -->
+<div id="content">
+<hr />
+<a name="Alarm2falarm5fcreate"></a>
+<a name="robo16"></a><h2>Alarm/alarm_create [ Functions ]</h2>
+
+<p>[ <a href="#robo_top_of_doc">Top</a> ] [ <a href="../Headers/Public/Core/Alarm_h.html#robo0">Alarm</a> ] [ <a href="../robo_functions.html#robo_top_of_doc">Functions</a> ]</p>
+<p class="item_name">SUMMARY</p>
+<p> Create an alarm.
+</p>
+<p class="item_name">SYNOPSIS</p>
+<pre class="source"><span class="line_number">30 </span>status_t <strong>alarm_create</strong> <span class="sign">(</span>bigtime_t quantum<span class="sign">,</span> <a href="../Headers/Public/Core/Alarm_h.html#robo19">alarm_mode_t</a> mode<span class="sign">,</span>
+<span class="line_number">31 </span>    <a href="../Headers/Private/Alarm_h.html#robo20">alarm_callback_t</a> callback<span class="sign">,</span> void <span class="sign">*</span> data<span class="sign">,</span> <span class="keyword">int32_t</span> <span class="sign">*</span> aid<span class="sign">)</span>
+</pre>
+<p class="item_name">ARGUMENTS</p>
+<ul><li> quantum : time quantum of the alarm
+</li>
+<li> mode : the alarm's mode
+</li>
+<li> callback : the function to call when the alarm goes off
+</li>
+<li> data : the data associated to the function
+</li>
+<li> aid : the recipient of the new alarm's id
+</li>
+</ul>
+<p></p>
+<p class="item_name">RESULT</p>
+<ul><li> DNA_BAD_ARGUMENT: one of the arguments is invalid
+</li>
+<li> DNA_OUT_OF_MEM: cannot allocate memory for the alarm
+</li>
+<li> DNA_ERROR: no more alarm slot or quantum too short
+</li>
+<li> DNA_OK: alarm created
+</li>
+</ul>
+<p></p>
+<p class="item_name">SOURCE</p>
+<pre class="source"><span class="line_number"> 50 </span><span class="sign">{</span>
+<span class="line_number"> 51 </span>  <a href="../Headers/Private/Cpu_h.html#robo29">cpu_t</a> <span class="sign">*</span> cpu <span class="sign">=</span> NULL<span class="sign">;</span>
+<span class="line_number"> 52 </span>  <span class="keyword">int32_t</span> current_cpuid <span class="sign">=</span> 0<span class="sign">,</span> index <span class="sign">=</span> 0<span class="sign">;</span>
+<span class="line_number"> 53 </span>  interrupt_status_t it_status<span class="sign">;</span>
+<span class="line_number"> 54 </span>  <a href="../Headers/Private/Alarm_h.html#robo24">alarm_t</a> new_alarm <span class="sign">=</span> NULL<span class="sign">,</span> old_alarm <span class="sign">=</span> NULL<span class="sign">;</span>
+<span class="line_number"> 55 </span>  bigtime_t start_time <span class="sign">=</span> 0<span class="sign">,</span> updated_time <span class="sign">=</span> 0<span class="sign">,</span> updated_quantum <span class="sign">=</span> 0<span class="sign">;</span>
+<span class="line_number"> 56 </span>  
+<span class="line_number"> 57 </span>  <span class="keyword">watch</span> <span class="sign">(</span>status_t<span class="sign">)</span>
+<span class="line_number"> 58 </span>  <span class="sign">{</span>
+<span class="line_number"> 59 </span>    <span class="keyword">ensure</span> <span class="sign">(</span>quantum <span class="sign">!</span><span class="sign">=</span> 0<span class="sign">,</span> DNA_BAD_ARGUMENT<span class="sign">)</span><span class="sign">;</span>
+<span class="line_number"> 60 </span>
+<span class="line_number"> 61 </span>    <span class="comment">/*
+<span class="line_number"> 62 </span>     * Deactivate interrupts and get current information.
+<span class="line_number"> 63 </span>     */</span>
+<span class="line_number"> 64 </span>
+<span class="line_number"> 65 </span>    it_status <span class="sign">=</span> cpu_trap_mask_and_backup<span class="sign">(</span><span class="sign">)</span><span class="sign">;</span>
+<span class="line_number"> 66 </span>    current_cpuid <span class="sign">=</span> cpu_mp_id <span class="sign">(</span><span class="sign">)</span><span class="sign">;</span>
+<span class="line_number"> 67 </span>    cpu <span class="sign">=</span> <span class="sign">&amp;</span> <a href="./core_variables_c.html#robo26">cpu_pool</a> <span class="sign">.</span> cpu<span class="sign">[</span>current_cpuid<span class="sign">]</span><span class="sign">;</span>
+<span class="line_number"> 68 </span>    cpu_timer_get <span class="sign">(</span>current_cpuid<span class="sign">,</span> <span class="sign">&amp;</span> start_time<span class="sign">)</span><span class="sign">;</span>
+<span class="line_number"> 69 </span>
+<span class="line_number"> 70 </span>    <span class="comment">/*
+<span class="line_number"> 71 </span>     * Allocate the new alarm. We do this after deactivating the
+<span class="line_number"> 72 </span>     * interrupts in order to get as close as possible to the
+<span class="line_number"> 73 </span>     * the moment <strong>alarm_create</strong> was called.
+<span class="line_number"> 74 </span>     */</span>
+<span class="line_number"> 75 </span>
+<span class="line_number"> 76 </span>    new_alarm <span class="sign">=</span> kernel_malloc <span class="sign">(</span>sizeof <span class="sign">(</span><span class="keyword">struct</span> _alarm<span class="sign">)</span><span class="sign">,</span> true<span class="sign">)</span><span class="sign">;</span>
+<span class="line_number"> 77 </span>    <span class="keyword">ensure</span> <span class="sign">(</span>new_alarm <span class="sign">!</span><span class="sign">=</span> NULL<span class="sign">,</span> DNA_OUT_OF_MEM<span class="sign">)</span><span class="sign">;</span>
+<span class="line_number"> 78 </span>
+<span class="line_number"> 79 </span>    <span class="comment">/*
+<span class="line_number"> 80 </span>     * Set various information.
+<span class="line_number"> 81 </span>     */</span>
+<span class="line_number"> 82 </span>
+<span class="line_number"> 83 </span>    new_alarm <span class="sign">-</span><span class="sign">&gt;</span> mode <span class="sign">=</span> mode<span class="sign">;</span>
+<span class="line_number"> 84 </span>    new_alarm <span class="sign">-</span><span class="sign">&gt;</span> thread_id <span class="sign">=</span> cpu <span class="sign">-</span><span class="sign">&gt;</span> current_thread <span class="sign">-</span><span class="sign">&gt;</span> id <span class="sign">.</span> raw<span class="sign">;</span>
+<span class="line_number"> 85 </span>    new_alarm <span class="sign">-</span><span class="sign">&gt;</span> cpu_id <span class="sign">=</span> current_cpuid<span class="sign">;</span>
+<span class="line_number"> 86 </span>    new_alarm <span class="sign">-</span><span class="sign">&gt;</span> callback <span class="sign">=</span> callback<span class="sign">;</span>
+<span class="line_number"> 87 </span>    new_alarm <span class="sign">-</span><span class="sign">&gt;</span> data <span class="sign">=</span> data<span class="sign">;</span>
+<span class="line_number"> 88 </span>
+<span class="line_number"> 89 </span>    <span class="comment">/*
+<span class="line_number"> 90 </span>     * Find an empty slot to store the alarm
+<span class="line_number"> 91 </span>     */</span>
+<span class="line_number"> 92 </span>
+<span class="line_number"> 93 </span>    <a href="./lock_acquire_c.html#robo45">lock_acquire</a> <span class="sign">(</span><span class="sign">&amp;</span> <a href="./core_variables_c.html#robo22">alarm_manager</a> <span class="sign">.</span> lock<span class="sign">)</span><span class="sign">;</span>
+<span class="line_number"> 94 </span>
+<span class="line_number"> 95 </span>    <span class="keyword">for</span> <span class="sign">(</span>index <span class="sign">=</span> 0<span class="sign">;</span> index <span class="sign">&lt;</span> DNA_MAX_ALARM<span class="sign">;</span> index <span class="sign">+</span><span class="sign">=</span> 1<span class="sign">)</span>
+<span class="line_number"> 96 </span>    <span class="sign">{</span>
+<span class="line_number"> 97 </span>      <span class="keyword">if</span> <span class="sign">(</span><a href="./core_variables_c.html#robo22">alarm_manager</a> <span class="sign">.</span> alarm<span class="sign">[</span>index<span class="sign">]</span> <span class="sign">=</span><span class="sign">=</span> NULL<span class="sign">)</span>
+<span class="line_number"> 98 </span>      <span class="sign">{</span>
+<span class="line_number"> 99 </span>        <a href="./core_variables_c.html#robo22">alarm_manager</a> <span class="sign">.</span> alarm<span class="sign">[</span>index<span class="sign">]</span> <span class="sign">=</span> new_alarm<span class="sign">;</span>
+<span class="line_number">100 </span>
+<span class="line_number">101 </span>        new_alarm <span class="sign">-</span><span class="sign">&gt;</span> id <span class="sign">.</span> s <span class="sign">.</span> index <span class="sign">=</span> index<span class="sign">;</span>
+<span class="line_number">102 </span>        new_alarm <span class="sign">-</span><span class="sign">&gt;</span> id <span class="sign">.</span> s <span class="sign">.</span> value <span class="sign">=</span> <a href="./core_variables_c.html#robo22">alarm_manager</a> <span class="sign">.</span> counter<span class="sign">;</span>
+<span class="line_number">103 </span>
+<span class="line_number">104 </span>        <a href="./core_variables_c.html#robo22">alarm_manager</a> <span class="sign">.</span> counter <span class="sign">+</span><span class="sign">=</span> 1<span class="sign">;</span>
+<span class="line_number">105 </span>        <span class="keyword">break</span><span class="sign">;</span>
+<span class="line_number">106 </span>      <span class="sign">}</span>
+<span class="line_number">107 </span>    <span class="sign">}</span>
+<span class="line_number">108 </span>
+<span class="line_number">109 </span>    <a href="./lock_release_c.html#robo48">lock_release</a> <span class="sign">(</span><span class="sign">&amp;</span> <a href="./core_variables_c.html#robo22">alarm_manager</a> <span class="sign">.</span> lock<span class="sign">)</span><span class="sign">;</span>
+<span class="line_number">110 </span>    <span class="keyword">check</span> <span class="sign">(</span>error<span class="sign">,</span> index <span class="sign">!</span><span class="sign">=</span> DNA_MAX_ALARM<span class="sign">,</span> DNA_ERROR<span class="sign">)</span><span class="sign">;</span>
+<span class="line_number">111 </span>
+<span class="line_number">112 </span>    <span class="comment">/*
+<span class="line_number">113 </span>     * Check and compute the deadline according to the
+<span class="line_number">114 </span>     * alarm mode passed as parameter.
+<span class="line_number">115 </span>     */</span>
+<span class="line_number">116 </span>
+<span class="line_number">117 </span>    <span class="keyword">switch</span> <span class="sign">(</span>mode<span class="sign">)</span>
+<span class="line_number">118 </span>    <span class="sign">{</span>
+<span class="line_number">119 </span>      <span class="keyword">case</span> DNA_PERIODIC_ALARM <span class="keyword">:</span>
+<span class="line_number">120 </span>      <span class="keyword">case</span> DNA_ONE_SHOT_RELATIVE_ALARM <span class="keyword">:</span>
+<span class="line_number">121 </span>        <span class="sign">{</span>
+<span class="line_number">122 </span>          new_alarm <span class="sign">-</span><span class="sign">&gt;</span> quantum <span class="sign">=</span> quantum<span class="sign">;</span>
+<span class="line_number">123 </span>          new_alarm <span class="sign">-</span><span class="sign">&gt;</span> deadline <span class="sign">=</span> quantum <span class="sign">+</span> start_time<span class="sign">;</span>
+<span class="line_number">124 </span>          <span class="keyword">break</span><span class="sign">;</span>
+<span class="line_number">125 </span>        <span class="sign">}</span>
+<span class="line_number">126 </span>
+<span class="line_number">127 </span>      <span class="keyword">case</span> DNA_ONE_SHOT_ABSOLUTE_ALARM <span class="keyword">:</span>
+<span class="line_number">128 </span>        <span class="sign">{</span>
+<span class="line_number">129 </span>          <span class="keyword">check</span> <span class="sign">(</span>error<span class="sign">,</span> quantum <span class="sign">&gt;</span> start_time<span class="sign">,</span> DNA_BAD_ARGUMENT<span class="sign">)</span><span class="sign">;</span>
+<span class="line_number">130 </span>
+<span class="line_number">131 </span>          new_alarm <span class="sign">-</span><span class="sign">&gt;</span> quantum <span class="sign">=</span> quantum <span class="sign">-</span> start_time<span class="sign">;</span>
+<span class="line_number">132 </span>          new_alarm <span class="sign">-</span><span class="sign">&gt;</span> deadline <span class="sign">=</span> quantum<span class="sign">;</span>
+<span class="line_number">133 </span>          <span class="keyword">break</span><span class="sign">;</span>
+<span class="line_number">134 </span>        <span class="sign">}</span>
+<span class="line_number">135 </span>    <span class="sign">}</span>
+<span class="line_number">136 </span>
+<span class="line_number">137 </span>    <span class="comment">/*
+<span class="line_number">138 </span>     * Deal with the new alarm
+<span class="line_number">139 </span>     */</span>
+<span class="line_number">140 </span>
+<span class="line_number">141 </span>    <a href="./lock_acquire_c.html#robo45">lock_acquire</a> <span class="sign">(</span><span class="sign">&amp;</span> cpu <span class="sign">-</span><span class="sign">&gt;</span> lock<span class="sign">)</span><span class="sign">;</span>
+<span class="line_number">142 </span>    old_alarm <span class="sign">=</span> cpu <span class="sign">-</span><span class="sign">&gt;</span> current_alarm<span class="sign">;</span>
+<span class="line_number">143 </span>
+<span class="line_number">144 </span>    <span class="keyword">if</span> <span class="sign">(</span>cpu <span class="sign">-</span><span class="sign">&gt;</span> current_alarm <span class="sign">=</span><span class="sign">=</span> NULL <span class="sign">|</span><span class="sign">|</span>
+<span class="line_number">145 </span>        old_alarm <span class="sign">-</span><span class="sign">&gt;</span> deadline <span class="sign">&gt;</span> <span class="sign">(</span>new_alarm <span class="sign">-</span><span class="sign">&gt;</span> deadline <span class="sign">+</span> <a href="../Headers/Private/Alarm_h.html#robo25">DNA_TIMER_DELAY</a><span class="sign">)</span><span class="sign">)</span>
+<span class="line_number">146 </span>    <span class="sign">{</span>
+<span class="line_number">147 </span>      log <span class="sign">(</span>VERBOSE_LEVEL<span class="sign">,</span> <span class="quote">"Set alarm (%d:%d)"</span><span class="sign">,</span> new_alarm <span class="sign">-</span><span class="sign">&gt;</span> id <span class="sign">.</span> s <span class="sign">.</span> value<span class="sign">,</span>
+<span class="line_number">148 </span>          new_alarm <span class="sign">-</span><span class="sign">&gt;</span> id <span class="sign">.</span> s <span class="sign">.</span> index<span class="sign">)</span><span class="sign">;</span>
+<span class="line_number">149 </span>
+<span class="line_number">150 </span>      <span class="comment">/*
+<span class="line_number">151 </span>       * Check if we are still in the game, although
+<span class="line_number">152 </span>       * we spent time preparing the alarm. It should fail
+<span class="line_number">153 </span>       * on a 100Mhz RISC processos for an alarm &lt; 20 usec.
+<span class="line_number">154 </span>       */</span>
+<span class="line_number">155 </span>
+<span class="line_number">156 </span>      cpu_timer_get <span class="sign">(</span>current_cpuid<span class="sign">,</span> <span class="sign">&amp;</span> updated_time<span class="sign">)</span><span class="sign">;</span>
+<span class="line_number">157 </span>      updated_quantum <span class="sign">=</span> new_alarm <span class="sign">-</span><span class="sign">&gt;</span> deadline <span class="sign">-</span> updated_time<span class="sign">;</span>
+<span class="line_number">158 </span>      <span class="keyword">check</span> <span class="sign">(</span>short_quantum<span class="sign">,</span> updated_quantum <span class="sign">&gt;</span> 0<span class="sign">,</span> DNA_ERROR<span class="sign">)</span><span class="sign">;</span>
+<span class="line_number">159 </span>
+<span class="line_number">160 </span>      <span class="comment">/*
+<span class="line_number">161 </span>       * Cancel the old alarm, set the new one, and enqueue the old
+<span class="line_number">162 </span>       * alarm if this is necessary.
+<span class="line_number">163 </span>       * */</span>
+<span class="line_number">164 </span>
+<span class="line_number">165 </span>      <span class="keyword">if</span> <span class="sign">(</span>old_alarm <span class="sign">!</span><span class="sign">=</span> NULL<span class="sign">)</span>
+<span class="line_number">166 </span>      <span class="sign">{</span>
+<span class="line_number">167 </span>        cpu_timer_cancel <span class="sign">(</span>current_cpuid<span class="sign">)</span><span class="sign">;</span>
+<span class="line_number">168 </span>      <span class="sign">}</span>
+<span class="line_number">169 </span>
+<span class="line_number">170 </span>      cpu <span class="sign">-</span><span class="sign">&gt;</span> current_alarm <span class="sign">=</span> new_alarm<span class="sign">;</span>
+<span class="line_number">171 </span>      cpu_timer_set <span class="sign">(</span>current_cpuid<span class="sign">,</span> updated_quantum<span class="sign">)</span><span class="sign">;</span>
+<span class="line_number">172 </span>
+<span class="line_number">173 </span>      <span class="keyword">if</span> <span class="sign">(</span>old_alarm <span class="sign">!</span><span class="sign">=</span> NULL<span class="sign">)</span>
+<span class="line_number">174 </span>      <span class="sign">{</span>
+<span class="line_number">175 </span>        queue_insert <span class="sign">(</span><span class="sign">&amp;</span> cpu <span class="sign">-</span><span class="sign">&gt;</span> alarm_queue<span class="sign">,</span> <a href="./alarm_comparator_c.html#robo21">alarm_comparator</a><span class="sign">,</span> old_alarm<span class="sign">)</span><span class="sign">;</span>
+<span class="line_number">176 </span>      <span class="sign">}</span>
+<span class="line_number">177 </span>    <span class="sign">}</span>
+<span class="line_number">178 </span>    <span class="keyword">else</span>
+<span class="line_number">179 </span>    <span class="sign">{</span>
+<span class="line_number">180 </span>      log <span class="sign">(</span>VERBOSE_LEVEL<span class="sign">,</span> <span class="quote">"Enqueue alarm (%d:%d)"</span><span class="sign">,</span>
+<span class="line_number">181 </span>          new_alarm <span class="sign">-</span><span class="sign">&gt;</span> id <span class="sign">.</span> s <span class="sign">.</span> value<span class="sign">,</span> new_alarm <span class="sign">-</span><span class="sign">&gt;</span> id <span class="sign">.</span> s <span class="sign">.</span> index<span class="sign">)</span><span class="sign">;</span>
+<span class="line_number">182 </span>
+<span class="line_number">183 </span>      queue_insert <span class="sign">(</span><span class="sign">&amp;</span> cpu <span class="sign">-</span><span class="sign">&gt;</span> alarm_queue<span class="sign">,</span> <a href="./alarm_comparator_c.html#robo21">alarm_comparator</a><span class="sign">,</span> new_alarm<span class="sign">)</span><span class="sign">;</span>
+<span class="line_number">184 </span>    <span class="sign">}</span>
+<span class="line_number">185 </span>
+<span class="line_number">186 </span>    <span class="comment">/*
+<span class="line_number">187 </span>     * Unlock everything and return the alarm.
+<span class="line_number">188 </span>     */</span>
+<span class="line_number">189 </span>
+<span class="line_number">190 </span>    <a href="./lock_release_c.html#robo48">lock_release</a> <span class="sign">(</span><span class="sign">&amp;</span> cpu <span class="sign">-</span><span class="sign">&gt;</span> lock<span class="sign">)</span><span class="sign">;</span>
+<span class="line_number">191 </span>    cpu_trap_restore<span class="sign">(</span>it_status<span class="sign">)</span><span class="sign">;</span>
+<span class="line_number">192 </span>
+<span class="line_number">193 </span>    <span class="sign">*</span>aid <span class="sign">=</span> new_alarm <span class="sign">-</span><span class="sign">&gt;</span> id <span class="sign">.</span> raw<span class="sign">;</span>
+<span class="line_number">194 </span>    <span class="keyword">return</span> DNA_OK<span class="sign">;</span>
+<span class="line_number">195 </span>  <span class="sign">}</span>
+<span class="line_number">196 </span>
+<span class="line_number">197 </span>  <span class="keyword">rescue</span> <span class="sign">(</span>short_quantum<span class="sign">)</span>
+<span class="line_number">198 </span>  <span class="sign">{</span>
+<span class="line_number">199 </span>    <a href="./lock_release_c.html#robo48">lock_release</a> <span class="sign">(</span><span class="sign">&amp;</span> cpu <span class="sign">-</span><span class="sign">&gt;</span> lock<span class="sign">)</span><span class="sign">;</span>
+<span class="line_number">200 </span>  <span class="sign">}</span>
+<span class="line_number">201 </span>
+<span class="line_number">202 </span>  <span class="keyword">rescue</span> <span class="sign">(</span>error<span class="sign">)</span>
+<span class="line_number">203 </span>  <span class="sign">{</span>
+<span class="line_number">204 </span>    cpu_trap_restore<span class="sign">(</span>it_status<span class="sign">)</span><span class="sign">;</span>
+<span class="line_number">205 </span>    kernel_free <span class="sign">(</span>new_alarm<span class="sign">)</span><span class="sign">;</span>
+<span class="line_number">206 </span>    <span class="keyword">leave</span><span class="sign">;</span>
+<span class="line_number">207 </span>  <span class="sign">}</span>
+<span class="line_number">208 </span><span class="sign">}</span>
+</pre>
+
+</div> <!-- content -->
+<div id="footer">
+<p>Generated from ./Core/Sources/alarm_create.c on Mon Mar 01 2010 13:57:34
+</p>
+</div> <!-- footer -->
+</body>
+</html>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<APES:Interface
+  xmlns:xmi="http://www.omg.org/XMI"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:APES="http://www.ocm.org/APES"
+  xsi:schemaLocation="http://www.ocm.org/APES APESInterface.ecore"
+  author="University of New South Wales"
+  unique="true"
+  wrapper="false">
+
+  <id name="LibELF" version="1.0"/>
+
+  <provide>
+    <context name="ELF">
+      <method name="elf_loadFile" result="boolean">
+        <argument name="elfFile" type="access" direction="In"/>
+        <argument name="phys" type="boolean" direction="In"/>
+      </method>
+    </context>
+  </provide>
+
+  <require>
+
+  </require>
+
+</component>

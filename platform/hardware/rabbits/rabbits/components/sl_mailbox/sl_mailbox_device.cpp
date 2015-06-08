@@ -1,0 +1,235 @@
+/*
+ *  Copyright (c) 2010 TIMA Laboratory
+ *
+ *  This file is part of Rabbits.
+ *
+ *  Rabbits is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  Rabbits is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with Rabbits.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <sl_mailbox_device.h>
+#include <cfg.h>
+
+//#define DEBUG_DEVICE_MAILBOX
+
+#ifdef DEBUG_DEVICE_MAILBOX
+#define DPRINTF(fmt, args...)                               \
+    do { printf("sl_mailbox_device: " fmt , ##args); } while (0)
+#define DCOUT if (1) cout
+#else
+#define DPRINTF(fmt, args...) do {} while(0)
+#define DCOUT if (0) cout
+#endif
+
+sl_mailbox_device::sl_mailbox_device (sc_module_name module_name, int nb_mailbox) : slave_device (module_name)
+{
+    int i = 0;
+
+    irq = new sc_out<bool>[nb_mailbox];
+
+    m_nb_mailbox = nb_mailbox;
+
+    m_command    = new uint32_t[nb_mailbox];
+    m_data       = new uint32_t[nb_mailbox];
+    m_status     = new uint32_t[nb_mailbox];
+    m_reserved   = new uint32_t[nb_mailbox];
+
+    for (i = 0; i < nb_mailbox; i++)
+    {
+        m_command[i] = 0;
+        m_data[i]    = 0;
+        m_status[i]  = 0;
+        m_reserved[i]= 0;
+    }
+
+    for (i = 0; i < MAILBOX_GLOBAL_NO_REGS; i++)
+        m_global_reg[i] = 0;
+}
+
+sl_mailbox_device::~sl_mailbox_device ()
+{
+    delete [] m_command;
+    delete [] m_data;
+    delete [] m_status;
+    delete [] m_reserved;
+    
+    delete [] irq;
+}
+
+void sl_mailbox_device::write (uint32_t ofs, uint8_t be,
+    uint8_t *data, bool &bErr)
+{
+    uint32_t                value, idx;
+
+    bErr = false;
+
+    idx = ofs >> 2;
+    if (be & 0xF0)
+    {
+        idx++;
+        value = * ((uint32_t *) data + 1);
+    }
+    else
+        value = * ((uint32_t *) data + 0);
+
+    if (ofs >= MAILBOX_GLOBAL_START_ADDR)
+    {
+        idx -= (MAILBOX_GLOBAL_START_ADDR >> 2);
+        if (idx >= MAILBOX_GLOBAL_NO_REGS)
+            bErr = true;
+        else
+            m_global_reg[idx] = value;
+    }
+    else
+    {
+        uint32_t                mailbox;
+        int                     lcl_ofs;
+
+        mailbox = idx / MAILBOX_SPAN;
+        lcl_ofs = idx % MAILBOX_SPAN;
+
+        switch (lcl_ofs)
+        {
+
+        case MAILBOX_COMM_ADR:
+            DPRINTF("MAILBOX_COMM_ADR[%d] write: 0x%08x\n", mailbox, value);
+            m_command[mailbox] = value;
+            m_status[mailbox]  = MAILBOX_NEW_MESSAGE;
+            irq[mailbox]       = true;
+            break;
+
+        case MAILBOX_DATA_ADR:
+            DPRINTF("MAILBOX_DATA_ADR[%d] write: 0x%08x\n", mailbox, value);
+            m_data[mailbox]  = value;
+            break;
+
+        case MAILBOX_RESERVED_ADR:
+            DPRINTF("MAILBOX_RESERVED_ADR[%d] write: 0x%x\n", mailbox, value);
+            m_reserved[mailbox] = value;
+            break;
+
+        case MAILBOX_RESET_ADR:
+            DPRINTF("MAILBOX_RESET_ADR[%d] write: 0x%x\n", mailbox, value);
+            m_status[mailbox] = MAILBOX_CLEAR;
+            irq[mailbox] = false;
+            break;
+        default:
+            bErr = true;
+            break;
+        }
+    }
+
+    if (bErr)
+    {
+        printf ("Bad %s::%s ofs=0x%X, be=0x%X, data=0x%X-%X!\n",
+                 name (), __FUNCTION__, (unsigned int) ofs, (unsigned int) be,
+                 (unsigned int) *((uint32_t*)data + 0),
+                 (unsigned int) *((uint32_t*)data + 1));
+        exit (1);
+    }
+}
+
+void sl_mailbox_device::read (uint32_t ofs, uint8_t be, uint8_t *data, bool &bErr)
+{
+    int        idx;
+    uint32_t  *val = (uint32_t *)data;
+
+    bErr = false;
+
+    idx = (ofs >> 2);
+    if (be & 0xF0)
+    {
+        idx++;
+        val++;
+    }
+
+    *val = 0;
+
+    if (ofs >= MAILBOX_GLOBAL_START_ADDR)
+    {
+        idx -= (MAILBOX_GLOBAL_START_ADDR >> 2);
+        if (idx >= MAILBOX_GLOBAL_NO_REGS)
+            bErr = true;
+        else
+            *val = m_global_reg[idx];
+    }
+    else
+    {
+        int        mailbox, lcl_ofs;
+
+        mailbox = idx / MAILBOX_SPAN;
+        lcl_ofs = idx % MAILBOX_SPAN;
+
+        switch (lcl_ofs)
+        {
+        case MAILBOX_COMM_ADR:
+            *val = m_command[mailbox];
+            DPRINTF("MAILBOX_COMM_ADR[%d] read: 0x%08x\n", mailbox, *val);
+            break;
+        case MAILBOX_DATA_ADR:
+            *val = m_data[mailbox];
+            DPRINTF("MAILBOX_DATA_ADR[%d] read: 0x%08x\n", mailbox, *val);
+            break;
+        case MAILBOX_RESERVED_ADR:
+            *val = m_reserved[mailbox];
+            DPRINTF("MAILBOX_RESERVED_ADR[%d] read: 0x%x\n", mailbox, *val);
+            break;
+        case MAILBOX_RESET_ADR:
+            *val = m_status[mailbox];
+            DPRINTF("MAILBOX_RESET_ADR[%d] read: 0x%x\n", mailbox, *val);
+            break;
+        default:
+            bErr = true;
+            break;
+        }
+    }
+
+    if (bErr)
+    {
+        printf ("Bad %s::%s ofs=0x%X, be=0x%X!\n",
+            name (), __FUNCTION__, (unsigned int) ofs, (unsigned int) be);
+        exit (1);
+    }
+}
+
+void sl_mailbox_device::rcv_rqst (uint32_t ofs, uint8_t be,
+                                uint8_t *data, bool bWrite)
+{
+
+    bool bErr = false;
+
+    if(bWrite){
+        this->write(ofs, be, data, bErr);
+    }else{
+        this->read(ofs, be, data, bErr);
+    }
+
+    send_rsp(bErr);
+
+    return;
+}
+
+/*
+ * Vim standard variables
+ * vim:set ts=4 expandtab tw=80 cindent syntax=c:
+ *
+ * Emacs standard variables
+ * Local Variables:
+ * mode: c
+ * tab-width: 4
+ * c-basic-offset: 4
+ * indent-tabs-mode: nil
+ * End:
+ */

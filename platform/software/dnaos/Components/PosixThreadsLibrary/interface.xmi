@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<APES:Interface
+  xmlns:xmi="http://www.omg.org/XMI"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:APES="http://www.ocm.org/APES"
+  xsi:schemaLocation="http://www.ocm.org/APES APESInterface.ecore"
+  author="xavier.guerin@imag.fr"
+  unique="true"
+  wrapper="false">
+
+  <id name="PosixThreadsLibrary" version="1.0"/>
+
+  <provide>
+    <context name="OSInterface">
+      <method name="__libthread_start" result="int32_t"/>
+    </context>
+
+    <context name="PThreads">
+      <type name="pthread_t"/>
+      <type name="pthread_attr_t"/>
+      <type name="pthread_func_t"/>
+
+
+      <method name="pthread_create" result="int32_t">
+        <argument name="thread" type="pthread_t" direction="Out"/>
+        <argument name="attrs" type="pthread_attr_t" direction="InOut"/>
+        <argument name="func" type="pthread_func_t" direction="In"/>
+        <argument name="args" type="access" direction="In"/>
+      </method>
+    </context>
+
+  </provide>
+
+  <require>
+    <type name="status_t"/>
+    <type name="thread_handler_t"/>
+    <type name="thread_info_t"/>
+
+    <method name="main" result="int32_t">
+      <argument name="argc" type="int32_t" direction="In"/>
+      <argument name="argv" type="array of string" direction="In"/>
+    </method>
+
+   <method name="semaphore_create" result="int32_t">
+      <argument name="name" type="string" direction="In"/>
+      <argument name="tokens" type="int32_t" direction="In"/>
+    </method>
+
+    <method name="semaphore_destroy" result="status_t">
+      <argument name="sid" type="int32_t" direction="In"/>
+    </method>
+
+    <method name="semaphore_acquire" result="status_t">
+      <argument name="sid" type="int32_t" direction="In"/>
+      <argument name="tokens" type="int32_t" direction="In"/>
+      <argument name="flags" type="int32_t" direction="In"/>
+      <argument name="timeout" type="bigtime_t" direction="In"/>
+    </method>
+
+    <method name="semaphore_release" result="status_t">
+      <argument name="sid" type="int32_t" direction="In"/>
+      <argument name="n_tokens" type="int32_t" direction="In"/>
+      <argument name="flags" type="int32_t" direction="In"/>
+    </method>
+
+    <method name="semaphore_get_info" result="status_t">
+      <argument name="sid" type="int32_t" direction="In"/>
+      <argument name="info" type="semaphore_info_t" direction="Out"/>
+    </method>
+
+    <method name="thread_create" result="status_t">
+      <argument name="handler" type="thread_handler_t" direction="In"/>
+      <argument name="arguments" type="void" direction="In"/>
+      <argument name="name" type="string" direction="In"/>
+      <argument name="info" type="thread_info_t" direction="In"/>
+      <argument name="tid" type="int32_t" direction="Out"/>
+    </method>
+
+    <method name="thread_wait" result="status_t">
+      <argument name="id" type="int32_t" direction="In"/>
+      <argument name="value" type="int32_t" direction="Out"/>
+    </method>
+
+  </require>
+
+</APES:Interface>

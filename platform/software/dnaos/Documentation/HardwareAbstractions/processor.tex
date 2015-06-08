@@ -1,0 +1,267 @@
+\chapter {CPU Abstraction Layer}
+This API is composed of 6 parts: \textit {endianness}, context management,
+I/O management, Traps management, multiprocessor management and software
+spinlocks management. Its implementations are located in the \texttt {cal} directory
+of \textit {SSP}'s root directory.
+\skipon
+
+\skipoff
+\section {\textit {Endianness} management}
+This section presents the elements that allow to deal with \textit {endianness}
+at a processor level.
+\skipon
+
+\begin{procedure}{CPU\_ENDIAN\_IS\_BIG\_\{16,32,64\}}{1}
+	\pinout{value}{Integer\{16,32,64\}}{}
+\end{procedure}
+
+Depending on the processor's \textit{endianness}, this procedure
+reorders the bytes of the \{16,32,64\} bits word \emph{value}
+in a \textit{big-endian} fashion.
+
+\begin{procedure}{CPU\_ENDIAN\_IS\_LITTLE\_\{16,32,64\}}{1}
+	\pinout{value}{Integer\{16,32,64\}}{}
+\end{procedure}
+
+Depending on the processor's \textit{endianness}, this procedure
+reorders the bytes of the \{16,32,64\} bits word \emph{value}
+in a \textit{little-endian} fashion.
+
+\begin{procedure}{CPU\_ENDIAN\_CONCAT}{4}
+	\pin{size}{Integer32}{}\\
+	\pout{result}{Integer\{16,32,64\}}{}\\
+	\pin{low}{Integer\{8,16,32\}}{}\\
+	\pin{high}{Integer\{8,16,32\}}{}
+\end{procedure}
+
+This procedure concatenates two \{8,16,32\} bits elements into one
+\{16,32,64\} bits elements that matches the processor's endianness.
+
+\begin{procedure}{CPU\_ENDIAN\_SPLIT}{4}
+	\pin{size}{Integer32}{}\\
+	\pin{value}{Integer\{16,32,64\}}{}\\
+	\pout{low}{Integer\{8,16,32\}}{}\\
+	\pout{high}{Integer\{8,16,32\}}{}
+\end{procedure}
+
+This procedure splits one \{16,32,64\} bits element matching the processor's
+endianness into two \{8,16,32\} bits elements.
+
+\skipoff
+\section {Execution context management}
+This section presents the elements that allow to deal with execution
+contexts.
+\skipon
+
+\type{CPU\_CONTEXT\_T}
+
+This type represents the execution context of the processor.
+
+\definition{CPU\_CONTEXT\_SIZE}
+
+This definition defines the context's size of the processor.
+
+\begin{procedure}{CPU\_CONTEXT\_INIT}{5}
+	\pout{context}{access CPU\_CONTEXT\_T}{}\\
+	\pin{stack}{access array of Integer8}{}\\
+	\pin{size}{Integer32}{The stack's size}\\
+	\pin{entry}{access procedure}{}\\
+	\pin{arguments}{access record}{}
+\end{procedure}
+
+This procedure initializes an execution context with a \emph{stack}
+of a specific \emph{size}, a \emph{entry} point and some
+\emph{arguments} that will be passed to the entry point. Note that
+the stack must have been allocated.
+
+\begin{procedure}{CPU\_CONTEXT\_LOAD}{1}
+	\pin{context}{access CPU\_CONTEXT\_T}{}
+\end {procedure}
+
+This procedure loads a specific \emph{context}.
+
+\begin{procedure}{CPU\_CONTEXT\_SAVE}{1}
+	\pout{context}{access CPU\_CONTEXT\_T}{}
+\end {procedure}
+
+This procedure saves the current execution context into \emph{context}.
+
+\begin{procedure}{CPU\_CONTEXT\_SWITCH}{2}
+	\pout{from}{access CPU\_CONTEXT\_T}{}\\
+	\pin{to}{access CPU\_CONTEXT\_T}{}
+\end {procedure}
+
+This procedure saves the current execution context into \emph{from}
+and loads the context \emph{to}.
+
+\skipoff
+\section {I/O management}
+This section presents the elements that allow to deal with I/Os.
+\skipon
+
+\begin{procedure}{CPU\_READ}{3}
+	\pin{size}{Integer32}{}\\
+	\pin{address}{access Integer\{8,16,32,64\}}{}\\
+	\pout{result}{Integer\{8,16,32,64\}}{}
+\end{procedure}
+
+This procedure reads a \{8,16,32,64\} bits integer from \emph {address}
+to \emph {result}.
+
+\begin{procedure}{CPU\_READ\_UNCACHED}{3}
+	\pin{size}{Integer32}{}\\
+	\pin{address}{access Integer\{8,16,32,64\}}{}\\
+	\pout{result}{Integer\{8,16,32,64\}}{}
+\end{procedure}
+
+This procedure reads a \{8,16,32,64\} bits integer from \emph {address}
+to \emph {result} in a non-cached fashion.
+
+\begin{procedure}{CPU\_READ\_VECTOR}{3}
+	\pin{mode}{VectorMode}{Integer 8, 16, 32, 64; Float; Double}\\
+	\pin{from}{access <VectorMode>}{}\\
+	\pout{to}{access <VectorMode>}{}\\
+	\pin{size}{Integer32}{}
+\end{procedure}
+
+This procedure reads a vector of \emph{size}, \emph{from} and writes
+it \emph{to}. This operation is executed in a specific \emph{mode}.
+
+\begin{procedure}{CPU\_WRITE}{3}
+	\pin{size}{Integer32}{}\\
+	\pin{address}{access Integer\{8, 16,32,64\}}{}\\
+	\pout{value}{Integer\{8, 16,32,64\}}{}
+\end{procedure}
+
+This procedure writes a \{8, 16,32,64\} bits integer from \emph {value}
+to \emph {address}.
+
+\begin{procedure}{CPU\_WRITE\_UNCACHED}{3}
+	\pin{size}{Integer32}{}\\
+	\pin{address}{access Integer\{8, 16,32,64\}}{}\\
+	\pout{value}{Integer\{8, 16,32,64\}}{}
+\end{procedure}
+
+This procedure reads a \{8, 16,32,64\} integer from \emph {value}
+to \emph {address} in a non-cached fashion.
+
+\begin{procedure}{CPU\_WRITE\_VECTOR}{3}
+	\pin{mode}{VectorMode}{Integer 8, 16, 32, 64; Float; Double}\\
+	\pin{to}{access <VectorMode>}{}\\
+	\pout{from}{access <VectorMode>}{}\\
+	\pin{size}{Integer32}{}
+\end{procedure}
+
+This procedure writes a vector of \emph{size}, \emph{to} and reads
+it \emph{from}. This operation is executed in a specific \emph{mode}.
+
+\skipoff
+\section {Interrupts management}
+This section presents the elements that allow to deal with interrupts.
+\skipon
+
+\type{interrupt\_id\_t}
+
+This type represents an interrupt line of a processor or of a processor's
+subsystem.
+
+\type{interrupt\_status\_t}
+
+This type represents the interrupt status of a processor or of a processor's
+subsystem.
+
+\type{interrupt\_handler\_t}
+
+This type represents the handler of a processor interrupt.
+
+\begin{procedure}{CPU\_IT\_ENABLE}{1}
+	\pin{vector}{interrupt\_id\_t}{}
+\end{procedure}
+
+This procedure masks the interruption indexed by \emph{vector}.
+
+\begin{procedure}{CPU\_IT\_DISABLE}{1}
+	\pin{vector}{interrupt\_id\_t}{}
+\end{procedure}
+
+This procedure unmasks the interruption indexed by \emph{vector}.
+
+\begin{procedure}{CPU\_IT\_ATTACH\_ISR}{2}
+	\pin{vector}{interrupt\_id\_t}{}\\
+	\pin{handler}{interrupt\_handler\_t}{}
+\end{procedure}
+
+This procedure attaches an interrupt \emph{handler} to a specific
+interrupt \emph{vector}.
+
+\skipoff
+\section {Exception management}
+This section presents the elements that allow to deal with processor exceptions.
+\skipon
+
+\type{exception\_id\_t}
+
+This type represents an exception of a processor.
+
+\type{exception\_handler\_t}
+
+This type represents the handler of a processor exception.
+
+\begin{procedure}{CPU\_IT\_ATTACH\_ESR}{2}
+	\pin{vector}{exception\_id\_t}{}\\
+	\pin{handler}{exception\_handler\_t}{}
+\end{procedure}
+
+This procedure attaches an exception \emph{handler} to a specific
+exception \emph{vector}.
+
+\skipoff
+\section {Multiprocessor management}
+This section presents the elements that allow to deal multiprocessor
+configurations.
+\skipon
+
+\begin{function}{CPU\_MP\_COUNT}{Integer32}{0}
+\end{function}
+
+This function returns the number of CPUs identical to the one calling
+the function.
+
+\begin{function}{CPU\_MP\_ID}{Integer32}{0}
+\end{function}
+
+This function returns the unique processor's identifier.
+
+\begin{procedure}{CPU\_MP\_WAIT}{1}
+	\pin{sync}{access Integer32}{}
+\end{procedure}
+
+This procedure spins until the value of the variable \emph{sync} turns 0.
+This variable must exist and must be initialized to 1 beforehand.
+
+\begin{procedure}{CPU\_MP\_PROCEED}{1}
+	\pin{sync}{access Integer32}{}
+\end{procedure}
+
+This procedure sets the variable \emph{sync} to 0.
+
+\skipoff
+\section {Synchronization management}
+This section presents the elements that allow to deal with synchronization.
+\skipon
+
+\begin{function}{CPU\_TEST\_AND\_SET}{Integer32}{1}
+	\pin{lock}{access Integer32}{}
+\end{function}
+
+This procedure performs a \emph{test-and-set} operation on the given
+\emph{lock}.
+
+\begin{function}{CPU\_COMPARE\_AND\_SWAP}{Integer32}{1}
+	\pinout{lock}{Integer32}{}\\
+	\pin{old}{Integer32}{}\\
+	\pin{new}{Integer32}{}
+\end{function}
+
+This procedure performs a compare-and-swap on the specified \emph{lock}, using
+the two \emph{old} and \emph{new} values as reference.

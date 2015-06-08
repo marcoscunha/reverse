@@ -1,0 +1,488 @@
+#include <stdlib.h>
+#include <unistd.h>
+#include <stdio.h>
+
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+
+#include <libelf.h>
+#include <gelf.h>
+
+#include <app_loader.h>
+
+#ifdef DEBUG_APPLOADER
+#define DPRINTF(fmt, args...)                               \
+    do { printf("%s: " fmt , name(), ##args); } while (0)
+#define DCOUT if (1) cout
+#else
+#define DPRINTF(fmt, args...) do {} while(0)
+#define DCOUT if (0) cout
+#endif
+
+#define EPRINTF(fmt, args...)                               \
+    do { fprintf(stderr, "app_loader [EE]: " fmt, ##args); } while (0)
+
+#define IPRINTF(fmt, args...)                               \
+    do { fprintf(stderr, "app_loader: " fmt, ##args); } while (0)
+
+app_loader::app_loader(generic_subsystem *subsys){
+
+    m_subsystem = subsys;
+}
+
+app_loader::~app_loader(void){
+
+}
+
+int
+app_loader::read_phdr(Elf *elf){
+
+    size_t n;
+    uint32_t i;
+    GElf_Phdr phdr;
+
+    if(elf_getphdrnum(elf, &n ) != 0){
+        fprintf(stderr, "Failure in getphdrnum() : %s\n",
+                elf_errmsg(-1));
+        return -1;
+    }
+
+    for(i = 0; i < n ; i ++) {
+        if(gelf_getphdr(elf , i , &phdr) != &phdr){
+            fprintf(stderr, "Failure in getphdrnum() : %s\n",
+                    elf_errmsg(-1));
+            return -1;
+        }
+
+        printf("Hdr %d: vaddr: 0x%08lx paddr: 0x%08lx offset: 0x%08lx memsz: 0x%08lx filesz: 0x%08lx\n",
+               i, phdr.p_vaddr, phdr.p_paddr, phdr.p_offset, phdr.p_memsz, phdr.p_filesz); 
+
+    }
+
+    return 0;
+}
+
+int
+app_loader::read_shdr(Elf *elf){
+
+    Elf_Scn  *scn;
+//	 Elf_Data *data;
+    size_t    shstrndx;
+
+    if(elf_getshdrstrndx(elf, &shstrndx) != 0){
+        fprintf(stderr, "Failure in getshdrstrndx() : %s\n",
+                elf_errmsg(-1));
+        return -1;
+    }
+
+    scn = NULL ;
+
+    while( (scn = elf_nextscn(elf, scn)) != NULL ){
+        GElf_Shdr shdr;
+        char *name;
+
+        if(gelf_getshdr(scn, &shdr) != &shdr){
+            fprintf(stderr, "Failure in getshdr() : %s\n",
+                    elf_errmsg(-1));
+            return -1;
+        }
+
+        if((name = elf_strptr(elf, shstrndx, shdr.sh_name)) == NULL){
+            fprintf(stderr, "Failure in strptr() : %s\n",
+                    elf_errmsg(-1));
+            return -1;
+        }
+
+        printf("Section%4zd: %-20s : type: %08x flags: %08lx addr: 0x%08lx offset: 0x%08lx\n",
+               elf_ndxscn(scn), name, shdr.sh_type, shdr.sh_flags, shdr.sh_addr, shdr.sh_offset);
+    }
+
+    return 0;
+}
+
+int
+app_loader::load_elf_segments(Elf *elf, uint32_t mast_id, uint32_t load){
+
+    size_t n;
+    uint32_t i;
+    GElf_Phdr phdr;
+    int loaded = 0;
+
+    if(elf_getphdrnum(elf, &n ) != 0){
+        fprintf(stderr, "Failure in getphdrnum() : %s\n",
+                elf_errmsg(-1));
+        return -1;
+    }
+
+    for(i = 0; i < n ; i ++) {
+        slave_device *slave;
+        uint32_t      mem_size  = 0;
+        uint32_t      mem_base_addr = 0;
+        uint8_t      *mem;
+        off_t         offset = 0;
+        ssize_t       size = 0;
+        uint32_t      load_ofs;
+        uint32_t      load_addr = 0;
+
+        if(gelf_getphdr(elf , i , &phdr) != &phdr){
+            EPRINTF("Failure in getphdrnum() : %s\n", elf_errmsg(-1));
+            return -1;
+        }	  
+
+        if(phdr.p_type == PT_LOAD){
+            IPRINTF("Loading segment %d: 0x%08lx(0x%lx)\n",
+                    i, phdr.p_vaddr, phdr.p_memsz);
+            DPRINTF("vaddr: 0x%08lx paddr: 0x%08lx offset: 0x%08lx "
+                    "memsz: 0x%08lx filesz: 0x%08lx\n",
+                    phdr.p_vaddr, phdr.p_paddr, phdr.p_offset,
+                    phdr.p_memsz, phdr.p_filesz);
+
+            if(loaded && (load != APPLOADER_DEFAULT)){
+                EPRINTF("Multi segment ELF with override load address: not supported\n");
+                return -1;
+            }
+            
+            if(load != APPLOADER_DEFAULT){
+                load_addr = load;
+            }else{
+                load_addr = phdr.p_paddr;
+            }
+
+            slave = m_subsystem->get_slave_from_addr(mast_id, load_addr,
+                                                     &mem_base_addr);
+
+            if(slave == NULL){
+                EPRINTF("slave not available for addr: 0x%08x\n", load_addr);
+            }
+			   
+            mem      = slave->get_mem();
+            mem_size = slave->get_size();
+            load_ofs = load_addr - mem_base_addr;
+
+            if( load_ofs + phdr.p_memsz >= mem_size ){
+                IPRINTF("Loading @ 0x%08x(%lx) going outside RAM 0x%08x(%x)\n",
+                        load_addr, phdr.p_memsz, mem_base_addr, mem_size);
+                return -1;
+            }					
+
+            offset = lseek(m_elf_fd, phdr.p_offset, SEEK_SET);
+            if( (offset <= 0)                       ||
+                ((GElf_Off)offset != phdr.p_offset) ){
+                EPRINTF("Error loading ELF: lseek error\n");
+                return -1;
+            }
+            size = read(m_elf_fd, mem + load_ofs, phdr.p_filesz);
+            if( (size <= 0)                      ||
+                ((GElf_Word)size != phdr.p_filesz) ){
+                EPRINTF("Error loading ELF: read error\n");
+                return -1;
+            }
+
+            // Write the values on a file
+            #ifdef TRACE_EVENT_ENABLED
+            {
+                int fd;
+                char *str = (char*)calloc(sizeof(char),50);
+                char *str_tmp = (char*)calloc(sizeof(char),20);
+
+                fd = open("mem_init",O_CREAT | O_RDWR, 0666);
+ 
+                str = strcat(str, "SECTIONS=1\n");
+                sprintf(str_tmp, "SIZE=%08lx\n", phdr.p_filesz);
+                str = strcat(str, str_tmp);
+                sprintf(str_tmp, "OFFSET=%08x\n", load_ofs);
+                str = strcat(str, str_tmp);
+               
+                size = write(fd, str, strlen(str));
+                size = write(fd, mem + load_ofs, phdr.p_filesz);
+
+                close(fd);
+                free(str);
+                free(str_tmp);
+            }
+            #endif // TRACE_EVENT_ENABLED
+
+            IPRINTF("Segment Loaded\n");
+            loaded = 1;
+        }
+
+    }
+
+    return 0;
+}
+
+int
+app_loader::load_elf_image(const char *elf_fname, uint32_t mast_id,
+                           uint32_t load){
+
+    Elf *elf;
+    Elf_Kind kind;
+
+	IPRINTF("Loading ELF image: %s\n", elf_fname);
+
+    m_elf_fd = open(elf_fname, O_RDONLY);
+    if(m_elf_fd <= 0){
+        EPRINTF("Error in file opening: %s\n", elf_fname);
+        return -1;
+    }
+
+    if(elf_version(EV_CURRENT) == EV_NONE){
+        EPRINTF("ELF library initialization failed : %s\n",
+                elf_errmsg(-1));
+        return EXIT_FAILURE;
+    }
+
+    elf = elf_begin(m_elf_fd, ELF_C_READ, NULL);
+    if(elf == NULL){
+        EPRINTF("Error in ELF opening: %s\n", elf_errmsg(-1));
+        return -1;
+    }
+
+    kind = elf_kind(elf);
+	 
+    switch(kind) {
+    case ELF_K_ELF :
+        DPRINTF("Correct ELF file !!!!\n");
+        break ;
+    case ELF_K_AR :
+    case ELF_K_NONE :
+    default:
+        EPRINTF("Unsupported ELF format: %x\n", kind);
+        return EXIT_FAILURE;
+    }
+
+#ifdef DEBUG
+    read_phdr(elf);
+    read_shdr(elf);
+#endif
+    load_elf_segments(elf, mast_id, load);
+
+    elf_end(elf);
+    close(m_elf_fd);
+    return 0;
+}
+
+int
+app_loader::load_binary_image(const char *file, uint32_t mast_id, uint32_t load){
+
+    uint8_t *mem = NULL;
+    uint32_t ofs = 0;
+    uint32_t mem_base_addr = 0;
+    int fd, img_size, size;
+    uint32_t mem_size = 0;
+    slave_device *slave;
+    uint32_t      load_addr = load;
+    
+	IPRINTF("Loading image: %s\n", file);
+
+    slave = m_subsystem->get_slave_from_addr(mast_id, load_addr,
+                                             &mem_base_addr);
+
+    ofs      = load_addr - mem_base_addr;
+    mem      = slave->get_mem();
+    mem_size = slave->get_size();
+
+    fd = open (file, O_RDONLY);
+    if (fd < 0)
+        return -1;
+
+    img_size = lseek(fd, 0, SEEK_END);
+    if(img_size + ofs > mem_size){
+        IPRINTF("%s loaded @ 0x%08x(%x) going outside RAM 0x%08x(%x)\n",
+                file, load_addr, img_size, mem_base_addr, mem_size);
+        close(fd);
+        return -1;
+    }
+
+    lseek(fd, 0, SEEK_SET);
+    size = img_size;
+    if(read(fd, mem + ofs, size) != size){
+        IPRINTF("Error reading file (%s)\n", file);
+        close(fd);
+        return -1;
+    }
+
+    close (fd);
+
+    return img_size;
+}
+
+
+#define __u8  uint8_t
+#define __u16 uint16_t
+#define __u32 uint32_t
+
+/* Use ATAGS from Linux sources (ARM version) */
+#include "setup.h"
+
+#define SIZEOF_ATAG_NONE   (0)
+#define SIZEOF_ATAG_CORE   ((sizeof(struct tag_header) + sizeof(struct tag_core) + 3)/4)
+#define SIZEOF_ATAG_MEM    ((sizeof(struct tag_header) + sizeof(struct tag_mem32) + 3)/4)
+#define SIZEOF_ATAG_INITRD ((sizeof(struct tag_header) + sizeof(struct tag_initrd) + 3)/4)
+#define SIZEOF_ATAG_CMDLINE(cmdsize)    ((sizeof(struct tag_header) + cmdsize + 3)/4)
+
+void
+app_loader::set_linux_kernel_args(linux_args_t *args, uint32_t mast_id)
+{
+    uint32_t     *p;
+    uint8_t      *mem;
+    uint32_t      mem_base_addr = 0;
+#if 0
+    uint32_t      mem_size = 0;
+#endif
+    slave_device *slave;
+
+    slave = m_subsystem->get_slave_from_addr(mast_id,
+                                             args->atag_loadaddr,
+                                             &mem_base_addr);
+
+    mem      = slave->get_mem();
+#if 0
+    mem_size = slave->get_size();
+#endif
+
+    p = (uint32_t *)(mem + (args->atag_loadaddr - mem_base_addr));
+
+    struct tag *ptag = (struct tag *)p;
+
+    /* ATAG_CORE */
+    ptag->hdr.size = SIZEOF_ATAG_CORE;
+    ptag->hdr.tag  = ATAG_CORE;
+    ptag->u.core.flags    = 1;
+    ptag->u.core.pagesize = 0x1000;
+    ptag->u.core.rootdev  = 0;
+    ptag = tag_next(ptag);
+    
+    /* ATAG_MEM */
+    ptag->hdr.size = SIZEOF_ATAG_MEM;
+    ptag->hdr.tag  = ATAG_MEM;
+    ptag->u.mem.size  = args->ram_size;
+    ptag->u.mem.start = args->ram_startaddr;
+    ptag = tag_next(ptag);
+
+    if(args->initrd_size){
+        /* ATAG_INITRD2 */
+        ptag->hdr.size = SIZEOF_ATAG_INITRD;
+        ptag->hdr.tag  = ATAG_INITRD2;
+        ptag->u.initrd.start = args->initrd_loadaddr;
+        ptag->u.initrd.size  = args->initrd_size;
+        ptag = tag_next(ptag);
+    }
+
+    if(args->kernel_cmdline && *(args->kernel_cmdline)){
+        int cmdline_size;
+
+        cmdline_size = strlen(args->kernel_cmdline);
+        memcpy (p + 2, args->kernel_cmdline, cmdline_size + 1);
+        cmdline_size = (cmdline_size >> 2) + 1;
+
+        /* ATAG_CMDLINE */
+        ptag->hdr.size = SIZEOF_ATAG_CMDLINE(cmdline_size);
+        ptag->hdr.tag  = ATAG_CMDLINE;
+        memcpy(ptag->u.cmdline.cmdline, args->kernel_cmdline, cmdline_size + 1);
+        ptag = tag_next(ptag);
+
+    }
+    /* ATAG_NONE: The End */
+    ptag->hdr.size = SIZEOF_ATAG_NONE;
+    ptag->hdr.tag  = ATAG_NONE;
+
+}
+
+/* Entry point for CPU zero. */
+uint32_t app_loader::bootloader[] = 
+{
+    0xee101fb0,       /* [00] :  0 - mrc 15, 0, r1, cr0, cr0, {5} */
+    0xe211100f,       /* [01] :  4 - ands    r1, r1, #15 ; 0xf    */
+    0x159f3004,       /* [02] :  8 - ldrne   r3, [pc, #4]         */
+    0x0a000001,       /* [03] :  C - beq pc + 4                   */
+    0xe12fff13,       /* [04] : 10 - bx  r3                       */
+    0xDEADBEEF,       /* [05] : 14 - <second cpus boot addr>      */
+    0xe3a00000,       /* [06] : 18 - mov     r0, #0               */
+    0xe59f1004,       /* [07] : 1C - ldr     r1, [pc, #4]         */
+    0xe59f2004,       /* [08] : 20 - ldr     r2, [pc, #4]         */
+    0xe59ff004,       /* [09] : 24 - ldr     pc, [pc, #4]         */
+    0xDEADBEEF,       /* [10] : 28 - <board id>                   */
+    0xDEADBEEF,       /* [11] : 2C - <address of kernel args>     */
+    0xDEADBEEF,       /* [12] : 30 - <kernel entry point>         */
+};
+
+#define BOOTLOADER_SECONDARY_BOOT  (05)
+#define BOOTLOADER_BOARD_ID        (10)
+#define BOOTLOADER_ATAG_LOADADDR   (11)
+#define BOOTLOADER_KERNEL_LOADADDR (12)
+
+
+/* Entry point for secondary CPUs.
+   Issue WFI until start address is written to system controller.  */
+uint32_t app_loader::smpboot[] =
+{
+  0xe3a00482, /*  0 - mov     r0, #0x82000000 */
+  0xe3800084, /*  4 - orr     r0, #0x84       */
+  0xe320f003, /*  8 - wfi                     */
+  0xe5901000, /*  C - ldr     r1, [r0]        */
+  0xe3110003, /* 10 - tst     r1, #3          */
+  0x1afffffb, /* 14 - bne     <wfi>           */
+  0xe12fff11  /* 18 - bx      r1              */
+};
+
+void
+app_loader::load_linux_image(linux_args_t *args, uint32_t mast_id)
+{
+    int           initrd_size = 0;
+    uint8_t      *mem;
+    uint32_t      mem_base_addr = 0;
+    slave_device *slave;
+    uint32_t     *pboot;
+    uint32_t     *psec;
+        
+    /* TODO: Check the paramters values */ 
+
+    slave = m_subsystem->get_slave_from_addr(mast_id,
+                                             args->atag_loadaddr,
+                                             &mem_base_addr);
+
+    mem = slave->get_mem();
+
+    /* Loading the kernel at the correct location */
+    load_binary_image(args->kernel_fname, mast_id, args->kernel_loadaddr);
+
+    /* Loading the bootloaders ... */
+    pboot = (uint32_t *)(mem + (0 - mem_base_addr));
+    psec  = (uint32_t *)(mem + (args->secondary_bootaddr - mem_base_addr));
+    
+    memcpy(pboot, bootloader, sizeof(bootloader));
+    memcpy(psec, smpboot, sizeof(smpboot));
+
+    /* Patching bootloader */
+    pboot[BOOTLOADER_SECONDARY_BOOT]  = args->secondary_bootaddr;
+    pboot[BOOTLOADER_BOARD_ID]        = args->linux_board_id;
+    pboot[BOOTLOADER_ATAG_LOADADDR]   = args->atag_loadaddr;
+    pboot[BOOTLOADER_KERNEL_LOADADDR] = args->kernel_loadaddr;
+
+    /* Loading Initrd */
+    initrd_size = load_binary_image(args->initrd_fname, mast_id,
+                                    args->initrd_loadaddr);
+    if(initrd_size == -1)
+        initrd_size = 0;
+    args->initrd_size = initrd_size;
+
+    /* Setting kernel arguments (ATAG) */
+    set_linux_kernel_args (args, mast_id);
+}
+
+
+
+/*
+ * Vim standard variables
+ * vim:set sw=4 ts=4 expandtab tw=80 cindent syntax=c:
+ *
+ * Emacs standard variables
+ * Local Variables:
+ * mode: c
+ * tab-width: 4
+ * c-basic-offset: 4
+ * indent-tabs-mode: nil
+ * End:
+ */

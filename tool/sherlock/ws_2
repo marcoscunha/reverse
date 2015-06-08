@@ -1,0 +1,29 @@
+process_init
+Test
+Reading DWARF...done
+HWE_MEMORY [0] - Init
+mem_create: SECTION 1
+mem_create: SIZE    0x0003e9d0
+mem_create: OFFSET  0
+HWE_PERIPHERAL [1] - Init
+ERROR:[watson_main.c:210]: watson_pg_comp: WATSON: null component initialized
+n_comp 1
+HWE_PROCESSOR [2] - Init
+HWE_CACHE [3] - Init
+HWE_CACHE [4] - Init
+HWE_PROCESSOR [5] - Init
+HWE_CACHE [6] - Init
+HWE_CACHE [7] - Init
+Last chance to analyse!
+WATSON - EXIT FUNCTION
+[7] n_pending 0 G 277658354 MP 0
+[6] n_pending 4 G 277546547 MP 287
+[4] n_pending 0 G 277658353 MP 0
+[3] n_pending 4 G 277658355 MP 336
+
+False Positives : 0
+
+Total Time      : 22553429.124682
+
+Total MEM (peak): 149143552 Mbytes 
+Total MEM (cur) : 149143552 Mbytes 

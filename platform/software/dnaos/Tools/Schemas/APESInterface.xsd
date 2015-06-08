@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xsd:schema xmlns:APES="http://www.ocm.org/APES" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ecore:nsPrefix="APES" ecore:package="APES" targetNamespace="http://www.ocm.org/APES">
+  <xsd:element ecore:ignore="true" name="Argument" type="APES:Argument"/>
+  <xsd:element ecore:ignore="true" name="Context" type="APES:Context"/>
+  <xsd:element ecore:ignore="true" name="Definition" type="APES:Definition"/>
+  <xsd:element ecore:ignore="true" name="Element" type="APES:Element"/>
+  <xsd:element ecore:ignore="true" name="Identifier" type="APES:Identifier"/>
+  <xsd:element ecore:ignore="true" name="Inject" type="APES:Inject"/>
+  <xsd:element ecore:ignore="true" name="Interface" type="APES:Interface"/>
+  <xsd:element ecore:ignore="true" name="Method" type="APES:Method"/>
+  <xsd:element ecore:ignore="true" name="Provide" type="APES:Provide"/>
+  <xsd:element ecore:ignore="true" name="Require" type="APES:Require"/>
+  <xsd:element ecore:ignore="true" name="Restrict" type="APES:Restrict"/>
+  <xsd:element ecore:ignore="true" name="Set" type="APES:Set"/>
+  <xsd:element ecore:ignore="true" name="Type" type="APES:Type"/>
+  <xsd:element ecore:ignore="true" name="Variable" type="APES:Variable"/>
+  <xsd:complexType name="Argument">
+    <xsd:complexContent>
+      <xsd:extension base="APES:Element">
+        <xsd:attribute ecore:default="" name="direction" type="APES:Direction" use="required"/>
+        <xsd:attribute name="type" type="xsd:string" use="required"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="Context">
+    <xsd:complexContent>
+      <xsd:extension base="APES:Set">
+        <xsd:attribute name="name" type="xsd:string" use="required"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="Definition">
+    <xsd:complexContent>
+      <xsd:extension base="APES:Element"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:simpleType name="Direction">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="In"/>
+      <xsd:enumeration value="Out"/>
+      <xsd:enumeration value="InOut"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:complexType abstract="true" name="Element">
+    <xsd:attribute name="name" type="xsd:string" use="required"/>
+  </xsd:complexType>
+  <xsd:complexType name="Identifier">
+    <xsd:attribute name="name" use="required">
+    	<xsd:simpleType>
+    		<xsd:restriction base="xsd:string">
+    			<xsd:pattern value="[a-zA-Z][a-zA-Z0-9_]*"></xsd:pattern>
+    		</xsd:restriction>
+    	</xsd:simpleType>
+    </xsd:attribute>
+    <xsd:attribute name="version" type="xsd:string" use="required"/>
+  </xsd:complexType>
+  <xsd:complexType name="Inject">
+    <xsd:sequence>
+      <xsd:element ecore:resolveProxies="true" maxOccurs="unbounded" name="id" type="APES:Identifier"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="Interface">
+    <xsd:sequence>
+      <xsd:element ecore:resolveProxies="true" name="id" type="APES:Identifier"/>
+      <xsd:element ecore:resolveProxies="true" minOccurs="0" name="inject" type="APES:Inject"/>
+      <xsd:element ecore:resolveProxies="true" minOccurs="0" name="restrict" type="APES:Restrict"/>
+      <xsd:element ecore:resolveProxies="true" name="provide" type="APES:Provide"/>
+      <xsd:element ecore:resolveProxies="true" minOccurs="0" name="require" type="APES:Require"/>
+    </xsd:sequence>
+    <xsd:attribute name="author" type="xsd:string" use="required"/>
+    <xsd:attribute name="unique" type="xsd:string" use="required"/>
+    <xsd:attribute ecore:unsettable="false" name="wrapper" type="xsd:boolean" use="required"/>
+  </xsd:complexType>
+  <xsd:complexType name="Method">
+    <xsd:complexContent>
+      <xsd:extension base="APES:Element">
+        <xsd:sequence>
+          <xsd:element maxOccurs="unbounded" minOccurs="0" name="argument" type="APES:Argument"/>
+        </xsd:sequence>
+        <xsd:attribute name="description" type="xsd:string"/>
+        <xsd:attribute name="result" type="xsd:string" use="required"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="Provide">
+    <xsd:sequence>
+      <xsd:element ecore:resolveProxies="true" maxOccurs="unbounded" name="context" type="APES:Context"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="Require">
+    <xsd:complexContent>
+      <xsd:extension base="APES:Set"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="Restrict">
+    <xsd:sequence>
+      <xsd:element ecore:resolveProxies="true" maxOccurs="unbounded" name="id" type="APES:Identifier"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType abstract="true" name="Set">
+    <xsd:sequence>
+      <xsd:element ecore:ordered="false" maxOccurs="unbounded" minOccurs="0" name="type" type="APES:Type"/>
+      <xsd:element ecore:ordered="false" maxOccurs="unbounded" minOccurs="0" name="definition" type="APES:Definition"/>
+      <xsd:element ecore:ordered="false" maxOccurs="unbounded" minOccurs="0" name="variable" type="APES:Variable"/>
+      <xsd:element ecore:ordered="false" maxOccurs="unbounded" minOccurs="0" name="method" type="APES:Method"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="Type">
+    <xsd:complexContent>
+      <xsd:extension base="APES:Element"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="Variable">
+    <xsd:complexContent>
+      <xsd:extension base="APES:Element">
+        <xsd:attribute name="type" type="xsd:string" use="required"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+</xsd:schema>

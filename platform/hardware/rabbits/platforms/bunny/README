@@ -1,0 +1,12 @@
+Shared Libraries
+  NEEDED               libdl.so.2
+  NEEDED               libpthread.so.0
+  NEEDED               libelf.so.1
+  NEEDED               libsystemc-2.3.0.so
+  NEEDED               libhwetrace.so
+  NEEDED               librt.so.1
+  NEEDED               libstdc++.so.6
+  NEEDED               libm.so.6
+  NEEDED               libgcc_s.so.1
+  NEEDED               libc.so.6
+  RPATH                /opt/systemc-2.3/lib-linux64:/work/cunha/devel/Rabbits/rabbits/libs:/work/cunha/devel/Decopus/trace/lib

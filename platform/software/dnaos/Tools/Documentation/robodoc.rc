@@ -1,0 +1,93 @@
+# Example robodoc.rc
+
+items:
+	SUMMARY
+	SYNOPSIS
+	FUNCTION
+	ARGUMENTS
+	RESULT
+	SIDE EFFECTS
+	HISTORY
+	BUGS
+	TODO
+	EXAMPLE
+	NOTES
+
+source items:
+	SYNOPSIS
+
+ignore items:
+	HISTORY
+	BUGS
+
+options:
+	--html
+	--multidoc
+	--index
+	--tabsize 4
+	--sections
+	--cmode
+  --syntaxcolors
+	--nogeneratedwith
+	--source_line_numbers
+	--nopre
+  --masterindex "Index Page,index"
+  --sourceindex "Source files,sources"
+
+ignore files:
+	README
+	CVS
+	*.bak
+	*~
+	"a test_*"
+	.*
+	Makefile
+
+accept files:
+	*.c
+	*.h
+
+keywords:
+  watch
+  rescue
+  check
+  ensure
+  panic
+  leave
+  return
+  if
+  else
+  while
+  for
+  goto
+  switch
+  case
+  break
+  continue
+  ?
+  :
+  asm
+  __asm__
+  typedef
+  struct
+  union
+  int8_t
+  int16_t
+  int32_t
+  uint8_t
+  uint16_t
+  uint32_t
+  float
+  double
+  int
+  char
+  long
+  short
+  unsigned
+  extern
+  inline
+  auto
+  volatile
+  __attribute__
+
+

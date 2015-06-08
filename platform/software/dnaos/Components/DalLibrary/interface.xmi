@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<APES:Interface
+  xmlns:xmi="http://www.omg.org/XMI"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:APES="http://www.ocm.org/APES"
+  xsi:schemaLocation="http://www.ocm.org/APES APESInterface.ecore"
+  author="xavier.guerin@imag.fr"
+  unique="true"
+  wrapper="false">
+
+  <id name="DalLibrary" version="1.0"/>
+
+  <provide>
+    <context name="Process">
+      <type name="LocalState"/>
+      <type name="ProcessInit"/>
+      <type name="ProcessFire"/>
+      <type name="WPTR"/>
+      <type name="DALProcess"/>
+
+      <method name="GETINDEX" result="int32_t">
+        <argument name="dim" type="symbol" direction="In"/>
+      </method>
+
+      <method name="DAL_detach" result="">
+        <argument name="p" type="symbol" direction="In"/>
+      </method>
+
+      <method name="dal_process_create" result="">
+        <argument name="p" type="access DALProcess" direction="In"/>
+        <argument name="name" type="string" direction="In"/>
+        <argument name="n" type="int32_t" direction="In"/>
+        <argument name="..." type="array void" direction="In"/>
+      </method>
+
+      <method name="dal_process_wait" result="">
+        <argument name="p" type="access DALProcess" direction="In"/>
+      </method>
+
+      <method name="dal_process_exit" result="">
+        <argument name="p" type="access DALProcess" direction="In"/>
+      </method>
+
+      <method name="dal_process_get_index" result="int32_t">
+        <argument name="p" type="access DALProcess" direction="In"/>
+        <argument name="dim" type="int32_t" direction="In"/>
+      </method>
+    </context>
+
+    <context name="Port">
+      <type name="dal_port_type_t"/>
+
+      <method name="CREATEPORTVAR" result="">
+        <argument name="port" type="symbol" direction="In"/>
+      </method>
+
+      <method name="CREATEPORT" result="">
+        <argument name="port" type="symbol" direction="In"/>
+        <argument name="base" type="string" direction="In"/>
+        <argument name="n_iterators" type="int32_t" direction="In"/>
+        <argument name="n_pairs" type="int32_t" direction="In"/>
+        <argument name="..." type="array void" direction="In"/>
+      </method>
+
+      <method name="dal_port_get" result="">
+        <argument name="port" type="int32_t" direction="Out"/>
+        <argument name="base" type="string" direction="In"/>
+        <argument name="n_iterators" type="int32_t" direction="In"/>
+        <argument name="n_pairs" type="int32_t" direction="In"/>
+        <argument name="..." type="array void" direction="In"/>
+      </method>
+
+      <method name="dal_port_create" result="">
+        <argument name="p" type="access DALProcess" direction="In"/>
+        <argument name="inputs" type="int32_t" direction="In"/>
+        <argument name="outputs" type="int32_t" direction="In"/>
+      </method>
+
+      <method name="dal_port_init" result="">
+        <argument name="p" type="access DALProcess" direction="In"/>
+        <argument name="base" type="string" direction="In"/>
+        <argument name="type" type="dal_port_type_t" direction="In"/>
+        <argument name="path" type="string" direction="In"/>
+        <argument name="n" type="int32_t" direction="In"/>
+        <argument name="..." type="array void" direction="In"/>
+      </method>
+
+      <method name="dal_port_read" result="int32_t">
+        <argument name="port" type="access" direction="In"/>
+        <argument name="data" type="access" direction="In"/>
+        <argument name="n" type="int32_t" direction="In"/>
+        <argument name="p" type="access DALProcess" direction="In"/>
+      </method>
+
+      <method name="dal_port_write" result="int32_t">
+        <argument name="port" type="access" direction="In"/>
+        <argument name="data" type="access" direction="In"/>
+        <argument name="n" type="int32_t" direction="In"/>
+        <argument name="p" type="access DALProcess" direction="In"/>
+      </method>
+    </context>
+
+  </provide>
+
+  <require>
+    <type name="status_t"/>
+    <type name="thread_handler_t"/>
+    <type name="thread_info_t"/>
+
+    <method name="main" result="int32_t">
+      <argument name="argc" type="int32_t" direction="In"/>
+      <argument name="argv" type="array of string" direction="In"/>
+    </method>
+
+    <method name="thread_create" result="status_t">
+      <argument name="handler" type="thread_handler_t" direction="In"/>
+      <argument name="arguments" type="void" direction="In"/>
+      <argument name="name" type="string" direction="In"/>
+      <argument name="info" type="thread_info_t" direction="In"/>
+      <argument name="tid" type="int32_t" direction="Out"/>
+    </method>
+
+    <method name="thread_wait" result="status_t">
+      <argument name="id" type="int32_t" direction="In"/>
+      <argument name="value" type="int32_t" direction="Out"/>
+    </method>
+
+  </require>
+
+</APES:Interface>

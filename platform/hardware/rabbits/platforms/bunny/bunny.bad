@@ -1,0 +1,1471 @@
+<0>(system_kickstart:63): Starting DNA Operating System
+<0>(vfs_start:47): Mounting the default file systems.
+<0>(vnode_walk:77): new_volume != NULL failed.
+<0>(filesystem_load:39): Loading FS "rootfs"
+<0>(rootfs_mount:78): VNODE CREATE ID 0x1, VID 0x0
+<0>(vnode_walk:91): Walking "devices" on volume 0
+<0>(rootfs_read_vnode:29): NS = 0x112bfc8, VNID = 2, DATA = 0x112c468
+<0>(path_get_next_entry:50): *p_start != '\0' failed.
+<0>(filesystem_load:39): Loading FS "devfs"
+<1>(ipi_handler:90): 1 ENABLE 0
+<1>(ipi_handler:90): 1 ENABLE 1
+<0>(semaphore_create:103): ID(1:0) TOKEN(0)
+<0>(semaphore_create:103): ID(2:1) TOKEN(0)
+<0>(semaphore_create:103): ID(3:2) TOKEN(0)
+<0>(semaphore_create:103): ID(4:3) TOKEN(0)
+<0>(semaphore_create:103): ID(5:4) TOKEN(0)
+<0>(semaphore_create:103): ID(6:5) TOKEN(0)
+<0>(semaphore_create:103): ID(7:6) TOKEN(0)
+<0>(semaphore_create:103): ID(8:7) TOKEN(0)
+<0>(semaphore_create:103): ID(9:8) TOKEN(0)
+<0>(semaphore_create:103): ID(10:9) TOKEN(0)
+<0>(semaphore_create:103): ID(11:10) TOKEN(0)
+<0>(semaphore_create:103): ID(12:11) TOKEN(0)
+<0>(semaphore_create:103): ID(13:12) TOKEN(0)
+<0>(semaphore_create:103): ID(14:13) TOKEN(0)
+<0>(semaphore_create:103): ID(15:14) TOKEN(0)
+<0>(semaphore_create:103): ID(16:15) TOKEN(0)
+<0>(semaphore_create:103): ID(17:16) TOKEN(0)
+<0>(semaphore_create:103): ID(18:17) TOKEN(0)
+<0>(semaphore_create:103): ID(19:18) TOKEN(0)
+<0>(semaphore_create:103): ID(20:19) TOKEN(0)
+<0>(semaphore_create:103): ID(21:20) TOKEN(0)
+<0>(semaphore_create:103): ID(22:21) TOKEN(0)
+<0>(semaphore_create:103): ID(23:22) TOKEN(0)
+<0>(semaphore_create:103): ID(24:23) TOKEN(0)
+<0>(semaphore_create:103): ID(25:24) TOKEN(0)
+<0>(semaphore_create:103): ID(26:25) TOKEN(1)
+<0>(semaphore_create:103): ID(27:26) TOKEN(0)
+<0>(devfs_mount:78): DevFS mount succeeded.
+<0>(vfs_start:59): Opening the default in/out/error files.
+<0>(vnode_walk:91): Walking "devices" on volume 0
+<0>(vnode_walk:91): Walking "serial" on volume 1
+<0>(devfs_walk:36): Analyzing "serial" on vnode 1
+<0>(devfs_inode_insert:57): inode 0 created
+<0>(devfs_inode_insert:57): inode soclib created
+<0>(devfs_inode_insert:57): inode serial created
+<0>(devfs_inode_insert:57): inode console created
+<0>(devfs_inode_insert:57): inode kernel created
+<0>(devfs_read_vnode:33): Read inode [serial].
+<0>(vnode_walk:91): Walking "kernel" on volume 1
+<0>(devfs_walk:36): Analyzing "kernel" on vnode 2
+<0>(devfs_read_vnode:33): Read inode [kernel].
+<0>(devfs_write_vnode:30): Write inode [serial].
+<0>(devfs_inode_clean:30): Clean inode [serial] forward.
+<0>(devfs_inode_clean:35): Unused entry [soclib].
+<0>(devfs_inode_destroy:32): Destroy inode [soclib].
+<0>(devfs_inode_destroy:32): Destroy inode [0].
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(devfs_inode_clean:51): Clean inode [serial] backward.
+<0>(vnode_walk:91): Walking "console" on volume 1
+<0>(devfs_walk:36): Analyzing "console" on vnode 5
+<0>(devfs_read_vnode:33): Read inode [console].
+<0>(devfs_write_vnode:30): Write inode [kernel].
+<0>(devfs_inode_clean:30): Clean inode [kernel] forward.
+<0>(devfs_inode_clean:51): Clean inode [kernel] backward.
+<0>(path_get_next_entry:50): *p_start != '\0' failed.
+file 1132800 kalloc 11327e8
+<0>(file_create:120): Created FD (0, 0x1132800).
+<0>(vnode_walk:91): Walking "devices" on volume 0
+<0>(vnode_walk:91): Walking "serial" on volume 1
+<0>(devfs_walk:36): Analyzing "serial" on vnode 1
+<0>(devfs_inode_insert:57): inode 0 created
+<0>(devfs_inode_insert:57): inode soclib created
+<0>(devfs_inode_insert:61): dna_strlen (path) != 0 failed.
+<0>(devfs_read_vnode:33): Read inode [serial].
+<0>(vnode_walk:91): Walking "kernel" on volume 1
+<0>(devfs_walk:36): Analyzing "kernel" on vnode 2
+<0>(devfs_read_vnode:33): Read inode [kernel].
+<0>(devfs_write_vnode:30): Write inode [serial].
+<0>(devfs_inode_clean:30): Clean inode [serial] forward.
+<0>(devfs_inode_clean:35): Unused entry [soclib].
+<0>(devfs_inode_destroy:32): Destroy inode [soclib].
+<0>(devfs_inode_destroy:32): Destroy inode [0].
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(devfs_inode_clean:51): Clean inode [serial] backward.
+<0>(vnode_walk:91): Walking "console" on volume 1
+<0>(devfs_walk:36): Analyzing "console" on vnode 5
+<0>(devfs_write_vnode:30): Write inode [kernel].
+<0>(devfs_inode_clean:30): Clean inode [kernel] forward.
+<0>(devfs_inode_clean:51): Clean inode [kernel] backward.
+<0>(path_get_next_entry:50): *p_start != '\0' failed.
+file 1133660 kalloc 1133648
+<0>(file_create:120): Created FD (1, 0x1133660).
+<0>(vnode_walk:91): Walking "devices" on volume 0
+<0>(vnode_walk:91): Walking "serial" on volume 1
+<0>(devfs_walk:36): Analyzing "serial" on vnode 1
+<0>(devfs_inode_insert:57): inode 0 created
+<0>(devfs_inode_insert:57): inode soclib created
+<0>(devfs_inode_insert:61): dna_strlen (path) != 0 failed.
+<0>(devfs_read_vnode:33): Read inode [serial].
+<0>(vnode_walk:91): Walking "kernel" on volume 1
+<0>(devfs_walk:36): Analyzing "kernel" on vnode 2
+<0>(devfs_read_vnode:33): Read inode [kernel].
+<0>(devfs_write_vnode:30): Write inode [serial].
+<0>(devfs_inode_clean:30): Clean inode [serial] forward.
+<0>(devfs_inode_clean:35): Unused entry [soclib].
+<0>(devfs_inode_destroy:32): Destroy inode [soclib].
+<0>(devfs_inode_destroy:32): Destroy inode [0].
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(devfs_inode_clean:51): Clean inode [serial] backward.
+<0>(vnode_walk:91): Walking "console" on volume 1
+<0>(devfs_walk:36): Analyzing "console" on vnode 5
+<0>(devfs_write_vnode:30): Write inode [kernel].
+<0>(devfs_inode_clean:30): Clean inode [kernel] forward.
+<0>(devfs_inode_clean:51): Clean inode [kernel] backward.
+<0>(path_get_next_entry:50): *p_start != '\0' failed.
+file 11344c0 kalloc 11344a8
+<0>(file_create:120): Created FD (2, 0x11344c0).
+<0>(semaphore_create:103): ID(28:27) TOKEN(1)
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_create:103): ID(29:28) TOKEN(1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_create:103): ID(30:29) TOKEN(1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 30:29(#1)
+<0>(semaphore_get_info:76): ID(30:29) TOKEN(0)
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_create:103): ID(31:30) TOKEN(1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_create:103): ID(32:31) TOKEN(1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_create:103): ID(33:32) TOKEN(1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_release:80): 1 tokens on ID(30:29) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 32:31(#1)
+<0>(semaphore_get_info:76): ID(32:31) TOKEN(0)
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 32:31(#0)
+<0>(semaphore_acquire:139): (! has_alarm) || (has_alarm && timeout != 0) failed.
+<0>(semaphore_get_info:76): ID(32:31) TOKEN(0)
+<0>(file_get:85): Got FD 1.
+
+<0>(file_put:102): Put FD 1.
+<0>(semaphore_release:80): 1 tokens on ID(32:31) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 32:31(#1)
+<0>(semaphore_get_info:76): ID(32:31) TOKEN(0)
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 32:31(#0)
+<0>(semaphore_acquire:139): (! has_alarm) || (has_alarm && timeout != 0) failed.
+<0>(semaphore_get_info:76): ID(32:31) TOKEN(0)
+<0>(file_get:85): Got FD 1.
+Ocean simulation with W-cycle multigrid solver
+<0>(file_put:102): Put FD 1.
+<0>(semaphore_release:80): 1 tokens on ID(32:31) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 32:31(#1)
+<0>(semaphore_get_info:76): ID(32:31) TOKEN(0)
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 32:31(#0)
+<0>(semaphore_acquire:139): (! has_alarm) || (has_alarm && timeout != 0) failed.
+<0>(semaphore_get_info:76): ID(32:31) TOKEN(0)
+<0>(file_get:85): Got FD 1.
+    Processors                         : 2
+<0>(file_put:102): Put FD 1.
+<0>(semaphore_release:80): 1 tokens on ID(32:31) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 32:31(#1)
+<0>(semaphore_get_info:76): ID(32:31) TOKEN(0)
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 32:31(#0)
+<0>(semaphore_acquire:139): (! has_alarm) || (has_alarm && timeout != 0) failed.
+<0>(semaphore_get_info:76): ID(32:31) TOKEN(0)
+<0>(file_get:85): Got FD 1.
+    Grid size                          : 18 x 18
+<0>(file_put:102): Put FD 1.
+<0>(semaphore_release:80): 1 tokens on ID(32:31) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 32:31(#1)
+<0>(semaphore_get_info:76): ID(32:31) TOKEN(0)
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 32:31(#0)
+<0>(semaphore_acquire:139): (! has_alarm) || (has_alarm && timeout != 0) failed.
+<0>(semaphore_get_info:76): ID(32:31) TOKEN(0)
+<0>(file_get:85): Got FD 1.
+    Grid resolution (meters)           : 20000.00
+<0>(file_put:102): Put FD 1.
+<0>(semaphore_release:80): 1 tokens on ID(32:31) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 32:31(#1)
+<0>(semaphore_get_info:76): ID(32:31) TOKEN(0)
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 32:31(#0)
+<0>(semaphore_acquire:139): (! has_alarm) || (has_alarm && timeout != 0) failed.
+<0>(semaphore_get_info:76): ID(32:31) TOKEN(0)
+<0>(file_get:85): Got FD 1.
+    Time between relaxations (seconds) : 28800
+<0>(file_put:102): Put FD 1.
+<0>(semaphore_release:80): 1 tokens on ID(32:31) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 32:31(#1)
+<0>(semaphore_get_info:76): ID(32:31) TOKEN(0)
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 32:31(#0)
+<0>(semaphore_acquire:139): (! has_alarm) || (has_alarm && timeout != 0) failed.
+<0>(semaphore_get_info:76): ID(32:31) TOKEN(0)
+<0>(file_get:85): Got FD 1.
+    Error tolerance                    : 1e-07
+<0>(file_put:102): Put FD 1.
+<0>(semaphore_release:80): 1 tokens on ID(32:31) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 32:31(#1)
+<0>(semaphore_get_info:76): ID(32:31) TOKEN(0)
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 32:31(#0)
+<0>(semaphore_acquire:139): (! has_alarm) || (has_alarm && timeout != 0) failed.
+<0>(semaphore_get_info:76): ID(32:31) TOKEN(0)
+<0>(file_get:85): Got FD 1.
+
+<0>(file_put:102): Put FD 1.
+<0>(semaphore_release:80): 1 tokens on ID(32:31) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 32:31(#1)
+<0>(semaphore_get_info:76): ID(32:31) TOKEN(0)
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 32:31(#0)
+<0>(semaphore_acquire:139): (! has_alarm) || (has_alarm && timeout != 0) failed.
+<0>(semaphore_get_info:76): ID(32:31) TOKEN(0)
+<0>(file_get:85): Got FD 1.
+MUTEX=1f60d6a0
+<0>(file_put:102): Put FD 1.
+<0>(semaphore_release:80): 1 tokens on ID(32:31) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_create:103): ID(34:33) TOKEN(1)
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 32:31(#1)
+<0>(semaphore_get_info:76): ID(32:31) TOKEN(0)
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 32:31(#0)
+<0>(semaphore_acquire:139): (! has_alarm) || (has_alarm && timeout != 0) failed.
+<0>(semaphore_get_info:76): ID(32:31) TOKEN(0)
+<0>(file_get:85): Got FD 1.
+MUTEX=1f60d6e0
+<0>(file_put:102): Put FD 1.
+<0>(semaphore_release:80): 1 tokens on ID(32:31) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_create:103): ID(35:34) TOKEN(1)
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 32:31(#1)
+<0>(semaphore_get_info:76): ID(32:31) TOKEN(0)
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 32:31(#0)
+<0>(semaphore_acquire:139): (! has_alarm) || (has_alarm && timeout != 0) failed.
+<0>(semaphore_get_info:76): ID(32:31) TOKEN(0)
+<0>(file_get:85): Got FD 1.
+MUTEX=1f60d720
+<0>(file_put:102): Put FD 1.
+<0>(semaphore_release:80): 1 tokens on ID(32:31) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_create:103): ID(36:35) TOKEN(1)
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 32:31(#1)
+<0>(semaphore_get_info:76): ID(32:31) TOKEN(0)
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 32:31(#0)
+<0>(semaphore_acquire:139): (! has_alarm) || (has_alarm && timeout != 0) failed.
+<0>(semaphore_get_info:76): ID(32:31) TOKEN(0)
+<0>(file_get:85): Got FD 1.
+MUTEX=1f60d760
+<0>(file_put:102): Put FD 1.
+<0>(semaphore_release:80): 1 tokens on ID(32:31) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_create:103): ID(37:36) TOKEN(1)
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 32:31(#1)
+<0>(semaphore_get_info:76): ID(32:31) TOKEN(0)
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 32:31(#0)
+<0>(semaphore_acquire:139): (! has_alarm) || (has_alarm && timeout != 0) failed.
+<0>(semaphore_get_info:76): ID(32:31) TOKEN(0)
+<0>(file_get:85): Got FD 1.
+MUTEX=1f60d7a0
+<0>(file_put:102): Put FD 1.
+<0>(semaphore_release:80): 1 tokens on ID(32:31) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_create:103): ID(38:37) TOKEN(1)
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 32:31(#1)
+<0>(semaphore_get_info:76): ID(32:31) TOKEN(0)
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 32:31(#0)
+<0>(semaphore_acquire:139): (! has_alarm) || (has_alarm && timeout != 0) failed.
+<0>(semaphore_get_info:76): ID(32:31) TOKEN(0)
+<0>(file_get:85): Got FD 1.
+MUTEX=1f60d7e0
+<0>(file_put:102): Put FD 1.
+<0>(semaphore_release:80): 1 tokens on ID(32:31) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_create:103): ID(39:38) TOKEN(1)
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 32:31(#1)
+<0>(semaphore_get_info:76): ID(32:31) TOKEN(0)
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 32:31(#0)
+<0>(semaphore_acquire:139): (! has_alarm) || (has_alarm && timeout != 0) failed.
+<0>(semaphore_get_info:76): ID(32:31) TOKEN(0)
+<0>(file_get:85): Got FD 1.
+MUTEX=1f60d840
+<0>(file_put:102): Put FD 1.
+<0>(semaphore_release:80): 1 tokens on ID(32:31) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_create:103): ID(40:39) TOKEN(1)
+<0>(semaphore_create:103): ID(41:40) TOKEN(0)
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 32:31(#1)
+<0>(semaphore_get_info:76): ID(32:31) TOKEN(0)
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 32:31(#0)
+<0>(semaphore_acquire:139): (! has_alarm) || (has_alarm && timeout != 0) failed.
+<0>(semaphore_get_info:76): ID(32:31) TOKEN(0)
+<0>(file_get:85): Got FD 1.
+                       MULTIGRID OUTPUTS
+<0>(file_put:102): Put FD 1.
+<0>(semaphore_release:80): 1 tokens on ID(32:31) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+<0>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 29:28(#1)
+<0>(semaphore_get_info:76): ID(29:28) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(29:28) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<0>(scheduler_dispatch:84): (0) pthread_0 => CPU(1)
+<1>(ipi_handler:59): 1 DISPATCH pthread_0
+<0>(semaphore_acquire:115): Main(#1), 34:33(#<11)>
+(scheduler_switch:54): (1) IdleThread -> pthread_0
+succ  save switch [1]
+
+
+
+
+<1>(scheduler_switch:97): CPU(1) << RUNNING
+
+
+
+
+<0>(semaphCoPrUe(_1r)e l<e<a sReU:N8N0I)N:G 
+1 tokens on ID(34:33) TOKEN(0)
+<1>(queue_extract:34): queue -> status != 0< 0f>a(iqlueedu.e_
+rem:27): queue -> status != 0 failed.
+<1>(semaphore_acquire:115): pthread_0(#1), 34:33(#1)
+<0>(semaphore_acquire:115): Main(#1), 40:39(#1)
+<1>(semaphore_release:80): 1 tokens on ID(34:33) TOKEN(0)
+<1>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 41:40(#0)
+<0>(semaphore_acquire:139): (! has_alarm) || (has_alarm && timeout != 0) failed.
+<1>(semaphore_acquire:115): pthread_0(#1), 40:39(#0)
+<1>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_release:80): 1 tokens on ID(4<01:>3(9q)u eTuOeK_ErNe(m0:)27
+): queue -> status != 0 failed.
+<1>(scheduler_elect:85): thread == NULL failed.
+
+
+
+
+<1>(scheduler_switch:54): (1) pthread_0 -> IdleThread
+
+
+
+
+succ  save switch [1]
+
+
+
+
+<1>(scheduler_switch:109): CPU(1) >> READY
+
+
+
+
+<0>(scheduler_dispatch:84): (0) pthread_0 => CPU(1)
+<1>(ipi_handler:59): 1 DISPATCH pthread_0
+<0>(semaphore_acquire:115): Main(#1), 41:40(#0)
+
+
+
+
+<1>(scheduler_switch:54): (1) IdleThread -> pthread_0
+
+
+
+
+succ  save switch [1]
+<0>(queue_rem:27): queue -> status != 0 failed.
+
+
+
+
+<1>(scheduler_switch:97): CPU(1) << RUNNING
+
+
+
+
+CPU(1) <<<0 >R(UqNuNeIuNeG_
+rem:27): queue -> status != 0 failed.
+<1>(queue_extract:34): queue -> <s0t>a(tsucsh e!d=u l0e rf_aeilleecdt.:8
+5): thread == NULL failed.
+
+
+
+
+<0>(scheduler_switch:54): (0) Main -> IdleThread
+
+
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+<1>(semaphore_acquire:235): self -> info . resource == DNA_NO_RESOURCE failed.
+succ  save switch [0]
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+
+<0>(scheduler_switch:109): CPU(0) >> READY
+
+
+
+
+<1>(semaphore_release:80): 1 tokens on ID(41:40) TOKEN(0)
+<1>(scheduler_dispatch:84): (1) Main => CPU(0)
+<0>(ipi_handler:59): 0 DISPATCH Main
+<1>(semaphore_release:80): 1 tokens on ID(40:39) TOKEN(0)
+
+
+
+
+<0>(scheduler_switch:54): (0) IdleThread -> Main
+
+
+
+
+succ  save switch [0]
+<1>(queue_rem:27): queue -> status != 0 failed.
+
+
+
+
+<0>(scheduler_switch:97): CPU(0) << RUNNING
+
+
+
+
+CPU(0) << RUNNING
+<0>(queue_extract:34): queue -> status != 0 failed.
+<1>(semaphore_acquire:115): pthread_0(#1), 28:27(#1)
+<0>(semaphore_acquire:235): self -> info . resource == DNA_NO_RESOURCE failed.
+<1>(semaphore_release:80): 1 tokens on ID(28:27) TOKEN(0)
+<1>(queue_rem:27): queue -> status != 0 failed.
+<0>(semaphore_acquire:115): Main(#1), 40:39(#0)
+<1>(semaphore_acquire:115): pthread_0(#1), 32:31(#1)
+<0>(semaphore_acquire:115): Main(#1), 41:40(#0)
+<0>(semaphore_acquire:139): (! has_alarm) || (has_alarm && timeout != 0) failed.
+<1>(semaphore_get_info:76): ID(32:31) TOKEN(0)
+<0>(semaphore_release:80): 1 tokens on ID(40:39) TOKEN(0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<1>(semaphore_acquire:115): pthread_0(#1), 28:27(#1)
+<0>(semaphore_acquire:115): Main(#1), 41:40(#0)
+<0>(queue_rem:27): queue -> status != 0 failed.
+<1>(semaphore_release:80): 1 tokens on ID(2<80:>2(7q)u eTuOeK_ErNe(m0:)27
+): queue -> status != 0 failed.
+<1>(queue_rem:<207>)(:s cqhueeduuel e-r>_ eslteacttu:s8 5!)=:  0t hfraeialde d=.= 
+NULL failed.
+
+
+
+
+<0>(scheduler_switch:54): (0) Main -> IdleThread
+
+
+
+
+succ  save switch [0]
+<1>(semaphore_acquire:115): pthread_0(#1), 32:31(#0)
+
+
+
+
+<0>(scheduler_switch:109): CPU(0) >> READY
+
+
+
+
+<1>(semaphore_acquire:139): (! has_alarm) || (has_alarm && timeout != 0) failed.
+<1>(semaphore_get_info:76): ID(32:31) TOKEN(0)
+<1>(file_get:85): Got FD 1.
+PASSED in First Barrier X
+<1>(file_put:102): Put FD 1.
+<1>(semaphore_release:80): 1 tokens on ID(32:31) TOKEN(0)
+<1>(queue_rem:27): queue -> status != 0 failed.
+<1>(semaphore_acquire:115): pthread_0(#1), 40:39(#1)
+<1>(semaphore_acquire:115): pthread_0(#1), 41:40(#0)
+<1>(semaphore_acquire:139): (! has_alarm) || (has_alarm && timeout != 0) failed.
+<1>(semaphore_release:80): 1 tokens on ID(40:39) TOKEN(0)
+<1>(queue_rem:27): queue -> status != 0 failed.
+<1>(semaphore_acquire:115): pthread_0(#1), 41:40(#0)
+<1>(queue_rem:27): queue -> status != 0 failed.
+<1>(queue_rem:27): queue -> status != 0 failed.
+<1>(scheduler_elect:85): thread == NULL failed.
+<1>(scheduler_switch:54): (1) pthread_0 -> IdleThread
+succ  save switch [1]
+<1>(scheduler_switch:109): CPU(1) >> READY

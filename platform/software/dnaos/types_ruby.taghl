@@ -1,0 +1,5 @@
+syn keyword CTagsSingleton createFromXMLFileAtPath createFromXML envs getInterfaceList createWith parse findInterfaceWith link new createFrom
+syn keyword CTagsMethod resolveDependences SHA1 displayHelpAndExit computeDependences intialize update resolveDependencesRecursive to_s run build clean initialize validate updateObjectCache hash delete
+syn keyword CTagsClass APELibraryParser APEASMObjectFile APELinkUnit LinkError APEObjectFile APEListApplication ObjectError APEComposeApplication OCMContext APEInfoApplication OCMArgument APECXXObjectFile OCMId APEGraphApplication CompilationError OCMInterface APECacheApplication OCMSet OCMMethod OCMVariable OCMDefinition OCMElement APECObjectFile APECompilationUnit APEApplication OCMType
+
+syn match CTagsMethod /display/

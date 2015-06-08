@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1" />
+<link rel="stylesheet" href="../../robodoc.css" type="text/css" />
+<title>./Core/Headers/Private/Scheduler.h</title>
+<!-- Source: ./Core/Headers/Private/Scheduler.h -->
+</head>
+<body>
+<div id="logo">
+<a name="robo_top_of_doc">DNA-OS Core Component</a>
+</div> <!-- logo -->
+<div id="navigation">
+<a class="menuitem" href="../../toc_index.html#top">Table of Contents</a>
+<a class="menuitem" href="../../sources.html#top">Source files</a>
+<a class="menuitem" href="../../index.html#top">Index Page</a>
+<a class="menuitem" href="../../robo_definitions.html#top">Definitions</a>
+<a class="menuitem" href="../../robo_functions.html#top">Functions</a>
+<a class="menuitem" href="../../robo_modules.html#top">Modules</a>
+<a class="menuitem" href="../../robo_types.html#top">Types</a>
+<a class="menuitem" href="../../robo_variables.html#top">Variables</a>
+</div> <!-- navigation -->
+<div id="content">
+<hr />
+<a name="CorePrivate2fSchedulerPrivate"></a>
+<a name="robo10"></a><h2>CorePrivate/SchedulerPrivate [ Modules ]</h2>
+
+<p>[ <a href="#robo_top_of_doc">Top</a> ] [ <a href="./Core_h.html#robo14">CorePrivate</a> ] [ <a href="../../robo_modules.html#robo_top_of_doc">Modules</a> ]</p>
+<p class="item_name">SUMMARY</p>
+<p> Scheduler management.
+</p>
+
+<hr />
+<a name="SchedulerPrivate2fscheduler5ft"></a>
+<a name="robo55"></a><h2>SchedulerPrivate/scheduler_t [ Types ]</h2>
+
+<p>[ <a href="#robo_top_of_doc">Top</a> ] [ <a href="#robo10">SchedulerPrivate</a> ] [ <a href="../../robo_types.html#robo_top_of_doc">Types</a> ]</p>
+<p class="item_name">SUMMARY</p>
+<p> Scheduler manager type.
+</p>
+<p class="item_name">SOURCE</p>
+<pre class="source"><span class="line_number">37 </span><span class="keyword">typedef</span> <span class="keyword">struct</span> _<a href="../../Sources/core_variables_c.html#robo51">scheduler</a>
+<span class="line_number">38 </span><span class="sign">{</span>
+<span class="line_number">39 </span>  <a href="../Public/Core/Lock_h.html#robo50">spinlock_t</a> lock<span class="sign">;</span>
+<span class="line_number">40 </span>  queue_t <span class="sign">*</span> queue<span class="sign">;</span>
+<span class="line_number">41 </span><span class="sign">}</span>
+<span class="line_number">42 </span><strong>scheduler_t</strong><span class="sign">;</span>
+</pre>
+
+</div> <!-- content -->
+<div id="footer">
+<p>Generated from ./Core/Headers/Private/Scheduler.h on Mon Mar 01 2010 13:57:34
+</p>
+</div> <!-- footer -->
+</body>
+</html>

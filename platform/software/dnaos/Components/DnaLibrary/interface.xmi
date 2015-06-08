@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<APES:Interface
+  xmlns:xmi="http://www.omg.org/XMI"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:APES="http://www.ocm.org/APES"
+  xsi:schemaLocation="http://www.ocm.org/APES APESInterface.ecore"
+  author="xavier.guerin@imag.fr"
+  unique="true"
+  wrapper="false">
+
+  <id name="DnaLibrary" version="1.0"/>
+
+  <provide>
+
+    <context name="OSInterface">
+      <method name="__libthread_start" result="int32_t"/>
+      <method name="__libthread_errno" result="access int32_t"/>
+    </context>
+
+  </provide>
+
+  <require>
+
+    <method name="main" result="int32_t">
+      <argument name="argc" type="int32_t" direction="In"/>
+      <argument name="argv" type="array of string" direction="In"/>
+    </method>
+
+  </require>
+
+</APES:Interface>

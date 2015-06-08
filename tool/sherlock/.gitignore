@@ -1,0 +1,12 @@
+tagh_config.txt
+types_c.taghl
+.clang_complete
+tags
+*.o
+lib*
+*.hwe
+bin
+sherlock
+mem_init*
+gdb_commands*
+RABBITS.hwe

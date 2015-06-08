@@ -1,0 +1,3908 @@
+7c7
+< <0>(rootfs_read_vnode:29): NS = 0x112bba8, VNID = 2, DATA = 0x112c048
+---
+> <0>(rootfs_read_vnode:29): NS = 0x10a0868, VNID = 2, DATA = 0x10a0ca8
+11d10
+< <1>(ipi_handler:90): 1 ENABLE 1
+12a12
+> <1>(ipi_handler:90): 1 ENABLE 1
+67,68c67,68
+< file 11323e0 kalloc 11323c8
+< <0>(file_create:120): Created FD (0, 0x11323e0).
+---
+> file 10a6d20 kalloc 10a6d08
+> <0>(file_create:120): Created FD (0, 0x10a6d20).
+92,93c92,93
+< file 1133240 kalloc 1133228
+< <0>(file_create:120): Created FD (1, 0x1133240).
+---
+> file 10a7ac0 kalloc 10a7aa8
+> <0>(file_create:120): Created FD (1, 0x10a7ac0).
+117,118c117,118
+< file 11340a0 kalloc 1134088
+< <0>(file_create:120): Created FD (2, 0x11340a0).
+---
+> file 10a8860 kalloc 10a8848
+> <0>(file_create:120): Created FD (2, 0x10a8860).
+1142c1142
+< MUTEX=1f60d280
+---
+> MUTEX=1f581f40
+1159c1159
+< MUTEX=1f60d2c0
+---
+> MUTEX=1f581f80
+1176c1176
+< MUTEX=1f60d300
+---
+> MUTEX=1f581fc0
+1193c1193
+< MUTEX=1f60d340
+---
+> MUTEX=1f582000
+1210c1210
+< MUTEX=1f60d380
+---
+> MUTEX=1f582040
+1227c1227
+< MUTEX=1f60d3c0
+---
+> MUTEX=1f582080
+1244c1244,1372
+< MUTEX=1f60d420
+---
+> &locks             0x103bd3c
+> <0>(file_put:102): Put FD 1.
+> <0>(semaphore_release:74): 1 tokens on ID(32:31) TOKEN(0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+> <0>(semaphore_release:74): 1 tokens on ID(28:27) TOKEN(0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 32:31(#1)
+> <0>(semaphore_get_info:76): ID(32:31) TOKEN(0)
+> <0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+> <0>(semaphore_release:74): 1 tokens on ID(28:27) TOKEN(0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 32:31(#0)
+> <0>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <0>(semaphore_get_info:76): ID(32:31) TOKEN(0)
+> <0>(file_get:85): Got FD 1.
+> locks              0x1f581f40
+> <0>(file_put:102): Put FD 1.
+> <0>(semaphore_release:74): 1 tokens on ID(32:31) TOKEN(0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+> <0>(semaphore_release:74): 1 tokens on ID(28:27) TOKEN(0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 32:31(#1)
+> <0>(semaphore_get_info:76): ID(32:31) TOKEN(0)
+> <0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+> <0>(semaphore_release:74): 1 tokens on ID(28:27) TOKEN(0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 32:31(#0)
+> <0>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <0>(semaphore_get_info:76): ID(32:31) TOKEN(0)
+> <0>(file_get:85): Got FD 1.
+> &locks->idlock     0x1f581f40 2162722
+> <0>(file_put:102): Put FD 1.
+> <0>(semaphore_release:74): 1 tokens on ID(32:31) TOKEN(0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+> <0>(semaphore_release:74): 1 tokens on ID(28:27) TOKEN(0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 32:31(#1)
+> <0>(semaphore_get_info:76): ID(32:31) TOKEN(0)
+> <0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+> <0>(semaphore_release:74): 1 tokens on ID(28:27) TOKEN(0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 32:31(#0)
+> <0>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <0>(semaphore_get_info:76): ID(32:31) TOKEN(0)
+> <0>(file_get:85): Got FD 1.
+> &locks->psiailock  0x1f581f80 2228259
+> <0>(file_put:102): Put FD 1.
+> <0>(semaphore_release:74): 1 tokens on ID(32:31) TOKEN(0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+> <0>(semaphore_release:74): 1 tokens on ID(28:27) TOKEN(0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 32:31(#1)
+> <0>(semaphore_get_info:76): ID(32:31) TOKEN(0)
+> <0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+> <0>(semaphore_release:74): 1 tokens on ID(28:27) TOKEN(0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 32:31(#0)
+> <0>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <0>(semaphore_get_info:76): ID(32:31) TOKEN(0)
+> <0>(file_get:85): Got FD 1.
+> &locks->psibilock  0x1f581fc0 2293796
+> <0>(file_put:102): Put FD 1.
+> <0>(semaphore_release:74): 1 tokens on ID(32:31) TOKEN(0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+> <0>(semaphore_release:74): 1 tokens on ID(28:27) TOKEN(0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 32:31(#1)
+> <0>(semaphore_get_info:76): ID(32:31) TOKEN(0)
+> <0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+> <0>(semaphore_release:74): 1 tokens on ID(28:27) TOKEN(0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 32:31(#0)
+> <0>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <0>(semaphore_get_info:76): ID(32:31) TOKEN(0)
+> <0>(file_get:85): Got FD 1.
+> &locks->donelock   0x1f582000 2359333
+> <0>(file_put:102): Put FD 1.
+> <0>(semaphore_release:74): 1 tokens on ID(32:31) TOKEN(0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+> <0>(semaphore_release:74): 1 tokens on ID(28:27) TOKEN(0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 32:31(#1)
+> <0>(semaphore_get_info:76): ID(32:31) TOKEN(0)
+> <0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+> <0>(semaphore_release:74): 1 tokens on ID(28:27) TOKEN(0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 32:31(#0)
+> <0>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <0>(semaphore_get_info:76): ID(32:31) TOKEN(0)
+> <0>(file_get:85): Got FD 1.
+> &locks->error_lock 0x1f582040 2424870
+> <0>(file_put:102): Put FD 1.
+> <0>(semaphore_release:74): 1 tokens on ID(32:31) TOKEN(0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+> <0>(semaphore_release:74): 1 tokens on ID(28:27) TOKEN(0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 32:31(#1)
+> <0>(semaphore_get_info:76): ID(32:31) TOKEN(0)
+> <0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+> <0>(semaphore_release:74): 1 tokens on ID(28:27) TOKEN(0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 32:31(#0)
+> <0>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <0>(semaphore_get_info:76): ID(32:31) TOKEN(0)
+> <0>(file_get:85): Got FD 1.
+> &locks->bar_lock   0x1f582080 2490407
+> <0>(file_put:102): Put FD 1.
+> <0>(semaphore_release:74): 1 tokens on ID(32:31) TOKEN(0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+> <0>(semaphore_release:74): 1 tokens on ID(28:27) TOKEN(0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 32:31(#1)
+> <0>(semaphore_get_info:76): ID(32:31) TOKEN(0)
+> <0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+> <0>(semaphore_release:74): 1 tokens on ID(28:27) TOKEN(0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 32:31(#0)
+> <0>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <0>(semaphore_get_info:76): ID(32:31) TOKEN(0)
+> <0>(file_get:85): Got FD 1.
+> MUTEX=1f5820e0
+1261a1390,1430
+> 
+> <0>(file_put:102): Put FD 1.
+> <0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+> <0>(semaphore_release:74): 1 tokens on ID(28:27) TOKEN(0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 32:31(#0)
+> <0>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <0>(semaphore_get_info:76): ID(32:31) TOKEN(0)
+> <0>(file_get:85): Got FD 1.
+> &bars              0x103bd78
+> <0>(file_put:102): Put FD 1.
+> <0>(semaphore_release:74): 1 tokens on ID(32:31) TOKEN(0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+> <0>(semaphore_release:74): 1 tokens on ID(28:27) TOKEN(0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 32:31(#1)
+> <0>(semaphore_get_info:76): ID(32:31) TOKEN(0)
+> <0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+> <0>(semaphore_release:74): 1 tokens on ID(28:27) TOKEN(0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 32:31(#0)
+> <0>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <0>(semaphore_get_info:76): ID(32:31) TOKEN(0)
+> <0>(file_get:85): Got FD 1.
+> &bars->barrier     0x1f5820e0
+> <0>(file_put:102): Put FD 1.
+> <0>(semaphore_release:74): 1 tokens on ID(32:31) TOKEN(0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+> <0>(semaphore_release:74): 1 tokens on ID(28:27) TOKEN(0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 32:31(#1)
+> <0>(semaphore_get_info:76): ID(32:31) TOKEN(0)
+> <0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+> <0>(semaphore_release:74): 1 tokens on ID(28:27) TOKEN(0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 32:31(#0)
+> <0>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <0>(semaphore_get_info:76): ID(32:31) TOKEN(0)
+> <0>(file_get:85): Got FD 1.
+1296,1297c1465,1466
+< <0>(semaphore_acquire:115): Main(#1<)1,> (3s4c:h3e3d(u#l1e)r_
+< switch:54): (1) IdleThread -> pthread_0
+---
+> <0>(semaphore_acquire:115<)1:> (Msacihne(d#u1l)e,r _2s8w:i2t7c(h#:15)4)
+> : (1) IdleThread -> pthread_0
+1300,1306c1469,1475
+< CPU(<10)> (<s<e mRaUpNhNoIrNeG_
+< release:74): 1 tokens on ID(34:33) TOKEN(0)
+< <1>(queue_extract:34): queue -> status != 0 failed.<
+< 0>(queue_rem:27): queue -> status != 0 failed.
+< <1>(semaphore_acquire:115): pthread_0(#1), 34:33(#0)
+< <0>(semaphore_acquire:115): Main(#1), 40:39(#1)
+< <1>(semaphore_release:74): 1 tokens on ID(34:33) TOKEN(0)
+---
+> CPU(1) << <R0U>N(NsIeNmGa
+> phore_release:74): 1 tokens on ID(28:27) TOKEN(0)
+> <1>(queue_extract:34): queue -> status != 0 failed.
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 28:27(#0)
+> <0>(semaphore_acquire:115): Main(#1), 32:31(#1)
+> <1>(semaphore_release:74): 1 tokens on ID(28:27) TOKEN(0)
+1308,1310c1477,1484
+< <0>(semaphore_acquire:115): Main(#1), 41:40(#0)
+< <0>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+< <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#0)
+---
+> <0>(semaphore_get_info:76): ID(32:31) TOKEN(0)
+> <1>(semaphore_acquire:115): pthread_0(#1), 32:31(#0)
+> <1>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+> <1>(semaphore_get_info:76): ID(32:31) TOKEN(0)
+> <0>(semaphore_release:74): 1 tokens on ID(28:27) TOKEN(0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 32:31(#0)
+1312,1313c1486,1487
+< <0>(semaphore_release:74): 1 t<o1k>e(nqsu eoune _IrDe(m4:02:73)9:)  qTuOeKuEeN (-0>) s
+< tatus != 0 failed.
+---
+> <1>(queue_rem:27): queue <-0>> (ssteamtaupsh o!r=e _0a cfqauiilreed:.11
+> 5): Main(#1), 32:31(#0)
+1314a1489
+> <0>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+1316a1492
+> <0>(semaphore_get_info:76): ID(32:31) TOKEN(0)
+1318a1495,1498
+> <0>(file_get:85): Got FD 1.
+> INIT THREAD X
+> <0>(file_put:102): Put FD 1.
+> <0>(semaphore_release:74): 1 tokens on ID(32:31) TOKEN(0)
+1321,1322c1501,1502
+< <0>(semaphore_acquire:115): Main(#<11)>,( s4c1h:e4d0u(l#e0r)_s
+< witch:54): (1) IdleThread -> pthread_0
+---
+> <0>(semaphore_acquire:115): Ma<i1n>((#s1c)h,e d2u8l:e2r7_(s#w1i)tc
+> h:54): (1) IdleThread -> pthread_0
+1324d1503
+< <0>(queue_rem:27): queue -> status != 0 failed.
+1326,1329c1505,1520
+< CPU(1<)0 ><(<q uReUuNeN_IrNeGm
+< :27): queue -> status != 0 failed.
+< <1>(queue_extract:34): queue -> <s0t>a(tsucsh e!d=u l0e rf_aeilleecdt.:8
+< 5): thread == NULL failed.
+---
+> CPU(1) <<<0 >R(UsNeNmIaNpGh
+> ore_release:74): 1 tokens on ID(28:27) TOKEN(0)
+> <1>(queue_extract:34): queue -> status != 0 failed.
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 32:31(#0)
+> <0>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 28:27(#1)
+> <0>(semaphore_get_info:76): ID(32:31) TOKEN(0)
+> <1>(semaphore_release:74): 1 tokens on ID(28:27) TOKEN(0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 32:31(#0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <0>(queue_rem:27): queue -> statu<s1 >!(=s e0m afpahiolreed_.ac
+> quire:115): pthread_0(#1), 32:31(#0)
+> <0>(scheduler_elect:85): thread == NULL failed.
+> <1>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+1331d1521
+< <1>(semaphore_acquire:237): self -> info . resource == DNA_NO_RESOURCE failed.
+1332a1523
+> <1>(semaphore_get_info:76): ID(32:31) TOKEN(0)
+1335c1526,1529
+< <1>(semaphore_release:74): 1 tokens on ID(41:40) TOKEN(0)
+---
+> <1>(file_get:85): Got FD 1.
+> INIT THREAD X
+> <1>(file_put:102): Put FD 1.
+> <1>(semaphore_release:74): 1 tokens on ID(32:31) TOKEN(0)
+1338,1339c1532,1533
+< <1>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+< <0>(scheduler_switch:54): (0) IdleThread -> Main
+---
+> <0>(sched<u1l>e(rs_esmwaipthcohr:e5_4a)c:q u(i0r)e :I1d1l5e)T:h rpetahdr e-a>d _M0a(i#n1)
+> , 28:27(#1)
+1341d1534
+< <1>(queue_rem:27): queue -> status != 0 failed.
+1344,1346d1536
+< <0>(queue_extract:34): queue -> status != 0 failed.
+< <1>(semaphore_acquire:115): pthread_0(#1), 28:27(#1)
+< <0>(semaphore_acquire:237): self -> info . resource == DNA_NO_RESOURCE failed.
+1347a1538
+> <0>(queue_extract:34): queue -> status != 0 failed.
+1349,1352c1540,1542
+< <0>(semaphore_acquire:115): Main(#1), 40:39(#0)
+< <1>(semaphore_acquire:115): pthread_0(#1), 32:31(#1)
+< <0>(semaphore_acquire:115): Main(#1), 41:40(#0)
+< <0>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+---
+> <1>(semaphore_acquire:115): pthread_0(#1), 32:31(#0)
+> <1>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+1354c1544,1570
+< <0>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+---
+> <0>(semaphore_release:74): 1 tokens on ID(28:27) TOKEN(0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 32:31(#0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <1>(queue_rem:27): queue <-0>> (ssteamtaupsh o!r=e _0a cfqauiilreed:.11
+> 5): Main(#1), 32:31(#0)
+> <1>(scheduler_elect:85): thread == NULL failed.
+> <0>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <1>(scheduler_switch:54): (1) pthread_0 -> IdleThread
+> succ  save switch [1]
+> <0>(semaphore_get_info:76): ID(32:31) TOKEN(0)
+> <1>(scheduler_switch:108): CPU(1) >> READY
+> CPU(1) >>READY
+> <0>(file_get:85): Got FD 1.
+> @@@@@@@@@@ locks->idlock 2162722
+> <0>(file_put:102): Put FD 1.
+> <0>(semaphore_release:74): 1 tokens on ID(32:31) TOKEN(0)
+> <0>(scheduler_dispatch:84): (0) pthread_0 => CPU(1)
+> <1>(ipi_handler:59): 1 DISPATCH pthread_0
+> <0>(semaphore_acquire:115): Main(#<11)>,( s3c4h:e3d3u(l#e1r)_s
+> witch:54): (1) IdleThread -> pthread_0
+> succ  save switch [1]
+> <1>(scheduler_switch:96): CPU(1) << RUNNING
+> CPU(1) << RUNNING
+> <0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+> <1>(queue_extract:34): queue -> status != 0 failed.
+> <0>(semaphore_release:74): 1 tokens on ID(28:27) TOKEN(0)
+1355a1572,1573
+> <0>(semaphore_acquire:115): Main(#1), 32:31(#0)
+> <0>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+1357c1575,1578
+< <0>(semaphore_acquire:115): Main(#1), 41:40(#0)
+---
+> <0>(semaphore_get_info:76): ID(32:31) TOKEN(0)
+> <1>(semaphore_release:74): 1 tokens on ID(28:27) TOKEN(0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 32:31(#0)
+1359,1362c1580,1583
+< <1>(semaphore_release:74): 1 t<o0k>e(nqsu eoune _IrDe(m2:82:72)7:)  qTuOeKuEeN (-0>) s
+< tatus != 0 failed.
+< <1>(que<u0e>_(rsecmh:e2d7u)l:e rq_ueelueec t-:>8 5s)t:a ttuhsr e!a=d  0= =f aNiUlLeLd .fa
+< iled.
+---
+> <0>(queue_rem:27): queue -> status !<=1 >0( sfeamialpehdo.re
+> _acquire:115): pthread_0(#1), 32:31(#0)
+> <0>(scheduler_elect:85): thread == NULL failed.
+> <1>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+1365c1586
+< <1>(semaphore_acquire:115): pthread_0(#1), 32:31(#0)
+---
+> <1>(semaphore_get_info:76): ID(32:31) TOKEN(0)
+1368,1369d1588
+< <1>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+< <1>(semaphore_get_info:76): ID(32:31) TOKEN(0)
+1371c1590
+< PASSED in First Barrier X
+---
+> @@@@@@@@@@ locks->idlock 2162722
+1373a1593,1597
+> <1>(scheduler_dispatch:84): (1) Main => CPU(0)
+> <0>(ipi_handler:59): 0 DISPATCH Main
+> <1<>0(>s(esmcahpehdourlee_ra_csqwuiitrceh::15145))::  (p0t)h rIedalde_T0h(r#e1a)d,  -3>4 :M3a3i(n#0
+> )
+> succ  save switch [0]
+1375,1378c1599,1600
+< <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#1)
+< <1>(semaphore_acquire:115): pthread_0(#1), 41:40(#0)
+< <1>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+< <1>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+---
+> <0>(scheduler_switch:96): CPU(0) << RUNNING
+> CPU(0) << RUNNING
+1379a1602,5033
+> <0>(queue_extract:34): queue -> status != 0 failed.
+> <1>(scheduler_elect:85): thread == NULL failed.
+> <1>(scheduler_switch:54): (1) pthread_0 -> IdleThread
+> succ  save switch [1]
+> <0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+> <1>(scheduler_switch:108): CPU(1) >> READY
+> CPU(1) >>READY
+> <0>(semaphore_release:74): 1 tokens on ID(28:27) TOKEN(0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 32:31(#0)
+> <0>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <0>(semaphore_get_info:76): ID(32:31) TOKEN(0)
+> <0>(file_get:85): Got FD 1.
+> ########## GET Frist Lock X
+> <0>(file_put:102): Put FD 1.
+> <0>(semaphore_release:74): 1 tokens on ID(32:31) TOKEN(0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+> <0>(semaphore_release:74): 1 tokens on ID(28:27) TOKEN(0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 32:31(#1)
+> <0>(semaphore_get_info:76): ID(32:31) TOKEN(0)
+> <0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+> <0>(semaphore_release:74): 1 tokens on ID(28:27) TOKEN(0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 32:31(#0)
+> <0>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <0>(semaphore_get_info:76): ID(32:31) TOKEN(0)
+> <0>(file_get:85): Got FD 1.
+> ########## END Frist Lock X
+> <0>(file_put:102): Put FD 1.
+> <0>(semaphore_release:74): 1 tokens on ID(32:31) TOKEN(0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_release:74): 1 tokens on ID(34:33) TOKEN(0)
+> <0>(scheduler_dispatch:84): (0) pthread_0 => CPU(1)
+> <1>(ipi_handler:59): 1 DISPATCH pthread_0
+> <0>(semaphore_acquire:115<)1:> (Msacihne(d#u1l)e,r _2s8w:i2t7c(h#:15)4)
+> : (1) IdleThread -> pthread_0
+> succ  save switch [1]
+> <1>(scheduler_switch:96): CPU(1) << RUNNING
+> CPU(1) << RUNN<I0N>G(
+> semaphore_release:74): 1 tokens on ID(28:27) TOKEN(0)
+> <1>(queue_extract:34): queue -> status != 0 failed.
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 28:27(#0)
+> <0>(semaphore_acquire:115): Main(#1), 32:31(#1)
+> <1>(semaphore_release:74): 1 tokens on ID(28:27) TOKEN(0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_get_info:76): ID(32:31) TOKEN(0)
+> <1>(semaphore_acquire:115): pthread_0(#1), 32:31(#0)
+> <1>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+> <1>(semaphore_get_info:76): ID(32:31) TOKEN(0)
+> <0>(semaphore_release:74): 1 tokens on ID(28:27) TOKEN(0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 32:31(#0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <1>(queue_rem:27): queue <-0>> (ssteamtaupsh o!r=e _0a cfqauiilreed:.11
+> 5): Main(#1), 32:31(#0)
+> <1>(scheduler_elect:85): thread == NULL failed.
+> <0>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <1>(scheduler_switch:54): (1) pthread_0 -> IdleThread
+> succ  save switch [1]
+> <0>(semaphore_get_info:76): ID(32:31) TOKEN(0)
+> <1>(scheduler_switch:108): CPU(1) >> READY
+> CPU(1) >>READY
+> <0>(file_get:85): Got FD 1.
+> ########### PASSED in Frist Lock X
+> <0>(file_put:102): Put FD 1.
+> <0>(semaphore_release:74): 1 tokens on ID(32:31) TOKEN(0)
+> <0>(scheduler_dispatch:84): (0) pthread_0 => CPU(1)
+> <1>(ipi_handler:59): 1 DISPATCH pthread_0
+> <0>(semaphore_acquire:115): Ma<i1n>((#s1c)h,e d2u8l:e2r7_(s#w1i)tc
+> h:54): (1) IdleThread -> pthread_0
+> succ  save switch [1]
+> <1>(scheduler_switch:96): CPU(1) << RUNNING
+> CPU(1) <<<0 >R(UsNeNmIaNpGh
+> ore_release:74): 1 tokens on ID(28:27) TOKEN(0)
+> <1>(queue_extract:34): queue -> status != 0 failed.
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 32:31(#0)
+> <0>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 28:27(#1)
+> <0>(semaphore_get_info:76): ID(32:31) TOKEN(0)
+> <1>(semaphore_release:74): 1 tokens on ID(28:27) TOKEN(0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 32:31(#0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <0>(queue_rem:27): queue -> status !<=1 >0( sfeamialpehdo.re
+> _acquire:115): pthread_0(#1), 32:31(#0)
+> <0>(scheduler_elect:85): thread == NULL failed.
+> <1>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <0>(scheduler_switch:54): (0) Main -> IdleThread
+> succ  save switch [0]
+> <1>(semaphore_get_info:76): ID(32:31) TOKEN(0)
+> <0>(scheduler_switch:108): CPU(0) >> READY
+> CPU(0) >>READY
+> <1>(file_get:85): Got FD 1.
+> ########## GET Frist Lock X
+> <1>(file_put:102): Put FD 1.
+> <1>(semaphore_release:74): 1 tokens on ID(32:31) TOKEN(0)
+> <1>(scheduler_dispatch:84): (1) Main => CPU(0)
+> <0>(ipi_handler:59): 0 DISPATCH Main
+> <0>(sched<u1l>e(rs_esmwaipthcohr:e5_4a)c:q u(i0r)e :I1d1l5e)T:h rpetahdr e-a>d _M0a(i#n1)
+> , 28:27(#1)
+> succ  save switch [0]
+> <0>(scheduler_switch:96): CPU(0) << RUNNING
+> CPU(0) << RUNNING
+> <1>(semaphore_release:74): 1 tokens on ID(28:27) TOKEN(0)
+> <0>(queue_extract:34): queue -> status != 0 failed.
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 32:31(#0)
+> <1>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+> <1>(semaphore_get_info:76): ID(32:31) TOKEN(0)
+> <0>(semaphore_release:74): 1 tokens on ID(28:27) TOKEN(0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 32:31(#0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <1>(queue_rem:27): queue <-0>> (ssteamtaupsh o!r=e _0a cfqauiilreed:.11
+> 5): Main(#1), 32:31(#0)
+> <1>(scheduler_elect:85): thread == NULL failed.
+> <0>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <1>(scheduler_switch:54): (1) pthread_0 -> IdleThread
+> succ  save switch [1]
+> <0>(semaphore_get_info:76): ID(32:31) TOKEN(0)
+> <1>(scheduler_switch:108): CPU(1) >> READY
+> CPU(1) >>READY
+> <0>(file_get:85): Got FD 1.
+> @@@@@@@@@@ bars->barrier 2555944
+> <0>(file_put:102): Put FD 1.
+> <0>(semaphore_release:74): 1 tokens on ID(32:31) TOKEN(0)
+> <0>(scheduler_dispatch:84): (0) pthread_0 => CPU(1)
+> <1>(ipi_handler:59): 1 DISPATCH pthread_0
+> <0>(semaphore_acquire:115): Main(#<11)>,( s4c0h:e3d9u(l#e1r)_s
+> witch:54): (1) IdleThread -> pthread_0
+> succ  save switch [1]
+> <1>(scheduler_switch:96): CPU(1) << RUNNING
+> CPU(1) << RUNNING
+> <0>(semaphore_acquire:115): Main(#1), 41:40(#0)
+> <1>(queue_extract:34): queue -> status != 0 failed.
+> <0>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 28:27(#1)
+> <0>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_release:74): 1 tokens on ID(28:27) TOKEN(0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 41:40(#0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <0>(queue_rem:27): queue -> statu<s1 >!(=s e0m afpahiolreed_.ac
+> quire:115): pthread_0(#1), 32:31(#0)
+> <0>(scheduler_elect:85): thread == NULL failed.
+> <1>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <0>(scheduler_switch:54): (0) Main -> IdleThread
+> succ  save switch [0]
+> <1>(semaphore_get_info:76): ID(32:31) TOKEN(0)
+> <0>(scheduler_switch:108): CPU(0) >> READY
+> CPU(0) >>READY
+> <1>(file_get:85): Got FD 1.
+> ########## END Frist Lock X
+> <1>(file_put:102): Put FD 1.
+> <1>(semaphore_release:74): 1 tokens on ID(32:31) TOKEN(0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_release:74): 1 tokens on ID(34:33) TOKEN(0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 28:27(#1)
+> <1>(semaphore_release:74): 1 tokens on ID(28:27) TOKEN(0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 32:31(#1)
+> <1>(semaphore_get_info:76): ID(32:31) TOKEN(0)
+> <1>(semaphore_acquire:115): pthread_0(#1), 28:27(#1)
+> <1>(semaphore_release:74): 1 tokens on ID(28:27) TOKEN(0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 32:31(#0)
+> <1>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <1>(semaphore_get_info:76): ID(32:31) TOKEN(0)
+> <1>(file_get:85): Got FD 1.
+> ########### PASSED in Frist Lock X
+> <1>(file_put:102): Put FD 1.
+> <1>(semaphore_release:74): 1 tokens on ID(32:31) TOKEN(0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 28:27(#1)
+> <1>(semaphore_release:74): 1 tokens on ID(28:27) TOKEN(0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 32:31(#1)
+> <1>(semaphore_get_info:76): ID(32:31) TOKEN(0)
+> <1>(semaphore_acquire:115): pthread_0(#1), 28:27(#1)
+> <1>(semaphore_release:74): 1 tokens on ID(28:27) TOKEN(0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 32:31(#0)
+> <1>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <1>(semaphore_get_info:76): ID(32:31) TOKEN(0)
+> <1>(file_get:85): Got FD 1.
+> @@@@@@@@@@ bars->barrier 2555944
+> <1>(file_put:102): Put FD 1.
+> <1>(semaphore_release:74): 1 tokens on ID(32:31) TOKEN(0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#1)
+> <1>(semaphore_release:74): 1 tokens on ID(41:40) TOKEN(0)
+> <1>(scheduler_dispatch:84): (1) Main => CPU(0)
+> <0>(ipi_handler:59): 0 DISPATCH Main
+> <1>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <0>(scheduler_switch:54): (0) IdleThread -> Main
+> succ  save switch [0]
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(scheduler_switch:96): CPU(0) << RUNNING
+> CPU(0) << RUNNING
+> <0>(queue_extract:34): queue -> status != 0 failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 28:27(#1)
+> <1>(semaphore_release:74): 1 tokens on ID(28:27) TOKEN(0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#1)
+> <1>(semaphore_acquire:115): pthread_0(#1), 32:31(#1)
+> <0>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_get_info:76): ID(32:31) TOKEN(0)
+> <0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+> <1>(semaphore_acquire:115): pthread_0(#1), 28:27(#0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_release:74)<:1 >1( qtuoekueen_sr eomn: 2I7D)(:2 8q:u2e7u)e  T-O>K EsNt(a0t)us
+>  != 0 failed.
+> <1>(scheduler_elect:85): thread == NULL failed.
+> <1>(scheduler_switch:54): (1) pthread_0 -> IdleThread
+> succ  save switch [1]
+> <1>(scheduler_switch:108): CPU(1) >> READY
+> CPU(1) >>READY
+> <0>(scheduler_dispatch:84): (0) pthread_0 => CPU(1)
+> <1>(ipi_handler:59): 1 DISPATCH pthread_0
+> <0>(semaphore_acquire:115): Main(#<11)>,( s3c2h:e3d1u(l#e0r)_s
+> witch:54): (1) IdleThread -> pthread_0
+> succ  save switch [1]
+> <0>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <1>(scheduler_switch:96): CPU(1) << RUNNING
+> CPU(1) << RUNNING
+> <1>(queue_extract:34): queue -> status != 0 failed.
+> <0>(semaphore_get_info:76): ID(32:31) TOKEN(0)
+> <1>(semaphore_release:74): 1 tokens on ID(28:27) TOKEN(0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 32:31(#0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <0>(queue_rem:27): queue -> status !<=1 >0( sfeamialpehdo.re
+> _acquire:115): pthread_0(#1), 32:31(#0)
+> <0>(scheduler_elect:85): thread == NULL failed.
+> <1>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <0>(scheduler_switch:54): (0) Main -> IdleThread
+> succ  save switch [0]
+> <1>(semaphore_get_info:76): ID(32:31) TOKEN(0)
+> <0>(scheduler_switch:108): CPU(0) >> READY
+> CPU(0) >>READY
+> <1>(file_get:85): Got FD 1.
+> PASSED in First Barrier X
+> <1>(file_put:102): Put FD 1.
+> <1>(semaphore_release:74): 1 tokens on ID(32:31) TOKEN(0)
+> <1>(scheduler_dispatch:84): (1) Main => CPU(0)
+> <0>(ipi_handler:59): 0 DISPATCH Main
+> <0>(scheduler_switch:54): (0) IdleThread -> Main
+> succ  save switch [0]
+> <0>(scheduler_switch:96): CPU(0) << RUNNING
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#1)CP
+> U(0) << RUNNING
+> <0>(queue_extract:34): queue -> status != 0 failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 41:40(#0)
+> <1>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+> <1>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_release:74): 1 tokens on ID(28:27) TOKEN(0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 41:40(#0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <1>(queue_rem:27): queue <-0>> (ssteamtaupsh o!r=e _0a cfqauiilreed:.11
+> 5): Main(#1), 32:31(#0)
+> <1>(scheduler_elect:85): thread == NULL failed.
+> <0>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <1>(scheduler_switch:54): (1) pthread_0 -> IdleThread
+> succ  save switch [1]
+> <0>(semaphore_get_info:76): ID(32:31) TOKEN(0)
+> <1>(scheduler_switch:108): CPU(1) >> READY
+> CPU(1) >>READY
+> <0>(file_get:85): Got FD 1.
+> PASSED in First Barrier X
+> <0>(file_put:102): Put FD 1.
+> <0>(semaphore_release:74): 1 tokens on ID(32:31) TOKEN(0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#1)
+> <0>(semaphore_release:74): 1 tokens on ID(41:40) TOKEN(0)
+> <0>(scheduler_dispatch:84): (0) pthread_0 => CPU(1)
+> <1>(ipi_handler:59): 1 DISPATCH pthread_0
+> <0>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <1>(scheduler_switch:54): (1) IdleThread -> pthread_0
+> succ  save switch [1]
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(scheduler_switch:96): CPU(1) << RUNNING
+> CPU(1) << RUNNING
+> <1>(queue_extract:34): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+> <0>(semaphore_release:74): 1 tokens on ID(28:27) TOKEN(0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#1)
+> <0>(semaphore_acquire:115): Main(#1), 32:31(#1)
+> <1>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_get_info:76): ID(32:31) TOKEN(0)
+> <1>(semaphore_acquire:115): pthread_0(#1), 28:27(#1)
+> <0>(semaphore_acquire:115): Main(#1), 28:27(#0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_release:74)<:0 >1( qtuoekueen_sr eomn: 2I7D)(:2 8q:u2e7u)e  -T>O KsEtNa(t0u)s 
+> != 0 failed.
+> <0>(scheduler_elect:85): thread == NULL failed.
+> <0>(scheduler_switch:54): (0) Main -> IdleThread
+> succ  save switch [0]
+> <0>(scheduler_switch:108): CPU(0) >> READY
+> CPU(0) >>READY
+> <1>(scheduler_dispatch:84): (1) Main => CPU(0)
+> <0>(ipi_handler:59): 0 DISPATCH Main
+> <0>(sc<h1e>d(usleemra_pshwoirtec_ha:c5q4u)i:r e(:01)1 5I)d:l epTthhrreeaadd _-0>( #M1a)i,n 3
+> 2:31(#0)
+> succ  save switch [0]
+> <1>(semaphore_acquire:141): (! has_alarm) || (has_<a0l>a(rsmc h&e&d utliemre_osuwti t!c=h :09)6) :f aCiPlUe(d0.) 
+> << RUNNING
+> CPU(0) << RUNNING
+> <0>(queue_extract:34): queue -> status != 0 failed.
+> <1>(semaphore_get_info:76): ID(32:31) TOKEN(0)
+> <0>(semaphore_release:74): 1 tokens on ID(28:27) TOKEN(0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 32:31(#0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <1>(queue_rem:27): queue <-0>> (ssteamtaupsh o!r=e _0a cfqauiilreed:.11
+> 5): Main(#1), 32:31(#0)
+> <1>(scheduler_elect:85): thread == NULL failed.
+> <0>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <1>(scheduler_switch:54): (1) pthread_0 -> IdleThread
+> succ  save switch [1]
+> <0>(semaphore_get_info:76): ID(32:31) TOKEN(0)
+> <1>(scheduler_switch:108): CPU(1) >> READY
+> CPU(1) >>READY
+> <0>(file_get:85): Got FD 1.
+> PASSED Second Barrier X
+> <0>(file_put:102): Put FD 1.
+> <0>(semaphore_release:74): 1 tokens on ID(32:31) TOKEN(0)
+> <0>(scheduler_dispatch:84): (0) pthread_0 => CPU(1)
+> <1>(ipi_handler:59): 1 DISPATCH pthread_0
+> <1>(scheduler_switch:54): (1) IdleThread -> pthread_0
+> succ  save switch [1]
+> <1>(scheduler_switch:96): CPU(1) << RUNNING
+> CPU(1) << RUNNING<
+> 0>(semaphore_acquire:115): Main(#1), 40:39(#1)
+> <1>(queue_extract:34): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 41:40(#0)
+> <0>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 28:27(#1)
+> <0>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_release:74): 1 tokens on ID(28:27) TOKEN(0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 41:40(#0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <0>(queue_rem:27): queue -> statu<s1 >!(=s e0m afpahiolreed_.ac
+> quire:115): pthread_0(#1), 32:31(#0)
+> <0>(scheduler_elect:85): thread == NULL failed.
+> <1>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <0>(scheduler_switch:54): (0) Main -> IdleThread
+> succ  save switch [0]
+> <1>(semaphore_get_info:76): ID(32:31) TOKEN(0)
+> <0>(scheduler_switch:108): CPU(0) >> READY
+> CPU(0) >>READY
+> <1>(file_get:85): Got FD 1.
+> PASSED Second Barrier X
+> <1>(file_put:102): Put FD 1.
+> <1>(semaphore_release:74): 1 tokens on ID(32:31) TOKEN(0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#1)
+> <1>(semaphore_release:74): 1 tokens on ID(41:40) TOKEN(0)
+> <1>(scheduler_dispatch:84): (1) Main => CPU(0)
+> <0>(ipi_handler:59): 0 DISPATCH Main
+> <1>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <0>(scheduler_switch:54): (0) IdleThread -> Main
+> succ  save switch [0]
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(scheduler_switch:96): CPU(0) << RUNNING
+> CPU(0) << RUNNING
+> <0>(queue_extract:34): queue -> status != 0 failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 28:27(#1)
+> <1>(semaphore_release:74): 1 tokens on ID(28:27) TOKEN(0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#1)
+> <1>(semaphore_acquire:115): pthread_0(#1), 32:31(#1)
+> <0>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_get_info:76): ID(32:31) TOKEN(0)
+> <0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+> <1>(semaphore_acquire:115): pthread_0(#1), 28:27(#0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_release:74)<:1 >1( qtuoekueen_sr eomn: 2I7D)(:2 8q:u2e7u)e  T-O>K EsNt(a0t)us
+>  != 0 failed.
+> <1>(scheduler_elect:85): thread == NULL failed.
+> <1>(scheduler_switch:54): (1) pthread_0 -> IdleThread
+> succ  save switch [1]
+> <1>(scheduler_switch:108): CPU(1) >> READY
+> CPU(1) >>READY
+> <0>(scheduler_dispatch:84): (0) pthread_0 => CPU(1)
+> <1>(ipi_handler:59): 1 DISPATCH pthread_0
+> <0>(semaphore_acquire:115): Main(#<11)>,( s3c2h:e3d1u(l#e0r)_s
+> witch:54): (1) IdleThread -> pthread_0
+> succ  save switch [1]
+> <0>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <1>(scheduler_switch:96): CPU(1) << RUNNING
+> CPU(1) << RUNNING
+> <1>(queue_extract:34): queue -> status != 0 failed.
+> <0>(semaphore_get_info:76): ID(32:31) TOKEN(0)
+> <1>(semaphore_release:74): 1 tokens on ID(28:27) TOKEN(0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 32:31(#0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <0>(queue_rem:27): queue -> status !<=1 >0( sfeamialpehdo.re
+> _acquire:115): pthread_0(#1), 32:31(#0)
+> <0>(scheduler_elect:85): thread == NULL failed.
+> <1>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <0>(scheduler_switch:54): (0) Main -> IdleThread
+> succ  save switch [0]
+> <1>(semaphore_get_info:76): ID(32:31) TOKEN(0)
+> <0>(scheduler_switch:108): CPU(0) >> READY
+> CPU(0) >>READY
+> <1>(file_get:85): Got FD 1.
+> PASSED in Third Barrier X
+> <1>(file_put:102): Put FD 1.
+> <1>(semaphore_release:74): 1 tokens on ID(32:31) TOKEN(0)
+> <1>(scheduler_dispatch:84): (1) Main => CPU(0)
+> <0>(ipi_handler:59): 0 DISPATCH Main
+> <0>(scheduler_switch:54): (0) IdleThread -> Main
+> succ  save switch [0]
+> <0>(scheduler_switch:96): CPU(0) << RUNNING
+> CPU(0) << RUNNING
+> <0>(queue_extract:34): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 28:27(#1)
+> <0>(semaphore_release:74): 1 tokens on ID(28:27) TOKEN(0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#1)
+> <0>(semaphore_acquire:115): Main(#1), 32:31(#0)
+> <0>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 41:40(#0)
+> <1>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <0>(semaphore_get_info:76): ID(32:31) TOKEN(0)
+> <0>(file_get:85): Got FD 1.
+> PASSED in Third Barrier X
+> <1>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <0>(file_put:102): Put FD 1.
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_release:74): 1 tokens on ID(32:31) TOKEN(0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 41:40(#0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <1>(scheduler_elect:85): thread == NULL failed.
+> <1>(scheduler_switch:54): (1) pthread_0 -> IdleThread
+> succ  save switch [1]
+> <1>(scheduler_switch:108): CPU(1) >> READY
+> CPU(1) >>READY
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#1)
+> <0>(semaphore_release:74): 1 tokens on ID(41:40) TOKEN(0)
+> <0>(scheduler_dispatch:84): (0) pthread_0 => CPU(1)
+> <1>(ipi_handler:59): 1 DISPATCH pthread_0
+> <0>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <1>(scheduler_switch:54): (1) IdleThread -> pthread_0
+> succ  save switch [1]
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(scheduler_switch:96): CPU(1) << RUNNING
+> CPU(1) << RUNNING
+> <1>(queue_extract:34): queue -> status != 0 failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#1)
+> <1>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#1)
+> <0>(semaphore_acquire:115): Main(#1), 41:40(#0)
+> <0>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <0>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#0)
+> <0>(semaphore_acquire:115): Main(#1), 41:40(#0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_release:74<)0:> (1q uteoukee_nrse mo:n2 7I)D:( 4q1u:e4u0e)  -T>O KsEtNa(t0u)s 
+> != 0 failed.
+> <0>(scheduler_elect:85): thread == NULL failed.
+> <0>(scheduler_switch:54): (0) Main -> IdleThread
+> succ  save switch [0]
+> <0>(scheduler_switch:108): CPU(0) >> READY
+> CPU(0) >>READY
+> <1>(scheduler_dispatch:84): (1) Main => CPU(0)
+> <0>(ipi_handler:59): 0 DISPATCH Main
+> <1>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <0>(scheduler_switch:54): (0) IdleThread -> Main
+> succ  save switch [0]
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(scheduler_switch:96): CPU(0) << RUNNING
+> CPU(0) << RUNNING
+> <0>(queue_extract:34): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#1)
+> <0>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 38:37(#1)
+> <1>(semaphore_release:74): 1 tokens on ID(38:37) TOKEN(0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#1)
+> <0>(semaphore_acquire:115): Main(#1), 38:37(#1)
+> <1>(semaphore_acquire:115): pthread_0(#1), 41:40(#0)
+> <1>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <0>(semaphore_release:74): 1 tokens on ID(38:37) TOKEN(0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#0)
+> <1>(semaphore_acquire:115): pthread_0(#1), 41:40(#0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_release:74)<:1 >1( qtuoekueen_sr eomn: 2I7D)(:4 1q:u4e0u)e  T-O>K EsNt(a0t)us
+>  != 0 failed.
+> <1>(scheduler_elect:85): thread == NULL failed.
+> <1>(scheduler_switch:54): (1) pthread_0 -> IdleThread
+> succ  save switch [1]
+> <1>(scheduler_switch:108): CPU(1) >> READY
+> CPU(1) >>READY
+> <0>(scheduler_dispatch:84): (0) pthread_0 => CPU(1)
+> <1>(ipi_handler:59): 1 DISPATCH pthread_0
+> <0>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <1>(scheduler_switch:54): (1) IdleThread -> pthread_0
+> succ  save switch [1]
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(scheduler_switch:96): CPU(1) << RUNNING
+> CPU(1) << RUNNING
+> <1>(queue_extract:34): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#1)
+> <0>(semaphore_acquire:115): Main(#1), 41:40(#0)
+> <0>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_release:74)<:1 >1( qtuoekueen_sr eomn: 2I7D)(:4 0q:u3e9u)e  T-O>K EsNt(a0t)us
+>  != 0 failed.
+> <1>(scheduler_elect:85): thread == NULL failed.
+> <1>(scheduler_switch:54): (1) pthread_0 -> IdleThread
+> succ  save switch [1]
+> <1>(scheduler_switch:108): CPU(1) >> READY
+> CPU(1) >>READY
+> <0>(scheduler_dispatch:84): (0) pthread_0 => CPU(1)
+> <1>(ipi_handler:59): 1 DISPATCH pthread_0
+> <0>(semaphore_acquire:115): Main(#1), 41<:14>0((s#c0h)ed
+> uler_switch:54): (1) IdleThread -> pthread_0
+> succ  save switch [1]
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(scheduler_switch:96): CPU(1) << RUNNING
+> CPU(1) <<<0 >R(UqNuNeIuNeG_
+> rem:27): queue -> status != 0 failed.
+> <1>(queue_extract:34): queue -> s<t0a>t(ussc h!e=d u0l efra_ielleedc.t:
+> 85): thread == NULL failed.
+> <0>(scheduler_switch:54): (0) Main -> IdleThread
+> succ  save switch [0]
+> <1>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <0>(scheduler_switch:108): CPU(0) >> READY
+> <1>(queue_rem:27): queue -> status != 0 faileCdP.U(
+> 0) >>READY
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#1)
+> <1>(semaphore_release:74): 1 tokens on ID(41:40) TOKEN(0)
+> <1>(scheduler_dispatch:84): (1) Main => CPU(0)
+> <0>(ipi_handler:59): 0 DISPATCH Main
+> <1>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <0>(scheduler_switch:54): (0) IdleThread -> Main
+> succ  save switch [0]
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(scheduler_switch:96): CPU(0) << RUNNING
+> CPU(0) << RUNNING
+> <0>(queue_extract:34): queue -> status != 0 failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#1)
+> <1>(semaphore_acquire:115): pthread_0(#1), 41:40(#0)
+> <1>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_release:74)<:0 >1( qtuoekueen_sr eomn: 2I7D)(:4 0q:u3e9u)e  T-O>K EsNt(a0t)us
+>  != 0 failed.
+> <0>(scheduler_elect:85): thread == NULL failed.
+> <0>(scheduler_switch:54): (0) Main -> IdleThread
+> succ  save switch [0]
+> <0>(scheduler_switch:108): CPU(0) >> READY
+> CPU(0) >>READY
+> <1>(scheduler_dispatch:84): (1) Main => CPU(0)
+> <0>(ipi_handler:59): 0 DISPATCH Main
+> <1>(semaphore_ac<q0u>i(rsec:h1e1d5u)l:e rp_tshwrietacdh_:05(4#)1:) ,( 04)1 :I4d0l(e#T0h)re
+> ad -> Main
+> succ  save switch [0]
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(scheduler_switch:96): CPU(0) << RUNNING
+> CPU(0) << RUNNING
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(queue_extract:34): queue -> status != 0 failed.
+> <1>(scheduler_elect:85): thread == NULL failed.
+> <1>(scheduler_switch:54): (1) pthread_0 -> IdleThread
+> succ  save switch [1]
+> <0>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <1>(scheduler_switch:108): CPU(1) >> READY
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> CPU(1) >>READY
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#1)
+> <0>(semaphore_release:74): 1 tokens on ID(41:40) TOKEN(0)
+> <0>(scheduler_dispatch:84): (0) pthread_0 => CPU(1)
+> <1>(ipi_handler:59): 1 DISPATCH pthread_0
+> <0>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <1>(scheduler_switch:54): (1) IdleThread -> pthread_0
+> succ  save switch [1]
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(scheduler_switch:96): CPU(1) << RUNNING
+> CPU(1) << RUNNING
+> <1>(queue_extract:34): queue -> status != 0 failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#1)
+> <1>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#1)
+> <0>(semaphore_acquire:115): Main(#1), 41:40(#0)
+> <0>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <0>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#0)
+> <0>(semaphore_acquire:115): Main(#1), 41:40(#0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_release:74<)0:> (1q uteoukee_nrse mo:n2 7I)D:( 4q1u:e4u0e)  -T>O KsEtNa(t0u)s 
+> != 0 failed.
+> <0>(scheduler_elect:85): thread == NULL failed.
+> <0>(scheduler_switch:54): (0) Main -> IdleThread
+> succ  save switch [0]
+> <0>(scheduler_switch:108): CPU(0) >> READY
+> CPU(0) >>READY
+> <1>(scheduler_dispatch:84): (1) Main => CPU(0)
+> <0>(ipi_handler:59): 0 DISPATCH Main
+> <1>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <0>(scheduler_switch:54): (0) IdleThread -> Main
+> succ  save switch [0]
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(scheduler_switch:96): CPU(0) << RUNNING
+> CPU(0) << RUNNING
+> <0>(queue_extract:34): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#1)
+> <0>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 38:37(#1)
+> <1>(semaphore_release:74): 1 tokens on ID(38:37) TOKEN(0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#1)
+> <0>(semaphore_acquire:115): Main(#1), 38:37(#1)
+> <1>(semaphore_acquire:115): pthread_0(#1), 41:40(#0)
+> <1>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <0>(semaphore_release:74): 1 tokens on ID(38:37) TOKEN(0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#0)
+> <1>(semaphore_acquire:115): pthread_0(#1), 41:40(#0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_release:74)<:1 >1( qtuoekueen_sr eomn: 2I7D)(:4 1q:u4e0u)e  T-O>K EsNt(a0t)us
+>  != 0 failed.
+> <1>(scheduler_elect:85): thread == NULL failed.
+> <1>(scheduler_switch:54): (1) pthread_0 -> IdleThread
+> succ  save switch [1]
+> <1>(scheduler_switch:108): CPU(1) >> READY
+> CPU(1) >>READY
+> <0>(scheduler_dispatch:84): (0) pthread_0 => CPU(1)
+> <1>(ipi_handler:59): 1 DISPATCH pthread_0
+> <0>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <1>(scheduler_switch:54): (1) IdleThread -> pthread_0
+> succ  save switch [1]
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(scheduler_switch:96): CPU(1) << RUNNING
+> CPU(1) << RUNNING
+> <1>(queue_extract:34): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#1)
+> <0>(semaphore_acquire:115): Main(#1), 41:40(#0)
+> <0>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_release:74)<:1 >1( qtuoekueen_sr eomn: 2I7D)(:4 0q:u3e9u)e  T-O>K EsNt(a0t)us
+>  != 0 failed.
+> <1>(scheduler_elect:85): thread == NULL failed.
+> <1>(scheduler_switch:54): (1) pthread_0 -> IdleThread
+> succ  save switch [1]
+> <1>(scheduler_switch:108): CPU(1) >> READY
+> CPU(1) >>READY
+> <0>(scheduler_dispatch:84): (0) pthread_0 => CPU(1)
+> <1>(ipi_handler:59): 1 DISPATCH pthread_0
+> <0>(semaphore_acquire:115): Main(#1), 41<:14>0((s#c0h)ed
+> uler_switch:54): (1) IdleThread -> pthread_0
+> succ  save switch [1]
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(scheduler_switch:96): CPU(1) << RUNNING
+> CPU(1) <<<0 >R(UqNuNeIuNeG_
+> rem:27): queue -> status != 0 failed.
+> <1>(queue_extract:34): queue -> s<t0a>t(ussc h!e=d u0l efra_ielleedc.t:
+> 85): thread == NULL failed.
+> <0>(scheduler_switch:54): (0) Main -> IdleThread
+> succ  save switch [0]
+> <1>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <0>(scheduler_switch:108): CPU(0) >> READY
+> <1>(queue_rem:27): queue -> status != 0 faileCdP.U(
+> 0) >>READY
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#1)
+> <1>(semaphore_release:74): 1 tokens on ID(41:40) TOKEN(0)
+> <1>(scheduler_dispatch:84): (1) Main => CPU(0)
+> <0>(ipi_handler:59): 0 DISPATCH Main
+> <1>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <0>(scheduler_switch:54): (0) IdleThread -> Main
+> succ  save switch [0]
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(scheduler_switch:96): CPU(0) << RUNNING
+> CPU(0) << RUNNING
+> <0>(queue_extract:34): queue -> status != 0 failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#1)
+> <1>(semaphore_acquire:115): pthread_0(#1), 41:40(#0)
+> <1>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_release:74)<:0 >1( qtuoekueen_sr eomn: 2I7D)(:4 0q:u3e9u)e  T-O>K EsNt(a0t)us
+>  != 0 failed.
+> <0>(scheduler_elect:85): thread == NULL failed.
+> <0>(scheduler_switch:54): (0) Main -> IdleThread
+> succ  save switch [0]
+> <0>(scheduler_switch:108): CPU(0) >> READY
+> CPU(0) >>READY
+> <1>(scheduler_dispatch:84): (1) Main => CPU(0)
+> <0>(ipi_handler:59): 0 DISPATCH Main
+> <1>(semaphore_ac<q0u>i(rsec:h1e1d5u)l:e rp_tshwrietacdh_:05(4#)1:) ,( 04)1 :I4d0l(e#T0h)re
+> ad -> Main
+> succ  save switch [0]
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(scheduler_switch:96): CPU(0) << RUNNING
+> CPU(0) << RUNNING
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(queue_extract:34): queue -> status != 0 failed.
+> <1>(scheduler_elect:85): thread == NULL failed.
+> <1>(scheduler_switch:54): (1) pthread_0 -> IdleThread
+> succ  save switch [1]
+> <0>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <1>(scheduler_switch:108): CPU(1) >> READY
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> CPU(1) >>READY
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#1)
+> <0>(semaphore_release:74): 1 tokens on ID(41:40) TOKEN(0)
+> <0>(scheduler_dispatch:84): (0) pthread_0 => CPU(1)
+> <1>(ipi_handler:59): 1 DISPATCH pthread_0
+> <0>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <1>(scheduler_switch:54): (1) IdleThread -> pthread_0
+> succ  save switch [1]
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(scheduler_switch:96): CPU(1) << RUNNING
+> CPU(1) << RUNNING
+> <1>(queue_extract:34): queue -> status != 0 failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#1)
+> <1>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#1)
+> <0>(semaphore_acquire:115): Main(#1), 41:40(#0)
+> <0>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <0>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 41:40(#0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <0>(queue_rem:27): queue -> status !<=1 >0( sfeamialpehdo.re
+> _acquire:115): pthread_0(#1), 40:39(#1)
+> <0>(scheduler_elect:85): thread == NULL failed.
+> <0>(scheduler_<s1w>i(tscehm:a5p4h)o:r e(_0r)e lMeaaisne :-7>4 )I:d l1e Tthorkeeands 
+> on ID(41:40) TOKEN(0)
+> succ  save switch [0]
+> <0>(scheduler_switch:108): CPU(0) >> READY
+> CPU(0) >>READY
+> <1>(scheduler_dispatch:84): (1) Main => CPU(0)
+> <0>(ipi_handler:59): 0 DISPATCH Main
+> <1>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <0>(scheduler_switch:54): (0) IdleThread -> Main
+> succ  save switch [0]
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(scheduler_switch:96): CPU(0) << RUNNING
+> CPU(0) << RUNNING
+> <0>(queue_extract:34): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#1)
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_release:74)<:1 >1( qtuoekueen_sr eomn: 2I7D)(:4 0q:u3e9u)e  T-O>K EsNt(a0t)us
+>  != 0 failed.
+> <1>(scheduler_elect:85): thread == NULL failed.
+> <1>(scheduler_switch:54): (1) pthread_0 -> IdleThread
+> succ  save switch [1]
+> <1>(scheduler_switch:108): CPU(1) >> READY
+> CPU(1) >>READY
+> <0>(scheduler_dispatch:84): (0) pthread_0 => CPU(1)
+> <1>(ipi_handler:59): 1 DISPATCH pthread_0
+> <1>(scheduler_switch:54): (1) IdleThread -> pthread_0
+> succ  save switch [1]
+> <1>(scheduler_switch:96): CPU(1) << RUNNING
+> CPU(1) << RUNNING
+> <1>(q<u0e>u(es_eemxatrpahcotr:e3_4a)c:q uqiureeu:e1 1-5>) :s tMaatiuns( #!1=) ,0  4f0a:i3l9e(d#.0)
+> 
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 41:40(#0)
+> <0>(scheduler_elect:85): thread == NULL failed.
+> <1>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <0>(scheduler_switch:54): (0) Main -> IdleThread
+> succ  save switch [0]
+> <1>(semaphore_release:74): 1 tok<e0n>s( socnh eIdDu(l4e0r:_3s9w)i tTcOhK:E1N0(80)): 
+> CPU(0) >> READY
+> CPU(0) >>READY
+> <1>(scheduler_dispatch:84): (1) Main => CPU(0)
+> <0>(ipi_handler:59): 0 DISPATCH Main
+> <1>(semaphore_ac<q0u>i(rsec:h1e1d5u)l:e rp_tshwrietacdh_:05(4#)1:) ,( 04)1 :I4d0l(e#T0h)re
+> ad -> Main
+> succ  save switch [0]
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(scheduler_switch:96): CPU(0) << RUNNING
+> CPU(0) << RUNNING
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(queue_extract:34): queue -> status != 0 failed.
+> <1>(scheduler_elect:85): thread == NULL failed.
+> <1>(scheduler_switch:54): (1) pthread_0 -> IdleThread
+> succ  save switch [1]
+> <0>(semaphore_release:74): 1 tokens on ID(41:40) TOKEN(0)
+> <1>(scheduler_switch:108): CPU(1) >> READY
+> CPU(1) >>READY
+> <0>(scheduler_dispatch:84): (0) pthread_0 => CPU(1)
+> <1>(ipi_handler:59): 1 DISPATCH pthread_0
+> <0>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <1>(scheduler_switch:54): (1) IdleThread -> pthread_0
+> succ  save switch [1]
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(scheduler_switch:96): CPU(1) << RUNNING
+> CPU(1) << RUNNING
+> <1>(queue_extract:34): queue -> status != 0 failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#1)
+> <0>(semaphore_acquire:115): Main(#1), 38:37(#1)
+> <1>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_release:74): 1 tokens on ID(38:37) TOKEN(0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#1)
+> <1>(semaphore_acquire:115): pthread_0(#1), 38:37(#1)
+> <0>(semaphore_acquire:115): Main(#1), 41:40(#0)
+> <0>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <1>(semaphore_release:74): 1 tokens on ID(38:37) TOKEN(0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#0)
+> <0>(semaphore_acquire:115): Main(#1), 41:40(#0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_release:74<)0:> (1q uteoukee_nrse mo:n2 7I)D:( 4q1u:e4u0e)  -T>O KsEtNa(t0u)s 
+> != 0 failed.
+> <0>(scheduler_elect:85): thread == NULL failed.
+> <0>(scheduler_switch:54): (0) Main -> IdleThread
+> succ  save switch [0]
+> <0>(scheduler_switch:108): CPU(0) >> READY
+> CPU(0) >>READY
+> <1>(scheduler_dispatch:84): (1) Main => CPU(0)
+> <0>(ipi_handler:59): 0 DISPATCH Main
+> <1>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <0>(scheduler_switch:54): (0) IdleThread -> Main
+> succ  save switch [0]
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(scheduler_switch:96): CPU(0) << RUNNING
+> CPU(0) << RUNNING
+> <0>(queue_extract:34): queue -> status != 0 failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#1)
+> <1>(semaphore_acquire:115): pthread_0(#1), 41:40(#0)
+> <1>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_release:74)<:0 >1( qtuoekueen_sr eomn: 2I7D)(:4 0q:u3e9u)e  T-O>K EsNt(a0t)us
+>  != 0 failed.
+> <0>(scheduler_elect:85): thread == NULL failed.
+> <0>(scheduler_switch:54): (0) Main -> IdleThread
+> succ  save switch [0]
+> <0>(scheduler_switch:108): CPU(0) >> READY
+> CPU(0) >>READY
+> <1>(scheduler_dispatch:84): (1) Main => CPU(0)
+> <0>(ipi_handler:59): 0 DISPATCH Main
+> <1>(semaphore_ac<q0u>i(rsec:h1e1d5u)l:e rp_tshwrietacdh_:05(4#)1:) ,( 04)1 :I4d0l(e#T0h)re
+> ad -> Main
+> succ  save switch [0]
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(scheduler_switch:96): CPU(0) << RUNNING
+> CPU(0) << RUNNING
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(queue_extract:34): queue -> status != 0 failed.
+> <1>(scheduler_elect:85): thread == NULL failed.
+> <1>(scheduler_switch:54): (1) pthread_0 -> IdleThread
+> succ  save switch [1]
+> <0>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <1>(scheduler_switch:108): CPU(1) >> READY
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> CPU(1) >>READY
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#1)
+> <0>(semaphore_release:74): 1 tokens on ID(41:40) TOKEN(0)
+> <0>(scheduler_dispatch:84): (0) pthread_0 => CPU(1)
+> <1>(ipi_handler:59): 1 DISPATCH pthread_0
+> <0>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <1>(scheduler_switch:54): (1) IdleThread -> pthread_0
+> succ  save switch [1]
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(scheduler_switch:96): CPU(1) << RUNNING
+> CPU(1) << RUNNING
+> <1>(queue_extract:34): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#1)
+> <0>(semaphore_acquire:115): Main(#1), 41:40(#0)
+> <0>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_release:74)<:1 >1( qtuoekueen_sr eomn: 2I7D)(:4 0q:u3e9u)e  T-O>K EsNt(a0t)us
+>  != 0 failed.
+> <1>(scheduler_elect:85): thread == NULL failed.
+> <1>(scheduler_switch:54): (1) pthread_0 -> IdleThread
+> succ  save switch [1]
+> <1>(scheduler_switch:108): CPU(1) >> READY
+> CPU(1) >>READY
+> <0>(scheduler_dispatch:84): (0) pthread_0 => CPU(1)
+> <1>(ipi_handler:59): 1 DISPATCH pthread_0
+> <0>(semaphore_acquire:115): Main(#1), 41<:14>0((s#c0h)ed
+> uler_switch:54): (1) IdleThread -> pthread_0
+> succ  save switch [1]
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(scheduler_switch:96): CPU(1) << RUNNING
+> CPU(1) <<<0 >R(UqNuNeIuNeG_
+> rem:27): queue -> status != 0 failed.
+> <1>(queue_extract:34): queue -> s<t0a>t(ussc h!e=d u0l efra_ielleedc.t:
+> 85): thread == NULL failed.
+> <0>(scheduler_switch:54): (0) Main -> IdleThread
+> succ  save switch [0]
+> <1>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <0>(scheduler_switch:108): CPU(0) >> READY
+> <1>(queue_rem:27): queue -> status != 0 faileCdP.U(
+> 0) >>READY
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#1)
+> <1>(semaphore_release:74): 1 tokens on ID(41:40) TOKEN(0)
+> <1>(scheduler_dispatch:84): (1) Main => CPU(0)
+> <0>(ipi_handler:59): 0 DISPATCH Main
+> <1>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <0>(scheduler_switch:54): (0) IdleThread -> Main
+> succ  save switch [0]
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(scheduler_switch:96): CPU(0) << RUNNING
+> CPU(0) << RUNNING
+> <0>(queue_extract:34): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#1)
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_release:74)<:1 >1( qtuoekueen_sr eomn: 2I7D)(:4 0q:u3e9u)e  T-O>K EsNt(a0t)us
+>  != 0 failed.
+> <1>(scheduler_elect:85): thread == NULL failed.
+> <1>(scheduler_switch:54): (1) pthread_0 -> IdleThread
+> succ  save switch [1]
+> <1>(scheduler_switch:108): CPU(1) >> READY
+> CPU(1) >>READY
+> <0>(scheduler_dispatch:84): (0) pthread_0 => CPU(1)
+> <1>(ipi_handler:59): 1 DISPATCH pthread_0
+> <1>(scheduler_switch:54): (1) IdleThread -> pthread_0
+> succ  save switch [1]
+> <1>(scheduler_switch:96): CPU(1) << RUNNING
+> CPU(1) << RUNNING
+> <1>(queue_extract:34): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 41:40(#0)
+> <0>(scheduler_elect:85): thread == NULL failed.
+> <1>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <0>(scheduler_switch:54): (0) Main -> IdleThread
+> succ  save switch [0]
+> <1>(semaphore_release:74): 1 tok<e0n>s( socnh eIdDu(l4e0r:_3s9w)i tTcOhK:E1N0(80)): 
+> CPU(0) >> READY
+> CPU(0) >>READY
+> <1>(scheduler_dispatch:84): (1) Main => CPU(0)
+> <0>(ipi_handler:59): 0 DISPATCH Main
+> <1>(semaphore_ac<q0u>i(rsec:h1e1d5u)l:e rp_tshwrietacdh_:05(4#)1:) ,( 04)1 :I4d0l(e#T0h)re
+> ad -> Main
+> succ  save switch [0]
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(scheduler_switch:96): CPU(0) << RUNNING
+> CPU(0) << RUNNING
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(queue_extract:34): queue -> status != 0 failed.
+> <1>(scheduler_elect:85): thread == NULL failed.
+> <1>(scheduler_switch:54): (1) pthread_0 -> IdleThread
+> succ  save switch [1]
+> <0>(semaphore_release:74): 1 tokens on ID(41:40) TOKEN(0)
+> <1>(scheduler_switch:108): CPU(1) >> READY
+> CPU(1) >>READY
+> <0>(scheduler_dispatch:84): (0) pthread_0 => CPU(1)
+> <1>(ipi_handler:59): 1 DISPATCH pthread_0
+> <0>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <1>(scheduler_switch:54): (1) IdleThread -> pthread_0
+> succ  save switch [1]
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(scheduler_switch:96): CPU(1) << RUNNING
+> CPU(1) << RUNNING
+> <1>(queue_extract:34): queue -> status != 0 failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#1)
+> <0>(semaphore_acquire:115): Main(#1), 38:37(#1)
+> <1>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_release:74): 1 tokens on ID(38:37) TOKEN(0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#1)
+> <1>(semaphore_acquire:115): pthread_0(#1), 38:37(#1)
+> <0>(semaphore_acquire:115): Main(#1), 41:40(#0)
+> <0>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <1>(semaphore_release:74): 1 tokens on ID(38:37) TOKEN(0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#0)
+> <0>(semaphore_acquire:115): Main(#1), 41:40(#0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_release:74<)0:> (1q uteoukee_nrse mo:n2 7I)D:( 4q1u:e4u0e)  -T>O KsEtNa(t0u)s 
+> != 0 failed.
+> <0>(scheduler_elect:85): thread == NULL failed.
+> <0>(scheduler_switch:54): (0) Main -> IdleThread
+> succ  save switch [0]
+> <0>(scheduler_switch:108): CPU(0) >> READY
+> CPU(0) >>READY
+> <1>(scheduler_dispatch:84): (1) Main => CPU(0)
+> <0>(ipi_handler:59): 0 DISPATCH Main
+> <1>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <0>(scheduler_switch:54): (0) IdleThread -> Main
+> succ  save switch [0]
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(scheduler_switch:96): CPU(0) << RUNNING
+> CPU(0) << RUNNING
+> <0>(queue_extract:34): queue -> status != 0 failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#1)
+> <1>(semaphore_acquire:115): pthread_0(#1), 41:40(#0)
+> <1>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_release:74)<:0 >1( qtuoekueen_sr eomn: 2I7D)(:4 0q:u3e9u)e  T-O>K EsNt(a0t)us
+>  != 0 failed.
+> <0>(scheduler_elect:85): thread == NULL failed.
+> <0>(scheduler_switch:54): (0) Main -> IdleThread
+> succ  save switch [0]
+> <0>(scheduler_switch:108): CPU(0) >> READY
+> CPU(0) >>READY
+> <1>(scheduler_dispatch:84): (1) Main => CPU(0)
+> <0>(ipi_handler:59): 0 DISPATCH Main
+> <1>(semaphore_ac<q0u>i(rsec:h1e1d5u)l:e rp_tshwrietacdh_:05(4#)1:) ,( 04)1 :I4d0l(e#T0h)re
+> ad -> Main
+> succ  save switch [0]
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(scheduler_switch:96): CPU(0) << RUNNING
+> CPU(0) << RUNNING
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(queue_extract:34): queue -> status != 0 failed.
+> <1>(scheduler_elect:85): thread == NULL failed.
+> <1>(scheduler_switch:54): (1) pthread_0 -> IdleThread
+> succ  save switch [1]
+> <0>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <1>(scheduler_switch:108): CPU(1) >> READY
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> CPU(1) >>READY
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#1)
+> <0>(semaphore_release:74): 1 tokens on ID(41:40) TOKEN(0)
+> <0>(scheduler_dispatch:84): (0) pthread_0 => CPU(1)
+> <1>(ipi_handler:59): 1 DISPATCH pthread_0
+> <0>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <1>(scheduler_switch:54): (1) IdleThread -> pthread_0
+> succ  save switch [1]
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(scheduler_switch:96): CPU(1) << RUNNING
+> CPU(1) << RUNNING
+> <1>(queue_extract:34): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#1)
+> <0>(semaphore_acquire:115): Main(#1), 41:40(#0)
+> <0>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_release:74)<:1 >1( qtuoekueen_sr eomn: 2I7D)(:4 0q:u3e9u)e  T-O>K EsNt(a0t)us
+>  != 0 failed.
+> <1>(scheduler_elect:85): thread == NULL failed.
+> <1>(scheduler_switch:54): (1) pthread_0 -> IdleThread
+> succ  save switch [1]
+> <1>(scheduler_switch:108): CPU(1) >> READY
+> CPU(1) >>READY
+> <0>(scheduler_dispatch:84): (0) pthread_0 => CPU(1)
+> <1>(ipi_handler:59): 1 DISPATCH pthread_0
+> <0>(semaphore_acquire:115): Main(#1), 41<:14>0((s#c0h)ed
+> uler_switch:54): (1) IdleThread -> pthread_0
+> succ  save switch [1]
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(scheduler_switch:96): CPU(1) << RUNNING
+> CPU(1) <<<0 >R(UqNuNeIuNeG_
+> rem:27): queue -> status != 0 failed.
+> <1>(queue_extract:34): queue -> s<t0a>t(ussc h!e=d u0l efra_ielleedc.t:
+> 85): thread == NULL failed.
+> <0>(scheduler_switch:54): (0) Main -> IdleThread
+> succ  save switch [0]
+> <1>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <0>(scheduler_switch:108): CPU(0) >> READY
+> <1>(queue_rem:27): queue -> status != 0 faileCdP.U(
+> 0) >>READY
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#1)
+> <1>(semaphore_release:74): 1 tokens on ID(41:40) TOKEN(0)
+> <1>(scheduler_dispatch:84): (1) Main => CPU(0)
+> <0>(ipi_handler:59): 0 DISPATCH Main
+> <1>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <0>(scheduler_switch:54): (0) IdleThread -> Main
+> succ  save switch [0]
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(scheduler_switch:96): CPU(0) << RUNNING
+> CPU(0) << RUNNING
+> <0>(queue_extract:34): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#1)
+> <0>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#0)
+> <1>(semaphore_acquire:115): pthread_0(#1), 41:40(#0)
+> <1>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_release:74)<:0 >1( qtuoekueen_sr eomn: 2I7D)(:4 0q:u3e9u)e  T-O>K EsNt(a0t)us
+>  != 0 failed.
+> <0>(scheduler_elect:85): thread == NULL failed.
+> <0>(scheduler_switch:54): (0) Main -> IdleThread
+> succ  save switch [0]
+> <0>(scheduler_switch:108): CPU(0) >> READY
+> CPU(0) >>READY
+> <1>(scheduler_dispatch:84): (1) Main => CPU(0)
+> <0>(ipi_handler:59): 0 DISPATCH Main
+> <1>(semaphore_ac<q0u>i(rsec:h1e1d5u)l:e rp_tshwrietacdh_:05(4#)1:) ,( 04)1 :I4d0l(e#T0h)re
+> ad -> Main
+> succ  save switch [0]
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(scheduler_switch:96): CPU(0) << RUNNING
+> CPU(0) << RUNNING
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(queue_extract:34): queue -> status != 0 failed.
+> <1>(scheduler_elect:85): thread == NULL failed.
+> <1>(scheduler_switch:54): (1) pthread_0 -> IdleThread
+> succ  save switch [1]
+> <0>(semaphore_release:74): 1 tokens on ID(41:40) TOKEN(0)
+> <1>(scheduler_switch:108): CPU(1) >> READY
+> CPU(1) >>READY
+> <0>(scheduler_dispatch:84): (0) pthread_0 => CPU(1)
+> <1>(ipi_handler:59): 1 DISPATCH pthread_0
+> <0>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <1>(scheduler_switch:54): (1) IdleThread -> pthread_0
+> succ  save switch [1]
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(scheduler_switch:96): CPU(1) << RUNNING
+> CPU(1) << RUNNING
+> <1>(queue_extract:34): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#1)
+> <0>(semaphore_acquire:115): Main(#1), 41:40(#0)
+> <0>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_release:74)<:1 >1( qtuoekueen_sr eomn: 2I7D)(:4 0q:u3e9u)e  T-O>K EsNt(a0t)us
+>  != 0 failed.
+> <1>(scheduler_elect:85): thread == NULL failed.
+> <1>(scheduler_switch:54): (1) pthread_0 -> IdleThread
+> succ  save switch [1]
+> <1>(scheduler_switch:108): CPU(1) >> READY
+> CPU(1) >>READY
+> <0>(scheduler_dispatch:84): (0) pthread_0 => CPU(1)
+> <1>(ipi_handler:59): 1 DISPATCH pthread_0
+> <0>(semaphore_acquire:115): Main(#1), 41<:14>0((s#c0h)ed
+> uler_switch:54): (1) IdleThread -> pthread_0
+> succ  save switch [1]
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(scheduler_switch:96): CPU(1) << RUNNING
+> CPU(1) <<<0 >R(UqNuNeIuNeG_
+> rem:27): queue -> status != 0 failed.
+> <1>(queue_extract:34): queue -> s<t0a>t(ussc h!e=d u0l efra_ielleedc.t:
+> 85): thread == NULL failed.
+> <0>(scheduler_switch:54): (0) Main -> IdleThread
+> succ  save switch [0]
+> <1>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <0>(scheduler_switch:108): CPU(0) >> READY
+> <1>(queue_rem:27): queue -> status != 0 faileCdP.U(
+> 0) >>READY
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#1)
+> <1>(semaphore_release:74): 1 tokens on ID(41:40) TOKEN(0)
+> <1>(scheduler_dispatch:84): (1) Main => CPU(0)
+> <0>(ipi_handler:59): 0 DISPATCH Main
+> <1>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <0>(scheduler_switch:54): (0) IdleThread -> Main
+> succ  save switch [0]
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(scheduler_switch:96): CPU(0) << RUNNING
+> CPU(0) << RUNNING
+> <0>(queue_extract:34): queue -> status != 0 failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 38:37(#1)
+> <1>(semaphore_release:74): 1 tokens on ID(38:37) TOKEN(0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#1)
+> <0>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#0)
+> <0>(semaphore_acquire:115): Main(#1), 38:37(#1)
+> <1>(semaphore_acquire:115): pthread_0(#1), 41:40(#0)
+> <1>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <0>(semaphore_release:74): 1 tokens on ID(38:37) TOKEN(0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#0)
+> <1>(semaphore_acquire:115): pthread_0(#1), 41:40(#0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_release:74)<:1 >1( qtuoekueen_sr eomn: 2I7D)(:4 1q:u4e0u)e  T-O>K EsNt(a0t)us
+>  != 0 failed.
+> <1>(scheduler_elect:85): thread == NULL failed.
+> <1>(scheduler_switch:54): (1) pthread_0 -> IdleThread
+> succ  save switch [1]
+> <1>(scheduler_switch:108): CPU(1) >> READY
+> CPU(1) >>READY
+> <0>(scheduler_dispatch:84): (0) pthread_0 => CPU(1)
+> <1>(ipi_handler:59): 1 DISPATCH pthread_0
+> <0>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <1>(scheduler_switch:54): (1) IdleThread -> pthread_0
+> succ  save switch [1]
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(scheduler_switch:96): CPU(1) << RUNNING
+> CPU(1) << RUNNING
+> <1>(queue_extract:34): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#1)
+> <0>(semaphore_acquire:115): Main(#1), 41:40(#0)
+> <0>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_release:74)<:1 >1( qtuoekueen_sr eomn: 2I7D)(:4 0q:u3e9u)e  T-O>K EsNt(a0t)us
+>  != 0 failed.
+> <1>(scheduler_elect:85): thread == NULL failed.
+> <1>(scheduler_switch:54): (1) pthread_0 -> IdleThread
+> succ  save switch [1]
+> <1>(scheduler_switch:108): CPU(1) >> READY
+> CPU(1) >>READY
+> <0>(scheduler_dispatch:84): (0) pthread_0 => CPU(1)
+> <1>(ipi_handler:59): 1 DISPATCH pthread_0
+> <0>(semaphore_acquire:115): Main(#1), 41<:14>0((s#c0h)ed
+> uler_switch:54): (1) IdleThread -> pthread_0
+> succ  save switch [1]
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(scheduler_switch:96): CPU(1) << RUNNING
+> CPU(1) <<<0 >R(UqNuNeIuNeG_
+> rem:27): queue -> status != 0 failed.
+> <1>(queue_extract:34): queue -> s<t0a>t(ussc h!e=d u0l efra_ielleedc.t:
+> 85): thread == NULL failed.
+> <0>(scheduler_switch:54): (0) Main -> IdleThread
+> succ  save switch [0]
+> <1>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <0>(scheduler_switch:108): CPU(0) >> READY
+> <1>(queue_rem:27): queue -> status != 0 faileCdP.U(
+> 0) >>READY
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#1)
+> <1>(semaphore_release:74): 1 tokens on ID(41:40) TOKEN(0)
+> <1>(scheduler_dispatch:84): (1) Main => CPU(0)
+> <0>(ipi_handler:59): 0 DISPATCH Main
+> <1>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <0>(scheduler_switch:54): (0) IdleThread -> Main
+> succ  save switch [0]
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(scheduler_switch:96): CPU(0) << RUNNING
+> CPU(0) << RUNNING
+> <0>(queue_extract:34): queue -> status != 0 failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#1)
+> <1>(semaphore_acquire:115): pthread_0(#1), 41:40(#0)
+> <1>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_release:74)<:0 >1( qtuoekueen_sr eomn: 2I7D)(:4 0q:u3e9u)e  T-O>K EsNt(a0t)us
+>  != 0 failed.
+> <0>(scheduler_elect:85): thread == NULL failed.
+> <0>(scheduler_switch:54): (0) Main -> IdleThread
+> succ  save switch [0]
+> <0>(scheduler_switch:108): CPU(0) >> READY
+> CPU(0) >>READY
+> <1>(scheduler_dispatch:84): (1) Main => CPU(0)
+> <0>(ipi_handler:59): 0 DISPATCH Main
+> <1>(semaphore_ac<q0u>i(rsec:h1e1d5u)l:e rp_tshwrietacdh_:05(4#)1:) ,( 04)1 :I4d0l(e#T0h)re
+> ad -> Main
+> succ  save switch [0]
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(scheduler_switch:96): CPU(0) << RUNNING
+> CPU(0) << RUNNING
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(queue_extract:34): queue -> status != 0 failed.
+> <1>(scheduler_elect:85): thread == NULL failed.
+> <1>(scheduler_switch:54): (1) pthread_0 -> IdleThread
+> succ  save switch [1]
+> <0>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <1>(scheduler_switch:108): CPU(1) >> READY
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> CPU(1) >>READY
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#1)
+> <0>(semaphore_release:74): 1 tokens on ID(41:40) TOKEN(0)
+> <0>(scheduler_dispatch:84): (0) pthread_0 => CPU(1)
+> <1>(ipi_handler:59): 1 DISPATCH pthread_0
+> <0>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <1>(scheduler_switch:54): (1) IdleThread -> pthread_0
+> succ  save switch [1]
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(scheduler_switch:96): CPU(1) << RUNNING
+> CPU(1) << RUNNING
+> <1>(queue_extract:34): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#1)
+> <0>(semaphore_acquire:115): Main(#1), 41:40(#0)
+> <0>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_release:74)<:1 >1( qtuoekueen_sr eomn: 2I7D)(:4 0q:u3e9u)e  T-O>K EsNt(a0t)us
+>  != 0 failed.
+> <1>(scheduler_elect:85): thread == NULL failed.
+> <1>(scheduler_switch:54): (1) pthread_0 -> IdleThread
+> succ  save switch [1]
+> <1>(scheduler_switch:108): CPU(1) >> READY
+> CPU(1) >>READY
+> <0>(scheduler_dispatch:84): (0) pthread_0 => CPU(1)
+> <1>(ipi_handler:59): 1 DISPATCH pthread_0
+> <0>(semaphore_acquire:115): Main(#1), 41<:14>0((s#c0h)ed
+> uler_switch:54): (1) IdleThread -> pthread_0
+> succ  save switch [1]
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(scheduler_switch:96): CPU(1) << RUNNING
+> CPU(1) <<<0 >R(UqNuNeIuNeG_
+> rem:27): queue -> status != 0 failed.
+> <1>(queue_extract:34): queue -> s<t0a>t(ussc h!e=d u0l efra_ielleedc.t:
+> 85): thread == NULL failed.
+> <0>(scheduler_switch:54): (0) Main -> IdleThread
+> succ  save switch [0]
+> <1>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <0>(scheduler_switch:108): CPU(0) >> READY
+> <1>(queue_rem:27): queue -> status != 0 faileCdP.U(
+> 0) >>READY
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#1)
+> <1>(semaphore_release:74): 1 tokens on ID(41:40) TOKEN(0)
+> <1>(scheduler_dispatch:84): (1) Main => CPU(0)
+> <0>(ipi_handler:59): 0 DISPATCH Main
+> <1>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <0>(scheduler_switch:54): (0) IdleThread -> Main
+> succ  save switch [0]
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(scheduler_switch:96): CPU(0) << RUNNING
+> CPU(0) << RUNNING
+> <0>(queue_extract:34): queue -> status != 0 failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 38:37(#1)
+> <1>(semaphore_release:74): 1 tokens on ID(38:37) TOKEN(0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#1)
+> <0>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#0)
+> <0>(semaphore_acquire:115): Main(#1), 38:37(#1)
+> <1>(semaphore_acquire:115): pthread_0(#1), 41:40(#0)
+> <1>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <0>(semaphore_release:74): 1 tokens on ID(38:37) TOKEN(0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#0)
+> <1>(semaphore_acquire:115): pthread_0(#1), 41:40(#0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_release:74)<:1 >1( qtuoekueen_sr eomn: 2I7D)(:4 1q:u4e0u)e  T-O>K EsNt(a0t)us
+>  != 0 failed.
+> <1>(scheduler_elect:85): thread == NULL failed.
+> <1>(scheduler_switch:54): (1) pthread_0 -> IdleThread
+> succ  save switch [1]
+> <1>(scheduler_switch:108): CPU(1) >> READY
+> CPU(1) >>READY
+> <0>(scheduler_dispatch:84): (0) pthread_0 => CPU(1)
+> <1>(ipi_handler:59): 1 DISPATCH pthread_0
+> <0>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <1>(scheduler_switch:54): (1) IdleThread -> pthread_0
+> succ  save switch [1]
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(scheduler_switch:96): CPU(1) << RUNNING
+> CPU(1) << RUNNING
+> <1>(queue_extract:34): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#1)
+> <0>(semaphore_acquire:115): Main(#1), 41:40(#0)
+> <0>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_release:74)<:1 >1( qtuoekueen_sr eomn: 2I7D)(:4 0q:u3e9u)e  T-O>K EsNt(a0t)us
+>  != 0 failed.
+> <1>(scheduler_elect:85): thread == NULL failed.
+> <1>(scheduler_switch:54): (1) pthread_0 -> IdleThread
+> succ  save switch [1]
+> <1>(scheduler_switch:108): CPU(1) >> READY
+> CPU(1) >>READY
+> <0>(scheduler_dispatch:84): (0) pthread_0 => CPU(1)
+> <1>(ipi_handler:59): 1 DISPATCH pthread_0
+> <0>(semaphore_acquire:115): Main(#1), 41<:14>0((s#c0h)ed
+> uler_switch:54): (1) IdleThread -> pthread_0
+> succ  save switch [1]
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(scheduler_switch:96): CPU(1) << RUNNING
+> CPU(1) <<<0 >R(UqNuNeIuNeG_
+> rem:27): queue -> status != 0 failed.
+> <1>(queue_extract:34): queue -> s<t0a>t(ussc h!e=d u0l efra_ielleedc.t:
+> 85): thread == NULL failed.
+> <0>(scheduler_switch:54): (0) Main -> IdleThread
+> succ  save switch [0]
+> <1>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <0>(scheduler_switch:108): CPU(0) >> READY
+> <1>(queue_rem:27): queue -> status != 0 faileCdP.U(
+> 0) >>READY
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#1)
+> <1>(semaphore_release:74): 1 tokens on ID(41:40) TOKEN(0)
+> <1>(scheduler_dispatch:84): (1) Main => CPU(0)
+> <0>(ipi_handler:59): 0 DISPATCH Main
+> <1>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <0>(scheduler_switch:54): (0) IdleThread -> Main
+> succ  save switch [0]
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(scheduler_switch:96): CPU(0) << RUNNING
+> CPU(0) << RUNNING
+> <0>(queue_extract:34): queue -> status != 0 failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#1)
+> <1>(semaphore_acquire:115): pthread_0(#1), 41:40(#0)
+> <1>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_release:74)<:0 >1( qtuoekueen_sr eomn: 2I7D)(:4 0q:u3e9u)e  T-O>K EsNt(a0t)us
+>  != 0 failed.
+> <0>(scheduler_elect:85): thread == NULL failed.
+> <0>(scheduler_switch:54): (0) Main -> IdleThread
+> succ  save switch [0]
+> <0>(scheduler_switch:108): CPU(0) >> READY
+> CPU(0) >>READY
+> <1>(scheduler_dispatch:84): (1) Main => CPU(0)
+> <0>(ipi_handler:59): 0 DISPATCH Main
+> <1>(semaphore_ac<q0u>i(rsec:h1e1d5u)l:e rp_tshwrietacdh_:05(4#)1:) ,( 04)1 :I4d0l(e#T0h)re
+> ad -> Main
+> succ  save switch [0]
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(scheduler_switch:96): CPU(0) << RUNNING
+> CPU(0) << RUNNING
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(queue_extract:34): queue -> status != 0 failed.
+> <1>(scheduler_elect:85): thread == NULL failed.
+> <1>(scheduler_switch:54): (1) pthread_0 -> IdleThread
+> succ  save switch [1]
+> <0>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <1>(scheduler_switch:108): CPU(1) >> READY
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> CPU(1) >>READY
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#1)
+> <0>(semaphore_release:74): 1 tokens on ID(41:40) TOKEN(0)
+> <0>(scheduler_dispatch:84): (0) pthread_0 => CPU(1)
+> <1>(ipi_handler:59): 1 DISPATCH pthread_0
+> <0>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <1>(scheduler_switch:54): (1) IdleThread -> pthread_0
+> succ  save switch [1]
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(scheduler_switch:96): CPU(1) << RUNNING
+> CPU(1) << RUNNING
+> <1>(queue_extract:34): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#1)
+> <0>(semaphore_acquire:115): Main(#1), 41:40(#0)
+> <0>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_release:74)<:1 >1( qtuoekueen_sr eomn: 2I7D)(:4 0q:u3e9u)e  T-O>K EsNt(a0t)us
+>  != 0 failed.
+> <1>(scheduler_elect:85): thread == NULL failed.
+> <1>(scheduler_switch:54): (1) pthread_0 -> IdleThread
+> succ  save switch [1]
+> <1>(scheduler_switch:108): CPU(1) >> READY
+> CPU(1) >>READY
+> <0>(scheduler_dispatch:84): (0) pthread_0 => CPU(1)
+> <1>(ipi_handler:59): 1 DISPATCH pthread_0
+> <0>(semaphore_acquire:115): Main(#1), 41<:14>0((s#c0h)ed
+> uler_switch:54): (1) IdleThread -> pthread_0
+> succ  save switch [1]
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(scheduler_switch:96): CPU(1) << RUNNING
+> CPU(1) <<<0 >R(UqNuNeIuNeG_
+> rem:27): queue -> status != 0 failed.
+> <1>(queue_extract:34): queue -> s<t0a>t(ussc h!e=d u0l efra_ielleedc.t:
+> 85): thread == NULL failed.
+> <0>(scheduler_switch:54): (0) Main -> IdleThread
+> succ  save switch [0]
+> <1>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <0>(scheduler_switch:108): CPU(0) >> READY
+> <1>(queue_rem:27): queue -> status != 0 faileCdP.U(
+> 0) >>READY
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#1)
+> <1>(semaphore_release:74): 1 tokens on ID(41:40) TOKEN(0)
+> <1>(scheduler_dispatch:84): (1) Main => CPU(0)
+> <0>(ipi_handler:59): 0 DISPATCH Main
+> <1>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <0>(scheduler_switch:54): (0) IdleThread -> Main
+> succ  save switch [0]
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(scheduler_switch:96): CPU(0) << RUNNING
+> CPU(0) << RUNNING
+> <0>(queue_extract:34): queue -> status != 0 failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 38:37(#1)
+> <1>(semaphore_release:74): 1 tokens on ID(38:37) TOKEN(0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#1)
+> <0>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#0)
+> <0>(semaphore_acquire:115): Main(#1), 38:37(#1)
+> <1>(semaphore_acquire:115): pthread_0(#1), 41:40(#0)
+> <1>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <0>(semaphore_release:74): 1 tokens on ID(38:37) TOKEN(0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#0)
+> <1>(semaphore_acquire:115): pthread_0(#1), 41:40(#0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_release:74)<:1 >1( qtuoekueen_sr eomn: 2I7D)(:4 1q:u4e0u)e  T-O>K EsNt(a0t)us
+>  != 0 failed.
+> <1>(scheduler_elect:85): thread == NULL failed.
+> <1>(scheduler_switch:54): (1) pthread_0 -> IdleThread
+> succ  save switch [1]
+> <1>(scheduler_switch:108): CPU(1) >> READY
+> CPU(1) >>READY
+> <0>(scheduler_dispatch:84): (0) pthread_0 => CPU(1)
+> <1>(ipi_handler:59): 1 DISPATCH pthread_0
+> <0>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <1>(scheduler_switch:54): (1) IdleThread -> pthread_0
+> succ  save switch [1]
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(scheduler_switch:96): CPU(1) << RUNNING
+> CPU(1) << RUNNING
+> <1>(queue_extract:34): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#1)
+> <0>(semaphore_acquire:115): Main(#1), 41:40(#0)
+> <0>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_release:74)<:1 >1( qtuoekueen_sr eomn: 2I7D)(:4 0q:u3e9u)e  T-O>K EsNt(a0t)us
+>  != 0 failed.
+> <1>(scheduler_elect:85): thread == NULL failed.
+> <1>(scheduler_switch:54): (1) pthread_0 -> IdleThread
+> succ  save switch [1]
+> <1>(scheduler_switch:108): CPU(1) >> READY
+> CPU(1) >>READY
+> <0>(scheduler_dispatch:84): (0) pthread_0 => CPU(1)
+> <1>(ipi_handler:59): 1 DISPATCH pthread_0
+> <0>(semaphore_acquire:115): Main(#1), 41<:14>0((s#c0h)ed
+> uler_switch:54): (1) IdleThread -> pthread_0
+> succ  save switch [1]
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(scheduler_switch:96): CPU(1) << RUNNING
+> CPU(1) <<<0 >R(UqNuNeIuNeG_
+> rem:27): queue -> status != 0 failed.
+> <1>(queue_extract:34): queue -> s<t0a>t(ussc h!e=d u0l efra_ielleedc.t:
+> 85): thread == NULL failed.
+> <0>(scheduler_switch:54): (0) Main -> IdleThread
+> succ  save switch [0]
+> <1>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <0>(scheduler_switch:108): CPU(0) >> READY
+> <1>(queue_rem:27): queue -> status != 0 faileCdP.U(
+> 0) >>READY
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#1)
+> <1>(semaphore_release:74): 1 tokens on ID(41:40) TOKEN(0)
+> <1>(scheduler_dispatch:84): (1) Main => CPU(0)
+> <0>(ipi_handler:59): 0 DISPATCH Main
+> <1>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <0>(scheduler_switch:54): (0) IdleThread -> Main
+> succ  save switch [0]
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(scheduler_switch:96): CPU(0) << RUNNING
+> CPU(0) << RUNNING
+> <0>(queue_extract:34): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#1)
+> <0>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#0)
+> <1>(semaphore_acquire:115): pthread_0(#1), 41:40(#0)
+> <1>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <1>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#0)
+> <1>(semaphore_acquire:115): pthread_0(#1), 41:40(#0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_release:74)<:1 >1( qtuoekueen_sr eomn: 2I7D)(:4 1q:u4e0u)e  T-O>K EsNt(a0t)us
+>  != 0 failed.
+> <1>(scheduler_elect:85): thread == NULL failed.
+> <1>(scheduler_switch:54): (1) pthread_0 -> IdleThread
+> succ  save switch [1]
+> <1>(scheduler_switch:108): CPU(1) >> READY
+> CPU(1) >>READY
+> <0>(scheduler_dispatch:84): (0) pthread_0 => CPU(1)
+> <1>(ipi_handler:59): 1 DISPATCH pthread_0
+> <0>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <1>(scheduler_switch:54): (1) IdleThread -> pthread_0
+> succ  save switch [1]
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(scheduler_switch:96): CPU(1) << RUNNING
+> CPU(1) << RUNNING
+> <1>(queue_extract:34): queue -> status != 0 failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#1)
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_release:74<)0:> (1q uteoukee_nrse mo:n2 7I)D:( 4q0u:e3u9e)  -T>O KsEtNa(t0u)s 
+> != 0 failed.
+> <0>(scheduler_elect:85): thread == NULL failed.
+> <0>(scheduler_switch:54): (0) Main -> IdleThread
+> succ  save switch [0]
+> <0>(scheduler_switch:108): CPU(0) >> READY
+> CPU(0) >>READY
+> <1>(scheduler_dispatch:84): (1) Main => CPU(0)
+> <0>(ipi_handler:59): 0 DISPATCH Main
+> <0>(scheduler_switch:54): (0) IdleThread -> Main
+> succ  save switch [0]
+> <0>(scheduler_switch:96): CPU(0) << RUNNING
+> CPU(0) << RUNNING
+> <0>(queue_extract:34): queue -> status != 0 failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 41:40(#0)
+> <1>(scheduler_elect:85): thread == NULL failed.
+> <0>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <1>(scheduler_switch:54): (1) pthread_0 -> IdleThread
+> succ  save switch [1]
+> <0>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <1>(scheduler_switch:108): CPU(1) >> READY
+> CPU(1) >>READY
+> <0>(scheduler_dispatch:84): (0) pthread_0 => CPU(1)
+> <1>(ipi_handler:59): 1 DISPATCH pthread_0
+> <0>(semaphore_acquire:115): Main(#1), 41<:14>0((s#c0h)ed
+> uler_switch:54): (1) IdleThread -> pthread_0
+> succ  save switch [1]
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(scheduler_switch:96): CPU(1) << RUNNING
+> CPU(1) <<<0 >R(UqNuNeIuNeG_
+> rem:27): queue -> status != 0 failed.
+> <1>(queue_extract:34): queue -> s<t0a>t(ussc h!e=d u0l efra_ielleedc.t:
+> 85): thread == NULL failed.
+> <0>(scheduler_switch:54): (0) Main -> IdleThread
+> succ  save switch [0]
+> <1>(semaphore_release:74): 1 tokens on ID(41:40) TOKEN(0)
+> <0>(scheduler_switch:108): CPU(0) >> READY
+> CPU(0) >>READY
+> <1>(scheduler_dispatch:84): (1) Main => CPU(0)
+> <0>(ipi_handler:59): 0 DISPATCH Main
+> <1>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <0>(scheduler_switch:54): (0) IdleThread -> Main
+> succ  save switch [0]
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(scheduler_switch:96): CPU(0) << RUNNING
+> CPU(0) << RUNNING
+> <0>(queue_extract:34): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#1)
+> <1>(semaphore_acquire:115): pthread_0(#1), 38:37(#1)
+> <0>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_release:74): 1 tokens on ID(38:37) TOKEN(0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#1)
+> <0>(semaphore_acquire:115): Main(#1), 38:37(#1)
+> <1>(semaphore_acquire:115): pthread_0(#1), 41:40(#0)
+> <1>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <0>(semaphore_release:74): 1 tokens on ID(38:37) TOKEN(0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#0)
+> <1>(semaphore_acquire:115): pthread_0(#1), 41:40(#0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_release:74)<:1 >1( qtuoekueen_sr eomn: 2I7D)(:4 1q:u4e0u)e  T-O>K EsNt(a0t)us
+>  != 0 failed.
+> <1>(scheduler_elect:85): thread == NULL failed.
+> <1>(scheduler_switch:54): (1) pthread_0 -> IdleThread
+> succ  save switch [1]
+> <1>(scheduler_switch:108): CPU(1) >> READY
+> CPU(1) >>READY
+> <0>(scheduler_dispatch:84): (0) pthread_0 => CPU(1)
+> <1>(ipi_handler:59): 1 DISPATCH pthread_0
+> <0>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <1>(scheduler_switch:54): (1) IdleThread -> pthread_0
+> succ  save switch [1]
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(scheduler_switch:96): CPU(1) << RUNNING
+> CPU(1) << RUNNING
+> <1>(queue_extract:34): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#1)
+> <0>(semaphore_acquire:115): Main(#1), 41:40(#0)
+> <0>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_release:74)<:1 >1( qtuoekueen_sr eomn: 2I7D)(:4 0q:u3e9u)e  T-O>K EsNt(a0t)us
+>  != 0 failed.
+> <1>(scheduler_elect:85): thread == NULL failed.
+> <1>(scheduler_switch:54): (1) pthread_0 -> IdleThread
+> succ  save switch [1]
+> <1>(scheduler_switch:108): CPU(1) >> READY
+> CPU(1) >>READY
+> <0>(scheduler_dispatch:84): (0) pthread_0 => CPU(1)
+> <1>(ipi_handler:59): 1 DISPATCH pthread_0
+> <0>(semaphore_acquire:115): Main(#1), 41<:14>0((s#c0h)ed
+> uler_switch:54): (1) IdleThread -> pthread_0
+> succ  save switch [1]
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(scheduler_switch:96): CPU(1) << RUNNING
+> CPU(1) <<<0 >R(UqNuNeIuNeG_
+> rem:27): queue -> status != 0 failed.
+> <1>(queue_extract:34): queue -> s<t0a>t(ussc h!e=d u0l efra_ielleedc.t:
+> 85): thread == NULL failed.
+> <0>(scheduler_switch:54): (0) Main -> IdleThread
+> succ  save switch [0]
+> <1>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <0>(scheduler_switch:108): CPU(0) >> READY
+> <1>(queue_rem:27): queue -> status != 0 faileCdP.U(
+> 0) >>READY
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#1)
+> <1>(semaphore_release:74): 1 tokens on ID(41:40) TOKEN(0)
+> <1>(scheduler_dispatch:84): (1) Main => CPU(0)
+> <0>(ipi_handler:59): 0 DISPATCH Main
+> <1>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <0>(scheduler_switch:54): (0) IdleThread -> Main
+> succ  save switch [0]
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(scheduler_switch:96): CPU(0) << RUNNING
+> CPU(0) << RUNNING
+> <0>(queue_extract:34): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#1)
+> <0>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#1)
+> <1>(semaphore_acquire:115): pthread_0(#1), 41:40(#0)
+> <1>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <1>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#0)
+> <1>(semaphore_acquire:115): pthread_0(#1), 41:40(#0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_release:74)<:1 >1( qtuoekuee_nrse mo:n2 7I)D:( 4q1u:e4u0e)  -T>O KsEtNa(t0u)s 
+> != 0 failed.
+> <1>(scheduler_elect:85): thread == NULL failed.
+> <1>(scheduler_switch:54): (1) pthread_0 -> IdleThread
+> succ  save switch [1]
+> <1>(scheduler_switch:108): CPU(1) >> READY
+> CPU(1) >>READY
+> <0>(scheduler_dispatch:84): (0) pthread_0 => CPU(1)
+> <1>(ipi_handler:59): 1 DISPATCH pthread_0
+> <0>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <1>(scheduler_switch:54): (1) IdleThread -> pthread_0
+> succ  save switch [1]
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(scheduler_switch:96): CPU(1) << RUNNING
+> CPU(1) << RUNNING
+> <1>(queue_extract:34): queue -> status != 0 failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#1)
+> <1>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#1)
+> <0>(semaphore_acquire:115): Main(#1), 41:40(#0)
+> <0>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <0>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#0)
+> <0>(semaphore_acquire:115): Main(#1), 41:40(#0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_release:74<)0:> (1q uteoukee_nrse mo:n2 7I)D:( 4q1u:e4u0e)  -T>O KsEtNa(t0u)s 
+> != 0 failed.
+> <0>(scheduler_elect:85): thread == NULL failed.
+> <0>(scheduler_switch:54): (0) Main -> IdleThread
+> succ  save switch [0]
+> <0>(scheduler_switch:108): CPU(0) >> READY
+> CPU(0) >>READY
+> <1>(scheduler_dispatch:84): (1) Main => CPU(0)
+> <0>(ipi_handler:59): 0 DISPATCH Main
+> <1>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <0>(scheduler_switch:54): (0) IdleThread -> Main
+> succ  save switch [0]
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(scheduler_switch:96): CPU(0) << RUNNING
+> CPU(0) << RUNNING
+> <0>(queue_extract:34): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#1)
+> <0>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 38:37(#1)
+> <1>(semaphore_release:74): 1 tokens on ID(38:37) TOKEN(0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#1)
+> <0>(semaphore_acquire:115): Main(#1), 38:37(#1)
+> <1>(semaphore_acquire:115): pthread_0(#1), 41:40(#0)
+> <1>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <0>(semaphore_release:74): 1 tokens on ID(38:37) TOKEN(0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#0)
+> <1>(semaphore_acquire:115): pthread_0(#1), 41:40(#0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_release:74)<:1 >1( qtuoekueen_sr eomn: 2I7D)(:4 1q:u4e0u)e  T-O>K EsNt(a0t)us
+>  != 0 failed.
+> <1>(scheduler_elect:85): thread == NULL failed.
+> <1>(scheduler_switch:54): (1) pthread_0 -> IdleThread
+> succ  save switch [1]
+> <1>(scheduler_switch:108): CPU(1) >> READY
+> CPU(1) >>READY
+> <0>(scheduler_dispatch:84): (0) pthread_0 => CPU(1)
+> <1>(ipi_handler:59): 1 DISPATCH pthread_0
+> <0>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <1>(scheduler_switch:54): (1) IdleThread -> pthread_0
+> succ  save switch [1]
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(scheduler_switch:96): CPU(1) << RUNNING
+> CPU(1) << RUNNING
+> <1>(queue_extract:34): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#1)
+> <0>(semaphore_acquire:115): Main(#1), 41:40(#0)
+> <0>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_release:74)<:1 >1( qtuoekueen_sr eomn: 2I7D)(:4 0q:u3e9u)e  T-O>K EsNt(a0t)us
+>  != 0 failed.
+> <1>(scheduler_elect:85): thread == NULL failed.
+> <1>(scheduler_switch:54): (1) pthread_0 -> IdleThread
+> succ  save switch [1]
+> <1>(scheduler_switch:108): CPU(1) >> READY
+> CPU(1) >>READY
+> <0>(scheduler_dispatch:84): (0) pthread_0 => CPU(1)
+> <1>(ipi_handler:59): 1 DISPATCH pthread_0
+> <0>(semaphore_acquire:115): Main(#1), 41<:14>0((s#c0h)ed
+> uler_switch:54): (1) IdleThread -> pthread_0
+> succ  save switch [1]
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(scheduler_switch:96): CPU(1) << RUNNING
+> CPU(1) <<<0 >R(UqNuNeIuNeG_
+> rem:27): queue -> status != 0 failed.
+> <1>(queue_extract:34): queue -> s<t0a>t(ussc h!e=d u0l efra_ielleedc.t:
+> 85): thread == NULL failed.
+> <0>(scheduler_switch:54): (0) Main -> IdleThread
+> succ  save switch [0]
+> <1>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <0>(scheduler_switch:108): CPU(0) >> READY
+> <1>(queue_rem:27): queue -> status != 0 faileCdP.U(
+> 0) >>READY
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#1)
+> <1>(semaphore_release:74): 1 tokens on ID(41:40) TOKEN(0)
+> <1>(scheduler_dispatch:84): (1) Main => CPU(0)
+> <0>(ipi_handler:59): 0 DISPATCH Main
+> <1>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <0>(scheduler_switch:54): (0) IdleThread -> Main
+> succ  save switch [0]
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(scheduler_switch:96): CPU(0) << RUNNING
+> CPU(0) << RUNNING
+> <0>(queue_extract:34): queue -> status != 0 failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#1)
+> <1>(semaphore_acquire:115): pthread_0(#1), 41:40(#0)
+> <1>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_release:74)<:0 >1( qtuoekueen_sr eomn: 2I7D)(:4 0q:u3e9u)e  T-O>K EsNt(a0t)us
+>  != 0 failed.
+> <0>(scheduler_elect:85): thread == NULL failed.
+> <0>(scheduler_switch:54): (0) Main -> IdleThread
+> succ  save switch [0]
+> <0>(scheduler_switch:108): CPU(0) >> READY
+> CPU(0) >>READY
+> <1>(scheduler_dispatch:84): (1) Main => CPU(0)
+> <0>(ipi_handler:59): 0 DISPATCH Main
+> <1>(semaphore_ac<q0u>i(rsec:h1e1d5u)l:e rp_tshwrietacdh_:05(4#)1:) ,( 04)1 :I4d0l(e#T0h)re
+> ad -> Main
+> succ  save switch [0]
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(scheduler_switch:96): CPU(0) << RUNNING
+> CPU(0) << RUNNING
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(queue_extract:34): queue -> status != 0 failed.
+> <1>(scheduler_elect:85): thread == NULL failed.
+> <1>(scheduler_switch:54): (1) pthread_0 -> IdleThread
+> succ  save switch [1]
+> <0>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <1>(scheduler_switch:108): CPU(1) >> READY
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> CPU(1) >>READY
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#1)
+> <0>(semaphore_release:74): 1 tokens on ID(41:40) TOKEN(0)
+> <0>(scheduler_dispatch:84): (0) pthread_0 => CPU(1)
+> <1>(ipi_handler:59): 1 DISPATCH pthread_0
+> <0>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <1>(scheduler_switch:54): (1) IdleThread -> pthread_0
+> succ  save switch [1]
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(scheduler_switch:96): CPU(1) << RUNNING
+> CPU(1) << RUNNING
+> <1>(queue_extract:34): queue -> status != 0 failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#1)
+> <1>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#1)
+> <0>(semaphore_acquire:115): Main(#1), 41:40(#0)
+> <0>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <0>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#0)
+> <0>(semaphore_acquire:115): Main(#1), 41:40(#0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_release:74<)0:> (1q uteoukee_nrse mo:n2 7I)D:( 4q1u:e4u0e)  -T>O KsEtNa(t0u)s 
+> != 0 failed.
+> <0>(scheduler_elect:85): thread == NULL failed.
+> <0>(scheduler_switch:54): (0) Main -> IdleThread
+> succ  save switch [0]
+> <0>(scheduler_switch:108): CPU(0) >> READY
+> CPU(0) >>READY
+> <1>(scheduler_dispatch:84): (1) Main => CPU(0)
+> <0>(ipi_handler:59): 0 DISPATCH Main
+> <1>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <0>(scheduler_switch:54): (0) IdleThread -> Main
+> succ  save switch [0]
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(scheduler_switch:96): CPU(0) << RUNNING
+> CPU(0) << RUNNING
+> <0>(queue_extract:34): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#1)
+> <0>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 38:37(#1)
+> <1>(semaphore_release:74): 1 tokens on ID(38:37) TOKEN(0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#1)
+> <0>(semaphore_acquire:115): Main(#1), 38:37(#1)
+> <1>(semaphore_acquire:115): pthread_0(#1), 41:40(#0)
+> <1>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <0>(semaphore_release:74): 1 tokens on ID(38:37) TOKEN(0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#0)
+> <1>(semaphore_acquire:115): pthread_0(#1), 41:40(#0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_release:74)<:1 >1( qtuoekueen_sr eomn: 2I7D)(:4 1q:u4e0u)e  T-O>K EsNt(a0t)us
+>  != 0 failed.
+> <1>(scheduler_elect:85): thread == NULL failed.
+> <1>(scheduler_switch:54): (1) pthread_0 -> IdleThread
+> succ  save switch [1]
+> <1>(scheduler_switch:108): CPU(1) >> READY
+> CPU(1) >>READY
+> <0>(scheduler_dispatch:84): (0) pthread_0 => CPU(1)
+> <1>(ipi_handler:59): 1 DISPATCH pthread_0
+> <0>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <1>(scheduler_switch:54): (1) IdleThread -> pthread_0
+> succ  save switch [1]
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(scheduler_switch:96): CPU(1) << RUNNING
+> CPU(1) << RUNNING
+> <1>(queue_extract:34): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#1)
+> <0>(semaphore_acquire:115): Main(#1), 41:40(#0)
+> <0>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_release:74)<:1 >1( qtuoekueen_sr eomn: 2I7D)(:4 0q:u3e9u)e  T-O>K EsNt(a0t)us
+>  != 0 failed.
+> <1>(scheduler_elect:85): thread == NULL failed.
+> <1>(scheduler_switch:54): (1) pthread_0 -> IdleThread
+> succ  save switch [1]
+> <1>(scheduler_switch:108): CPU(1) >> READY
+> CPU(1) >>READY
+> <0>(scheduler_dispatch:84): (0) pthread_0 => CPU(1)
+> <1>(ipi_handler:59): 1 DISPATCH pthread_0
+> <0>(semaphore_acquire:115): Main(#1), 41<:14>0((s#c0h)ed
+> uler_switch:54): (1) IdleThread -> pthread_0
+> succ  save switch [1]
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(scheduler_switch:96): CPU(1) << RUNNING
+> CPU(1) <<<0 >R(UqNuNeIuNeG_
+> rem:27): queue -> status != 0 failed.
+> <1>(queue_extract:34): queue -> s<t0a>t(ussc h!e=d u0l efra_ielleedc.t:
+> 85): thread == NULL failed.
+> <0>(scheduler_switch:54): (0) Main -> IdleThread
+> succ  save switch [0]
+> <1>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <0>(scheduler_switch:108): CPU(0) >> READY
+> <1>(queue_rem:27): queue -> status != 0 faileCdP.U(
+> 0) >>READY
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#1)
+> <1>(semaphore_release:74): 1 tokens on ID(41:40) TOKEN(0)
+> <1>(scheduler_dispatch:84): (1) Main => CPU(0)
+> <0>(ipi_handler:59): 0 DISPATCH Main
+> <1>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <0>(scheduler_switch:54): (0) IdleThread -> Main
+> succ  save switch [0]
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(scheduler_switch:96): CPU(0) << RUNNING
+> CPU(0) << RUNNING
+> <0>(queue_extract:34): queue -> status != 0 failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#1)
+> <1>(semaphore_acquire:115): pthread_0(#1), 41:40(#0)
+> <1>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_release:74)<:0 >1( qtuoekueen_sr eomn: 2I7D)(:4 0q:u3e9u)e  T-O>K EsNt(a0t)us
+>  != 0 failed.
+> <0>(scheduler_elect:85): thread == NULL failed.
+> <0>(scheduler_switch:54): (0) Main -> IdleThread
+> succ  save switch [0]
+> <0>(scheduler_switch:108): CPU(0) >> READY
+> CPU(0) >>READY
+> <1>(scheduler_dispatch:84): (1) Main => CPU(0)
+> <0>(ipi_handler:59): 0 DISPATCH Main
+> <1>(semaphore_ac<q0u>i(rsec:h1e1d5u)l:e rp_tshwrietacdh_:05(4#)1:) ,( 04)1 :I4d0l(e#T0h)re
+> ad -> Main
+> succ  save switch [0]
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(scheduler_switch:96): CPU(0) << RUNNING
+> CPU(0) << RUNNING
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(queue_extract:34): queue -> status != 0 failed.
+> <1>(scheduler_elect:85): thread == NULL failed.
+> <1>(scheduler_switch:54): (1) pthread_0 -> IdleThread
+> succ  save switch [1]
+> <0>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <1>(scheduler_switch:108): CPU(1) >> READY
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> CPU(1) >>READY
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#1)
+> <0>(semaphore_release:74): 1 tokens on ID(41:40) TOKEN(0)
+> <0>(scheduler_dispatch:84): (0) pthread_0 => CPU(1)
+> <1>(ipi_handler:59): 1 DISPATCH pthread_0
+> <0>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <1>(scheduler_switch:54): (1) IdleThread -> pthread_0
+> succ  save switch [1]
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(scheduler_switch:96): CPU(1) << RUNNING
+> CPU(1) << RUNNING
+> <1>(queue_extract:34): queue -> status != 0 failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#1)
+> <1>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#1)
+> <0>(semaphore_acquire:115): Main(#1), 41:40(#0)
+> <0>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <0>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#0)
+> <0>(semaphore_acquire:115): Main(#1), 41:40(#0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_release:74<)0:> (1q uteoukee_nrse mo:n2 7I)D:( 4q1u:e4u0e)  -T>O KsEtNa(t0u)s 
+> != 0 failed.
+> <0>(scheduler_elect:85): thread == NULL failed.
+> <0>(scheduler_switch:54): (0) Main -> IdleThread
+> succ  save switch [0]
+> <0>(scheduler_switch:108): CPU(0) >> READY
+> CPU(0) >>READY
+> <1>(scheduler_dispatch:84): (1) Main => CPU(0)
+> <0>(ipi_handler:59): 0 DISPATCH Main
+> <1>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <0>(scheduler_switch:54): (0) IdleThread -> Main
+> succ  save switch [0]
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(scheduler_switch:96): CPU(0) << RUNNING
+> CPU(0) << RUNNING
+> <0>(queue_extract:34): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#1)
+> <0>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 38:37(#1)
+> <1>(semaphore_release:74): 1 tokens on ID(38:37) TOKEN(0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#1)
+> <0>(semaphore_acquire:115): Main(#1), 38:37(#1)
+> <1>(semaphore_acquire:115): pthread_0(#1), 41:40(#0)
+> <1>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <0>(semaphore_release:74): 1 tokens on ID(38:37) TOKEN(0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#0)
+> <1>(semaphore_acquire:115): pthread_0(#1), 41:40(#0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_release:74)<:1 >1( qtuoekueen_sr eomn: 2I7D)(:4 1q:u4e0u)e  T-O>K EsNt(a0t)us
+>  != 0 failed.
+> <1>(scheduler_elect:85): thread == NULL failed.
+> <1>(scheduler_switch:54): (1) pthread_0 -> IdleThread
+> succ  save switch [1]
+> <1>(scheduler_switch:108): CPU(1) >> READY
+> CPU(1) >>READY
+> <0>(scheduler_dispatch:84): (0) pthread_0 => CPU(1)
+> <1>(ipi_handler:59): 1 DISPATCH pthread_0
+> <0>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <1>(scheduler_switch:54): (1) IdleThread -> pthread_0
+> succ  save switch [1]
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(scheduler_switch:96): CPU(1) << RUNNING
+> CPU(1) << RUNNING
+> <1>(queue_extract:34): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#1)
+> <0>(semaphore_acquire:115): Main(#1), 41:40(#0)
+> <0>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_release:74)<:1 >1( qtuoekueen_sr eomn: 2I7D)(:4 0q:u3e9u)e  T-O>K EsNt(a0t)us
+>  != 0 failed.
+> <1>(scheduler_elect:85): thread == NULL failed.
+> <1>(scheduler_switch:54): (1) pthread_0 -> IdleThread
+> succ  save switch [1]
+> <1>(scheduler_switch:108): CPU(1) >> READY
+> CPU(1) >>READY
+> <0>(scheduler_dispatch:84): (0) pthread_0 => CPU(1)
+> <1>(ipi_handler:59): 1 DISPATCH pthread_0
+> <0>(semaphore_acquire:115): Main(#1), 41<:14>0((s#c0h)ed
+> uler_switch:54): (1) IdleThread -> pthread_0
+> succ  save switch [1]
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(scheduler_switch:96): CPU(1) << RUNNING
+> CPU(1) <<<0 >R(UqNuNeIuNeG_
+> rem:27): queue -> status != 0 failed.
+> <1>(queue_extract:34): queue -> s<t0a>t(ussc h!e=d u0l efra_ielleedc.t:
+> 85): thread == NULL failed.
+> <0>(scheduler_switch:54): (0) Main -> IdleThread
+> succ  save switch [0]
+> <1>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <0>(scheduler_switch:108): CPU(0) >> READY
+> <1>(queue_rem:27): queue -> status != 0 faileCdP.U(
+> 0) >>READY
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#1)
+> <1>(semaphore_release:74): 1 tokens on ID(41:40) TOKEN(0)
+> <1>(scheduler_dispatch:84): (1) Main => CPU(0)
+> <0>(ipi_handler:59): 0 DISPATCH Main
+> <1>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <0>(scheduler_switch:54): (0) IdleThread -> Main
+> succ  save switch [0]
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(scheduler_switch:96): CPU(0) << RUNNING
+> CPU(0) << RUNNING
+> <0>(queue_extract:34): queue -> status != 0 failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#1)
+> <1>(semaphore_acquire:115): pthread_0(#1), 41:40(#0)
+> <1>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_release:74)<:0 >1( qtuoekueen_sr eomn: 2I7D)(:4 0q:u3e9u)e  T-O>K EsNt(a0t)us
+>  != 0 failed.
+> <0>(scheduler_elect:85): thread == NULL failed.
+> <0>(scheduler_switch:54): (0) Main -> IdleThread
+> succ  save switch [0]
+> <0>(scheduler_switch:108): CPU(0) >> READY
+> CPU(0) >>READY
+> <1>(scheduler_dispatch:84): (1) Main => CPU(0)
+> <0>(ipi_handler:59): 0 DISPATCH Main
+> <1>(semaphore_ac<q0u>i(rsec:h1e1d5u)l:e rp_tshwrietacdh_:05(4#)1:) ,( 04)1 :I4d0l(e#T0h)re
+> ad -> Main
+> succ  save switch [0]
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(scheduler_switch:96): CPU(0) << RUNNING
+> CPU(0) << RUNNING
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(queue_extract:34): queue -> status != 0 failed.
+> <1>(scheduler_elect:85): thread == NULL failed.
+> <1>(scheduler_switch:54): (1) pthread_0 -> IdleThread
+> succ  save switch [1]
+> <0>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <1>(scheduler_switch:108): CPU(1) >> READY
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> CPU(1) >>READY
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#1)
+> <0>(semaphore_release:74): 1 tokens on ID(41:40) TOKEN(0)
+> <0>(scheduler_dispatch:84): (0) pthread_0 => CPU(1)
+> <1>(ipi_handler:59): 1 DISPATCH pthread_0
+> <0>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <1>(scheduler_switch:54): (1) IdleThread -> pthread_0
+> succ  save switch [1]
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(scheduler_switch:96): CPU(1) << RUNNING
+> CPU(1) << RUNNING
+> <1>(queue_extract:34): queue -> status != 0 failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#1)
+> <1>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#1)
+> <0>(semaphore_acquire:115): Main(#1), 41:40(#0)
+> <0>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <0>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 41:40(#0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <0>(queue_rem:27): queue -> status !<=1 >0( sfeamialpehdo.re
+> _acquire:115): pthread_0(#1), 40:39(#1)
+> <0>(scheduler_elect:85): thread == NULL failed.
+> <0>(scheduler_<s1w>i(tscehm:a5p4h)o:r e(_0r)e lMeaaisne :-7>4 )I:d l1e Tthorkeeands 
+> on ID(41:40) TOKEN(0)
+> succ  save switch [0]
+> <0>(scheduler_switch:108): CPU(0) >> READY
+> CPU(0) >>READY
+> <1>(scheduler_dispatch:84): (1) Main => CPU(0)
+> <0>(ipi_handler:59): 0 DISPATCH Main
+> <1>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <0>(scheduler_switch:54): (0) IdleThread -> Main
+> succ  save switch [0]
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(scheduler_switch:96): CPU(0) << RUNNING
+> CPU(0) << RUNNING
+> <0>(queue_extract:34): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#1)
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_release:74)<:1 >1( qtuoekueen_sr eomn: 2I7D)(:4 0q:u3e9u)e  T-O>K EsNt(a0t)us
+>  != 0 failed.
+> <1>(scheduler_elect:85): thread == NULL failed.
+> <1>(scheduler_switch:54): (1) pthread_0 -> IdleThread
+> succ  save switch [1]
+> <1>(scheduler_switch:108): CPU(1) >> READY
+> CPU(1) >>READY
+> <0>(scheduler_dispatch:84): (0) pthread_0 => CPU(1)
+> <1>(ipi_handler:59): 1 DISPATCH pthread_0
+> <1>(scheduler_switch:54): (1) IdleThread -> pthread_0
+> succ  save switch [1]
+> <1>(scheduler_switch:96): CPU(1) << RUNNING
+> CPU(1) << RUNNING
+> <1>(q<u0e>u(es_eemxatrpahcotr:e3_4a)c:q uqiureeu:e1 1-5>) :s tMaatiuns( #!1=) ,0  4f0a:i3l9e(d#.0)
+> 
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 41:40(#0)
+> <0>(scheduler_elect:85): thread == NULL failed.
+> <1>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <0>(scheduler_switch:54): (0) Main -> IdleThread
+> succ  save switch [0]
+> <1>(semaphore_release:74): 1 tok<e0n>s( socnh eIdDu(l4e0r:_3s9w)i tTcOhK:E1N0(80)): 
+> CPU(0) >> READY
+> CPU(0) >>READY
+> <1>(scheduler_dispatch:84): (1) Main => CPU(0)
+> <0>(ipi_handler:59): 0 DISPATCH Main
+> <1>(semaphore_ac<q0u>i(rsec:h1e1d5u)l:e rp_tshwrietacdh_:05(4#)1:) ,( 04)1 :I4d0l(e#T0h)re
+> ad -> Main
+> succ  save switch [0]
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(scheduler_switch:96): CPU(0) << RUNNING
+> CPU(0) << RUNNING
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(queue_extract:34): queue -> status != 0 failed.
+> <1>(scheduler_elect:85): thread == NULL failed.
+> <1>(scheduler_switch:54): (1) pthread_0 -> IdleThread
+> succ  save switch [1]
+> <0>(semaphore_release:74): 1 tokens on ID(41:40) TOKEN(0)
+> <1>(scheduler_switch:108): CPU(1) >> READY
+> CPU(1) >>READY
+> <0>(scheduler_dispatch:84): (0) pthread_0 => CPU(1)
+> <1>(ipi_handler:59): 1 DISPATCH pthread_0
+> <0>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <1>(scheduler_switch:54): (1) IdleThread -> pthread_0
+> succ  save switch [1]
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(scheduler_switch:96): CPU(1) << RUNNING
+> CPU(1) << RUNNING
+> <1>(queue_extract:34): queue -> status != 0 failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#1)
+> <0>(semaphore_acquire:115): Main(#1), 38:37(#1)
+> <1>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_release:74): 1 tokens on ID(38:37) TOKEN(0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#1)
+> <1>(semaphore_acquire:115): pthread_0(#1), 38:37(#1)
+> <0>(semaphore_acquire:115): Main(#1), 41:40(#0)
+> <0>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <1>(semaphore_release:74): 1 tokens on ID(38:37) TOKEN(0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#0)
+> <0>(semaphore_acquire:115): Main(#1), 41:40(#0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_release:74<)0:> (1q uteoukee_nrse mo:n2 7I)D:( 4q1u:e4u0e)  -T>O KsEtNa(t0u)s 
+> != 0 failed.
+> <0>(scheduler_elect:85): thread == NULL failed.
+> <0>(scheduler_switch:54): (0) Main -> IdleThread
+> succ  save switch [0]
+> <0>(scheduler_switch:108): CPU(0) >> READY
+> CPU(0) >>READY
+> <1>(scheduler_dispatch:84): (1) Main => CPU(0)
+> <0>(ipi_handler:59): 0 DISPATCH Main
+> <1>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <0>(scheduler_switch:54): (0) IdleThread -> Main
+> succ  save switch [0]
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(scheduler_switch:96): CPU(0) << RUNNING
+> CPU(0) << RUNNING
+> <0>(queue_extract:34): queue -> status != 0 failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#1)
+> <1>(semaphore_acquire:115): pthread_0(#1), 41:40(#0)
+> <1>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_release:74)<:0 >1( qtuoekueen_sr eomn: 2I7D)(:4 0q:u3e9u)e  T-O>K EsNt(a0t)us
+>  != 0 failed.
+> <0>(scheduler_elect:85): thread == NULL failed.
+> <0>(scheduler_switch:54): (0) Main -> IdleThread
+> succ  save switch [0]
+> <0>(scheduler_switch:108): CPU(0) >> READY
+> CPU(0) >>READY
+> <1>(scheduler_dispatch:84): (1) Main => CPU(0)
+> <0>(ipi_handler:59): 0 DISPATCH Main
+> <1>(semaphore_ac<q0u>i(rsec:h1e1d5u)l:e rp_tshwrietacdh_:05(4#)1:) ,( 04)1 :I4d0l(e#T0h)re
+> ad -> Main
+> succ  save switch [0]
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(scheduler_switch:96): CPU(0) << RUNNING
+> CPU(0) << RUNNING
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(queue_extract:34): queue -> status != 0 failed.
+> <1>(scheduler_elect:85): thread == NULL failed.
+> <1>(scheduler_switch:54): (1) pthread_0 -> IdleThread
+> succ  save switch [1]
+> <0>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <1>(scheduler_switch:108): CPU(1) >> READY
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> CPU(1) >>READY
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#1)
+> <0>(semaphore_release:74): 1 tokens on ID(41:40) TOKEN(0)
+> <0>(scheduler_dispatch:84): (0) pthread_0 => CPU(1)
+> <1>(ipi_handler:59): 1 DISPATCH pthread_0
+> <0>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <1>(scheduler_switch:54): (1) IdleThread -> pthread_0
+> succ  save switch [1]
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(scheduler_switch:96): CPU(1) << RUNNING
+> CPU(1) << RUNNING
+> <1>(queue_extract:34): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#1)
+> <0>(semaphore_acquire:115): Main(#1), 41:40(#0)
+> <0>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_release:74)<:1 >1( qtuoekueen_sr eomn: 2I7D)(:4 0q:u3e9u)e  T-O>K EsNt(a0t)us
+>  != 0 failed.
+> <1>(scheduler_elect:85): thread == NULL failed.
+> <1>(scheduler_switch:54): (1) pthread_0 -> IdleThread
+> succ  save switch [1]
+> <1>(scheduler_switch:108): CPU(1) >> READY
+> CPU(1) >>READY
+> <0>(scheduler_dispatch:84): (0) pthread_0 => CPU(1)
+> <1>(ipi_handler:59): 1 DISPATCH pthread_0
+> <0>(semaphore_acquire:115): Main(#1), 41<:14>0((s#c0h)ed
+> uler_switch:54): (1) IdleThread -> pthread_0
+> succ  save switch [1]
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(scheduler_switch:96): CPU(1) << RUNNING
+> CPU(1) <<<0 >R(UqNuNeIuNeG_
+> rem:27): queue -> status != 0 failed.
+> <1>(queue_extract:34): queue -> s<t0a>t(ussc h!e=d u0l efra_ielleedc.t:
+> 85): thread == NULL failed.
+> <0>(scheduler_switch:54): (0) Main -> IdleThread
+> succ  save switch [0]
+> <1>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <0>(scheduler_switch:108): CPU(0) >> READY
+> <1>(queue_rem:27): queue -> status != 0 faileCdP.U(
+> 0) >>READY
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#1)
+> <1>(semaphore_release:74): 1 tokens on ID(41:40) TOKEN(0)
+> <1>(scheduler_dispatch:84): (1) Main => CPU(0)
+> <0>(ipi_handler:59): 0 DISPATCH Main
+> <1>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <0>(scheduler_switch:54): (0) IdleThread -> Main
+> succ  save switch [0]
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(scheduler_switch:96): CPU(0) << RUNNING
+> CPU(0) << RUNNING
+> <0>(queue_extract:34): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#1)
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_release:74)<:1 >1( qtuoekueen_sr eomn: 2I7D)(:4 0q:u3e9u)e  T-O>K EsNt(a0t)us
+>  != 0 failed.
+> <1>(scheduler_elect:85): thread == NULL failed.
+> <1>(scheduler_switch:54): (1) pthread_0 -> IdleThread
+> succ  save switch [1]
+> <1>(scheduler_switch:108): CPU(1) >> READY
+> CPU(1) >>READY
+> <0>(scheduler_dispatch:84): (0) pthread_0 => CPU(1)
+> <1>(ipi_handler:59): 1 DISPATCH pthread_0
+> <1>(scheduler_switch:54): (1) IdleThread -> pthread_0
+> succ  save switch [1]
+> <1>(scheduler_switch:96): CPU(1) << RUNNING
+> CPU(1) << RUNNING
+> <1>(queue_extract:34): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 41:40(#0)
+> <0>(scheduler_elect:85): thread == NULL failed.
+> <1>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <0>(scheduler_switch:54): (0) Main -> IdleThread
+> succ  save switch [0]
+> <1>(semaphore_release:74): 1 tok<e0n>s( socnh eIdDu(l4e0r:_3s9w)i tTcOhK:E1N0(80)): 
+> CPU(0) >> READY
+> CPU(0) >>READY
+> <1>(scheduler_dispatch:84): (1) Main => CPU(0)
+> <0>(ipi_handler:59): 0 DISPATCH Main
+> <1>(semaphore_ac<q0u>i(rsec:h1e1d5u)l:e rp_tshwrietacdh_:05(4#)1:) ,( 04)1 :I4d0l(e#T0h)re
+> ad -> Main
+> succ  save switch [0]
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(scheduler_switch:96): CPU(0) << RUNNING
+> CPU(0) << RUNNING
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(queue_extract:34): queue -> status != 0 failed.
+> <1>(scheduler_elect:85): thread == NULL failed.
+> <1>(scheduler_switch:54): (1) pthread_0 -> IdleThread
+> succ  save switch [1]
+> <0>(semaphore_release:74): 1 tokens on ID(41:40) TOKEN(0)
+> <1>(scheduler_switch:108): CPU(1) >> READY
+> CPU(1) >>READY
+> <0>(scheduler_dispatch:84): (0) pthread_0 => CPU(1)
+> <1>(ipi_handler:59): 1 DISPATCH pthread_0
+> <0>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <1>(scheduler_switch:54): (1) IdleThread -> pthread_0
+> succ  save switch [1]
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(scheduler_switch:96): CPU(1) << RUNNING
+> CPU(1) << RUNNING
+> <1>(queue_extract:34): queue -> status != 0 failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#1)
+> <0>(semaphore_acquire:115): Main(#1), 38:37(#1)
+> <1>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_release:74): 1 tokens on ID(38:37) TOKEN(0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#1)
+> <1>(semaphore_acquire:115): pthread_0(#1), 38:37(#1)
+> <0>(semaphore_acquire:115): Main(#1), 41:40(#0)
+> <0>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <1>(semaphore_release:74): 1 tokens on ID(38:37) TOKEN(0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#0)
+> <0>(semaphore_acquire:115): Main(#1), 41:40(#0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_release:74<)0:> (1q uteoukee_nrse mo:n2 7I)D:( 4q1u:e4u0e)  -T>O KsEtNa(t0u)s 
+> != 0 failed.
+> <0>(scheduler_elect:85): thread == NULL failed.
+> <0>(scheduler_switch:54): (0) Main -> IdleThread
+> succ  save switch [0]
+> <0>(scheduler_switch:108): CPU(0) >> READY
+> CPU(0) >>READY
+> <1>(scheduler_dispatch:84): (1) Main => CPU(0)
+> <0>(ipi_handler:59): 0 DISPATCH Main
+> <1>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <0>(scheduler_switch:54): (0) IdleThread -> Main
+> succ  save switch [0]
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(scheduler_switch:96): CPU(0) << RUNNING
+> CPU(0) << RUNNING
+> <0>(queue_extract:34): queue -> status != 0 failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#1)
+> <1>(semaphore_acquire:115): pthread_0(#1), 41:40(#0)
+> <1>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_release:74)<:0 >1( qtuoekueen_sr eomn: 2I7D)(:4 0q:u3e9u)e  T-O>K EsNt(a0t)us
+>  != 0 failed.
+> <0>(scheduler_elect:85): thread == NULL failed.
+> <0>(scheduler_switch:54): (0) Main -> IdleThread
+> succ  save switch [0]
+> <0>(scheduler_switch:108): CPU(0) >> READY
+> CPU(0) >>READY
+> <1>(scheduler_dispatch:84): (1) Main => CPU(0)
+> <0>(ipi_handler:59): 0 DISPATCH Main
+> <1>(semaphore_ac<q0u>i(rsec:h1e1d5u)l:e rp_tshwrietacdh_:05(4#)1:) ,( 04)1 :I4d0l(e#T0h)re
+> ad -> Main
+> succ  save switch [0]
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(scheduler_switch:96): CPU(0) << RUNNING
+> CPU(0) << RUNNING
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(queue_extract:34): queue -> status != 0 failed.
+> <1>(scheduler_elect:85): thread == NULL failed.
+> <1>(scheduler_switch:54): (1) pthread_0 -> IdleThread
+> succ  save switch [1]
+> <0>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <1>(scheduler_switch:108): CPU(1) >> READY
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> CPU(1) >>READY
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#1)
+> <0>(semaphore_release:74): 1 tokens on ID(41:40) TOKEN(0)
+> <0>(scheduler_dispatch:84): (0) pthread_0 => CPU(1)
+> <1>(ipi_handler:59): 1 DISPATCH pthread_0
+> <0>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <1>(scheduler_switch:54): (1) IdleThread -> pthread_0
+> succ  save switch [1]
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(scheduler_switch:96): CPU(1) << RUNNING
+> CPU(1) << RUNNING
+> <1>(queue_extract:34): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#1)
+> <0>(semaphore_acquire:115): Main(#1), 41:40(#0)
+> <0>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_release:74)<:1 >1( qtuoekueen_sr eomn: 2I7D)(:4 0q:u3e9u)e  T-O>K EsNt(a0t)us
+>  != 0 failed.
+> <1>(scheduler_elect:85): thread == NULL failed.
+> <1>(scheduler_switch:54): (1) pthread_0 -> IdleThread
+> succ  save switch [1]
+> <1>(scheduler_switch:108): CPU(1) >> READY
+> CPU(1) >>READY
+> <0>(scheduler_dispatch:84): (0) pthread_0 => CPU(1)
+> <1>(ipi_handler:59): 1 DISPATCH pthread_0
+> <0>(semaphore_acquire:115): Main(#1), 41<:14>0((s#c0h)ed
+> uler_switch:54): (1) IdleThread -> pthread_0
+> succ  save switch [1]
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(scheduler_switch:96): CPU(1) << RUNNING
+> CPU(1) <<<0 >R(UqNuNeIuNeG_
+> rem:27): queue -> status != 0 failed.
+> <1>(queue_extract:34): queue -> s<t0a>t(ussc h!e=d u0l efra_ielleedc.t:
+> 85): thread == NULL failed.
+> <0>(scheduler_switch:54): (0) Main -> IdleThread
+> succ  save switch [0]
+> <1>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <0>(scheduler_switch:108): CPU(0) >> READY
+> <1>(queue_rem:27): queue -> status != 0 faileCdP.U(
+> 0) >>READY
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#1)
+> <1>(semaphore_release:74): 1 tokens on ID(41:40) TOKEN(0)
+> <1>(scheduler_dispatch:84): (1) Main => CPU(0)
+> <0>(ipi_handler:59): 0 DISPATCH Main
+> <1>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <0>(scheduler_switch:54): (0) IdleThread -> Main
+> succ  save switch [0]
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(scheduler_switch:96): CPU(0) << RUNNING
+> CPU(0) << RUNNING
+> <0>(queue_extract:34): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#1)
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_release:74)<:1 >1( qtuoekueen_sr eomn: 2I7D)(:4 0q:u3e9u)e  T-O>K EsNt(a0t)us
+>  != 0 failed.
+> <1>(scheduler_elect:85): thread == NULL failed.
+> <1>(scheduler_switch:54): (1) pthread_0 -> IdleThread
+> succ  save switch [1]
+> <1>(scheduler_switch:108): CPU(1) >> READY
+> CPU(1) >>READY
+> <0>(scheduler_dispatch:84): (0) pthread_0 => CPU(1)
+> <1>(ipi_handler:59): 1 DISPATCH pthread_0
+> <1>(scheduler_switch:54): (1) IdleThread -> pthread_0
+> succ  save switch [1]
+> <1>(scheduler_switch:96): CPU(1) << RUNNING
+> CPU(1) << RUNNING
+> <1>(queue_extract:34): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 41:40(#0)
+> <0>(scheduler_elect:85): thread == NULL failed.
+> <1>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <0>(scheduler_switch:54): (0) Main -> IdleThread
+> succ  save switch [0]
+> <1>(semaphore_release:74): 1 tok<e0n>s( socnh eIdDu(l4e0r:_3s9w)i tTcOhK:E1N0(80)): 
+> CPU(0) >> READY
+> CPU(0) >>READY
+> <1>(scheduler_dispatch:84): (1) Main => CPU(0)
+> <0>(ipi_handler:59): 0 DISPATCH Main
+> <1>(semaphore_ac<q0u>i(rsec:h1e1d5u)l:e rp_tshwrietacdh_:05(4#)1:) ,( 04)1 :I4d0l(e#T0h)re
+> ad -> Main
+> succ  save switch [0]
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(scheduler_switch:96): CPU(0) << RUNNING
+> CPU(0) << RUNNING
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(queue_extract:34): queue -> status != 0 failed.
+> <1>(scheduler_elect:85): thread == NULL failed.
+> <1>(scheduler_switch:54): (1) pthread_0 -> IdleThread
+> succ  save switch [1]
+> <0>(semaphore_release:74): 1 tokens on ID(41:40) TOKEN(0)
+> <1>(scheduler_switch:108): CPU(1) >> READY
+> CPU(1) >>READY
+> <0>(scheduler_dispatch:84): (0) pthread_0 => CPU(1)
+> <1>(ipi_handler:59): 1 DISPATCH pthread_0
+> <0>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <1>(scheduler_switch:54): (1) IdleThread -> pthread_0
+> succ  save switch [1]
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(scheduler_switch:96): CPU(1) << RUNNING
+> CPU(1) << RUNNING
+> <1>(queue_extract:34): queue -> status != 0 failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#1)
+> <0>(semaphore_acquire:115): Main(#1), 38:37(#1)
+> <1>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_release:74): 1 tokens on ID(38:37) TOKEN(0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#1)
+> <1>(semaphore_acquire:115): pthread_0(#1), 38:37(#1)
+> <0>(semaphore_acquire:115): Main(#1), 41:40(#0)
+> <0>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <1>(semaphore_release:74): 1 tokens on ID(38:37) TOKEN(0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#0)
+> <0>(semaphore_acquire:115): Main(#1), 41:40(#0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_release:74<)0:> (1q uteoukee_nrse mo:n2 7I)D:( 4q1u:e4u0e)  -T>O KsEtNa(t0u)s 
+> != 0 failed.
+> <0>(scheduler_elect:85): thread == NULL failed.
+> <0>(scheduler_switch:54): (0) Main -> IdleThread
+> succ  save switch [0]
+> <0>(scheduler_switch:108): CPU(0) >> READY
+> CPU(0) >>READY
+> <1>(scheduler_dispatch:84): (1) Main => CPU(0)
+> <0>(ipi_handler:59): 0 DISPATCH Main
+> <1>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <0>(scheduler_switch:54): (0) IdleThread -> Main
+> succ  save switch [0]
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(scheduler_switch:96): CPU(0) << RUNNING
+> CPU(0) << RUNNING
+> <0>(queue_extract:34): queue -> status != 0 failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#1)
+> <1>(semaphore_acquire:115): pthread_0(#1), 41:40(#0)
+> <1>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_release:74)<:0 >1( qtuoekueen_sr eomn: 2I7D)(:4 0q:u3e9u)e  T-O>K EsNt(a0t)us
+>  != 0 failed.
+> <0>(scheduler_elect:85): thread == NULL failed.
+> <0>(scheduler_switch:54): (0) Main -> IdleThread
+> succ  save switch [0]
+> <0>(scheduler_switch:108): CPU(0) >> READY
+> CPU(0) >>READY
+> <1>(scheduler_dispatch:84): (1) Main => CPU(0)
+> <0>(ipi_handler:59): 0 DISPATCH Main
+> <1>(semaphore_ac<q0u>i(rsec:h1e1d5u)l:e rp_tshwrietacdh_:05(4#)1:) ,( 04)1 :I4d0l(e#T0h)re
+> ad -> Main
+> succ  save switch [0]
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(scheduler_switch:96): CPU(0) << RUNNING
+> CPU(0) << RUNNING
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(queue_extract:34): queue -> status != 0 failed.
+> <1>(scheduler_elect:85): thread == NULL failed.
+> <1>(scheduler_switch:54): (1) pthread_0 -> IdleThread
+> succ  save switch [1]
+> <0>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <1>(scheduler_switch:108): CPU(1) >> READY
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> CPU(1) >>READY
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#1)
+> <0>(semaphore_release:74): 1 tokens on ID(41:40) TOKEN(0)
+> <0>(scheduler_dispatch:84): (0) pthread_0 => CPU(1)
+> <1>(ipi_handler:59): 1 DISPATCH pthread_0
+> <0>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <1>(scheduler_switch:54): (1) IdleThread -> pthread_0
+> succ  save switch [1]
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(scheduler_switch:96): CPU(1) << RUNNING
+> CPU(1) << RUNNING
+> <1>(queue_extract:34): queue -> status != 0 failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#1)
+> <1>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#1)
+> <0>(semaphore_acquire:115): Main(#1), 41:40(#0)
+> <0>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <0>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#0)
+> <0>(semaphore_acquire:115): Main(#1), 41:40(#0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_release:74<)0:> (1q uteoukee_nrse mo:n2 7I)D:( 4q1u:e4u0e)  -T>O KsEtNa(t0u)s 
+> != 0 failed.
+> <0>(scheduler_elect:85): thread == NULL failed.
+> <0>(scheduler_switch:54): (0) Main -> IdleThread
+> succ  save switch [0]
+> <0>(scheduler_switch:108): CPU(0) >> READY
+> CPU(0) >>READY
+> <1>(scheduler_dispatch:84): (1) Main => CPU(0)
+> <0>(ipi_handler:59): 0 DISPATCH Main
+> <1>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <0>(scheduler_switch:54): (0) IdleThread -> Main
+> succ  save switch [0]
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(scheduler_switch:96): CPU(0) << RUNNING
+> CPU(0) << RUNNING
+> <0>(queue_extract:34): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#1)
+> <0>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#1)
+> <1>(semaphore_acquire:115): pthread_0(#1), 41:40(#0)
+> <1>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <1>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#0)
+> <1>(semaphore_acquire:115): pthread_0(#1), 41:40(#0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_release:74)<:1 >1( qtuoekueen_sr eomn: 2I7D)(:4 1q:u4e0u)e  T-O>K EsNt(a0t)us
+>  != 0 failed.
+> <1>(scheduler_elect:85): thread == NULL failed.
+> <1>(scheduler_switch:54): (1) pthread_0 -> IdleThread
+> succ  save switch [1]
+> <1>(scheduler_switch:108): CPU(1) >> READY
+> CPU(1) >>READY
+> <0>(scheduler_dispatch:84): (0) pthread_0 => CPU(1)
+> <1>(ipi_handler:59): 1 DISPATCH pthread_0
+> <0>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <1>(scheduler_switch:54): (1) IdleThread -> pthread_0
+> succ  save switch [1]
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(scheduler_switch:96): CPU(1) << RUNNING
+> CPU(1) << RUNNING
+> <1>(queue_extract:34): queue -> status != 0 failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#1)
+> <1>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 38:37(#1)
+> <0>(semaphore_release:74): 1 tokens on ID(38:37) TOKEN(0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#1)
+> <1>(semaphore_acquire:115): pthread_0(#1), 38:37(#1)
+> <0>(semaphore_acquire:115): Main(#1), 41:40(#0)
+> <0>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <1>(semaphore_release:74): 1 tokens on ID(38:37) TOKEN(0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#0)
+> <0>(semaphore_acquire:115): Main(#1), 41:40(#0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_release:74<)0:> (1q uteoukee_nrse mo:n2 7I)D:( 4q1u:e4u0e)  -T>O KsEtNa(t0u)s 
+> != 0 failed.
+> <0>(scheduler_elect:85): thread == NULL failed.
+> <0>(scheduler_switch:54): (0) Main -> IdleThread
+> succ  save switch [0]
+> <0>(scheduler_switch:108): CPU(0) >> READY
+> CPU(0) >>READY
+> <1>(scheduler_dispatch:84): (1) Main => CPU(0)
+> <0>(ipi_handler:59): 0 DISPATCH Main
+> <1>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <0>(scheduler_switch:54): (0) IdleThread -> Main
+> succ  save switch [0]
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(scheduler_switch:96): CPU(0) << RUNNING
+> CPU(0) << RUNNING
+> <0>(queue_extract:34): queue -> status != 0 failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#1)
+> <1>(semaphore_acquire:115): pthread_0(#1), 41:40(#0)
+> <1>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_release:74)<:0 >1( qtuoekueen_sr eomn: 2I7D)(:4 0q:u3e9u)e  T-O>K EsNt(a0t)us
+>  != 0 failed.
+> <0>(scheduler_elect:85): thread == NULL failed.
+> <0>(scheduler_switch:54): (0) Main -> IdleThread
+> succ  save switch [0]
+> <0>(scheduler_switch:108): CPU(0) >> READY
+> CPU(0) >>READY
+> <1>(scheduler_dispatch:84): (1) Main => CPU(0)
+> <0>(ipi_handler:59): 0 DISPATCH Main
+> <1>(semaphore_ac<q0u>i(rsec:h1e1d5u)l:e rp_tshwrietacdh_:05(4#)1:) ,( 04)1 :I4d0l(e#T0h)re
+> ad -> Main
+> succ  save switch [0]
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(scheduler_switch:96): CPU(0) << RUNNING
+> CPU(0) << RUNNING
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(queue_extract:34): queue -> status != 0 failed.
+> <1>(scheduler_elect:85): thread == NULL failed.
+> <1>(scheduler_switch:54): (1) pthread_0 -> IdleThread
+> succ  save switch [1]
+> <0>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <1>(scheduler_switch:108): CPU(1) >> READY
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> CPU(1) >>READY
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#1)
+> <0>(semaphore_release:74): 1 tokens on ID(41:40) TOKEN(0)
+> <0>(scheduler_dispatch:84): (0) pthread_0 => CPU(1)
+> <1>(ipi_handler:59): 1 DISPATCH pthread_0
+> <0>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <1>(scheduler_switch:54): (1) IdleThread -> pthread_0
+> succ  save switch [1]
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(scheduler_switch:96): CPU(1) << RUNNING
+> CPU(1) << RUNNING
+> <1>(queue_extract:34): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#1)
+> <0>(semaphore_acquire:115): Main(#1), 41:40(#0)
+> <0>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_release:74)<:1 >1( qtuoekueen_sr eomn: 2I7D)(:4 0q:u3e9u)e  T-O>K EsNt(a0t)us
+>  != 0 failed.
+> <1>(scheduler_elect:85): thread == NULL failed.
+> <1>(scheduler_switch:54): (1) pthread_0 -> IdleThread
+> succ  save switch [1]
+> <1>(scheduler_switch:108): CPU(1) >> READY
+> CPU(1) >>READY
+> <0>(scheduler_dispatch:84): (0) pthread_0 => CPU(1)
+> <1>(ipi_handler:59): 1 DISPATCH pthread_0
+> <0>(semaphore_acquire:115): Main(#1), 41<:14>0((s#c0h)ed
+> uler_switch:54): (1) IdleThread -> pthread_0
+> succ  save switch [1]
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(scheduler_switch:96): CPU(1) << RUNNING
+> CPU(1) <<<0 >R(UqNuNeIuNeG_
+> rem:27): queue -> status != 0 failed.
+> <1>(queue_extract:34): queue -> s<t0a>t(ussc h!e=d u0l efra_ielleedc.t:
+> 85): thread == NULL failed.
+> <0>(scheduler_switch:54): (0) Main -> IdleThread
+> succ  save switch [0]
+> <1>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <0>(scheduler_switch:108): CPU(0) >> READY
+> <1>(queue_rem:27): queue -> status != 0 faileCdP.U(
+> 0) >>READY
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#1)
+> <1>(semaphore_release:74): 1 tokens on ID(41:40) TOKEN(0)
+> <1>(scheduler_dispatch:84): (1) Main => CPU(0)
+> <0>(ipi_handler:59): 0 DISPATCH Main
+> <1>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <0>(scheduler_switch:54): (0) IdleThread -> Main
+> succ  save switch [0]
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(scheduler_switch:96): CPU(0) << RUNNING
+> CPU(0) << RUNNING
+> <0>(queue_extract:34): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#1)
+> <0>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#1)
+> <1>(semaphore_acquire:115): pthread_0(#1), 41:40(#0)
+> <1>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <1>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#0)
+> <1>(semaphore_acquire:115): pthread_0(#1), 41:40(#0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_release:74)<:1 >1( qtuoekueen_sr eomn: 2I7D)(:4 1q:u4e0u)e  T-O>K EsNt(a0t)us
+>  != 0 failed.
+> <1>(scheduler_elect:85): thread == NULL failed.
+> <1>(scheduler_switch:54): (1) pthread_0 -> IdleThread
+> succ  save switch [1]
+> <1>(scheduler_switch:108): CPU(1) >> READY
+> CPU(1) >>READY
+> <0>(scheduler_dispatch:84): (0) pthread_0 => CPU(1)
+> <1>(ipi_handler:59): 1 DISPATCH pthread_0
+> <0>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <1>(scheduler_switch:54): (1) IdleThread -> pthread_0
+> succ  save switch [1]
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(scheduler_switch:96): CPU(1) << RUNNING
+> CPU(1) << RUNNING
+> <1>(queue_extract:34): queue -> status != 0 failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#1)
+> <1>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 38:37(#1)
+> <0>(semaphore_release:74): 1 tokens on ID(38:37) TOKEN(0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#1)
+> <1>(semaphore_acquire:115): pthread_0(#1), 38:37(#1)
+> <0>(semaphore_acquire:115): Main(#1), 41:40(#0)
+> <0>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <1>(semaphore_release:74): 1 tokens on ID(38:37) TOKEN(0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#0)
+> <0>(semaphore_acquire:115): Main(#1), 41:40(#0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_release:74<)0:> (1q uteoukee_nrse mo:n2 7I)D:( 4q1u:e4u0e)  -T>O KsEtNa(t0u)s 
+> != 0 failed.
+> <0>(scheduler_elect:85): thread == NULL failed.
+> <0>(scheduler_switch:54): (0) Main -> IdleThread
+> succ  save switch [0]
+> <0>(scheduler_switch:108): CPU(0) >> READY
+> CPU(0) >>READY
+> <1>(scheduler_dispatch:84): (1) Main => CPU(0)
+> <0>(ipi_handler:59): 0 DISPATCH Main
+> <1>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <0>(scheduler_switch:54): (0) IdleThread -> Main
+> succ  save switch [0]
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(scheduler_switch:96): CPU(0) << RUNNING
+> CPU(0) << RUNNING
+> <0>(queue_extract:34): queue -> status != 0 failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#1)
+> <1>(semaphore_acquire:115): pthread_0(#1), 41:40(#0)
+> <1>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_release:74)<:0 >1( qtuoekueen_sr eomn: 2I7D)(:4 0q:u3e9u)e  T-O>K EsNt(a0t)us
+>  != 0 failed.
+> <0>(scheduler_elect:85): thread == NULL failed.
+> <0>(scheduler_switch:54): (0) Main -> IdleThread
+> succ  save switch [0]
+> <0>(scheduler_switch:108): CPU(0) >> READY
+> CPU(0) >>READY
+> <1>(scheduler_dispatch:84): (1) Main => CPU(0)
+> <0>(ipi_handler:59): 0 DISPATCH Main
+> <1>(semaphore_ac<q0u>i(rsec:h1e1d5u)l:e rp_tshwrietacdh_:05(4#)1:) ,( 04)1 :I4d0l(e#T0h)re
+> ad -> Main
+> succ  save switch [0]
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(scheduler_switch:96): CPU(0) << RUNNING
+> CPU(0) << RUNNING
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(queue_extract:34): queue -> status != 0 failed.
+> <1>(scheduler_elect:85): thread == NULL failed.
+> <1>(scheduler_switch:54): (1) pthread_0 -> IdleThread
+> succ  save switch [1]
+> <0>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <1>(scheduler_switch:108): CPU(1) >> READY
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> CPU(1) >>READY
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#1)
+> <0>(semaphore_release:74): 1 tokens on ID(41:40) TOKEN(0)
+> <0>(scheduler_dispatch:84): (0) pthread_0 => CPU(1)
+> <1>(ipi_handler:59): 1 DISPATCH pthread_0
+> <0>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <1>(scheduler_switch:54): (1) IdleThread -> pthread_0
+> succ  save switch [1]
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(scheduler_switch:96): CPU(1) << RUNNING
+> CPU(1) << RUNNING
+> <1>(queue_extract:34): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#1)
+> <0>(semaphore_acquire:115): Main(#1), 41:40(#0)
+> <0>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_release:74)<:1 >1( qtuoekueen_sr eomn: 2I7D)(:4 0q:u3e9u)e  T-O>K EsNt(a0t)us
+>  != 0 failed.
+> <1>(scheduler_elect:85): thread == NULL failed.
+> <1>(scheduler_switch:54): (1) pthread_0 -> IdleThread
+> succ  save switch [1]
+> <1>(scheduler_switch:108): CPU(1) >> READY
+> CPU(1) >>READY
+> <0>(scheduler_dispatch:84): (0) pthread_0 => CPU(1)
+> <1>(ipi_handler:59): 1 DISPATCH pthread_0
+> <0>(semaphore_acquire:115): Main(#1), 41<:14>0((s#c0h)ed
+> uler_switch:54): (1) IdleThread -> pthread_0
+> succ  save switch [1]
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(scheduler_switch:96): CPU(1) << RUNNING
+> CPU(1) <<<0 >R(UqNuNeIuNeG_
+> rem:27): queue -> status != 0 failed.
+> <1>(queue_extract:34): queue -> s<t0a>t(ussc h!e=d u0l efra_ielleedc.t:
+> 85): thread == NULL failed.
+> <0>(scheduler_switch:54): (0) Main -> IdleThread
+> succ  save switch [0]
+> <1>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <0>(scheduler_switch:108): CPU(0) >> READY
+> <1>(queue_rem:27): queue -> status != 0 faileCdP.U(
+> 0) >>READY
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#1)
+> <1>(semaphore_release:74): 1 tokens on ID(41:40) TOKEN(0)
+> <1>(scheduler_dispatch:84): (1) Main => CPU(0)
+> <0>(ipi_handler:59): 0 DISPATCH Main
+> <1>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <0>(scheduler_switch:54): (0) IdleThread -> Main
+> succ  save switch [0]
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(scheduler_switch:96): CPU(0) << RUNNING
+> CPU(0) << RUNNING
+> <0>(queue_extract:34): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#1)
+> <0>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#1)
+> <1>(semaphore_acquire:115): pthread_0(#1), 41:40(#0)
+> <1>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <1>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#0)
+> <1>(semaphore_acquire:115): pthread_0(#1), 41:40(#0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_release:74)<:1 >1( qtuoekueen_sr eomn: 2I7D)(:4 1q:u4e0u)e  T-O>K EsNt(a0t)us
+>  != 0 failed.
+> <1>(scheduler_elect:85): thread == NULL failed.
+> <1>(scheduler_switch:54): (1) pthread_0 -> IdleThread
+> succ  save switch [1]
+> <1>(scheduler_switch:108): CPU(1) >> READY
+> CPU(1) >>READY
+> <0>(scheduler_dispatch:84): (0) pthread_0 => CPU(1)
+> <1>(ipi_handler:59): 1 DISPATCH pthread_0
+> <0>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <1>(scheduler_switch:54): (1) IdleThread -> pthread_0
+> succ  save switch [1]
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(scheduler_switch:96): CPU(1) << RUNNING
+> CPU(1) << RUNNING
+> <1>(queue_extract:34): queue -> status != 0 failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#1)
+> <1>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 38:37(#1)
+> <0>(semaphore_release:74): 1 tokens on ID(38:37) TOKEN(0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#1)
+> <1>(semaphore_acquire:115): pthread_0(#1), 38:37(#1)
+> <0>(semaphore_acquire:115): Main(#1), 41:40(#0)
+> <0>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <1>(semaphore_release:74): 1 tokens on ID(38:37) TOKEN(0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#0)
+> <0>(semaphore_acquire:115): Main(#1), 41:40(#0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_release:74<)0:> (1q uteoukee_nrse mo:n2 7I)D:( 4q1u:e4u0e)  -T>O KsEtNa(t0u)s 
+> != 0 failed.
+> <0>(scheduler_elect:85): thread == NULL failed.
+> <0>(scheduler_switch:54): (0) Main -> IdleThread
+> succ  save switch [0]
+> <0>(scheduler_switch:108): CPU(0) >> READY
+> CPU(0) >>READY
+> <1>(scheduler_dispatch:84): (1) Main => CPU(0)
+> <0>(ipi_handler:59): 0 DISPATCH Main
+> <1>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <0>(scheduler_switch:54): (0) IdleThread -> Main
+> succ  save switch [0]
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(scheduler_switch:96): CPU(0) << RUNNING
+> CPU(0) << RUNNING
+> <0>(queue_extract:34): queue -> status != 0 failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#1)
+> <1>(semaphore_acquire:115): pthread_0(#1), 41:40(#0)
+> <1>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_release:74)<:0 >1( qtuoekueen_sr eomn: 2I7D)(:4 0q:u3e9u)e  T-O>K EsNt(a0t)us
+>  != 0 failed.
+> <0>(scheduler_elect:85): thread == NULL failed.
+> <0>(scheduler_switch:54): (0) Main -> IdleThread
+> succ  save switch [0]
+> <0>(scheduler_switch:108): CPU(0) >> READY
+> CPU(0) >>READY
+> <1>(scheduler_dispatch:84): (1) Main => CPU(0)
+> <0>(ipi_handler:59): 0 DISPATCH Main
+> <1>(semaphore_ac<q0u>i(rsec:h1e1d5u)l:e rp_tshwrietacdh_:05(4#)1:) ,( 04)1 :I4d0l(e#T0h)re
+> ad -> Main
+> succ  save switch [0]
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(scheduler_switch:96): CPU(0) << RUNNING
+> CPU(0) << RUNNING
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(queue_extract:34): queue -> status != 0 failed.
+> <1>(scheduler_elect:85): thread == NULL failed.
+> <1>(scheduler_switch:54): (1) pthread_0 -> IdleThread
+> succ  save switch [1]
+> <0>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <1>(scheduler_switch:108): CPU(1) >> READY
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> CPU(1) >>READY
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#1)
+> <0>(semaphore_release:74): 1 tokens on ID(41:40) TOKEN(0)
+> <0>(scheduler_dispatch:84): (0) pthread_0 => CPU(1)
+> <1>(ipi_handler:59): 1 DISPATCH pthread_0
+> <0>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <1>(scheduler_switch:54): (1) IdleThread -> pthread_0
+> succ  save switch [1]
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(scheduler_switch:96): CPU(1) << RUNNING
+> CPU(1) << RUNNING
+> <1>(queue_extract:34): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#1)
+> <0>(semaphore_acquire:115): Main(#1), 41:40(#0)
+> <0>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_release:74)<:1 >1( qtuoekueen_sr eomn: 2I7D)(:4 0q:u3e9u)e  T-O>K EsNt(a0t)us
+>  != 0 failed.
+> <1>(scheduler_elect:85): thread == NULL failed.
+> <1>(scheduler_switch:54): (1) pthread_0 -> IdleThread
+> succ  save switch [1]
+> <1>(scheduler_switch:108): CPU(1) >> READY
+> CPU(1) >>READY
+> <0>(scheduler_dispatch:84): (0) pthread_0 => CPU(1)
+> <1>(ipi_handler:59): 1 DISPATCH pthread_0
+> <0>(semaphore_acquire:115): Main(#1), 41<:14>0((s#c0h)ed
+> uler_switch:54): (1) IdleThread -> pthread_0
+> succ  save switch [1]
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(scheduler_switch:96): CPU(1) << RUNNING
+> CPU(1) <<<0 >R(UqNuNeIuNeG_
+> rem:27): queue -> status != 0 failed.
+> <1>(queue_extract:34): queue -> s<t0a>t(ussc h!e=d u0l efra_ielleedc.t:
+> 85): thread == NULL failed.
+> <0>(scheduler_switch:54): (0) Main -> IdleThread
+> succ  save switch [0]
+> <1>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <0>(scheduler_switch:108): CPU(0) >> READY
+> <1>(queue_rem:27): queue -> status != 0 faileCdP.U(
+> 0) >>READY
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#1)
+> <1>(semaphore_release:74): 1 tokens on ID(41:40) TOKEN(0)
+> <1>(scheduler_dispatch:84): (1) Main => CPU(0)
+> <0>(ipi_handler:59): 0 DISPATCH Main
+> <1>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <0>(scheduler_switch:54): (0) IdleThread -> Main
+> succ  save switch [0]
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(scheduler_switch:96): CPU(0) << RUNNING
+> CPU(0) << RUNNING
+> <0>(queue_extract:34): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#1)
+> <0>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#1)
+> <1>(semaphore_acquire:115): pthread_0(#1), 41:40(#0)
+> <1>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_release:74)<:0 >1( qtuoekueen_sr eomn: 2I7D)(:4 0q:u3e9u)e  T-O>K EsNt(a0t)us
+>  != 0 failed.
+> <0>(scheduler_elect:85): thread == NULL failed.
+> <0>(scheduler_switch:54): (0) Main -> IdleThread
+> succ  save switch [0]
+> <0>(scheduler_switch:108): CPU(0) >> READY
+> CPU(0) >>READY
+> <1>(scheduler_dispatch:84): (1) Main => CPU(0)
+> <0>(ipi_handler:59): 0 DISPATCH Main
+> <1>(semaphore_ac<q0u>i(rsec:h1e1d5u)l:e rp_tshwrietacdh_:05(4#)1:) ,( 04)1 :I4d0l(e#T0h)re
+> ad -> Main
+> succ  save switch [0]
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(scheduler_switch:96): CPU(0) << RUNNING
+> CPU(0) << RUNNING
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(queue_extract:34): queue -> status != 0 failed.
+> <1>(scheduler_elect:85): thread == NULL failed.
+> <1>(scheduler_switch:54): (1) pthread_0 -> IdleThread
+> succ  save switch [1]
+> <0>(semaphore_release:74): 1 tokens on ID(41:40) TOKEN(0)
+> <1>(scheduler_switch:108): CPU(1) >> READY
+> CPU(1) >>READY
+> <0>(scheduler_dispatch:84): (0) pthread_0 => CPU(1)
+> <1>(ipi_handler:59): 1 DISPATCH pthread_0
+> <0>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <1>(scheduler_switch:54): (1) IdleThread -> pthread_0
+> succ  save switch [1]
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(scheduler_switch:96): CPU(1) << RUNNING
+> CPU(1) << RUNNING
+> <1>(queue_extract:34): queue -> status != 0 failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#1)
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_release:74<)0:> (1q uteoukee_nrse mo:n2 7I)D:( 4q0u:e3u9e)  -T>O KsEtNa(t0u)s 
+> != 0 failed.
+> <0>(scheduler_elect:85): thread == NULL failed.
+> <0>(scheduler_switch:54): (0) Main -> IdleThread
+> succ  save switch [0]
+> <0>(scheduler_switch:108): CPU(0) >> READY
+> CPU(0) >>READY
+> <1>(scheduler_dispatch:84): (1) Main => CPU(0)
+> <0>(ipi_handler:59): 0 DISPATCH Main
+> <0>(scheduler_switch:54): (0) IdleThread -> Main
+> succ  save switch [0]
+> <0>(scheduler_switch:96): CPU(0) << RUNNING
+> CPU(0) << RUNNING
+> <0>(queue_extract:34): queue -> s<t1a>t(usse m!a=p h0o rfea_ialceqdu.ir
+> e:115): pthread_0(#1), 40:39(#0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 41:40(#0)
+> <1>(scheduler_elect:85): thread == NULL failed.
+> <0>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <1>(scheduler_switch:54): (1) pthread_0 -> IdleThread
+> succ  save switch [1]
+> <0>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <1>(scheduler_switch:108): CPU(1) >> READY
+> CPU(1) >>READY
+> <0>(scheduler_dispatch:84): (0) pthread_0 => CPU(1)
+> <1>(ipi_handler:59): 1 DISPATCH pthread_0
+> <0>(semaphore_acquire:115): Main(#1), 41<:14>0((s#c0h)ed
+> uler_switch:54): (1) IdleThread -> pthread_0
+> succ  save switch [1]
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(scheduler_switch:96): CPU(1) << RUNNING
+> CPU(1) <<<0 >R(UqNuNeIuNeG_
+> rem:27): queue -> status != 0 failed.
+> <1>(queue_extract:34): queue -> s<t0a>t(ussc h!e=d u0l efra_ielleedc.t:
+> 85): thread == NULL failed.
+> <0>(scheduler_switch:54): (0) Main -> IdleThread
+> succ  save switch [0]
+> <1>(semaphore_release:74): 1 tokens on ID(41:40) TOKEN(0)
+> <0>(scheduler_switch:108): CPU(0) >> READY
+> CPU(0) >>READY
+> <1>(scheduler_dispatch:84): (1) Main => CPU(0)
+> <0>(ipi_handler:59): 0 DISPATCH Main
+> <1>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <0>(scheduler_switch:54): (0) IdleThread -> Main
+> succ  save switch [0]
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(scheduler_switch:96): CPU(0) << RUNNING
+> CPU(0) << RUNNING
+> <0>(queue_extract:34): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#1)
+> <1>(semaphore_acquire:115): pthread_0(#1), 38:37(#1)
+> <0>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_release:74): 1 tokens on ID(38:37) TOKEN(0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#1)
+> <0>(semaphore_acquire:115): Main(#1), 38:37(#1)
+> <1>(semaphore_acquire:115): pthread_0(#1), 41:40(#0)
+> <1>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <0>(semaphore_release:74): 1 tokens on ID(38:37) TOKEN(0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#0)
+> <1>(semaphore_acquire:115): pthread_0(#1), 41:40(#0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_release:74)<:1 >1( qtuoekueen_sr eomn: 2I7D)(:4 1q:u4e0u)e  T-O>K EsNt(a0t)us
+>  != 0 failed.
+> <1>(scheduler_elect:85): thread == NULL failed.
+> <1>(scheduler_switch:54): (1) pthread_0 -> IdleThread
+> succ  save switch [1]
+> <1>(scheduler_switch:108): CPU(1) >> READY
+> CPU(1) >>READY
+> <0>(scheduler_dispatch:84): (0) pthread_0 => CPU(1)
+> <1>(ipi_handler:59): 1 DISPATCH pthread_0
+> <0>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <1>(scheduler_switch:54): (1) IdleThread -> pthread_0
+> succ  save switch [1]
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(scheduler_switch:96): CPU(1) << RUNNING
+> CPU(1) << RUNNING
+> <1>(queue_extract:34): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#1)
+> <0>(semaphore_acquire:115): Main(#1), 41:40(#0)
+> <0>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_release:74)<:1 >1( qtuoekueen_sr eomn: 2I7D)(:4 0q:u3e9u)e  T-O>K EsNt(a0t)us
+>  != 0 failed.
+> <1>(scheduler_elect:85): thread == NULL failed.
+> <1>(scheduler_switch:54): (1) pthread_0 -> IdleThread
+> succ  save switch [1]
+> <1>(scheduler_switch:108): CPU(1) >> READY
+> CPU(1) >>READY
+> <0>(scheduler_dispatch:84): (0) pthread_0 => CPU(1)
+> <1>(ipi_handler:59): 1 DISPATCH pthread_0
+> <0>(semaphore_acquire:115): Main(#1), 41<:14>0((s#c0h)ed
+> uler_switch:54): (1) IdleThread -> pthread_0
+> succ  save switch [1]
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(scheduler_switch:96): CPU(1) << RUNNING
+> CPU(1) <<<0 >R(UqNuNeIuNeG_
+> rem:27): queue -> status != 0 failed.
+> <1>(queue_extract:34): queue -> s<t0a>t(ussc h!e=d u0l efra_ielleedc.t:
+> 85): thread == NULL failed.
+> <0>(scheduler_switch:54): (0) Main -> IdleThread
+> succ  save switch [0]
+> <1>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <0>(scheduler_switch:108): CPU(0) >> READY
+> <1>(queue_rem:27): queue -> status != 0 faileCdP.U(
+> 0) >>READY
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#1)
+> <1>(semaphore_release:74): 1 tokens on ID(41:40) TOKEN(0)
+> <1>(scheduler_dispatch:84): (1) Main => CPU(0)
+> <0>(ipi_handler:59): 0 DISPATCH Main
+> <1>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <0>(scheduler_switch:54): (0) IdleThread -> Main
+> succ  save switch [0]
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(scheduler_switch:96): CPU(0) << RUNNING
+> CPU(0) << RUNNING
+> <0>(queue_extract:34): queue -> status != 0 failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#1)
+> <1>(semaphore_acquire:115): pthread_0(#1), 41:40(#0)
+> <1>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_release:74)<:0 >1( qtuoekueen_sr eomn: 2I7D)(:4 0q:u3e9u)e  T-O>K EsNt(a0t)us
+>  != 0 failed.
+> <0>(scheduler_elect:85): thread == NULL failed.
+> <0>(scheduler_switch:54): (0) Main -> IdleThread
+> succ  save switch [0]
+> <0>(scheduler_switch:108): CPU(0) >> READY
+> CPU(0) >>READY
+> <1>(scheduler_dispatch:84): (1) Main => CPU(0)
+> <0>(ipi_handler:59): 0 DISPATCH Main
+> <1>(semaphore_ac<q0u>i(rsec:h1e1d5u)l:e rp_tshwrietacdh_:05(4#)1:) ,( 04)1 :I4d0l(e#T0h)re
+> ad -> Main
+> succ  save switch [0]
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(scheduler_switch:96): CPU(0) << RUNNING
+> CPU(0) << RUNNING
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(queue_extract:34): queue -> status != 0 failed.
+> <1>(scheduler_elect:85): thread == NULL failed.
+> <1>(scheduler_switch:54): (1) pthread_0 -> IdleThread
+> succ  save switch [1]
+> <0>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <1>(scheduler_switch:108): CPU(1) >> READY
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> CPU(1) >>READY
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#1)
+> <0>(semaphore_release:74): 1 tokens on ID(41:40) TOKEN(0)
+> <0>(scheduler_dispatch:84): (0) pthread_0 => CPU(1)
+> <1>(ipi_handler:59): 1 DISPATCH pthread_0
+> <0>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <1>(scheduler_switch:54): (1) IdleThread -> pthread_0
+> succ  save switch [1]
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(scheduler_switch:96): CPU(1) << RUNNING
+> CPU(1) << RUNNING
+> <1>(queue_extract:34): queue -> status != 0 failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#1)
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_release:74<)0:> (1q uteoukee_nrse mo:n2 7I)D:( 4q0u:e3u9e)  -T>O KsEtNa(t0u)s 
+> != 0 failed.
+> <0>(scheduler_elect:85): thread == NULL failed.
+> <0>(scheduler_switch:54): (0) Main -> IdleThread
+> succ  save switch [0]
+> <0>(scheduler_switch:108): CPU(0) >> READY
+> CPU(0) >>READY
+> <1>(scheduler_dispatch:84): (1) Main => CPU(0)
+> <0>(ipi_handler:59): 0 DISPATCH Main
+> <0>(scheduler_switch:54): (0) IdleThread -> Main
+> succ  save switch [0]
+> <0>(scheduler_switch:96): CPU(0) << RUNNING
+> CPU(0) << RUNNING
+> <0>(queue_extract:34): queue -> status != 0 failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 41:40(#0)
+> <1>(scheduler_elect:85): thread == NULL failed.
+> <0>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <1>(scheduler_switch:54): (1) pthread_0 -> IdleThread
+> succ  save switch [1]
+> <0>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <1>(scheduler_switch:108): CPU(1) >> READY
+> CPU(1) >>READY
+> <0>(scheduler_dispatch:84): (0) pthread_0 => CPU(1)
+> <1>(ipi_handler:59): 1 DISPATCH pthread_0
+> <0>(semaphore_acquire:115): Main(#1), 41<:14>0((s#c0h)ed
+> uler_switch:54): (1) IdleThread -> pthread_0
+> succ  save switch [1]
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(scheduler_switch:96): CPU(1) << RUNNING
+> CPU(1) <<<0 >R(UqNuNeIuNeG_
+> rem:27): queue -> status != 0 failed.
+> <1>(queue_extract:34): queue -> s<t0a>t(ussc h!e=d u0l efra_ielleedc.t:
+> 85): thread == NULL failed.
+> <0>(scheduler_switch:54): (0) Main -> IdleThread
+> succ  save switch [0]
+> <1>(semaphore_release:74): 1 tokens on ID(41:40) TOKEN(0)
+> <0>(scheduler_switch:108): CPU(0) >> READY
+> CPU(0) >>READY
+> <1>(scheduler_dispatch:84): (1) Main => CPU(0)
+> <0>(ipi_handler:59): 0 DISPATCH Main
+> <1>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <0>(scheduler_switch:54): (0) IdleThread -> Main
+> succ  save switch [0]
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(scheduler_switch:96): CPU(0) << RUNNING
+> CPU(0) << RUNNING
+> <0>(queue_extract:34): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#1)
+> <1>(semaphore_acquire:115): pthread_0(#1), 38:37(#1)
+> <0>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_release:74): 1 tokens on ID(38:37) TOKEN(0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#1)
+> <0>(semaphore_acquire:115): Main(#1), 38:37(#1)
+> <1>(semaphore_acquire:115): pthread_0(#1), 41:40(#0)
+> <1>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <0>(semaphore_release:74): 1 tokens on ID(38:37) TOKEN(0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#0)
+> <1>(semaphore_acquire:115): pthread_0(#1), 41:40(#0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_release:74)<:1 >1( qtuoekueen_sr eomn: 2I7D)(:4 1q:u4e0u)e  T-O>K EsNt(a0t)us
+>  != 0 failed.
+> <1>(scheduler_elect:85): thread == NULL failed.
+> <1>(scheduler_switch:54): (1) pthread_0 -> IdleThread
+> succ  save switch [1]
+> <1>(scheduler_switch:108): CPU(1) >> READY
+> CPU(1) >>READY
+> <0>(scheduler_dispatch:84): (0) pthread_0 => CPU(1)
+> <1>(ipi_handler:59): 1 DISPATCH pthread_0
+> <0>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <1>(scheduler_switch:54): (1) IdleThread -> pthread_0
+> succ  save switch [1]
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(scheduler_switch:96): CPU(1) << RUNNING
+> CPU(1) << RUNNING
+> <1>(queue_extract:34): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#1)
+> <0>(semaphore_acquire:115): Main(#1), 41:40(#0)
+> <0>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_release:74)<:1 >1( qtuoekueen_sr eomn: 2I7D)(:4 0q:u3e9u)e  T-O>K EsNt(a0t)us
+>  != 0 failed.
+> <1>(scheduler_elect:85): thread == NULL failed.
+> <1>(scheduler_switch:54): (1) pthread_0 -> IdleThread
+> succ  save switch [1]
+> <1>(scheduler_switch:108): CPU(1) >> READY
+> CPU(1) >>READY
+> <0>(scheduler_dispatch:84): (0) pthread_0 => CPU(1)
+> <1>(ipi_handler:59): 1 DISPATCH pthread_0
+> <0>(semaphore_acquire:115): Main(#1), 41<:14>0((s#c0h)ed
+> uler_switch:54): (1) IdleThread -> pthread_0
+> succ  save switch [1]
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(scheduler_switch:96): CPU(1) << RUNNING
+> CPU(1) <<<0 >R(UqNuNeIuNeG_
+> rem:27): queue -> status != 0 failed.
+> <1>(queue_extract:34): queue -> s<t0a>t(ussc h!e=d u0l efra_ielleedc.t:
+> 85): thread == NULL failed.
+> <0>(scheduler_switch:54): (0) Main -> IdleThread
+> succ  save switch [0]
+> <1>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <0>(scheduler_switch:108): CPU(0) >> READY
+> <1>(queue_rem:27): queue -> status != 0 faileCdP.U(
+> 0) >>READY
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#1)
+> <1>(semaphore_release:74): 1 tokens on ID(41:40) TOKEN(0)
+> <1>(scheduler_dispatch:84): (1) Main => CPU(0)
+> <0>(ipi_handler:59): 0 DISPATCH Main
+> <1>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <0>(scheduler_switch:54): (0) IdleThread -> Main
+> succ  save switch [0]
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(scheduler_switch:96): CPU(0) << RUNNING
+> CPU(0) << RUNNING
+> <0>(queue_extract:34): queue -> status != 0 failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#1)
+1380a5035,5049
+> <1>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_release:74)<:0 >1( qtuoekueen_sr eomn: 2I7D)(:4 0q:u3e9u)e  T-O>K EsNt(a0t)us
+>  != 0 failed.
+> <0>(scheduler_elect:85): thread == NULL failed.
+> <0>(scheduler_switch:54): (0) Main -> IdleThread
+> succ  save switch [0]
+> <0>(scheduler_switch:108): CPU(0) >> READY
+> CPU(0) >>READY
+> <1>(scheduler_dispatch:84): (1) Main => CPU(0)
+> <0>(ipi_handler:59): 0 DISPATCH Main
+> <1>(semaphore_ac<q0u>i(rsec:h1e1d5u)l:e rp_tshwrietacdh_:05(4#)1:) ,( 04)1 :I4d0l(e#T0h)re
+> ad -> Main
+> succ  save switch [0]
+1381a5051,5052
+> <0>(scheduler_switch:96): CPU(0) << RUNNING
+> CPU(0) << RUNNING
+1382a5054
+> <0>(queue_extract:34): queue -> status != 0 failed.
+1385a5058
+> <0>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+1386a5060
+> <0>(queue_rem:27): queue -> status != 0 failed.
+1387a5062,5097
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#1)
+> <0>(semaphore_release:74): 1 tokens on ID(41:40) TOKEN(0)
+> <0>(scheduler_dispatch:84): (0) pthread_0 => CPU(1)
+> <1>(ipi_handler:59): 1 DISPATCH pthread_0
+> <0>(semaphore_release:74): 1 tokens on ID(40:39) TOKEN(0)
+> <1>(scheduler_switch:54): (1) IdleThread -> pthread_0
+> succ  save switch [1]
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(scheduler_switch:96): CPU(1) << RUNNING
+> CPU(1) << RUNNING
+> <1>(queue_extract:34): queue -> status != 0 failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#1)
+> <0>(semaphore_acquire:115): Main(#1), 40:39(#0)
+> <0>(queue_rem:27): queue -> status != 0 failed.
+> <1>(semaphore_release:74<)0:> (1q uteoukee_nrse mo:n2 7I)D:( 4q0u:e3u9e)  -T>O KsEtNa(t0u)s 
+> != 0 failed.
+> <0>(scheduler_elect:85): thread == NULL failed.
+> <0>(scheduler_switch:54): (0) Main -> IdleThread
+> succ  save switch [0]
+> <0>(scheduler_switch:108): CPU(0) >> READY
+> CPU(0) >>READY
+> <1>(scheduler_dispatch:84): (1) Main => CPU(0)
+> <0>(ipi_handler:59): 0 DISPATCH Main
+> <0>(scheduler_switch:54): (0) IdleThread -> Main
+> succ  save switch [0]
+> <0>(scheduler_switch:96): CPU(0) << RUNNING
+> CPU(0) << RUNNING
+> <0>(queue_extract:34): queue -> status != 0 failed.
+> <1>(semaphore_acquire:115): pthread_0(#1), 40:39(#0)
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <1>(queue_rem:27): queue -> status != 0 failed.
+> <0>(semaphore_acquire:115): Main(#1), 41:40(#0)
+> <1>(scheduler_elect:85): thread == NULL failed.
+> <0>(semaphore_acquire:141): (! has_alarm) || (has_alarm && timeout != 0) failed.
+> <1>(scheduler_switch:54): (1) pthread_0 -> IdleThread
+> succ  save switch [1]

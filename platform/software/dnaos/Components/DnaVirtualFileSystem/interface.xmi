@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<APES:Interface
+  xmlns:xmi="http://www.omg.org/XMI"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:APES="http://www.ocm.org/APES"
+  xsi:schemaLocation="http://www.ocm.org/APES APESInterface.ecore"
+  author="xavier.guerin@imag.fr"
+  unique="true"
+  wrapper="false">
+
+  <id name="DnaVirtualFileSystem" version="1.0"/>
+
+  <provide>
+
+    <context name="LifeCycle">
+      <method name="vfs_create" result="status_t"/>
+      <method name="vfs_destroy" result="status_t"/>
+      <method name="vfs_start" result="status_t"/>
+      <method name="vfs_stop" result="status_t"/>
+    </context>
+
+    <context name="VNode">
+      <method name="vnode_create" result="status_t">
+        <argument name="vnid" type="int64_t" direction="In"/>
+        <argument name="vid" type="int32_t" direction="In"/>
+        <argument name="data" type="access" direction="In"/>
+      </method>
+
+      <method name="vnode_destroy" result="status_t">
+        <argument name="vid" type="int32_t" direction="In"/>
+        <argument name="vnid" type="int64_t" direction="In"/>
+      </method>
+
+      <method name="vnode_get" result="status_t">
+        <argument name="vid" type="int32_t" direction="In"/>
+        <argument name="vnid" type="int64_t" direction="In"/>
+        <argument name="data" type="access" direction="In"/>
+      </method>
+
+      <method name="vnode_put" result="status_t">
+        <argument name="vid" type="int32_t" direction="In"/>
+        <argument name="vnid" type="int64_t" direction="In"/>
+      </method>
+    </context>
+
+    <context name="Operations">
+      <type name="directory_entry_t"/>
+      <type name="file_info_t"/>
+      <type name="file_type_t"/>
+
+      <definition name="DNA_SEEK_SET"/>
+      <definition name="DNA_SEEK_FROM_CURRENT"/>
+      <definition name="DNA_SEEK_FROM_END"/>
+      <definition name="DNA_READ_ONLY"/>
+      <definition name="DNA_WRITE_ONLY"/>
+      <definition name="DNA_READ_WRITE"/>
+      <definition name="DNA_APPEND"/>
+      <definition name="DNA_CREATE"/>
+      <definition name="DNA_TRUNCATE"/>
+      <definition name="DNA_FAIL_IF_EXIST"/>
+      <definition name="DNA_NON_BLOCKING"/>
+
+      <method name="vfs_mount" result="status_t">
+        <argument name="source" type="string" direction="In"/>
+        <argument name="target" type="string" direction="In"/>
+        <argument name="fs_type" type="string" direction="In"/>
+        <argument name="flags" type="uint32_t" direction="In"/>
+        <argument name="data" type="access" direction="In"/>
+      </method>
+
+      <method name="vfs_umount" result="status_t">
+        <argument name="target" type="string" direction="In"/>
+      </method>
+
+      <method name="vfs_open" result="status_t">
+        <argument name="path" type="string" direction="In"/>
+        <argument name="mode" type="int32_t" direction="In"/>
+        <argument name="perms" type="int32_t" direction="In"/>
+        <argument name="p_fd" type="int16_t" direction="Out"/>
+      </method>
+
+      <method name="vfs_close" result="status_t">
+        <argument name="fd" type="int16_t" direction="In"/>
+      </method>
+
+      <method name="vfs_mkdir" result="status_t">
+        <argument name="path" type="string" direction="In"/>
+        <argument name="mode" type="int32_t" direction="In"/>
+      </method>
+
+      <method name="vfs_readdir" result="status_t">
+        <argument name="fd" type="string" direction="In"/>
+        <argument name="entry_array" type="array of directory_entry_t" direction="Out"/>
+        <argument name="count" type="string" direction="In"/>
+        <argument name="p_res" type="int32_t" direction="Out"/>
+      </method>
+
+      <method name="vfs_read" result="status_t">
+        <argument name="fd" type="int16_t" direction="In"/>
+        <argument name="data" type="access" direction="In"/>
+        <argument name="count" type="int32_t" direction="In"/>
+        <argument name="p_ret" type="int32_t" direction="Out"/>
+      </method>
+
+      <method name="vfs_write" result="status_t">
+        <argument name="fd" type="int16_t" direction="In"/>
+        <argument name="data" type="access" direction="In"/>
+        <argument name="count" type="int32_t" direction="In"/>
+        <argument name="p_ret" type="int32_t" direction="Out"/>
+      </method>
+
+      <method name="vfs_lseek" result="status_t">
+        <argument name="fd" type="int16_t" direction="In"/>
+        <argument name="offset" type="int64_t" direction="In"/>
+        <argument name="whence" type="int32_t" direction="In"/>
+        <argument name="p_offset" type="int64_t" direction="Out"/>
+      </method>
+
+      <method name="vfs_ioctl" result="status_t">
+        <argument name="fd" type="int16_t" direction="In"/>
+        <argument name="function" type="int32_t" direction="In"/>
+        <argument name="arguments" type="access" direction="In"/>
+        <argument name="retval" type="int32_t" direction="Out"/>
+      </method>
+
+      <method name="vfs_get_info" result="status_t">
+        <argument name="fd" type="int16_t" direction="In"/>
+        <argument name="p_info" type="file_info_t" direction="Out"/>
+      </method>
+
+      <method name="vfs_set_info" result="status_t">
+        <argument name="fd" type="int16_t" direction="In"/>
+        <argument name="info" type="file_info_t" direction="In"/>
+        <argument name="mask" type="int32_t" direction="In"/>
+      </method>
+    </context>
+  </provide>
+
+  <require>
+    <type name="component_t"/>
+    <type name="interrupt_status_t"/>
+    <type name="spinlock_t"/>
+
+    <method name="cpu_trap_mask_and_backup" result="interrupt_status_t"/>
+
+    <method name="cpu_trap_restore" result="">
+      <argument name="status" type="interrupt_status_t" direction="In"/>
+    </method>
+
+    <method name="lock_acquire" result="void">
+      <argument name="lock" type="spinlock_t" direction="InOut"/>
+    </method>
+
+    <method name="lock_release" result="void">
+      <argument name="lock" type="spinlock_t" direction="InOut"/>
+    </method>
+
+    <method name="kernel_malloc" result="access">
+      <argument name="size" type="int32_t" direction="In"/>
+      <argument name="erase" type="boolean" direction="In"/>
+    </method>
+
+    <method name="kernel_free" result="status_t">
+      <argument name="area" type="access" direction="In"/>
+    </method>
+
+  </require>
+
+</component>

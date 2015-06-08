@@ -1,0 +1,40 @@
+\chapter {Platform Abstraction Layer}
+This API is composed of four parts: \textit {endianness} management and
+multiprocessor management. Its implementations are located in the
+\texttt {pal} directory of the \textit {SSP} root path.
+\skipon
+
+\skipoff
+\section {\textit {Endianness} management}
+This section presents the elements that allow to deal with \textit
+{endianness} at the platform level. In order to guarantee the coherency of
+shared data between two heterogeneous processors of a same hardware platform, an
+\textit {endianness} property is associated to the platform. It corresponds to
+the "official" structure of the shared data of the platform.
+\skipon
+
+\definition{PLATFORM\_IS\_LITTLE\_ENDIAN}
+
+This definition specifies that all shared data is of type
+\textit {little endian}.
+
+\definition{PLATFORM\_IS\_BIG\_ENDIAN}
+
+This definition specifies that all shared data is of type
+\textit {big endian}. Note that only one of the above definition
+can be used at a time.
+
+\skipoff
+\section {Multiprocessor management}
+This section presents the element that allow to deal with
+multiprocessor systems.
+\skipon
+
+\begin{function}{PLATFORM\_MP\_CPU\_COUNT}{int32}{1}
+	\pin{type}{enumerate}{The processor's type}
+\end{function}
+
+This function returns the number of processors for a specified
+\emph {type}.
+
+

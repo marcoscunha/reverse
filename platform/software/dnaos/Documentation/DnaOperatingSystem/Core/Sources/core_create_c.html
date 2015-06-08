@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1" />
+<link rel="stylesheet" href="../robodoc.css" type="text/css" />
+<title>./Core/Sources/core_create.c</title>
+<!-- Source: ./Core/Sources/core_create.c -->
+</head>
+<body>
+<div id="logo">
+<a name="robo_top_of_doc">DNA-OS Core Component</a>
+</div> <!-- logo -->
+<div id="navigation">
+<a class="menuitem" href="../toc_index.html#top">Table of Contents</a>
+<a class="menuitem" href="../sources.html#top">Source files</a>
+<a class="menuitem" href="../index.html#top">Index Page</a>
+<a class="menuitem" href="../robo_definitions.html#top">Definitions</a>
+<a class="menuitem" href="../robo_functions.html#top">Functions</a>
+<a class="menuitem" href="../robo_modules.html#top">Modules</a>
+<a class="menuitem" href="../robo_types.html#top">Types</a>
+<a class="menuitem" href="../robo_variables.html#top">Variables</a>
+</div> <!-- navigation -->
+<div id="content">
+<hr />
+<a name="FrameworkPrivate2fcore5fcreate"></a>
+<a name="robo31"></a><h2>FrameworkPrivate/core_create [ Functions ]</h2>
+
+<p>[ <a href="#robo_top_of_doc">Top</a> ] [ <a href="../Headers/Private/Framework_h.html#robo8">FrameworkPrivate</a> ] [ <a href="../robo_functions.html#robo_top_of_doc">Functions</a> ]</p>
+<p class="item_name">SUMMARY</p>
+<p> Create the core component.
+</p>
+<p class="item_name">SYNOPSIS</p>
+<pre class="source"><span class="line_number">30 </span>status_t <strong>core_create</strong> <span class="sign">(</span>void<span class="sign">)</span>
+</pre>
+<p class="item_name">FUNCTION</p>
+<ul><li> Initialize the thread pool
+</li>
+<li> Initialize the <a href="./core_variables_c.html#robo51">scheduler</a> manager
+</li>
+<li> Initialize the cpu pool
+</li>
+<li> Initialize the alarm manager
+</li>
+<li> Initialize the semaphore pool
+</li>
+<li> Initialize the IDLE threads
+</li>
+</ul>
+<p>
+ RETURN
+ * DNA_OK: the operation succeeded
+ * !DNA_OK: error creating a
+</p>
+<p class="item_name">SOURCE</p>
+<pre class="source"><span class="line_number"> 48 </span><span class="sign">{</span>
+<span class="line_number"> 49 </span>  status_t status<span class="sign">;</span>
+<span class="line_number"> 50 </span>  <a href="../Headers/Private/Cpu_h.html#robo29">cpu_t</a> <span class="sign">*</span> cpu <span class="sign">=</span> NULL<span class="sign">;</span>
+<span class="line_number"> 51 </span>  void <span class="sign">*</span> area <span class="sign">=</span> NULL<span class="sign">;</span>
+<span class="line_number"> 52 </span>  <a href="../Headers/Private/Thread_h.html#robo95">thread_t</a> thread<span class="sign">;</span>
+<span class="line_number"> 53 </span>  <a href="../Headers/Private/Thread_h.html#robo89">thread_id_t</a> tid<span class="sign">;</span>
+<span class="line_number"> 54 </span>
+<span class="line_number"> 55 </span>  <span class="keyword">watch</span> <span class="sign">(</span>status_t<span class="sign">)</span>
+<span class="line_number"> 56 </span>  <span class="sign">{</span>
+<span class="line_number"> 57 </span>    <span class="comment">/*
+<span class="line_number"> 58 </span>     * Initialize the thread pool
+<span class="line_number"> 59 </span>     */</span>
+<span class="line_number"> 60 </span>
+<span class="line_number"> 61 </span>    dna_memset <span class="sign">(</span><span class="sign">&amp;</span> <a href="./core_variables_c.html#robo91">thread_pool</a><span class="sign">,</span> 0<span class="sign">,</span> sizeof <span class="sign">(</span><a href="../Headers/Private/Thread_h.html#robo92">thread_pool_t</a><span class="sign">)</span><span class="sign">)</span><span class="sign">;</span>
+<span class="line_number"> 62 </span>
+<span class="line_number"> 63 </span>    area <span class="sign">=</span> kernel_malloc <span class="sign">(</span>DNA_MAX_GROUP <span class="sign">*</span> sizeof <span class="sign">(</span><a href="../Headers/Private/Thread_h.html#robo95">thread_t</a> <span class="sign">*</span><span class="sign">)</span><span class="sign">,</span> true<span class="sign">)</span><span class="sign">;</span>
+<span class="line_number"> 64 </span>    <a href="./core_variables_c.html#robo91">thread_pool</a> <span class="sign">.</span> thread <span class="sign">=</span> area<span class="sign">;</span>
+<span class="line_number"> 65 </span>
+<span class="line_number"> 66 </span>    <span class="keyword">for</span> <span class="sign">(</span><span class="keyword">int32_t</span> i <span class="sign">=</span> 0<span class="sign">;</span> i <span class="sign">&lt;</span> DNA_MAX_GROUP<span class="sign">;</span> i <span class="sign">+</span><span class="sign">=</span> 1<span class="sign">)</span>
+<span class="line_number"> 67 </span>    <span class="sign">{</span>
+<span class="line_number"> 68 </span>      area <span class="sign">=</span> kernel_malloc <span class="sign">(</span>DNA_MAX_THREAD <span class="sign">*</span> sizeof <span class="sign">(</span><a href="../Headers/Private/Thread_h.html#robo95">thread_t</a><span class="sign">)</span><span class="sign">,</span> true<span class="sign">)</span><span class="sign">;</span>
+<span class="line_number"> 69 </span>      <a href="./core_variables_c.html#robo91">thread_pool</a> <span class="sign">.</span> thread<span class="sign">[</span>i<span class="sign">]</span> <span class="sign">=</span> area<span class="sign">;</span>
+<span class="line_number"> 70 </span>      <span class="keyword">check</span> <span class="sign">(</span>thread_no_mem<span class="sign">,</span> area <span class="sign">!</span><span class="sign">=</span> NULL<span class="sign">,</span> DNA_OUT_OF_MEM<span class="sign">)</span><span class="sign">;</span>
+<span class="line_number"> 71 </span>    <span class="sign">}</span>
+<span class="line_number"> 72 </span>
+<span class="line_number"> 73 </span>    <span class="comment">/*
+<span class="line_number"> 74 </span>     * Initialize the <a href="./core_variables_c.html#robo51">scheduler</a>
+<span class="line_number"> 75 </span>     */</span>
+<span class="line_number"> 76 </span>
+<span class="line_number"> 77 </span>    dna_memset <span class="sign">(</span><span class="sign">&amp;</span> <a href="./core_variables_c.html#robo51">scheduler</a><span class="sign">,</span> 0<span class="sign">,</span> sizeof <span class="sign">(</span><a href="../Headers/Private/Scheduler_h.html#robo55">scheduler_t</a><span class="sign">)</span><span class="sign">)</span><span class="sign">;</span>
+<span class="line_number"> 78 </span>
+<span class="line_number"> 79 </span>    area <span class="sign">=</span> kernel_malloc <span class="sign">(</span><span class="sign">(</span>DNA_MAX_CPU <span class="sign">+</span> 1<span class="sign">)</span> <span class="sign">*</span> sizeof <span class="sign">(</span>queue_t<span class="sign">)</span><span class="sign">,</span> true<span class="sign">)</span><span class="sign">;</span>
+<span class="line_number"> 80 </span>    <a href="./core_variables_c.html#robo51">scheduler</a> <span class="sign">.</span> queue <span class="sign">=</span> area<span class="sign">;</span>
+<span class="line_number"> 81 </span>    <span class="keyword">check</span> <span class="sign">(</span>sched_no_mem<span class="sign">,</span> area <span class="sign">!</span><span class="sign">=</span> NULL<span class="sign">,</span> DNA_OUT_OF_MEM<span class="sign">)</span><span class="sign">;</span>
+<span class="line_number"> 82 </span>
+<span class="line_number"> 83 </span>    <span class="comment">/*
+<span class="line_number"> 84 </span>     * Initialize the CPU pool
+<span class="line_number"> 85 </span>     */</span>
+<span class="line_number"> 86 </span>
+<span class="line_number"> 87 </span>    dna_memset <span class="sign">(</span><span class="sign">&amp;</span> <a href="./core_variables_c.html#robo26">cpu_pool</a><span class="sign">,</span> 0<span class="sign">,</span> sizeof <span class="sign">(</span><a href="../Headers/Private/Cpu_h.html#robo27">cpu_pool_t</a><span class="sign">)</span><span class="sign">)</span><span class="sign">;</span>
+<span class="line_number"> 88 </span>    area <span class="sign">=</span> kernel_malloc <span class="sign">(</span>DNA_MAX_CPU <span class="sign">*</span> sizeof <span class="sign">(</span><a href="../Headers/Private/Cpu_h.html#robo29">cpu_t</a><span class="sign">)</span><span class="sign">,</span> true<span class="sign">)</span><span class="sign">;</span>
+<span class="line_number"> 89 </span>    <a href="./core_variables_c.html#robo26">cpu_pool</a> <span class="sign">.</span> cpu <span class="sign">=</span> area<span class="sign">;</span>
+<span class="line_number"> 90 </span>    <span class="keyword">check</span> <span class="sign">(</span>cpu_no_mem<span class="sign">,</span> area <span class="sign">!</span><span class="sign">=</span> NULL<span class="sign">,</span> DNA_OUT_OF_MEM<span class="sign">)</span><span class="sign">;</span>
+<span class="line_number"> 91 </span>
+<span class="line_number"> 92 </span>    <span class="comment">/*
+<span class="line_number"> 93 </span>     * Initialize the alarm manager
+<span class="line_number"> 94 </span>     */</span>
+<span class="line_number"> 95 </span>
+<span class="line_number"> 96 </span>    dna_memset <span class="sign">(</span><span class="sign">&amp;</span> <a href="./core_variables_c.html#robo22">alarm_manager</a><span class="sign">,</span> 0<span class="sign">,</span> sizeof <span class="sign">(</span><a href="../Headers/Private/Alarm_h.html#robo23">alarm_manager_t</a><span class="sign">)</span><span class="sign">)</span><span class="sign">;</span>
+<span class="line_number"> 97 </span>    area <span class="sign">=</span> kernel_malloc <span class="sign">(</span>DNA_MAX_CPU <span class="sign">*</span> sizeof <span class="sign">(</span><a href="../Headers/Private/Cpu_h.html#robo29">cpu_t</a><span class="sign">)</span><span class="sign">,</span> true<span class="sign">)</span><span class="sign">;</span>
+<span class="line_number"> 98 </span>    <a href="./core_variables_c.html#robo22">alarm_manager</a> <span class="sign">.</span> alarm <span class="sign">=</span> area<span class="sign">;</span>
+<span class="line_number"> 99 </span>    <span class="keyword">check</span> <span class="sign">(</span>alarm_no_mem<span class="sign">,</span> area <span class="sign">!</span><span class="sign">=</span> NULL<span class="sign">,</span> DNA_OUT_OF_MEM<span class="sign">)</span><span class="sign">;</span>
+<span class="line_number">100 </span>
+<span class="line_number">101 </span>    <span class="comment">/*
+<span class="line_number">102 </span>     * Initialize the semaphore pool
+<span class="line_number">103 </span>     */</span>
+<span class="line_number">104 </span>
+<span class="line_number">105 </span>    dna_memset <span class="sign">(</span><span class="sign">&amp;</span> <a href="./core_variables_c.html#robo68">semaphore_pool</a><span class="sign">,</span> 0<span class="sign">,</span> sizeof <span class="sign">(</span><a href="../Headers/Private/Semaphore_h.html#robo69">semaphore_pool_t</a><span class="sign">)</span><span class="sign">)</span><span class="sign">;</span>
+<span class="line_number">106 </span>
+<span class="line_number">107 </span>    area <span class="sign">=</span> kernel_malloc <span class="sign">(</span>DNA_MAX_SEM <span class="sign">*</span> sizeof <span class="sign">(</span><a href="../Headers/Private/Semaphore_h.html#robo70">semaphore_t</a><span class="sign">)</span><span class="sign">,</span> true<span class="sign">)</span><span class="sign">;</span>
+<span class="line_number">108 </span>    <a href="./core_variables_c.html#robo68">semaphore_pool</a> <span class="sign">.</span> semaphore <span class="sign">=</span> area<span class="sign">;</span>
+<span class="line_number">109 </span>    <span class="keyword">check</span> <span class="sign">(</span>sem_no_mem<span class="sign">,</span> area <span class="sign">!</span><span class="sign">=</span> NULL<span class="sign">,</span> DNA_OUT_OF_MEM<span class="sign">)</span><span class="sign">;</span>
+<span class="line_number">110 </span>
+<span class="line_number">111 </span>    <span class="comment">/*
+<span class="line_number">112 </span>     * Initialize the CPUs
+<span class="line_number">113 </span>     */</span>
+<span class="line_number">114 </span>
+<span class="line_number">115 </span>    <span class="keyword">for</span> <span class="sign">(</span><span class="keyword">int32_t</span> cpu_i <span class="sign">=</span> 0<span class="sign">;</span> cpu_i <span class="sign">&lt;</span> cpu_mp_count <span class="sign">(</span><span class="sign">)</span><span class="sign">;</span> cpu_i<span class="sign">+</span><span class="sign">+</span><span class="sign">)</span>
+<span class="line_number">116 </span>    <span class="sign">{</span>
+<span class="line_number">117 </span>      cpu <span class="sign">=</span> <span class="sign">&amp;</span> <a href="./core_variables_c.html#robo26">cpu_pool</a> <span class="sign">.</span> cpu<span class="sign">[</span>cpu_i<span class="sign">]</span><span class="sign">;</span>
+<span class="line_number">118 </span>
+<span class="line_number">119 </span>      <span class="comment">/*
+<span class="line_number">120 </span>       * Create the ISR lists
+<span class="line_number">121 </span>       */</span>
+<span class="line_number">122 </span>
+<span class="line_number">123 </span>      cpu <span class="sign">-</span><span class="sign">&gt;</span> isr <span class="sign">=</span> kernel_malloc <span class="sign">(</span>sizeof <span class="sign">(</span>queue_t<span class="sign">)</span> <span class="sign">*</span>
+<span class="line_number">124 </span>          cpu_trap_count <span class="sign">(</span><span class="sign">)</span><span class="sign">,</span> true<span class="sign">)</span><span class="sign">;</span>
+<span class="line_number">125 </span>      <span class="keyword">check</span> <span class="sign">(</span>cpu_initialize<span class="sign">,</span> area <span class="sign">!</span><span class="sign">=</span> NULL<span class="sign">,</span> DNA_OUT_OF_MEM<span class="sign">)</span><span class="sign">;</span>
+<span class="line_number">126 </span>
+<span class="line_number">127 </span>      <span class="comment">/*
+<span class="line_number">128 </span>       * Create the Idle stack
+<span class="line_number">129 </span>       */</span>
+<span class="line_number">130 </span>
+<span class="line_number">131 </span>      cpu <span class="sign">-</span><span class="sign">&gt;</span> stack <span class="sign">=</span> kernel_malloc <span class="sign">(</span>DNA_IDLE_STACK_SIZE<span class="sign">,</span> true<span class="sign">)</span><span class="sign">;</span>
+<span class="line_number">132 </span>      <span class="keyword">check</span> <span class="sign">(</span>cpu_initialize<span class="sign">,</span> area <span class="sign">!</span><span class="sign">=</span> NULL<span class="sign">,</span> DNA_OUT_OF_MEM<span class="sign">)</span><span class="sign">;</span>
+<span class="line_number">133 </span>
+<span class="line_number">134 </span>      <span class="comment">/*
+<span class="line_number">135 </span>       * Create the Idle thread
+<span class="line_number">136 </span>       */</span>
+<span class="line_number">137 </span>
+<span class="line_number">138 </span>      status <span class="sign">=</span> <a href="./thread_create_c.html#robo73">thread_create</a> <span class="sign">(</span><a href="./thread_idle_c.html#robo90">thread_idle</a><span class="sign">,</span> NULL<span class="sign">,</span> <span class="quote">"IdleThread"</span><span class="sign">,</span>
+<span class="line_number">139 </span>          <a href="../Headers/Public/Core/Thread_h.html#robo71">DNA_KERNEL_GROUP</a><span class="sign">,</span> cpu_i<span class="sign">,</span> cpu <span class="sign">-</span><span class="sign">&gt;</span> stack<span class="sign">,</span>
+<span class="line_number">140 </span>          DNA_IDLE_STACK_SIZE<span class="sign">,</span> <span class="sign">&amp;</span> tid <span class="sign">.</span> raw<span class="sign">)</span><span class="sign">;</span>
+<span class="line_number">141 </span>      <span class="keyword">check</span> <span class="sign">(</span>cpu_initialize<span class="sign">,</span> status <span class="sign">=</span><span class="sign">=</span> DNA_OK<span class="sign">,</span> DNA_ERROR<span class="sign">)</span><span class="sign">;</span>
+<span class="line_number">142 </span>
+<span class="line_number">143 </span>      thread <span class="sign">=</span> <a href="./core_variables_c.html#robo91">thread_pool</a> <span class="sign">.</span> thread<span class="sign">[</span>tid <span class="sign">.</span> s <span class="sign">.</span> group<span class="sign">]</span><span class="sign">[</span>tid <span class="sign">.</span> s <span class="sign">.</span> index<span class="sign">]</span><span class="sign">;</span>
+<span class="line_number">144 </span>      thread <span class="sign">-</span><span class="sign">&gt;</span> info <span class="sign">.</span> status <span class="sign">=</span> DNA_THREAD_READY<span class="sign">;</span>
+<span class="line_number">145 </span>
+<span class="line_number">146 </span>      <span class="comment">/*
+<span class="line_number">147 </span>       * Deal with the new thread
+<span class="line_number">148 </span>       */</span>
+<span class="line_number">149 </span>
+<span class="line_number">150 </span>      cpu <span class="sign">-</span><span class="sign">&gt;</span> id <span class="sign">=</span> cpu_i<span class="sign">;</span>
+<span class="line_number">151 </span>      cpu <span class="sign">-</span><span class="sign">&gt;</span> status <span class="sign">=</span> DNA_CPU_DISABLED<span class="sign">;</span>
+<span class="line_number">152 </span>      cpu <span class="sign">-</span><span class="sign">&gt;</span> idle_thread <span class="sign">=</span> thread<span class="sign">;</span>
+<span class="line_number">153 </span>      cpu <span class="sign">-</span><span class="sign">&gt;</span> current_thread <span class="sign">=</span> thread<span class="sign">;</span>
+<span class="line_number">154 </span>    <span class="sign">}</span>
+<span class="line_number">155 </span>
+<span class="line_number">156 </span>    <span class="comment">/*
+<span class="line_number">157 </span>     * Create the main application thread. For now,
+<span class="line_number">158 </span>     * the application resides in the kernel.
+<span class="line_number">159 </span>     */</span>
+<span class="line_number">160 </span>
+<span class="line_number">161 </span>    status <span class="sign">=</span> <a href="./thread_create_c.html#robo73">thread_create</a> <span class="sign">(</span>APP_ENTRY_POINT<span class="sign">,</span> NULL<span class="sign">,</span> <span class="quote">"ApplicationMain"</span><span class="sign">,</span>
+<span class="line_number">162 </span>        <a href="../Headers/Public/Core/Thread_h.html#robo71">DNA_KERNEL_GROUP</a><span class="sign">,</span> <a href="../Headers/Public/Core/Thread_h.html#robo72">DNA_NO_AFFINITY</a><span class="sign">,</span> NULL<span class="sign">,</span>
+<span class="line_number">163 </span>        DNA_THREAD_STACK_SIZE<span class="sign">,</span> <span class="sign">&amp;</span> tid <span class="sign">.</span> raw<span class="sign">)</span><span class="sign">;</span>
+<span class="line_number">164 </span>    <span class="keyword">check</span> <span class="sign">(</span>cpu_initialize<span class="sign">,</span> status <span class="sign">=</span><span class="sign">=</span> DNA_OK<span class="sign">,</span> DNA_ERROR<span class="sign">)</span><span class="sign">;</span>
+<span class="line_number">165 </span>
+<span class="line_number">166 </span>    thread <span class="sign">=</span> <a href="./core_variables_c.html#robo91">thread_pool</a> <span class="sign">.</span> thread<span class="sign">[</span>tid <span class="sign">.</span> s <span class="sign">.</span> group<span class="sign">]</span><span class="sign">[</span>tid <span class="sign">.</span> s <span class="sign">.</span> index<span class="sign">]</span><span class="sign">;</span>
+<span class="line_number">167 </span>    <a href="./core_variables_c.html#robo26">cpu_pool</a> <span class="sign">.</span> cpu<span class="sign">[</span>0<span class="sign">]</span> <span class="sign">.</span> current_thread <span class="sign">=</span> thread<span class="sign">;</span>
+<span class="line_number">168 </span>
+<span class="line_number">169 </span>    <span class="keyword">return</span> DNA_OK<span class="sign">;</span>
+<span class="line_number">170 </span>  <span class="sign">}</span>
+<span class="line_number">171 </span>
+<span class="line_number">172 </span>  <span class="keyword">rescue</span><span class="sign">(</span>cpu_initialize<span class="sign">)</span>
+<span class="line_number">173 </span>  <span class="sign">{</span>
+<span class="line_number">174 </span>    <a href="../Headers/Private/Thread_h.html#robo95">thread_t</a> idle_thread <span class="sign">=</span> NULL<span class="sign">;</span>
+<span class="line_number">175 </span>
+<span class="line_number">176 </span>    <span class="keyword">for</span> <span class="sign">(</span><span class="keyword">int32_t</span> cpu_i <span class="sign">=</span> 0<span class="sign">;</span> cpu_i <span class="sign">&lt;</span> cpu_mp_count <span class="sign">(</span><span class="sign">)</span><span class="sign">;</span> cpu_i<span class="sign">+</span><span class="sign">+</span><span class="sign">)</span>
+<span class="line_number">177 </span>    <span class="sign">{</span>
+<span class="line_number">178 </span>      idle_thread <span class="sign">=</span> <a href="./core_variables_c.html#robo26">cpu_pool</a> <span class="sign">.</span> cpu<span class="sign">[</span>cpu_i<span class="sign">]</span> <span class="sign">.</span> idle_thread<span class="sign">;</span>
+<span class="line_number">179 </span>
+<span class="line_number">180 </span>      <span class="keyword">if</span> <span class="sign">(</span>idle_thread <span class="sign">!</span><span class="sign">=</span> NULL<span class="sign">)</span>
+<span class="line_number">181 </span>      <span class="sign">{</span>
+<span class="line_number">182 </span>        <a href="./thread_destroy_c.html#robo74">thread_destroy</a> <span class="sign">(</span>idle_thread <span class="sign">-</span><span class="sign">&gt;</span> id <span class="sign">.</span> raw<span class="sign">)</span><span class="sign">;</span>
+<span class="line_number">183 </span>
+<span class="line_number">184 </span>        <a href="./core_variables_c.html#robo26">cpu_pool</a> <span class="sign">.</span> cpu<span class="sign">[</span>cpu_i<span class="sign">]</span> <span class="sign">.</span> idle_thread <span class="sign">=</span> NULL<span class="sign">;</span>
+<span class="line_number">185 </span>        <a href="./core_variables_c.html#robo26">cpu_pool</a> <span class="sign">.</span> cpu<span class="sign">[</span>cpu_i<span class="sign">]</span> <span class="sign">.</span> current_thread <span class="sign">=</span> NULL<span class="sign">;</span>
+<span class="line_number">186 </span>      <span class="sign">}</span>
+<span class="line_number">187 </span>
+<span class="line_number">188 </span>      <span class="keyword">if</span> <span class="sign">(</span>cpu<span class="sign">[</span>i<span class="sign">]</span> <span class="sign">.</span> stack <span class="sign">!</span><span class="sign">=</span> NULL<span class="sign">)</span>
+<span class="line_number">189 </span>      <span class="sign">{</span>
+<span class="line_number">190 </span>        kernel_free <span class="sign">(</span>cpu<span class="sign">[</span>i<span class="sign">]</span> <span class="sign">.</span> stack<span class="sign">)</span><span class="sign">;</span>
+<span class="line_number">191 </span>      <span class="sign">}</span>
+<span class="line_number">192 </span>
+<span class="line_number">193 </span>      <span class="keyword">if</span> <span class="sign">(</span>cpu<span class="sign">[</span>i<span class="sign">]</span> <span class="sign">.</span> isr <span class="sign">!</span><span class="sign">=</span> NULL<span class="sign">)</span>
+<span class="line_number">194 </span>      <span class="sign">{</span>
+<span class="line_number">195 </span>        kernel_free <span class="sign">(</span>cpu<span class="sign">[</span>i<span class="sign">]</span> <span class="sign">.</span> isr<span class="sign">)</span><span class="sign">;</span>
+<span class="line_number">196 </span>      <span class="sign">}</span>
+<span class="line_number">197 </span>    <span class="sign">}</span>
+<span class="line_number">198 </span>
+<span class="line_number">199 </span>    kernel_free <span class="sign">(</span><a href="./core_variables_c.html#robo68">semaphore_pool</a> <span class="sign">.</span> semaphore<span class="sign">)</span><span class="sign">;</span>
+<span class="line_number">200 </span>  <span class="sign">}</span>
+<span class="line_number">201 </span>
+<span class="line_number">202 </span>  <span class="keyword">rescue</span> <span class="sign">(</span>sem_no_mem<span class="sign">)</span>
+<span class="line_number">203 </span>  <span class="sign">{</span>
+<span class="line_number">204 </span>    kernel_free <span class="sign">(</span><a href="./core_variables_c.html#robo22">alarm_manager</a> <span class="sign">.</span> alarm<span class="sign">)</span><span class="sign">;</span>
+<span class="line_number">205 </span>  <span class="sign">}</span>
+<span class="line_number">206 </span>
+<span class="line_number">207 </span>  <span class="keyword">rescue</span> <span class="sign">(</span>alarm_no_mem<span class="sign">)</span>
+<span class="line_number">208 </span>  <span class="sign">{</span>
+<span class="line_number">209 </span>    kernel_free <span class="sign">(</span><a href="./core_variables_c.html#robo26">cpu_pool</a> <span class="sign">.</span> cpu<span class="sign">)</span><span class="sign">;</span>
+<span class="line_number">210 </span>  <span class="sign">}</span>
+<span class="line_number">211 </span>
+<span class="line_number">212 </span>  <span class="keyword">rescue</span> <span class="sign">(</span>cpu_no_mem<span class="sign">)</span>
+<span class="line_number">213 </span>  <span class="sign">{</span>
+<span class="line_number">214 </span>    kernel_free <span class="sign">(</span><a href="./core_variables_c.html#robo51">scheduler</a> <span class="sign">.</span> queue<span class="sign">)</span><span class="sign">;</span>
+<span class="line_number">215 </span>  <span class="sign">}</span>
+<span class="line_number">216 </span>
+<span class="line_number">217 </span>  <span class="keyword">rescue</span> <span class="sign">(</span>thread_no_mem<span class="sign">)</span>
+<span class="line_number">218 </span>  <span class="sign">{</span>
+<span class="line_number">219 </span>    <span class="keyword">for</span> <span class="sign">(</span><span class="keyword">int32_t</span> i <span class="sign">=</span> 0<span class="sign">;</span> i <span class="sign">&lt;</span> DNA_MAX_GROUP<span class="sign">;</span> i <span class="sign">+</span><span class="sign">=</span> 1<span class="sign">)</span>
+<span class="line_number">220 </span>    <span class="sign">{</span>
+<span class="line_number">221 </span>      <span class="keyword">if</span> <span class="sign">(</span><a href="./core_variables_c.html#robo91">thread_pool</a> <span class="sign">.</span> thread<span class="sign">[</span>i<span class="sign">]</span> <span class="sign">!</span><span class="sign">=</span> NULL<span class="sign">)</span>
+<span class="line_number">222 </span>      <span class="sign">{</span>
+<span class="line_number">223 </span>        kernel_free <span class="sign">(</span><a href="./core_variables_c.html#robo91">thread_pool</a> <span class="sign">.</span> thread<span class="sign">[</span>i<span class="sign">]</span><span class="sign">)</span><span class="sign">;</span>
+<span class="line_number">224 </span>      <span class="sign">}</span>
+<span class="line_number">225 </span>    <span class="sign">}</span>
+<span class="line_number">226 </span>
+<span class="line_number">227 </span>    <span class="keyword">if</span> <span class="sign">(</span><a href="./core_variables_c.html#robo91">thread_pool</a> <span class="sign">.</span> thread <span class="sign">!</span><span class="sign">=</span> NULL<span class="sign">)</span>
+<span class="line_number">228 </span>    <span class="sign">{</span>
+<span class="line_number">229 </span>      kernel_free <span class="sign">(</span><a href="./core_variables_c.html#robo91">thread_pool</a> <span class="sign">.</span> thread<span class="sign">)</span><span class="sign">;</span>
+<span class="line_number">230 </span>    <span class="sign">}</span>
+<span class="line_number">231 </span>
+<span class="line_number">232 </span>    <span class="keyword">leave</span><span class="sign">;</span>
+<span class="line_number">233 </span>  <span class="sign">}</span>
+<span class="line_number">234 </span><span class="sign">}</span>
+</pre>
+
+</div> <!-- content -->
+<div id="footer">
+<p>Generated from ./Core/Sources/core_create.c on Mon Mar 01 2010 13:57:34
+</p>
+</div> <!-- footer -->
+</body>
+</html>

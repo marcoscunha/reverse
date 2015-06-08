@@ -1,0 +1,1097 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+AVL_CHECK	utils/include/avl.h	292;"	d
+AVL_CHECK	utils/include/avl.h	304;"	d
+AVL_CHECK	utils/include/avl.h	398;"	d
+AVL_CONCAT	utils/include/avl.h	1417;"	d
+AVL_CONCAT	utils/include/avl.h	96;"	d
+AVL_DEBUG	utils/include/avl.h	1433;"	d
+AVL_DYNPOOL	utils/include/avl.h	1447;"	d
+AVL_EXTERN	utils/include/avl.h	1429;"	d
+AVL_LEFT	utils/include/avl.h	/^   AVL_LEFT = 0,$/;"	e	enum:avl_side_t
+AVL_LINKED	utils/include/avl.h	1425;"	d
+AVL_POOL_ARRAY_SIZE	utils/include/avl.h	1416;"	d
+AVL_POOL_ARRAY_SIZE	utils/include/avl.h	167;"	d
+AVL_PRINT_DATA	utils/include/avl.h	1439;"	d
+AVL_PRINT_OUTPUT	utils/include/avl.h	132;"	d
+AVL_PRINT_OUTPUT	utils/include/avl.h	134;"	d
+AVL_PRINT_OUTPUT	utils/include/avl.h	1436;"	d
+AVL_PRINT	utils/include/avl.h	1451;"	d
+AVL_PRINT	utils/include/avl.h	6;"	d
+AVL_RANGED	utils/include/avl.h	1421;"	d
+AVL_RIGHT	utils/include/avl.h	/^   AVL_RIGHT = 1$/;"	e	enum:avl_side_t
+AVL_SIDE_T	utils/include/avl.h	141;"	d
+AVL_STAT	utils/include/avl.h	1443;"	d
+AVL_XCONCAT	utils/include/avl.h	1418;"	d
+AVL_XCONCAT	utils/include/avl.h	97;"	d
+AVL_add_ranged	utils/include/avl.h	128;"	d
+AVL_add_ranged	utils/include/avl.h	1406;"	d
+AVL_add_ranged	utils/include/avl.h	/^_AVL_FUNC_ATTRIB bool AVL_add_ranged ($/;"	f
+AVL_add	utils/include/avl.h	126;"	d
+AVL_add	utils/include/avl.h	1405;"	d
+AVL_add	utils/include/avl.h	/^_AVL_FUNC_ATTRIB bool AVL_add ($/;"	f
+AVL_array_t	utils/include/avl.h	102;"	d
+AVL_array_t	utils/include/avl.h	1390;"	d
+AVL_array_t	utils/include/avl.h	/^struct AVL_array_t {$/;"	s
+AVL_array_t	utils/include/avl.h	/^typedef struct AVL_array_t AVL_array_t;$/;"	t	typeref:struct:AVL_array_t
+AVL_balance	utils/include/avl.h	111;"	d
+AVL_balance	utils/include/avl.h	1408;"	d
+AVL_balance	utils/include/avl.h	/^static void AVL_balance(AVL_tree_t *tree, AVL_node_t *node, bool add) $/;"	f
+AVL_check_subtree	utils/include/avl.h	117;"	d
+AVL_check_subtree	utils/include/avl.h	1412;"	d
+AVL_check_subtree	utils/include/avl.h	/^static int AVL_check_subtree (const AVL_node_t *node, bool print)$/;"	f
+AVL_check_tree	utils/include/avl.h	116;"	d
+AVL_check_tree	utils/include/avl.h	1413;"	d
+AVL_check_tree	utils/include/avl.h	/^int AVL_check_tree (const AVL_tree_t *tree)$/;"	f
+AVL_data_t	source/hwetrace_read.c	89;"	d	file:
+AVL_data_t	utils/include/avl.h	1384;"	d
+AVL_debug	utils/include/avl.h	12;"	d
+AVL_debug	utils/include/avl.h	14;"	d
+AVL_find	utils/include/avl.h	125;"	d
+AVL_find	utils/include/avl.h	1404;"	d
+AVL_find	utils/include/avl.h	/^_AVL_FUNC_ATTRIB bool AVL_find (AVL_tree_t *tree, AVL_key_t key, AVL_node_t **node)$/;"	f
+AVL_first	utils/include/avl.h	121;"	d
+AVL_first	utils/include/avl.h	1400;"	d
+AVL_first	utils/include/avl.h	/^_AVL_FUNC_ATTRIB AVL_node_t * AVL_first (AVL_tree_t *tree)$/;"	f
+AVL_init	utils/include/avl.h	119;"	d
+AVL_init	utils/include/avl.h	1398;"	d
+AVL_init	utils/include/avl.h	/^_AVL_FUNC_ATTRIB void AVL_init ($/;"	f
+AVL_key_t	source/hwetrace_read.c	88;"	d	file:
+AVL_key_t	utils/include/avl.h	1382;"	d
+AVL_last	utils/include/avl.h	122;"	d
+AVL_last	utils/include/avl.h	1401;"	d
+AVL_last	utils/include/avl.h	/^_AVL_FUNC_ATTRIB AVL_node_t * AVL_last (AVL_tree_t *tree)$/;"	f
+AVL_next	utils/include/avl.h	124;"	d
+AVL_next	utils/include/avl.h	1403;"	d
+AVL_next	utils/include/avl.h	/^_AVL_FUNC_ATTRIB AVL_node_t * AVL_next (AVL_tree_t *tree __attribute__((__unused__)), AVL_node_t *node)$/;"	f
+AVL_node_create	utils/include/avl.h	109;"	d
+AVL_node_create	utils/include/avl.h	1396;"	d
+AVL_node_create	utils/include/avl.h	/^static AVL_node_t * AVL_node_create ($/;"	f
+AVL_node_delete	utils/include/avl.h	110;"	d
+AVL_node_delete	utils/include/avl.h	1397;"	d
+AVL_node_delete	utils/include/avl.h	/^static void AVL_node_delete ($/;"	f
+AVL_node_t	utils/include/avl.h	100;"	d
+AVL_node_t	utils/include/avl.h	1388;"	d
+AVL_node_t	utils/include/avl.h	/^struct AVL_node_t {$/;"	s
+AVL_node_t	utils/include/avl.h	/^typedef struct AVL_node_t AVL_node_t;$/;"	t	typeref:struct:AVL_node_t
+AVL_pool_create	utils/include/avl.h	104;"	d
+AVL_pool_create	utils/include/avl.h	1392;"	d
+AVL_pool_create	utils/include/avl.h	/^_AVL_FUNC_ATTRIB AVL_pool_t * AVL_pool_create ()$/;"	f
+AVL_pool_delete	utils/include/avl.h	105;"	d
+AVL_pool_delete	utils/include/avl.h	1393;"	d
+AVL_pool_delete	utils/include/avl.h	/^_AVL_FUNC_ATTRIB void AVL_pool_delete (AVL_pool_t *pool)$/;"	f
+AVL_pool_init	utils/include/avl.h	106;"	d
+AVL_pool_init	utils/include/avl.h	1394;"	d
+AVL_pool_init	utils/include/avl.h	/^_AVL_FUNC_ATTRIB void AVL_pool_init (AVL_pool_t *pool)$/;"	f
+AVL_pool_t	utils/include/avl.h	101;"	d
+AVL_pool_t	utils/include/avl.h	1389;"	d
+AVL_pool_term	utils/include/avl.h	107;"	d
+AVL_pool_term	utils/include/avl.h	1395;"	d
+AVL_pool_term	utils/include/avl.h	/^_AVL_FUNC_ATTRIB void AVL_pool_term (AVL_pool_t *pool)$/;"	f
+AVL_pool_t	utils/include/avl.h	/^typedef struct AVL_pool_t {$/;"	s
+AVL_pool_t	utils/include/avl.h	/^} AVL_pool_t;$/;"	t	typeref:struct:AVL_pool_t
+AVL_prefix	source/hwetrace_read.c	90;"	d	file:
+AVL_prefix	utils/include/avl.h	1381;"	d
+AVL_prev	utils/include/avl.h	123;"	d
+AVL_prev	utils/include/avl.h	1402;"	d
+AVL_prev	utils/include/avl.h	/^_AVL_FUNC_ATTRIB AVL_node_t * AVL_prev (AVL_tree_t *tree __attribute__((__unused__)), AVL_node_t *node)$/;"	f
+AVL_print_r	utils/include/avl.h	115;"	d
+AVL_print_r	utils/include/avl.h	1411;"	d
+AVL_print_r	utils/include/avl.h	/^static int AVL_print_r (const AVL_node_t *node, unsigned int depth, $/;"	f
+AVL_print	utils/include/avl.h	114;"	d
+AVL_print	utils/include/avl.h	1410;"	d
+AVL_print	utils/include/avl.h	/^void AVL_print (const AVL_node_t *node, int depth)$/;"	f
+AVL_rem	utils/include/avl.h	127;"	d
+AVL_rem	utils/include/avl.h	1407;"	d
+AVL_rem	utils/include/avl.h	/^_AVL_FUNC_ATTRIB void AVL_rem ($/;"	f
+AVL_reset_callback	utils/include/avl.h	549;"	d
+AVL_reset_callback	utils/include/avl.h	586;"	d
+AVL_reset	utils/include/avl.h	120;"	d
+AVL_reset	utils/include/avl.h	1399;"	d
+AVL_reset	utils/include/avl.h	/^_AVL_FUNC_ATTRIB void AVL_reset ($/;"	f
+AVL_rot	utils/include/avl.h	112;"	d
+AVL_rot	utils/include/avl.h	1409;"	d
+AVL_rot	utils/include/avl.h	/^static AVL_node_t * AVL_rot(AVL_tree_t *tree, AVL_node_t *root, enum avl_side_t side)$/;"	f
+AVL_tree_t	utils/include/avl.h	1387;"	d
+AVL_tree_t	utils/include/avl.h	99;"	d
+AVL_tree_t	utils/include/avl.h	/^typedef struct AVL_tree_t {$/;"	s
+AVL_tree_t	utils/include/avl.h	/^} AVL_tree_t ;$/;"	t	typeref:struct:AVL_tree_t
+BUFFERSIZE	include/hwe_handle_implem.h	113;"	d
+BUFFERSIZE	source/hwetrace_write.c	28;"	d	file:
+BUFSIZE	source/hwetrace_print.c	15;"	d	file:
+BUFSIZE	source/hwetrace_read.c	99;"	d	file:
+CASE_EMPTY	include/events/hwe_tools.h	116;"	d
+CASE_EMPTY	include/events/hwe_tools.h	121;"	d
+CASE_EMPTY	include/events/hwe_tools.h	186;"	d
+CASE_EMPTY	include/events/hwe_tools.h	42;"	d
+CASE_EMPTY	include/events/hwe_tools.h	65;"	d
+CASE_EMPTY	include/events/hwe_tools.h	75;"	d
+CASE	include/events/hwe_common.h	271;"	d
+CASE	include/events/hwe_common.h	290;"	d
+CASE	include/events/hwe_mem.h	193;"	d
+CASE	include/events/hwe_mem.h	211;"	d
+CASE	include/events/hwe_tools.h	115;"	d
+CASE	include/events/hwe_tools.h	122;"	d
+CASE	include/events/hwe_tools.h	12;"	d
+CASE	include/events/hwe_tools.h	152;"	d
+CASE	include/events/hwe_tools.h	159;"	d
+CASE	include/events/hwe_tools.h	185;"	d
+CASE	include/events/hwe_tools.h	33;"	d
+CASE	include/events/hwe_tools.h	39;"	d
+CASE	include/events/hwe_tools.h	64;"	d
+CASE	include/events/hwe_tools.h	70;"	d
+CASE	source/hwetrace_print.c	64;"	d	file:
+CASE	source/hwetrace_print.c	78;"	d	file:
+COMP_DATA_T	source/hwetrace_order.c	28;"	d	file:
+COMP_DATA_T	source/hwetrace_write.c	23;"	d	file:
+DEBUG_ASSERT	include/hwetrace_par_cirbuf.h	40;"	d
+DEBUG_ASSERT	include/hwetrace_par_cirbuf.h	43;"	d
+DEBUG_DO	include/hwetrace_par_cirbuf.h	41;"	d
+DEBUG_DO	include/hwetrace_par_cirbuf.h	44;"	d
+EMPTY_IDX	include/hwetrace_par_cirbuf.h	121;"	d
+EMPTY_IDX	include/hwetrace_par_cirbuf.h	124;"	d
+EMPTY_IDX	include/hwetrace_par_cirbuf.h	127;"	d
+EMPTY_IDX	include/hwetrace_par_cirbuf.h	130;"	d
+FULL_IDX	include/hwetrace_par_cirbuf.h	120;"	d
+FULL_IDX	include/hwetrace_par_cirbuf.h	123;"	d
+FULL_IDX	include/hwetrace_par_cirbuf.h	126;"	d
+FULL_IDX	include/hwetrace_par_cirbuf.h	129;"	d
+HANDLER_PRINT	include/hwetrace_par_cirbuf.h	37;"	d
+HANDLER_VPRINT	include/hwetrace_par_cirbuf.h	54;"	d
+HANDLER_VPRINT	include/hwetrace_par_cirbuf.h	56;"	d
+HANDLE_ASSERTEV	include/hwe_handle_implem.h	21;"	d
+HANDLE_ASSERT	include/hwe_handle_implem.h	14;"	d
+HANDLE_ERROR	include/hwe_handle_implem.h	12;"	d
+HANDLE_LVL_DEC	include/hwe_handle_implem.h	47;"	d
+HANDLE_LVL_INC	include/hwe_handle_implem.h	46;"	d
+HANDLE_PRINT	include/hwe_handle_implem.h	7;"	d
+HANDLE_SAFEASSERTEV	include/hwe_handle_implem.h	37;"	d
+HANDLE_SAFEASSERTEV	include/hwe_handle_implem.h	41;"	d
+HANDLE_SAFEASSERT	include/hwe_handle_implem.h	36;"	d
+HANDLE_SAFEASSERT	include/hwe_handle_implem.h	40;"	d
+HANDLE_SAFECHECK	include/hwe_handle_implem.h	35;"	d
+HANDLE_SAFECHECK	include/hwe_handle_implem.h	39;"	d
+HANDLE_VCALL_EV	include/hwe_handle_implem.h	58;"	d
+HANDLE_VCALL_EV	include/hwe_handle_implem.h	64;"	d
+HANDLE_VCALL	include/hwe_handle_implem.h	55;"	d
+HANDLE_VCALL	include/hwe_handle_implem.h	63;"	d
+HANDLE_VERB_PRINTF	include/hwe_handle_implem.h	50;"	d
+HANDLE_VPRINT	include/hwe_handle_implem.h	52;"	d
+HANDLE_VPRINT	include/hwe_handle_implem.h	62;"	d
+HANDLE_WARN	include/hwe_handle_implem.h	10;"	d
+HEV_HANDLE_H	include/hwe_handle.h	3;"	d
+HWEPAR_ALIGN	include/hwetrace_par.h	9;"	d
+HWEPAR_ALIGN	include/hwetrace_par_cirbuf.h	11;"	d
+HWEPAR_BUFGRAIN	include/hwetrace_par.h	14;"	d
+HWEPAR_BUFSIZE	include/hwetrace_par.h	19;"	d
+HWEPAR_BUFSTART	include/hwetrace_par_cirbuf.h	23;"	d
+HWEPAR_MODE	include/hwetrace_par_cirbuf.h	30;"	d
+HWETRACE_DEBUG_IMPLEM	source/hwetrace.c	7;"	d	file:
+HWETRACE_DEBUG_IMPLEM	source/hwetrace.c	9;"	d	file:
+HWETRACE_DMEM	include/hwetrace.h	31;"	d
+HWETRACE_EVENTSTAT_LOG	include/hwetrace_stat_internal.h	28;"	d
+HWETRACE_EVENTSTAT_LOG	include/hwetrace_stat_internal.h	/^void HWETRACE_EVENTSTAT_LOG(hwe_device_t device, hwe_cont *cont)$/;"	f
+HWETRACE_EVENTSTAT_PRINT_FIELD	include/hwetrace_stat_internal.h	278;"	d
+HWETRACE_EVENTSTAT_PRINT	include/hwetrace_stat_internal.h	29;"	d
+HWETRACE_EVENTSTAT_PRINT	include/hwetrace_stat_internal.h	/^void HWETRACE_EVENTSTAT_PRINT()$/;"	f
+HWETRACE_IMEM	include/hwetrace.h	28;"	d
+HWETRACE_PRINT	source/hwetrace.c	13;"	d	file:
+HWETRACE_STAT_PRINT	include/hwetrace_stat_internal.h	20;"	d
+HWETRACE_STAT_PRINT	include/hwetrace_stat_internal.h	35;"	d
+HWETRACE_TRACESTAT_FIELD	include/hwetrace_stat_internal.h	22;"	d
+HWETRACE_TRACESTAT_FIELD	include/hwetrace_stat_internal.h	45;"	d
+HWETRACE_TRACESTAT_INIT	include/hwetrace_stat_internal.h	23;"	d
+HWETRACE_TRACESTAT_INIT	include/hwetrace_stat_internal.h	/^static void HWETRACE_TRACESTAT_INIT(struct hwe_tracestat *s)$/;"	f
+HWETRACE_TRACESTAT_IN	include/hwetrace_stat_internal.h	24;"	d
+HWETRACE_TRACESTAT_IN	include/hwetrace_stat_internal.h	/^static void HWETRACE_TRACESTAT_IN(struct hwe_tracestat *s1, struct hwe_tracestat *s2, hwe_head_cont *cont)$/;"	f
+HWETRACE_TRACESTAT_OUT	include/hwetrace_stat_internal.h	25;"	d
+HWETRACE_TRACESTAT_OUT	include/hwetrace_stat_internal.h	/^static void HWETRACE_TRACESTAT_OUT(struct hwe_tracestat *s1, struct hwe_tracestat *s2, bool ev)$/;"	f
+HWETRACE_TRACESTAT_PRINT	include/hwetrace_stat_internal.h	26;"	d
+HWETRACE_TRACESTAT_PRINT	include/hwetrace_stat_internal.h	/^static void HWETRACE_TRACESTAT_PRINT(const char *str, const struct hwe_tracestat *s)$/;"	f
+HWE_CACHE_NODATA	include/hwetrace_cache.h	19;"	d
+HWE_CACHE_NODATE	include/hwetrace_cache.h	22;"	d
+HWE_CACHE_ack_access	include/hwetrace_cache.h	/^static inline void HWE_CACHE_ack_access(hwe_cont* cont, hwe_mem_t access ,uint32_t addr, uint32_t width)$/;"	f
+HWE_CACHE_ack_date	include/hwetrace_cache.h	/^static inline void HWE_CACHE_ack_date($/;"	f
+HWE_CACHE_ack_init	include/hwetrace_cache.h	/^static inline void HWE_CACHE_ack_init(hwe_cont *cont, hwe_ref_t ref)$/;"	f
+HWE_CACHE_mem_add_byte	include/hwetrace_cache.h	/^static inline void HWE_CACHE_mem_add_byte($/;"	f
+HWE_CACHE_mem_begdate	include/hwetrace_cache.h	/^static inline void HWE_CACHE_mem_begdate($/;"	f
+HWE_CACHE_mem_enddate	include/hwetrace_cache.h	/^static inline void HWE_CACHE_mem_enddate($/;"	f
+HWE_CACHE_mem_get_ack	include/hwetrace_cache.h	/^static inline unsigned HWE_CACHE_mem_get_ack($/;"	f
+HWE_CACHE_mem_get_begdate	include/hwetrace_cache.h	/^static inline hwe_date_t HWE_CACHE_mem_get_begdate($/;"	f
+HWE_CACHE_mem_get_enddate	include/hwetrace_cache.h	/^static inline hwe_date_t HWE_CACHE_mem_get_enddate($/;"	f
+HWE_CACHE_mem_init	include/hwetrace_cache.h	/^static inline void HWE_CACHE_mem_init($/;"	f
+HWE_CACHE_mem_set_ack	include/hwetrace_cache.h	/^static inline void HWE_CACHE_mem_set_ack($/;"	f
+HWE_CACHE_mem_set_byte	include/hwetrace_cache.h	/^static inline void HWE_CACHE_mem_set_byte($/;"	f
+HWE_CACHE_mem_set_data	include/hwetrace_cache.h	/^static inline void HWE_CACHE_mem_set_data($/;"	f
+HWE_CACHE_mem_set_word	include/hwetrace_cache.h	/^static inline void HWE_CACHE_mem_set_word($/;"	f
+HWE_CACHE_memgl_init	include/hwetrace_cache.h	/^static inline void HWE_CACHE_memgl_init($/;"	f
+HWE_CACHE_set_cpureq	include/hwetrace_cache.h	/^static inline void HWE_CACHE_set_cpureq($/;"	f
+HWE_CACHE	include/events/hwe_device.h	/^   HWE_CACHE,$/;"	e	enum:hwe_device_t
+HWE_CHILD_MAX	include/events/hwe_common.h	159;"	d
+HWE_COMMIT_init	include/hwetrace_common.h	/^_HWETRACE_ATTR void HWE_COMMIT_init(hwe_cont *cont)$/;"	f
+HWE_COMMIT	include/events/hwe_common.h	/^   HWE_COMMIT,$/;"	e	enum:hwe_type_t
+HWE_CPU_DMEM_NODATA	include/hwetrace_processor.h	39;"	d
+HWE_CPU_DMEM_NODATE	include/hwetrace_processor.h	44;"	d
+HWE_CPU_DMEM_NO_ACK	include/hwetrace_processor.h	34;"	d
+HWE_CPU_DREG_NODATA	include/hwetrace_processor.h	40;"	d
+HWE_CPU_DREG_NODATA	include/hwetrace_processor.h	52;"	d
+HWE_CPU_DREG_NOID	include/hwetrace_processor.h	48;"	d
+HWE_CPU_IMEM_NODATA	include/hwetrace_processor.h	38;"	d
+HWE_CPU_IMEM_NODATE	include/hwetrace_processor.h	43;"	d
+HWE_CPU_IMEM_NO_ACK	include/hwetrace_processor.h	30;"	d
+HWE_CPU_INST_NODATE	include/hwetrace_processor.h	45;"	d
+HWE_CPU_IO	include/events/hwe_common.h	/^   HWE_CPU_IO,     \/\/ Request to IO$/;"	e	enum:hwe_type_t
+HWE_CPU_MEM	include/events/hwe_common.h	/^   HWE_CPU_MEM,    \/\/ Request to memory$/;"	e	enum:hwe_type_t
+HWE_CPU_dmem_begdate	include/hwetrace_processor.h	/^static inline void HWE_CPU_dmem_begdate($/;"	f
+HWE_CPU_dmem_enddate	include/hwetrace_processor.h	/^static inline void HWE_CPU_dmem_enddate($/;"	f
+HWE_CPU_dmem_init	include/hwetrace_processor.h	/^static inline void HWE_CPU_dmem_init($/;"	f
+HWE_CPU_dmem_set_byte	include/hwetrace_processor.h	/^static inline void HWE_CPU_dmem_set_byte($/;"	f
+HWE_CPU_dmem_set_data	include/hwetrace_processor.h	/^static inline void HWE_CPU_dmem_set_data($/;"	f
+HWE_CPU_dmem_set_word	include/hwetrace_processor.h	/^static inline void HWE_CPU_dmem_set_word($/;"	f
+HWE_CPU_dmem_unknown	include/hwetrace_processor.h	/^static inline void HWE_CPU_dmem_unknown($/;"	f
+HWE_CPU_dmemgl_init	include/hwetrace_processor.h	/^static inline void HWE_CPU_dmemgl_init($/;"	f
+HWE_CPU_imem_begdate	include/hwetrace_processor.h	/^static inline void HWE_CPU_imem_begdate($/;"	f
+HWE_CPU_imem_enddate	include/hwetrace_processor.h	/^static inline void HWE_CPU_imem_enddate($/;"	f
+HWE_CPU_imem_init	include/hwetrace_processor.h	/^static inline void HWE_CPU_imem_init($/;"	f
+HWE_CPU_imem_set_byte	include/hwetrace_processor.h	/^static inline void HWE_CPU_imem_set_byte($/;"	f
+HWE_CPU_imem_set_data	include/hwetrace_processor.h	/^static inline void HWE_CPU_imem_set_data($/;"	f
+HWE_CPU_imem_set_word	include/hwetrace_processor.h	/^static inline void HWE_CPU_imem_set_word($/;"	f
+HWE_CPU_inst_add_reg	include/hwetrace_processor.h	/^static inline unsigned int HWE_CPU_inst_add_reg($/;"	f
+HWE_CPU_inst_clr_exec	include/hwetrace_processor.h	/^static inline void HWE_CPU_inst_clr_exec($/;"	f
+HWE_CPU_inst_get_cycles	include/hwetrace_processor.h	/^static inline unsigned HWE_CPU_inst_get_cycles($/;"	f
+HWE_CPU_inst_get_dmem	include/hwetrace_processor.h	/^static inline unsigned HWE_CPU_inst_get_dmem($/;"	f
+HWE_CPU_inst_get_excl	include/hwetrace_processor.h	/^static inline unsigned HWE_CPU_inst_get_excl($/;"	f
+HWE_CPU_inst_get_imem	include/hwetrace_processor.h	/^static inline unsigned HWE_CPU_inst_get_imem($/;"	f
+HWE_CPU_inst_get_nreg	include/hwetrace_processor.h	/^static inline unsigned int HWE_CPU_inst_get_nreg($/;"	f
+HWE_CPU_inst_get_pc	include/hwetrace_processor.h	/^static inline uint32_t HWE_CPU_inst_get_pc($/;"	f
+HWE_CPU_inst_get_regid	include/hwetrace_processor.h	/^static inline uint32_t HWE_CPU_inst_get_regid($/;"	f
+HWE_CPU_inst_get_unalig	include/hwetrace_processor.h	/^static inline unsigned HWE_CPU_inst_get_unalig($/;"	f
+HWE_CPU_inst_has_reg	include/hwetrace_processor.h	/^static inline bool HWE_CPU_inst_has_reg($/;"	f
+HWE_CPU_inst_inc_cycles	include/hwetrace_processor.h	/^static inline void HWE_CPU_inst_inc_cycles($/;"	f
+HWE_CPU_inst_inc_dmem	include/hwetrace_processor.h	/^static inline void HWE_CPU_inst_inc_dmem($/;"	f
+HWE_CPU_inst_inc_imem	include/hwetrace_processor.h	/^static inline void HWE_CPU_inst_inc_imem($/;"	f
+HWE_CPU_inst_init	include/hwetrace_processor.h	/^static inline void HWE_CPU_inst_init (hwe_cont *cont,$/;"	f
+HWE_CPU_inst_is_jump	include/hwetrace_processor.h	/^static inline int HWE_CPU_inst_is_jump($/;"	f
+HWE_CPU_inst_set_cycles	include/hwetrace_processor.h	/^static inline void HWE_CPU_inst_set_cycles($/;"	f
+HWE_CPU_inst_set_date	include/hwetrace_processor.h	/^static inline void HWE_CPU_inst_set_date($/;"	f
+HWE_CPU_inst_set_dmem	include/hwetrace_processor.h	/^static inline void HWE_CPU_inst_set_dmem($/;"	f
+HWE_CPU_inst_set_excl	include/hwetrace_processor.h	/^static inline void HWE_CPU_inst_set_excl($/;"	f
+HWE_CPU_inst_set_imem	include/hwetrace_processor.h	/^static inline void HWE_CPU_inst_set_imem($/;"	f
+HWE_CPU_inst_set_instr	include/hwetrace_processor.h	/^static inline void HWE_CPU_inst_set_instr($/;"	f
+HWE_CPU_inst_set_jump	include/hwetrace_processor.h	/^static inline void HWE_CPU_inst_set_jump($/;"	f
+HWE_CPU_inst_set_nreg	include/hwetrace_processor.h	/^static inline void HWE_CPU_inst_set_nreg($/;"	f
+HWE_CPU_inst_set_regdata	include/hwetrace_processor.h	/^static inline void HWE_CPU_inst_set_regdata($/;"	f
+HWE_CPU_inst_set_regdst	include/hwetrace_processor.h	/^static inline void HWE_CPU_inst_set_regdst($/;"	f
+HWE_CPU_inst_set_reg	include/hwetrace_processor.h	/^static inline void HWE_CPU_inst_set_reg($/;"	f
+HWE_CPU_inst_set_regid	include/hwetrace_processor.h	/^static inline void HWE_CPU_inst_set_regid($/;"	f
+HWE_CPU_inst_set_unalign	include/hwetrace_processor.h	/^static inline void HWE_CPU_inst_set_unalign($/;"	f
+HWE_CPU_io_init	include/hwetrace_processor.h	/^static inline void HWE_CPU_io_init($/;"	f
+HWE_CPU_mem_init	include/hwetrace_processor.h	/^static inline void HWE_CPU_mem_init($/;"	f
+HWE_DATE_MAX	include/events/hwe_common.h	156;"	d
+HWE_EXCEP32	include/events/hwe_common.h	/^   HWE_EXCEP32,    \/\/ exception in 32bits A\/D architecture$/;"	e	enum:hwe_type_t
+HWE_EXP_MAX	include/events/hwe_common.h	155;"	d
+HWE_HANDLE_MAIN	include/hwe_handle_main.h	3;"	d
+HWE_HANDLE_NOP_STATS	source/hwe_handle_nop.c	19;"	d	file:
+HWE_HANDLE_REPORT_LVL	include/hwe_handle_header.h	111;"	d
+HWE_HANDLE_REPORT_LVL	source/hwetrace_check.c	17;"	d	file:
+HWE_HANDLE_REPORT_LVL	source/hwetrace_order.c	17;"	d	file:
+HWE_HEAD_add_expected	include/hwetrace_common.h	/^_HWETRACE_ATTR void HWE_HEAD_add_expected(hwe_cont *cont, unsigned int exp)$/;"	f
+HWE_HEAD_add_ref	include/hwetrace_common.h	/^_HWETRACE_ATTR void HWE_HEAD_add_ref(hwe_cont *cont, $/;"	f
+HWE_HEAD_clean_child	include/hwetrace_common.h	/^_HWETRACE_ATTR void HWE_HEAD_clean_child(hwe_cont*cont)$/;"	f
+HWE_HEAD_del_child	include/hwetrace_common.h	/^_HWETRACE_ATTR void HWE_HEAD_del_child(hwe_cont*cont, uint16_t child_slot)$/;"	f
+HWE_HEAD_get_child	include/hwetrace_common.h	/^_HWETRACE_ATTR hwe_cont* HWE_HEAD_get_child(hwe_cont*cont, int n)$/;"	f
+HWE_HEAD_get_com_child	include/hwetrace_common.h	/^_HWETRACE_ATTR unsigned HWE_HEAD_get_com_child(hwe_cont *cont)$/;"	f
+HWE_HEAD_get_date	include/hwetrace_common.h	/^_HWETRACE_ATTR hwe_date_t HWE_HEAD_get_date(hwe_cont *cont,$/;"	f
+HWE_HEAD_get_nchild	include/hwetrace_common.h	/^_HWETRACE_ATTR unsigned HWE_HEAD_get_nchild(hwe_cont *cont)$/;"	f
+HWE_HEAD_get_parent	include/hwetrace_common.h	/^_HWETRACE_ATTR hwe_cont* HWE_HEAD_get_parent(hwe_cont* child)$/;"	f
+HWE_HEAD_get_ref	include/hwetrace_common.h	/^_HWETRACE_ATTR hwe_ref_t HWE_HEAD_get_ref(hwe_cont *cont)$/;"	f
+HWE_HEAD_get_type	include/hwetrace_common.h	/^_HWETRACE_ATTR hwe_type_t HWE_HEAD_get_type (hwe_cont* cont)$/;"	f
+HWE_HEAD_init	include/hwetrace_common.h	/^_HWETRACE_ATTR void HWE_HEAD_init(hwe_cont *cont,$/;"	f
+HWE_HEAD_rem_expected	include/hwetrace_common.h	/^_HWETRACE_ATTR void HWE_HEAD_rem_expected(hwe_cont *cont, unsigned int exp)$/;"	f
+HWE_HEAD_reset	include/hwetrace_common.h	/^_HWETRACE_ATTR void HWE_HEAD_reset(hwe_cont *cont,$/;"	f
+HWE_HEAD_set_child	include/hwetrace_common.h	/^_HWETRACE_ATTR void HWE_HEAD_set_child(hwe_cont* parent, hwe_cont* child)$/;"	f
+HWE_HEAD_set_com_child	include/hwetrace_common.h	/^_HWETRACE_ATTR void HWE_HEAD_set_com_child(hwe_cont* cont, unsigned commited)$/;"	f
+HWE_HEAD_set_date	include/hwetrace_common.h	/^_HWETRACE_ATTR void HWE_HEAD_set_date(hwe_cont *cont, $/;"	f
+HWE_HEAD_set_expected	include/hwetrace_common.h	/^_HWETRACE_ATTR void HWE_HEAD_set_expected(hwe_cont *cont, unsigned int exp)$/;"	f
+HWE_HEAD_set_nrefs	include/hwetrace_common.h	/^_HWETRACE_ATTR void HWE_HEAD_set_nrefs(hwe_cont *cont,$/;"	f
+HWE_HEAD_set_ref	include/hwetrace_common.h	/^_HWETRACE_ATTR void HWE_HEAD_set_ref(hwe_cont *cont,$/;"	f
+HWE_HEAD_set_type	include/hwetrace_common.h	/^_HWETRACE_ATTR void HWE_HEAD_set_type (hwe_cont* cont, hwe_type_t type)$/;"	f
+HWE_HEAD_this	include/hwetrace_common.h	/^_HWETRACE_ATTR hwe_ref_t HWE_HEAD_this(hwe_cont *cont)$/;"	f
+HWE_ID_NULL	include/events/hwe_common.h	/^static const hwe_id_t HWE_ID_NULL = { 0, 0 };$/;"	v
+HWE_ID_SIZEOF	include/events/hwe_common.h	/^static size_t HWE_ID_SIZEOF = sizeof(hwe_id_dev_t) + sizeof(hwe_head_t) + sizeof(hwe_id_ind_t);$/;"	v
+HWE_ID	include/events/hwe_common.h	/^   HWE_ID = 0,$/;"	e	enum:hwe_type_t
+HWE_INFO_NAME_MAX	include/events/hwe_info.h	17;"	d
+HWE_INFO_add	include/hwetrace_common.h	/^_HWETRACE_ATTR void HWE_INFO_add(hwe_cont *cont, const hwe_devices_u *data)$/;"	f
+HWE_INFO_init	include/hwetrace_common.h	/^_HWETRACE_ATTR void HWE_INFO_init($/;"	f
+HWE_INFO	include/events/hwe_common.h	/^   HWE_INFO = 2,$/;"	e	enum:hwe_type_t
+HWE_INST32	include/events/hwe_common.h	/^   HWE_INST32 = 8, \/\/ instruction on 32bits A\/D architecture$/;"	e	enum:hwe_type_t
+HWE_INST_REG_MAX	include/events/hwe_inst.h	62;"	d
+HWE_MEM32_get_rcvack	include/hwetrace_common.h	/^static inline unsigned HWE_MEM32_get_rcvack($/;"	f
+HWE_MEM32_inc_width	include/hwetrace_common.h	/^_HWETRACE_ATTR unsigned HWE_MEM32_inc_width(hwe_cont *cont, unsigned inc)$/;"	f
+HWE_MEM32_init	include/hwetrace_common.h	/^_HWETRACE_ATTR void HWE_MEM32_init(hwe_cont *cont,$/;"	f
+HWE_MEM32_set_byte	include/hwetrace_common.h	/^_HWETRACE_ATTR void HWE_MEM32_set_byte(hwe_cont *cont,$/;"	f
+HWE_MEM32_set_cpureq	include/hwetrace_common.h	/^static inline void HWE_MEM32_set_cpureq($/;"	f
+HWE_MEM32_set_data	include/hwetrace_common.h	/^_HWETRACE_ATTR void HWE_MEM32_set_data($/;"	f
+HWE_MEM32_set_rcvack	include/hwetrace_common.h	/^static inline void HWE_MEM32_set_rcvack($/;"	f
+HWE_MEM32_set_width	include/hwetrace_common.h	/^_HWETRACE_ATTR void HWE_MEM32_set_width(hwe_cont *cont, uint32_t width)$/;"	f
+HWE_MEM32_set_word	include/hwetrace_common.h	/^_HWETRACE_ATTR void HWE_MEM32_set_word(hwe_cont *cont,$/;"	f
+HWE_MEM32	include/events/hwe_common.h	/^   HWE_MEM32,         \/\/ 32bits address memory access (must be acknowledged (or relayed) once)$/;"	e	enum:hwe_type_t
+HWE_MEMACK	include/events/hwe_common.h	/^   HWE_MEMACK,        \/\/ indicate that a mem access has been taken into account$/;"	e	enum:hwe_type_t
+HWE_MEMGL_init	include/hwetrace_common.h	/^_HWETRACE_ATTR void HWE_MEMGL_init(hwe_cont *cont,$/;"	f
+HWE_MEMGL	include/events/hwe_common.h	/^   HWE_MEMGL = 4,     \/\/ global memory access$/;"	e	enum:hwe_type_t
+HWE_MEMORY	include/events/hwe_device.h	/^   HWE_MEMORY,$/;"	e	enum:hwe_device_t
+HWE_MEM_DATA_MAX	include/events/hwe_mem.h	132;"	d
+HWE_MEM_INVAL	include/events/hwe_mem.h	/^   HWE_MEM_INVAL,   \/\/ invalidate (to caches) (no data)$/;"	e	enum:hwe_mem_t
+HWE_MEM_LL	include/events/hwe_mem.h	/^   HWE_MEM_LL,      \/\/ load linked$/;"	e	enum:hwe_mem_t
+HWE_MEM_LOAD	include/events/hwe_mem.h	/^   HWE_MEM_LOAD,    \/\/ load$/;"	e	enum:hwe_mem_t
+HWE_MEM_MODIFY	include/events/hwe_mem.h	/^   HWE_MEM_MODIFY,  \/\/ modify$/;"	e	enum:hwe_mem_t
+HWE_MEM_NODATA	include/hwetrace_memory.h	14;"	d
+HWE_MEM_NODATE	include/hwetrace_memory.h	11;"	d
+HWE_MEM_PREF	include/events/hwe_mem.h	/^   HWE_MEM_PREF,    \/\/ prefetch (no data)$/;"	e	enum:hwe_mem_t
+HWE_MEM_REPL	include/events/hwe_mem.h	/^   HWE_MEM_REPL,    \/\/ replace (to caches) (no data)$/;"	e	enum:hwe_mem_t
+HWE_MEM_SC	include/events/hwe_mem.h	/^   HWE_MEM_SC,      \/\/ store conditional$/;"	e	enum:hwe_mem_t
+HWE_MEM_STORE	include/events/hwe_mem.h	/^   HWE_MEM_STORE,   \/\/ store$/;"	e	enum:hwe_mem_t
+HWE_MEM_SW_FLUSH	include/events/hwe_mem.h	/^   HWE_MEM_SW_FLUSH,\/\/ flush (to caches) using instruction (no data)$/;"	e	enum:hwe_mem_t
+HWE_MEM_SW_INVAL	include/events/hwe_mem.h	/^   HWE_MEM_SW_INVAL,\/\/ invalidate (to caches) using instruction (no data)$/;"	e	enum:hwe_mem_t
+HWE_MEM_SYNC	include/events/hwe_mem.h	/^   HWE_MEM_SYNC,    \/\/ sync (proc) (no data)$/;"	e	enum:hwe_mem_t
+HWE_MEM_WRITEBACK	include/events/hwe_mem.h	/^   HWE_MEM_WRITEBACK,\/\/ writeback$/;"	e	enum:hwe_mem_t
+HWE_MEM_ack_init	include/hwetrace_memory.h	/^static inline void HWE_MEM_ack_init(hwe_cont *ack)$/;"	f
+HWE_MEM_ack_set_date	include/hwetrace_memory.h	/^static inline void HWE_MEM_ack_set_date($/;"	f
+HWE_MEM_mem_add_byte	include/hwetrace_memory.h	/^static inline void HWE_MEM_mem_add_byte($/;"	f
+HWE_MEM_mem_begdate	include/hwetrace_memory.h	/^static inline void HWE_MEM_mem_begdate($/;"	f
+HWE_MEM_mem_enddate	include/hwetrace_memory.h	/^static inline void HWE_MEM_mem_enddate($/;"	f
+HWE_MEM_mem_init	include/hwetrace_memory.h	/^static inline void HWE_MEM_mem_init($/;"	f
+HWE_MEM_mem_set_byte	include/hwetrace_memory.h	/^static inline void HWE_MEM_mem_set_byte($/;"	f
+HWE_MEM_mem_set_data	include/hwetrace_memory.h	/^static inline void HWE_MEM_mem_set_data($/;"	f
+HWE_MEM_mem_set_word	include/hwetrace_memory.h	/^static inline void HWE_MEM_mem_set_word($/;"	f
+HWE_MEM_use_data	include/events/hwe_mem.h	/^static inline unsigned int HWE_MEM_use_data(hwe_mem_t type) {$/;"	f
+HWE_NULL	include/events/hwe_common.h	/^   HWE_NULL = 1,$/;"	e	enum:hwe_type_t
+HWE_PERIPHERAL	include/events/hwe_device.h	/^   HWE_PERIPHERAL,$/;"	e	enum:hwe_device_t
+HWE_PRI_DATE	include/events/hwe_common.h	170;"	d
+HWE_PRI_ID	include/events/hwe_common.h	121;"	d
+HWE_PROCESSOR	include/events/hwe_device.h	/^   HWE_PROCESSOR,$/;"	e	enum:hwe_device_t
+HWE_REF_MAX	include/events/hwe_common.h	153;"	d
+HWE_REF_NULL	include/events/hwe_common.h	177;"	d
+HWE_RID_MAX	include/events/hwe_common.h	157;"	d
+HWE_RID_MIN	include/events/hwe_common.h	158;"	d
+HWE_SPARE_init	include/hwetrace_common.h	/^_HWETRACE_ATTR void HWE_SPARE_init(hwe_cont *cont)$/;"	f
+HWE_SPARE	include/events/hwe_common.h	/^   HWE_SPARE,$/;"	e	enum:hwe_type_t
+HWE_SPREAD_init	include/hwetrace_common.h	/^_HWETRACE_ATTR void HWE_SPREAD_init(hwe_cont *cont,$/;"	f
+HWE_SPREAD	include/events/hwe_common.h	/^   HWE_SPREAD = 3,$/;"	e	enum:hwe_type_t
+HWE_USE_TOOLS	include/events/hwe_tools.h	4;"	d
+HWE_VERSION_MAJOR	include/events/hwe_common.h	14;"	d
+HWE_VERSION_MINOR	include/events/hwe_common.h	15;"	d
+HWE_VERSION	include/events/hwe_common.h	16;"	d
+HWE_WRITEBUFFER	include/events/hwe_device.h	/^   HWE_WRITEBUFFER,$/;"	e	enum:hwe_device_t
+MAXCONT	source/hwetrace_print.c	142;"	d	file:
+MAXPORTS	source/hwetrace.c	30;"	d	file:
+POOL_CONCAT	utils/include/pool.h	220;"	d
+POOL_CONCAT	utils/include/pool.h	45;"	d
+POOL_DYNSIZE	utils/include/pool.h	245;"	d
+POOL_INIT	source/hwetrace_read.c	58;"	d	file:
+POOL_INIT	utils/include/pool.h	241;"	d
+POOL_MAXELEM	utils/include/pool.h	249;"	d
+POOL_STAT	include/hwe_handle_implem.h	71;"	d
+POOL_STAT	include/hwe_handle_implem.h	78;"	d
+POOL_STAT	include/hwe_handle_implem.h	85;"	d
+POOL_STAT	utils/include/pool.h	237;"	d
+POOL_XCONCAT	utils/include/pool.h	221;"	d
+POOL_XCONCAT	utils/include/pool.h	46;"	d
+POOL_array_t	utils/include/pool.h	228;"	d
+POOL_array_t	utils/include/pool.h	49;"	d
+POOL_array_t	utils/include/pool.h	/^struct POOL_array_t {$/;"	s
+POOL_array_t	utils/include/pool.h	/^typedef struct POOL_array_t POOL_array_t;$/;"	t	typeref:struct:POOL_array_t
+POOL_elem_t	include/hwe_handle_implem.h	69;"	d
+POOL_elem_t	include/hwe_handle_implem.h	76;"	d
+POOL_elem_t	include/hwe_handle_implem.h	83;"	d
+POOL_elem_t	source/hwe_handle_nop.c	15;"	d	file:
+POOL_elem_t	source/hwetrace_read.c	62;"	d	file:
+POOL_elem_t	source/hwetrace_read.c	69;"	d	file:
+POOL_elem_t	utils/include/pool.h	226;"	d
+POOL_free	utils/include/pool.h	232;"	d
+POOL_free	utils/include/pool.h	53;"	d
+POOL_free	utils/include/pool.h	/^static void POOL_free (POOL_t *pool)$/;"	f
+POOL_get	utils/include/pool.h	233;"	d
+POOL_get	utils/include/pool.h	54;"	d
+POOL_get	utils/include/pool.h	/^static POOL_elem_t * POOL_get (POOL_t *pool)$/;"	f
+POOL_grain	include/hwe_handle_implem.h	70;"	d
+POOL_grain	include/hwe_handle_implem.h	77;"	d
+POOL_grain	include/hwe_handle_implem.h	84;"	d
+POOL_grain	source/hwe_handle_nop.c	16;"	d	file:
+POOL_grain	source/hwetrace_read.c	60;"	d	file:
+POOL_grain	source/hwetrace_read.c	70;"	d	file:
+POOL_grain	utils/include/pool.h	223;"	d
+POOL_init	utils/include/pool.h	231;"	d
+POOL_init	utils/include/pool.h	52;"	d
+POOL_init	utils/include/pool.h	/^static void POOL_init (POOL_t *pool$/;"	f
+POOL_prefix	include/hwe_handle_implem.h	68;"	d
+POOL_prefix	include/hwe_handle_implem.h	75;"	d
+POOL_prefix	include/hwe_handle_implem.h	82;"	d
+POOL_prefix	source/hwe_handle_nop.c	14;"	d	file:
+POOL_prefix	source/hwetrace_read.c	61;"	d	file:
+POOL_prefix	source/hwetrace_read.c	68;"	d	file:
+POOL_prefix	utils/include/pool.h	224;"	d
+POOL_put	utils/include/pool.h	234;"	d
+POOL_put	utils/include/pool.h	55;"	d
+POOL_put	utils/include/pool.h	/^static void POOL_put (POOL_t *pool, POOL_elem_t *elem)$/;"	f
+POOL_t	utils/include/pool.h	227;"	d
+POOL_t	utils/include/pool.h	48;"	d
+POOL_t	utils/include/pool.h	/^struct POOL_t {$/;"	s
+POOL_t	utils/include/pool.h	/^typedef struct POOL_t POOL_t;$/;"	t	typeref:struct:POOL_t
+POOL_union_t	utils/include/pool.h	229;"	d
+POOL_union_t	utils/include/pool.h	50;"	d
+POOL_union_t	utils/include/pool.h	/^typedef union POOL_union_t POOL_union_t;$/;"	t	typeref:union:POOL_union_t
+POOL_union_t	utils/include/pool.h	/^union POOL_union_t {$/;"	u
+RHWE_CHECK	source/hwetrace_read.c	20;"	d	file:
+RHWE_VCALL_EV	source/hwetrace_read.c	31;"	d	file:
+RHWE_VCALL_EV	source/hwetrace_read.c	44;"	d	file:
+RHWE_VCALL	source/hwetrace_read.c	24;"	d	file:
+RHWE_VCALL	source/hwetrace_read.c	43;"	d	file:
+RHWE_VRET	source/hwetrace_read.c	38;"	d	file:
+RHWE_VRET	source/hwetrace_read.c	45;"	d	file:
+SHERLOCK	include/hwe_handle_implem.h	845;"	d
+STAGE_GO	include/hwe_handle_def.h	/^   STAGE_GO,$/;"	e	enum:stage_t
+STAGE_INIT	include/hwe_handle_def.h	/^   STAGE_INIT,$/;"	e	enum:stage_t
+STAGE_RET	include/hwe_handle_def.h	/^   STAGE_RET$/;"	e	enum:stage_t
+STAGE_TRACE	include/hwe_handle_def.h	/^   STAGE_TRACE,$/;"	e	enum:stage_t
+THRESHOLD	source/hwetrace_order.c	34;"	d	file:
+TRACER_PRINT	include/hwetrace_par_cirbuf.h	36;"	d
+TRACER_VPRINT	include/hwetrace_par_cirbuf.h	48;"	d
+TRACER_VPRINT	include/hwetrace_par_cirbuf.h	50;"	d
+TR_EXCL_LOAD	include/hwetrace_processor.h	11;"	d
+TR_EXCL_STORE	include/hwetrace_processor.h	12;"	d
+TR_NO_EXCL	include/hwetrace_processor.h	10;"	d
+USE_STAGE_GO	source/hwetrace_check.c	19;"	d	file:
+USE_STAGE_GO	source/hwetrace_order.c	26;"	d	file:
+USE_STAGE_RET	source/hwetrace_check.c	20;"	d	file:
+USE_STAGE_RET	source/hwetrace_order.c	27;"	d	file:
+_AVL_FUNC_ATTRIB	utils/include/avl.h	138;"	d
+_AVL_FUNC_ATTRIB	utils/include/avl.h	1415;"	d
+_CASE	include/hwetrace_stat.h	118;"	d
+_CASE	include/hwetrace_stat.h	81;"	d
+_HWETRACE_API_H_	include/hwetrace_api.h	2;"	d
+_HWETRACE_ATTR	include/hwetrace_common.h	15;"	d
+_HWETRACE_ATTR	include/hwetrace_common.h	41;"	d
+_HWETRACE_ATTR	include/hwetrace_common.h	509;"	d
+_HWETRACE_CACHE_H_	include/hwetrace_cache.h	2;"	d
+_HWETRACE_COMMON_H_	include/hwetrace_common.h	2;"	d
+_HWETRACE_CPU_H_	include/hwetrace_processor.h	2;"	d
+_HWETRACE_H_	include/hwetrace.h	2;"	d
+_HWETRACE_MEM_H_	include/hwetrace_memory.h	2;"	d
+_HWETRACE_PAR_CIRBUF_H_	include/hwetrace_par_cirbuf.h	2;"	d
+_HWETRACE_PAR_H_	include/hwetrace_par.h	2;"	d
+_HWE_COMMON_H_	include/events/hwe_common.h	2;"	d
+_HWE_DEVICE_H_	include/events/hwe_device.h	2;"	d
+_HWE_DEVICE_TOOLS_H_	include/events/hwe_device.h	57;"	d
+_HWE_HANDLE_DEF_H_	include/hwe_handle_def.h	2;"	d
+_HWE_HANDLE_HEADER_H_	include/hwe_handle_header.h	3;"	d
+_HWE_INFO_H_	include/events/hwe_info.h	2;"	d
+_HWE_INST_H_	include/events/hwe_inst.h	2;"	d
+_HWE_MEM_H_	include/events/hwe_mem.h	2;"	d
+_HWE_TOOLS_COMMON_H_	include/events/hwe_common.h	219;"	d
+_HWE_TOOLS_INFO_H_	include/events/hwe_info.h	41;"	d
+_HWE_TOOLS_INST_H_	include/events/hwe_inst.h	94;"	d
+_HWE_TOOLS_MEM_H_	include/events/hwe_mem.h	187;"	d
+_HWE_TOOLS_	include/events/hwe_tools.h	2;"	d
+_HWE_TOTAL	include/hwetrace_stat.h	128;"	d
+_HWE_TOTAL	include/hwetrace_stat.h	55;"	d
+_HWE_buffer	include/hwetrace_stat.h	125;"	d
+_HWE_buffer	include/hwetrace_stat.h	34;"	d
+_HWE_cache	include/hwetrace_stat.h	126;"	d
+_HWE_cache	include/hwetrace_stat.h	42;"	d
+_HWE_cpu	include/hwetrace_stat.h	124;"	d
+_HWE_cpu	include/hwetrace_stat.h	20;"	d
+_HWE_global	include/hwetrace_stat.h	123;"	d
+_HWE_global	include/hwetrace_stat.h	12;"	d
+_HWE_memory	include/hwetrace_stat.h	127;"	d
+_HWE_memory	include/hwetrace_stat.h	50;"	d
+__HWETRACE_STAT_H__	include/hwetrace_stat.h	3;"	d
+__HWETRACE_STAT_INTERNAL_H__	include/hwetrace_stat_internal.h	3;"	d
+__HWE_EVENTS_H__	include/events/hwe_events.h	9;"	d
+abort	include/events/hwe_inst.h	/^   unsigned    abort:1;   \/**< Was instruction  aborted ?                      *\/$/;"	m	struct:hwe_inst32_t
+access	include/events/hwe_inst.h	/^   uint32_t   access:2; \/**<  LOAD \/ STORE *\/$/;"	m	struct:hwe_cpu32_t
+access	include/events/hwe_mem.h	/^   hwe_mem_t    access:4;  \/\/ type of the access$/;"	m	struct:hwe_memglobal_t
+access	include/events/hwe_mem.h	/^   hwe_mem_t access:4;     \/\/ type of the access$/;"	m	struct:hwe_ack_t
+access	include/events/hwe_mem.h	/^   hwe_mem_t access:4;     \/\/ type of the access$/;"	m	struct:hwe_mem32_t
+ack_commit	include/events/hwe_inst.h	/^   bool          ack_commit;$/;"	m	struct:hwe_inst_cont
+ack	include/events/hwe_events.h	/^   hwe_ack_cont    ack;$/;"	m	union:hwe_cont
+ack	include/hwetrace_stat.h	/^		uint64_t ack;$/;"	m	struct:hwetrace_stat::__anon7
+ack	include/hwetrace_stat.h	/^		uint64_t ack;$/;"	m	struct:hwetrace_stat::__anon8
+add_port	source/hwetrace.c	/^static hwe_port_t * add_port (const char *name, hwe_device_t type)$/;"	f	file:
+addr	include/events/hwe_mem.h	/^   uint32_t  addr;         \/\/ access address$/;"	m	struct:hwe_ack_t
+addr	include/events/hwe_mem.h	/^   uint32_t  addr;         \/\/ access address$/;"	m	struct:hwe_mem32_t
+alloc_comp	source/hwetrace_read.c	/^static comp_t *alloc_comp(struct mainstruct *ms, unsigned id)$/;"	f	file:
+alloc	include/hwetrace_par_cirbuf.h	/^	void *alloc;$/;"	m	struct:hwepar
+alloc	utils/include/pool.h	/^   POOL_array_t *alloc;    \/\/ linked list of allocated array$/;"	m	struct:POOL_t
+array	include/hwetrace_par_cirbuf.h	/^	hwe_cont *array[HWEPAR_BUFSIZE];$/;"	m	struct:hwepar_buffer
+array	include/hwetrace_par_cirbuf.h	/^	hwe_cont *volatile *array;$/;"	m	struct:hwepar
+array	utils/include/avl.h	/^   AVL_array_t *array; \/* linked list of allocated array *\/$/;"	m	struct:AVL_pool_t
+arraysize	utils/include/pool.h	/^   size_t arraysize;$/;"	m	struct:POOL_t
+avl_side_t	utils/include/avl.h	/^enum avl_side_t {$/;"	g
+balance	utils/include/avl.h	/^   signed char     balance;  \/\/ balance of this subtree$/;"	m	struct:AVL_node_t
+baseaddr	include/events/hwe_device.h	/^   uint32_t baseaddr;$/;"	m	struct:hwe_memory_t
+bcur	source/hwetrace_read.c	/^   void  *bcur;\/\/current position in the buffer$/;"	m	struct:mainstruct	file:
+body	include/events/hwe_info.h	/^   hwe_info_t    body;$/;"	m	struct:hwe_info_cont
+body	include/events/hwe_inst.h	/^   hwe_cpu32_t   body;$/;"	m	struct:hwe_cpu_cont
+body	include/events/hwe_inst.h	/^   hwe_excep32_t  body;$/;"	m	struct:hwe_excep_cont
+body	include/events/hwe_inst.h	/^   hwe_inst32_t  body;$/;"	m	struct:hwe_inst_cont
+body	include/events/hwe_mem.h	/^   hwe_ack_t     body;$/;"	m	struct:hwe_ack_cont
+body	include/events/hwe_mem.h	/^   } body;$/;"	m	struct:hwe_mem_cont	typeref:union:hwe_mem_cont::__anon3
+bsize	source/hwetrace_read.c	/^   size_t bsize;\/\/number of byte in the buffer starting from current position$/;"	m	struct:mainstruct	file:
+buffer_event	source/hwetrace_write.c	/^static void buffer_event(event_t *e)$/;"	f	file:
+buffer_flush	source/hwetrace_write.c	/^static void buffer_flush()$/;"	f	file:
+buffer	include/hwetrace_par.h	/^	hwe_cont **volatile buffer;$/;"	m	struct:hwepar_fifo
+buffer	include/hwetrace_par_cirbuf.h	/^	struct hwepar_buffer buffer;$/;"	m	union:hwepar_buffer_align	typeref:struct:hwepar_buffer_align::hwepar_buffer
+buffer	include/hwetrace_stat.h	/^	} buffer;$/;"	m	struct:hwetrace_stat	typeref:struct:hwetrace_stat::__anon6
+buffers	include/hwetrace_par_cirbuf.h	/^	union hwepar_buffer_align *volatile buffers;$/;"	m	struct:hwepar
+buffer	source/hwetrace_write.c	/^static void *buffer = NULL;$/;"	v	file:
+bufidx	include/hwetrace_par_cirbuf.h	/^	unsigned bufidx;$/;"	m	struct:hwepar
+buf	include/hwetrace_par.h	/^	hwe_cont **buf;$/;"	m	struct:hwepar_local
+buf	include/hwetrace_par_cirbuf.h	/^	volatile struct hwepar_buffer *buf;$/;"	m	struct:hwepar	typeref:struct:hwepar::hwepar_buffer
+buf	source/hwetrace_read.c	/^   void  *buf;\/\/first byte of the buffer$/;"	m	struct:mainstruct	file:
+bufrdy	include/hwetrace_par_cirbuf.h	/^	unsigned bufrdy;$/;"	m	struct:hwepar
+bufsize	source/hwetrace_write.c	/^static size_t bufsize = 0;$/;"	v	file:
+cached	include/events/hwe_device.h	/^   unsigned cached:1;$/;"	m	struct:hwe_memory_t
+cache	include/events/hwe_device.h	/^   hwe_cache_t      cache;$/;"	m	union:hwe_devices_u
+cache	include/hwetrace_stat.h	/^	} cache;$/;"	m	struct:hwetrace_stat	typeref:struct:hwetrace_stat::__anon7
+cancel	include/hwetrace_stat.h	/^		uint64_t cancel;$/;"	m	struct:hwetrace_stat::__anon5
+cb_epicfail	include/hwe_handle_implem.h	/^static void cb_epicfail(event_t *e)$/;"	f
+cb_go	source/hwetrace_order.c	/^static void cb_go(event_t *e){$/;"	f	file:
+cb_init_comp	source/hwetrace_order.c	/^static void cb_init_comp(event_t *e) {$/;"	f	file:
+cb_init_cpu	source/hwetrace_order.c	/^static void cb_init_cpu(event_t *e) {$/;"	f	file:
+cb_init	source/hwetrace_check.c	/^static void cb_init(event_t *e) {$/;"	f	file:
+cb_nop	source/hwetrace_check.c	/^static void cb_nop(event_t *e) {$/;"	f	file:
+cb_nop	source/hwetrace_order.c	/^static void cb_nop(event_t *e) {$/;"	f	file:
+cb_ret	source/hwetrace_order.c	/^static void cb_ret(event_t *e){$/;"	f	file:
+cb	include/hwe_handle_header.h	/^   void (*cb) (event_t *);$/;"	m	struct:event_stage
+check_go	include/hwe_handle_implem.h	/^static void check_go(event_t *e)$/;"	f
+check_init	include/hwe_handle_implem.h	/^static void check_init(event_t *e)$/;"	f
+check_ret	include/hwe_handle_implem.h	/^static void check_ret(event_t *e)$/;"	f
+child_slot	include/events/hwe_common.h	/^   uint16_t child_slot;$/;"	m	struct:hwe_head_cont
+child	include/events/hwe_common.h	/^   hwe_head_cont *child[HWE_CHILD_MAX];$/;"	m	struct:hwe_head_cont
+child	utils/include/avl.h	/^   AVL_node_t     *child[2]; \/\/ 0->child[AVL_LEFT] node 1->child[AVL_RIGHT] node$/;"	m	struct:AVL_node_t
+cnt	include/hwe_handle_header.h	/^   int  cnt;$/;"	m	struct:event_stage
+cnt	include/hwetrace_par.h	/^	unsigned cnt;$/;"	m	struct:hwepar_local
+cnt	source/hwe_handle_nop.c	/^static unsigned cnt, max;$/;"	v	file:
+co_cur	include/hwetrace_stat_internal.h	/^	unsigned co_cur; \/\/nb of currently owned containers $/;"	m	struct:hwe_tracestat
+co_tot	include/hwetrace_stat_internal.h	/^	uint64_t co_tot; \/\/total nb of containers commited$/;"	m	struct:hwe_tracestat
+com_child	include/events/hwe_common.h	/^   unsigned     com_child:16; \/\/ :8 before flushes$/;"	m	struct:hwe_head_t
+commited	include/hwe_handle_header.h	/^   bool commited;$/;"	m	struct:event_t
+common	include/events/hwe_events.h	/^   hwe_head_cont   common;$/;"	m	union:hwe_cont
+common	include/events/hwe_info.h	/^   hwe_head_cont common;$/;"	m	struct:hwe_info_cont
+common	include/events/hwe_inst.h	/^   hwe_head_cont common;$/;"	m	struct:hwe_cpu_cont
+common	include/events/hwe_inst.h	/^   hwe_head_cont common;$/;"	m	struct:hwe_excep_cont
+common	include/events/hwe_inst.h	/^   hwe_head_cont common;$/;"	m	struct:hwe_inst_cont
+common	include/events/hwe_mem.h	/^   hwe_head_cont common;$/;"	m	struct:hwe_ack_cont
+common	include/events/hwe_mem.h	/^   hwe_head_cont common;$/;"	m	struct:hwe_mem_cont
+comp_data_t	source/hwetrace_order.c	/^struct comp_data_t {$/;"	s	file:
+comp_data_t	source/hwetrace_write.c	/^struct comp_data_t {$/;"	s	file:
+comp_data	include/hwe_handle_header.h	/^static inline COMP_DATA_T * comp_data(comp_t* c)$/;"	f
+comp_t	include/hwe_handle_header.h	/^struct comp_t {$/;"	s
+comp_t	source/hwetrace_read.c	/^struct comp_t {$/;"	s	file:
+comp_t	include/hwe_handle_def.h	/^typedef struct comp_t comp_t;$/;"	t	typeref:struct:comp_t
+comp_t	source/hwetrace_read.c	/^typedef struct comp_t comp_t;$/;"	t	typeref:struct:comp_t	file:
+comp	include/hwe_handle_header.h	/^   comp_t *comp;$/;"	m	struct:event_t
+comp	source/hwetrace_read.c	/^   comp_t      **comp;\/\/array of pointers to every component $/;"	m	struct:mainstruct	file:
+comp	source/hwetrace_read.c	/^   comp_t   *comp;  \/\/ src component $/;"	m	struct:rhwe_t	file:
+comp	include/hwe_handle_implem.h	/^static comp_t **comp = NULL;$/;"	v
+condfailed	include/events/hwe_mem.h	/^   unsigned  condfailed:1; \/\/ for conditional access, tell when failed$/;"	m	struct:hwe_mem32_t
+container	include/hwetrace_stat.h	/^		uint64_t container;$/;"	m	struct:hwetrace_stat::__anon4
+cont	source/hwetrace_read.c	/^   hwe_cont *cont; \/\/ ptr to the ref container$/;"	m	struct:ref_t	file:
+cpe_max	include/hwetrace_stat_internal.h	/^	unsigned cpe_max; \/\/nb max of container per event$/;"	m	struct:hwe_tracestat
+cpuid	include/events/hwe_device.h	/^   uint8_t cpuid;$/;"	m	struct:hwe_processor_t
+cpu	include/events/hwe_events.h	/^   hwe_cpu_cont    cpu;$/;"	m	union:hwe_cont
+cpu	include/hwetrace_stat.h	/^	} cpu;$/;"	m	struct:hwetrace_stat	typeref:struct:hwetrace_stat::__anon5
+cpureq_addr	include/events/hwe_mem.h	/^   uint32_t  cpureq_addr;  \/\/ address required by cpu$/;"	m	struct:hwe_mem32_t
+cpureq_width	include/events/hwe_mem.h	/^   uint8_t   cpureq_width; \/\/ width access required by cpy$/;"	m	struct:hwe_mem32_t
+current	source/hwetrace_order.c	/^   uint32_t current;$/;"	m	struct:__anon1	file:
+current	utils/include/pool.h	/^   unsigned int  current;  \/\/ number of remaining elements in the head array$/;"	m	struct:POOL_t
+cycles	include/events/hwe_inst.h	/^   unsigned    cycles:8;$/;"	m	struct:hwe_inst32_t
+data	include/events/hwe_mem.h	/^   uint8_t data[HWE_MEM_DATA_MAX];$/;"	m	struct:hwe_mem_cont
+data	include/hwe_handle_header.h	/^   COMP_DATA_T data;$/;"	m	struct:comp_t
+data	include/hwe_handle_header.h	/^   EVENT_DATA_T data;$/;"	m	struct:event_t
+data	utils/include/avl.h	/^   AVL_data_t      data;$/;"	m	struct:AVL_node_t
+dates	include/events/hwe_common.h	/^   hwe_date_t     dates[HWE_DATE_MAX]; \/\/ dates$/;"	m	struct:hwe_head_cont
+default_name	source/hwetrace.c	/^static const char *const default_name =  "trace";$/;"	v	file:
+desc	include/hwe_handle_header.h	/^	char desc[64];$/;"	m	struct:event_t
+detail	include/events/hwe_info.h	/^   hwe_devices_u detail;$/;"	m	struct:hwe_info_cont
+device	include/events/hwe_info.h	/^   hwe_device_t  device:8; \/\/ type of the device$/;"	m	struct:hwe_info_t
+devid	include/events/hwe_common.h	/^   hwe_id_dev_t devid;  \/\/ device identifier$/;"	m	struct:hwe_id_t
+devid	source/hwetrace.c	/^   hwe_id_dev_t  devid;$/;"	m	struct:hwe_port_t	file:
+dev	source/hwetrace_order.c	/^   uint32_t dev; $/;"	m	struct:__anon1	file:
+dmem	include/events/hwe_inst.h	/^   unsigned    dmem:4;    \/**< Number of data cache access             *\/$/;"	m	struct:hwe_inst32_t
+done	include/hwe_handle_header.h	/^   bool done;$/;"	m	struct:event_stage
+dump_buffer	include/hwe_handle_implem.h	/^static void *dump_buffer = NULL;$/;"	v
+dump_bufsize	include/hwe_handle_implem.h	/^static size_t dump_bufsize = 0;$/;"	v
+dump_component	include/hwe_handle_implem.h	/^static void dump_component(comp_t *comp, event_t *e)$/;"	f
+dump_event	include/hwe_handle_implem.h	/^static void dump_event(event_t *e)$/;"	f
+dump_fd	include/hwe_handle_implem.h	/^static int dump_fd = -1;$/;"	v
+dump_flush	include/hwe_handle_implem.h	/^static void dump_flush()$/;"	f
+dump_init	include/hwe_handle_implem.h	/^static void dump_init()$/;"	f
+dump_stop	include/hwe_handle_implem.h	/^static void dump_stop()$/;"	f
+dump	source/hwetrace.c	/^	FILE *dump;$/;"	m	struct:hwe_trace_t	file:
+elem	utils/include/pool.h	/^   POOL_elem_t   elem;$/;"	m	union:POOL_union_t
+elemsize	utils/include/pool.h	/^   size_t elemsize;$/;"	m	struct:POOL_t
+elems	utils/include/pool.h	/^   POOL_union_t elems[POOL_grain];$/;"	m	struct:POOL_array_t
+elems	utils/include/pool.h	/^   POOL_union_t elems[];$/;"	m	struct:POOL_array_t
+empty_idx	include/hwetrace_par_cirbuf.h	/^	int empty_idx;$/;"	m	struct:hwepar
+empty_idx	include/hwetrace_par_cirbuf.h	/^	int empty_idx;$/;"	m	struct:hwepar_buffer
+empty_ptr	include/hwetrace_par_cirbuf.h	/^	hwe_cont *volatile *empty_ptr;$/;"	m	struct:hwepar
+end_ptr	include/hwetrace_par_cirbuf.h	/^	hwe_cont *volatile *end_ptr;$/;"	m	struct:hwepar
+endaddr	include/events/hwe_device.h	/^   uint32_t endaddr;$/;"	m	struct:hwe_memory_t
+ev_cur	include/hwetrace_stat_internal.h	/^	unsigned ev_cur; \/\/nb of currently owned event$/;"	m	struct:hwe_tracestat
+ev_tot	include/hwetrace_stat_internal.h	/^	uint64_t ev_tot; \/\/total nb of events commited$/;"	m	struct:hwe_tracestat
+event_component	include/hwe_handle_header.h	/^static inline comp_t * event_component(event_t *e) {$/;"	f
+event_content	include/hwe_handle_header.h	/^static inline hwe_cont * event_content(event_t *e) {$/;"	f
+event_data	include/hwe_handle_header.h	/^static inline EVENT_DATA_T * event_data(event_t *e) {$/;"	f
+event_init	include/hwe_handle_implem.h	/^static inline void event_init (event_t *e)$/;"	f
+event_mult_ref	include/hwe_handle_header.h	/^static event_t * event_mult_ref(hwe_head_cont *hwe, int idx)$/;"	f
+event_nbref	include/hwe_handle_header.h	/^static inline int event_nbref(event_t *e)$/;"	f
+event_new	include/hwe_handle_implem.h	/^static inline event_t * event_new() {$/;"	f
+event_pool	include/hwe_handle_implem.h	/^	event_pool_t event_pool;$/;"	m	struct:__anon2
+event_print	include/hwe_handle_implem.h	/^void event_print(FILE *f, event_t *e)$/;"	f
+event_recycle	include/hwe_handle_implem.h	/^static void event_recycle(event_t *e)$/;"	f
+event_ref	include/hwe_handle_header.h	/^static inline event_t * event_ref(event_t *e, int idx)$/;"	f
+event_stage	include/hwe_handle_header.h	/^struct event_stage {$/;"	s
+event_t	include/hwe_handle_header.h	/^struct event_t {$/;"	s
+event_t	include/hwe_handle_def.h	/^typedef struct event_t event_t;$/;"	t	typeref:struct:event_t
+event	include/hwe_handle_def.h	/^   event_t *event;$/;"	m	struct:evptr_t
+event	include/hwetrace_stat.h	/^		uint64_t event;$/;"	m	struct:hwetrace_stat::__anon4
+events	include/hwe_handle_implem.h	/^} events;$/;"	v	typeref:struct:__anon2
+evfifo_init	include/hwe_handle_implem.h	/^void evfifo_init(evfifo_t *f)$/;"	f
+evfifo_t	include/hwe_handle_def.h	/^struct evfifo_t {$/;"	s
+evfifo_t	include/hwe_handle_def.h	/^typedef struct evfifo_t evfifo_t;$/;"	t	typeref:struct:evfifo_t
+evptr_t	include/hwe_handle_def.h	/^struct evptr_t {$/;"	s
+evptr_t	include/hwe_handle_def.h	/^typedef struct evptr_t evptr_t;$/;"	t	typeref:struct:evptr_t
+evstat	include/hwetrace_stat_internal.h	/^static struct hwetrace_stat evstat = {};$/;"	v	typeref:struct:hwetrace_stat
+excep	include/events/hwe_events.h	/^   hwe_excep_cont  excep;$/;"	m	union:hwe_cont
+excep	include/hwetrace_stat.h	/^		uint64_t excep;$/;"	m	struct:hwetrace_stat::__anon5
+excl	include/events/hwe_inst.h	/^   unsigned    excl:2;    \/**< Is it an exclusive access (load\/store) ? *\/$/;"	m	struct:hwe_inst32_t
+exec	include/events/hwe_inst.h	/^   unsigned    exec:1;    \/**< Is it executed ?                        *\/$/;"	m	struct:hwe_inst32_t
+expected	include/events/hwe_common.h	/^   unsigned     expected:32;$/;"	m	struct:hwe_head_t
+father	utils/include/avl.h	/^   AVL_node_t     *father;$/;"	m	struct:AVL_node_t
+fd	source/hwetrace_read.c	/^   int    fd; \/\/file descriptor$/;"	m	struct:mainstruct	file:
+fd	source/hwetrace_write.c	/^static int fd = -1;$/;"	v	file:
+fifo_head	source/hwetrace_read.c	/^   rhwe_t *fifo_head;$/;"	m	struct:mainstruct	file:
+fifo_queue	source/hwetrace_read.c	/^   rhwe_t *fifo_queue;$/;"	m	struct:mainstruct	file:
+fifo	include/hwe_handle_def.h	/^   evfifo_t *fifo;$/;"	m	struct:evptr_t
+fifo	source/hwetrace_order.c	/^    evfifo_t fifo;    \/\/ fifo$/;"	m	struct:comp_data_t	file:
+fill	include/hwetrace_stat.h	/^		uint64_t fill;$/;"	m	struct:hwetrace_stat::__anon7
+findnode	source/hwetrace_read.c	/^static rhwe_node_t *findnode(comp_t *c, hwe_id_ind_t id)$/;"	f	file:
+first	utils/include/avl.h	/^   AVL_node_t     *first;$/;"	m	struct:AVL_tree_t
+followers	include/hwe_handle_header.h	/^   evptr_t *followers;$/;"	m	struct:event_t
+free_barrier	include/hwe_handle_implem.h	/^static void free_barrier(evptr_t *ptr)$/;"	f
+full_idx	include/hwetrace_par_cirbuf.h	/^	int full_idx;$/;"	m	struct:hwepar
+full_idx	include/hwetrace_par_cirbuf.h	/^	int full_idx;$/;"	m	struct:hwepar_buffer
+full_ptr	include/hwetrace_par_cirbuf.h	/^	hwe_cont *volatile *full_ptr;$/;"	m	struct:hwepar
+get_component	include/hwe_handle_implem.h	/^comp_t * get_component(unsigned id)$/;"	f
+get_maxcomponent	include/hwe_handle_implem.h	/^unsigned get_maxcomponent()$/;"	f
+getnode	source/hwetrace_read.c	/^static rhwe_node_t *getnode(rhwe_t *rhwe)$/;"	f	file:
+global	include/events/hwe_mem.h	/^      hwe_memglobal_t global;$/;"	m	union:hwe_mem_cont::__anon3
+global	include/hwetrace_stat.h	/^	} global;$/;"	m	struct:hwetrace_stat	typeref:struct:hwetrace_stat::__anon4
+go	include/hwe_handle_header.h	/^   struct event_stage go;$/;"	m	struct:event_t	typeref:struct:event_t::event_stage
+handle_alloc	include/hwe_handle_implem.h	/^hwe_cont * handle_alloc()$/;"	f
+handle_alloc	source/hwe_handle_nop.c	/^hwe_cont * handle_alloc()$/;"	f
+handle_event	include/hwe_handle_implem.h	/^void handle_event(hwe_cont *hwe)$/;"	f
+handle_event	source/hwe_handle_nop.c	/^void handle_event(hwe_cont *hwe)$/;"	f
+handle_report	include/hwe_handle_implem.h	/^static void handle_report() {$/;"	f
+handle_start	include/hwe_handle_implem.h	/^void handle_start(const char *tracename, int nopt, char * const opt[]) {$/;"	f
+handle_start	source/hwe_handle_nop.c	/^void handle_start(const char *tracename, int nopt, char * const opt[])$/;"	f
+handle_stop	include/hwe_handle_implem.h	/^void handle_stop() {$/;"	f
+handle_stop	source/hwe_handle_nop.c	/^void handle_stop()$/;"	f
+handler_cond	include/hwetrace_par_cirbuf.h	/^	pthread_cond_t handler_cond;$/;"	m	struct:hwepar
+handler_idx	include/hwetrace_par_cirbuf.h	/^	volatile unsigned handler_idx;$/;"	m	struct:hwepar
+handler_mutex	include/hwetrace_par_cirbuf.h	/^	pthread_mutex_t handler_mutex;$/;"	m	struct:hwepar
+handler	include/hwetrace_par_cirbuf.h	/^	pthread_t handler;$/;"	m	struct:hwepar
+head	include/events/hwe_common.h	/^   hwe_head_t     head;                \/\/ header$/;"	m	struct:hwe_head_cont
+hwe_ack_cont	include/events/hwe_mem.h	/^typedef struct hwe_ack_cont {$/;"	s
+hwe_ack_cont	include/events/hwe_mem.h	/^} hwe_ack_cont;$/;"	t	typeref:struct:hwe_ack_cont
+hwe_ack_desc	include/events/hwe_mem.h	/^static inline int    hwe_ack_desc(const hwe_ack_cont *cont, char *str, int len)$/;"	f
+hwe_ack_print	include/events/hwe_mem.h	/^static inline void   hwe_ack_print(FILE *stream, const hwe_ack_cont *cont)$/;"	f
+hwe_ack_read	include/events/hwe_mem.h	/^static inline size_t hwe_ack_read(hwe_ack_cont *cont,$/;"	f
+hwe_ack_sizeof	include/events/hwe_mem.h	/^static inline size_t hwe_ack_sizeof(const hwe_ack_cont *cont)$/;"	f
+hwe_ack_t	include/events/hwe_mem.h	/^typedef struct hwe_ack_t {$/;"	s
+hwe_ack_t	include/events/hwe_mem.h	/^} __attribute__((__packed__)) hwe_ack_t;$/;"	t	typeref:struct:hwe_ack_t
+hwe_ack_write	include/events/hwe_mem.h	/^static inline void  *hwe_ack_write(const hwe_ack_cont *cont, void *dest)$/;"	f
+hwe_cache_t	include/events/hwe_device.h	/^typedef struct hwe_cache_t {$/;"	s
+hwe_cache_t	include/events/hwe_device.h	/^} __attribute__((__packed__)) hwe_cache_t;$/;"	t	typeref:struct:hwe_cache_t
+hwe_cancel	source/hwetrace.c	/^void hwe_cancel (hwe_cont *hwe)$/;"	f
+hwe_commit	source/hwetrace.c	/^void hwe_commit (hwe_cont *hwe)$/;"	f
+hwe_cont	include/events/hwe_events.h	/^typedef union hwe_cont hwe_cont;$/;"	t	typeref:union:hwe_cont
+hwe_cont	include/events/hwe_events.h	/^union hwe_cont {$/;"	u
+hwe_cpu32_desc	include/events/hwe_inst.h	/^static inline int hwe_cpu32_desc(const hwe_cpu_cont *cont, char *str, int len)$/;"	f
+hwe_cpu32_print	include/events/hwe_inst.h	/^static inline void hwe_cpu32_print(FILE *stream, const hwe_cpu_cont *cont)$/;"	f
+hwe_cpu32_read	include/events/hwe_inst.h	/^static inline size_t hwe_cpu32_read(hwe_cpu_cont *cont,$/;"	f
+hwe_cpu32_sizeof	include/events/hwe_inst.h	/^static inline size_t hwe_cpu32_sizeof(const hwe_cpu_cont *cont)$/;"	f
+hwe_cpu32_t	include/events/hwe_inst.h	/^typedef struct hwe_cpu32_t {$/;"	s
+hwe_cpu32_t	include/events/hwe_inst.h	/^} __attribute__((__packed__)) hwe_cpu32_t;$/;"	t	typeref:struct:hwe_cpu32_t
+hwe_cpu32_write	include/events/hwe_inst.h	/^static inline void * hwe_cpu32_write(const hwe_cpu_cont *cont, void *dest)$/;"	f
+hwe_cpu_cont	include/events/hwe_inst.h	/^typedef struct hwe_cpu_cont{$/;"	s
+hwe_cpu_cont	include/events/hwe_inst.h	/^} hwe_cpu_cont;$/;"	t	typeref:struct:hwe_cpu_cont
+hwe_date_t	include/events/hwe_common.h	/^typedef uint64_t hwe_date_t;$/;"	t
+hwe_desc	include/events/hwe_tools.h	/^static inline int hwe_desc(const hwe_cont *cont, hwe_ref2id_f ref2id, char *str, int len) {$/;"	f
+hwe_device_print	include/events/hwe_device.h	/^static inline void hwe_device_print(FILE *stream, const char *prefix, $/;"	f
+hwe_device_sizeof	include/events/hwe_device.h	/^static inline size_t hwe_device_sizeof(hwe_device_t dev)$/;"	f
+hwe_device_t	include/events/hwe_device.h	/^typedef enum hwe_device_t {$/;"	g
+hwe_device_t	include/events/hwe_device.h	/^} hwe_device_t;$/;"	t	typeref:enum:hwe_device_t
+hwe_devices_u	include/events/hwe_device.h	/^} hwe_devices_u;$/;"	t	typeref:union:hwe_devices_u
+hwe_devices_u	include/events/hwe_device.h	/^typedef union hwe_devices_u {$/;"	u
+hwe_excep32_desc	include/events/hwe_inst.h	/^static inline int hwe_excep32_desc(const hwe_excep_cont *cont, char *str, int len)$/;"	f
+hwe_excep32_print	include/events/hwe_inst.h	/^static inline void hwe_excep32_print(FILE *stream, const hwe_excep_cont *cont)$/;"	f
+hwe_excep32_read	include/events/hwe_inst.h	/^static inline size_t hwe_excep32_read(hwe_excep_cont *cont,$/;"	f
+hwe_excep32_sizeof	include/events/hwe_inst.h	/^static inline size_t hwe_excep32_sizeof(const hwe_excep_cont *cont)$/;"	f
+hwe_excep32_t	include/events/hwe_inst.h	/^typedef struct hwe_excep32_t {$/;"	s
+hwe_excep32_t	include/events/hwe_inst.h	/^} __attribute__((__packed__)) hwe_excep32_t;$/;"	t	typeref:struct:hwe_excep32_t
+hwe_excep32_write	include/events/hwe_inst.h	/^static inline void * hwe_excep32_write(const hwe_excep_cont *cont, void *dest)$/;"	f
+hwe_excep_cont	include/events/hwe_inst.h	/^typedef struct hwe_excep_cont {$/;"	s
+hwe_excep_cont	include/events/hwe_inst.h	/^} hwe_excep_cont;$/;"	t	typeref:struct:hwe_excep_cont
+hwe_extend	source/hwetrace.c	/^hwe_cont * hwe_extend (hwe_cont *hwe)$/;"	f
+hwe_getnref	include/events/hwe_common.h	/^static inline unsigned hwe_getnref(const hwe_head_cont *cont)$/;"	f
+hwe_getref	include/events/hwe_common.h	/^static inline hwe_ref_t hwe_getref(const hwe_head_cont *cont, unsigned n)$/;"	f
+hwe_handle_lvl	include/hwe_handle_implem.h	/^unsigned hwe_handle_lvl = 0;$/;"	v
+hwe_head_cont	include/events/hwe_common.h	/^struct hwe_head_cont {$/;"	s
+hwe_head_cont	include/events/hwe_common.h	/^typedef struct hwe_head_cont hwe_head_cont;$/;"	t	typeref:struct:hwe_head_cont
+hwe_head_desc	include/events/hwe_common.h	/^static inline int hwe_head_desc(const hwe_head_cont *cont, hwe_ref2id_f ref2id, char *str, int len)$/;"	f
+hwe_head_extend	include/events/hwe_common.h	/^static inline void hwe_head_extend(hwe_head_cont *main, hwe_head_cont *ext)$/;"	f
+hwe_head_init	include/events/hwe_common.h	/^static inline void hwe_head_init(hwe_head_cont *cont)$/;"	f
+hwe_head_print	include/events/hwe_common.h	/^static inline void hwe_head_print(FILE *stream, const hwe_head_cont *cont, hwe_ref2id_f ref2id)$/;"	f
+hwe_head_read	include/events/hwe_common.h	/^static inline size_t hwe_head_read(hwe_head_cont *cont, hwe_id_t *idrefs, const void *buf, const size_t size)$/;"	f
+hwe_head_rid_compute	include/events/hwe_common.h	/^static inline bool hwe_head_rid_compute(hwe_head_cont *cont, hwe_id_ind_t prev_id)$/;"	f
+hwe_head_rid_zero	include/events/hwe_common.h	/^static inline void hwe_head_rid_zero(hwe_head_cont *cont)$/;"	f
+hwe_head_sizeof	include/events/hwe_common.h	/^static inline size_t hwe_head_sizeof(const hwe_head_cont *cont)$/;"	f
+hwe_head_t	include/events/hwe_common.h	/^typedef struct hwe_head_t {$/;"	s
+hwe_head_t	include/events/hwe_common.h	/^} __attribute__((__packed__)) hwe_head_t;$/;"	t	typeref:struct:hwe_head_t
+hwe_head_write	include/events/hwe_common.h	/^static inline void * hwe_head_write(const hwe_head_cont *cont, hwe_id_t *idrefs, void *dest)$/;"	f
+hwe_id_compute	include/events/hwe_common.h	/^static inline void hwe_id_compute(hwe_head_cont *cont, hwe_id_ind_t prev_id)$/;"	f
+hwe_id_dev_t	include/events/hwe_common.h	/^typedef uint8_t  hwe_id_dev_t;$/;"	t
+hwe_id_ind_st	include/events/hwe_common.h	/^typedef  int32_t hwe_id_ind_st;\/\/signed version of hwe_id_ind_t$/;"	t
+hwe_id_ind_t	include/events/hwe_common.h	/^typedef uint64_t hwe_id_ind_t;$/;"	t
+hwe_id_read	include/events/hwe_common.h	/^static inline size_t hwe_id_read(hwe_head_cont *cont, $/;"	f
+hwe_id_t	include/events/hwe_common.h	/^typedef struct hwe_id_t {$/;"	s
+hwe_id_t	include/events/hwe_common.h	/^} __attribute__((__packed__)) hwe_id_t;$/;"	t	typeref:struct:hwe_id_t
+hwe_id_write	include/events/hwe_common.h	/^static inline void * hwe_id_write(const hwe_head_cont *cont, void *dest)$/;"	f
+hwe_info_cont	include/events/hwe_info.h	/^typedef struct hwe_info_cont {$/;"	s
+hwe_info_cont	include/events/hwe_info.h	/^} hwe_info_cont;$/;"	t	typeref:struct:hwe_info_cont
+hwe_info_desc	include/events/hwe_info.h	/^static inline int hwe_info_desc(const hwe_info_cont *cont, char *str, int len)$/;"	f
+hwe_info_print	include/events/hwe_info.h	/^static inline void hwe_info_print(FILE *stream, const hwe_info_cont *cont)$/;"	f
+hwe_info_read	include/events/hwe_info.h	/^static inline size_t hwe_info_read(hwe_info_cont *cont,$/;"	f
+hwe_info_sizeof	include/events/hwe_info.h	/^static inline size_t hwe_info_sizeof(const hwe_info_cont *cont)$/;"	f
+hwe_info_t	include/events/hwe_info.h	/^typedef struct hwe_info_t {$/;"	s
+hwe_info_t	include/events/hwe_info.h	/^} __attribute__((__packed__)) hwe_info_t;$/;"	t	typeref:struct:hwe_info_t
+hwe_info_write	include/events/hwe_info.h	/^static inline void * hwe_info_write(const hwe_info_cont *cont, void *dest)$/;"	f
+hwe_init	source/hwetrace.c	/^hwe_cont * hwe_init (hwe_port_t *port)$/;"	f
+hwe_inst32_desc	include/events/hwe_inst.h	/^static inline int hwe_inst32_desc(const hwe_inst_cont *cont, char *str, int len)$/;"	f
+hwe_inst32_print	include/events/hwe_inst.h	/^static inline void hwe_inst32_print(FILE *stream, const hwe_inst_cont *cont)$/;"	f
+hwe_inst32_read	include/events/hwe_inst.h	/^static inline size_t hwe_inst32_read(hwe_inst_cont *cont,$/;"	f
+hwe_inst32_sizeof	include/events/hwe_inst.h	/^static inline size_t hwe_inst32_sizeof(const hwe_inst_cont *cont)$/;"	f
+hwe_inst32_t	include/events/hwe_inst.h	/^typedef struct hwe_inst32_t {$/;"	s
+hwe_inst32_t	include/events/hwe_inst.h	/^} __attribute__((__packed__)) hwe_inst32_t;$/;"	t	typeref:struct:hwe_inst32_t
+hwe_inst32_write	include/events/hwe_inst.h	/^static inline void * hwe_inst32_write(const hwe_inst_cont *cont, void *dest)$/;"	f
+hwe_inst_cont	include/events/hwe_inst.h	/^typedef struct hwe_inst_cont {$/;"	s
+hwe_inst_cont	include/events/hwe_inst.h	/^} hwe_inst_cont;$/;"	t	typeref:struct:hwe_inst_cont
+hwe_mem32_read	include/events/hwe_mem.h	/^static inline size_t hwe_mem32_read(hwe_mem_cont *cont,$/;"	f
+hwe_mem32_sizeof	include/events/hwe_mem.h	/^static inline size_t hwe_mem32_sizeof(const hwe_mem_cont *cont)$/;"	f
+hwe_mem32_t	include/events/hwe_mem.h	/^typedef struct hwe_mem32_t {$/;"	s
+hwe_mem32_t	include/events/hwe_mem.h	/^} __attribute__((__packed__)) hwe_mem32_t;$/;"	t	typeref:struct:hwe_mem32_t
+hwe_mem32_write	include/events/hwe_mem.h	/^static inline void * hwe_mem32_write(const hwe_mem_cont *cont, void *dest)$/;"	f
+hwe_mem_cont	include/events/hwe_mem.h	/^typedef struct hwe_mem_cont {$/;"	s
+hwe_mem_cont	include/events/hwe_mem.h	/^} hwe_mem_cont;$/;"	t	typeref:struct:hwe_mem_cont
+hwe_mem_desc	include/events/hwe_mem.h	/^static inline int hwe_mem_desc(const hwe_mem_cont *cont, char *str, int len)$/;"	f
+hwe_mem_getname	include/events/hwe_mem.h	/^static inline const char * hwe_mem_getname(hwe_mem_t type) {$/;"	f
+hwe_mem_print	include/events/hwe_mem.h	/^static inline void hwe_mem_print(FILE *stream, const hwe_mem_cont *cont)$/;"	f
+hwe_mem_t	include/events/hwe_mem.h	/^typedef enum hwe_mem_t {$/;"	g
+hwe_mem_t	include/events/hwe_mem.h	/^} hwe_mem_t;$/;"	t	typeref:enum:hwe_mem_t
+hwe_memglobal_read	include/events/hwe_mem.h	/^static inline size_t hwe_memglobal_read(hwe_mem_cont *cont,$/;"	f
+hwe_memglobal_sizeof	include/events/hwe_mem.h	/^static inline size_t hwe_memglobal_sizeof(const hwe_mem_cont *cont)$/;"	f
+hwe_memglobal_t	include/events/hwe_mem.h	/^typedef struct hwe_memglobal_t {$/;"	s
+hwe_memglobal_t	include/events/hwe_mem.h	/^} hwe_memglobal_t;$/;"	t	typeref:struct:hwe_memglobal_t
+hwe_memglobal_write	include/events/hwe_mem.h	/^static inline void * hwe_memglobal_write(const hwe_mem_cont *cont, void *dest)$/;"	f
+hwe_memory_t	include/events/hwe_device.h	/^typedef struct hwe_memory_t {$/;"	s
+hwe_memory_t	include/events/hwe_device.h	/^} __attribute__((__packed__)) hwe_memory_t;$/;"	t	typeref:struct:hwe_memory_t
+hwe_peripheral_t	include/events/hwe_device.h	/^typedef struct hwe_peripheral_t {$/;"	s
+hwe_peripheral_t	include/events/hwe_device.h	/^} __attribute__((__packed__)) hwe_peripheral_t;$/;"	t	typeref:struct:hwe_peripheral_t
+hwe_pool	include/hwe_handle_implem.h	/^	hwe_pool_t   hwe_pool;$/;"	m	struct:__anon2
+hwe_pool	source/hwe_handle_nop.c	/^static hwe_pool_t  hwe_pool;$/;"	v	file:
+hwe_port_close	source/hwetrace.c	/^void hwe_port_close  (hwe_port_t *port)$/;"	f
+hwe_port_open	source/hwetrace.c	/^hwe_port_t * hwe_port_open (const char *name, hwe_device_t type, $/;"	f
+hwe_port_t	source/hwetrace.c	/^struct hwe_port_t {$/;"	s	file:
+hwe_port_t	include/hwetrace_api.h	/^typedef struct hwe_port_t hwe_port_t;$/;"	t	typeref:struct:hwe_port_t
+hwe_print	include/events/hwe_tools.h	/^static inline void hwe_print(FILE *stream, $/;"	f
+hwe_processor_t	include/events/hwe_device.h	/^typedef struct hwe_processor_t {$/;"	s
+hwe_processor_t	include/events/hwe_device.h	/^} __attribute__((__packed__)) hwe_processor_t;$/;"	t	typeref:struct:hwe_processor_t
+hwe_read	include/events/hwe_tools.h	/^static inline int hwe_read(hwe_cont *cont, hwe_id_t *idrefs, const void *buf, size_t size,$/;"	f
+hwe_ref2id_f	include/events/hwe_common.h	/^typedef hwe_id_t (*hwe_ref2id_f) (hwe_ref_t);$/;"	t
+hwe_ref2id	include/hwe_handle_implem.h	/^__attribute__((__unused__)) static hwe_id_t hwe_ref2id(hwe_ref_t ref)$/;"	f
+hwe_ref_t	include/events/hwe_common.h	/^typedef uintptr_t hwe_ref_t;$/;"	t
+hwe_setref	include/events/hwe_common.h	/^static inline void hwe_setref(hwe_head_cont *cont, unsigned n, hwe_ref_t ref)$/;"	f
+hwe_sizeof	include/events/hwe_tools.h	/^static inline size_t hwe_sizeof(const hwe_cont *cont)$/;"	f
+hwe_trace_t	source/hwetrace.c	/^typedef struct hwe_trace_t {$/;"	s	file:
+hwe_trace_t	source/hwetrace.c	/^} hwe_trace_t;$/;"	t	typeref:struct:hwe_trace_t	file:
+hwe_tracestat	include/hwetrace_stat_internal.h	/^struct hwe_tracestat {$/;"	s
+hwe_type_getname	include/events/hwe_common.h	/^static inline const char * hwe_type_getname(hwe_type_t type) {$/;"	f
+hwe_type_t	include/events/hwe_common.h	/^typedef enum hwe_type_t {$/;"	g
+hwe_type_t	include/events/hwe_common.h	/^} hwe_type_t;$/;"	t	typeref:enum:hwe_type_t
+hwe_write	include/events/hwe_tools.h	/^static inline void * hwe_write(const hwe_cont *cont, hwe_id_t *idrefs, void *dest)$/;"	f
+hwe	include/hwe_handle_header.h	/^	hwe_cont *hwe;$/;"	m	struct:event_t
+hwe	source/hwetrace_read.c	/^   hwe_cont *hwe;  \/\/ ptr to the event$/;"	m	struct:rhwe_t	file:
+hwepar_alloc	include/hwetrace_par_cirbuf.h	/^hwepar_alloc(struct hwepar *hwepar)$/;"	f
+hwepar_buffer_align	include/hwetrace_par_cirbuf.h	/^union hwepar_buffer_align {$/;"	u
+hwepar_buffer	include/hwetrace_par_cirbuf.h	/^struct hwepar_buffer {$/;"	s
+hwepar_fifoinit	include/hwetrace_par.h	/^hwepar_fifoinit(struct hwepar_fifo *fifo, void *buffer)$/;"	f
+hwepar_fiforeader_current	include/hwetrace_par.h	/^hwepar_fiforeader_current(struct hwepar_fifo *fifo, struct hwepar_local *local)$/;"	f
+hwepar_fiforeader_next	include/hwetrace_par.h	/^hwepar_fiforeader_next(struct hwepar_fifo *fifo, struct hwepar_local *local)$/;"	f
+hwepar_fiforeader_ok	include/hwetrace_par.h	/^hwepar_fiforeader_ok(struct hwepar_fifo *fifo, struct hwepar_local *local)$/;"	f
+hwepar_fiforeader_signal	include/hwetrace_par.h	/^hwepar_fiforeader_signal(struct hwepar_fifo *fifo, struct hwepar_local *local)$/;"	f
+hwepar_fiforeader_sync	include/hwetrace_par.h	/^hwepar_fiforeader_sync(struct hwepar_fifo *fifo, struct hwepar_local *local)$/;"	f
+hwepar_fiforeader_wait	include/hwetrace_par.h	/^hwepar_fiforeader_wait(struct hwepar_fifo *fifo, struct hwepar_local *local)$/;"	f
+hwepar_fifo	include/hwetrace_par.h	/^struct hwepar_fifo {$/;"	s
+hwepar_fifowriter_current	include/hwetrace_par.h	/^hwepar_fifowriter_current(struct hwepar_fifo *fifo, struct hwepar_local *local)$/;"	f
+hwepar_fifowriter_next	include/hwetrace_par.h	/^hwepar_fifowriter_next(struct hwepar_fifo *fifo, struct hwepar_local *local)$/;"	f
+hwepar_fifowriter_ok	include/hwetrace_par.h	/^hwepar_fifowriter_ok(struct hwepar_fifo *fifo, struct hwepar_local *local)$/;"	f
+hwepar_fifowriter_signal	include/hwetrace_par.h	/^hwepar_fifowriter_signal(struct hwepar_fifo *fifo, struct hwepar_local *local)$/;"	f
+hwepar_fifowriter_sync	include/hwetrace_par.h	/^hwepar_fifowriter_sync(struct hwepar_fifo *fifo, struct hwepar_local *local)$/;"	f
+hwepar_fifowriter_wait	include/hwetrace_par.h	/^hwepar_fifowriter_wait(struct hwepar_fifo *fifo, struct hwepar_local *local)$/;"	f
+hwepar_handle_local	include/hwetrace_par_cirbuf.h	/^void hwepar_handle_local(struct hwepar *hwepar, hwe_cont *cont)$/;"	f
+hwepar_handle	include/hwetrace_par_cirbuf.h	/^void hwepar_handle(struct hwepar *hwepar, hwe_cont *cont)$/;"	f
+hwepar_handler_sync	include/hwetrace_par_cirbuf.h	/^static inline unsigned hwepar_handler_sync(struct hwepar *hwepar, unsigned bufidx)$/;"	f
+hwepar_init	include/hwetrace_par_cirbuf.h	/^static void hwepar_init(struct hwepar *hwepar) {$/;"	f
+hwepar_localfifoinit	include/hwetrace_par.h	/^hwepar_localfifoinit(struct hwepar_local *local, struct hwepar_fifo *fifo)$/;"	f
+hwepar_localfifolog	include/hwetrace_par.h	/^hwepar_localfifolog(struct hwepar_local *local, const char *prefix)$/;"	f
+hwepar_local	include/hwetrace_par.h	/^struct hwepar_local {$/;"	s
+hwepar_newbuffer	include/hwetrace_par_cirbuf.h	/^hwepar_newbuffer(struct hwepar *hwepar)$/;"	f
+hwepar_stop	include/hwetrace_par_cirbuf.h	/^hwepar_stop(struct hwepar *hwepar) {$/;"	f
+hwepar_switchbuffer	include/hwetrace_par_cirbuf.h	/^hwepar_switchbuffer(struct hwepar *hwepar)$/;"	f
+hwepar_thread	include/hwetrace_par_cirbuf.h	/^static void* hwepar_thread(void *arg) {$/;"	f
+hwepar_tracer_sync	include/hwetrace_par_cirbuf.h	/^hwepar_tracer_sync(struct hwepar *hwepar)$/;"	f
+hwepar	source/hwetrace.c	/^	struct hwepar hwepar;$/;"	m	struct:hwe_trace_t	typeref:struct:hwe_trace_t::hwepar	file:
+hwepar	include/hwetrace_par_cirbuf.h	/^struct hwepar {$/;"	s
+hwetrace_close	source/hwetrace.c	/^extern void hwetrace_close ()$/;"	f
+hwetrace_event_count	source/hwetrace.c	/^uint64_t hwetrace_event_count()$/;"	f
+hwetrace_open	source/hwetrace.c	/^extern void hwetrace_open (const char * name)$/;"	f
+hwetrace_stat_get_field	include/hwetrace_stat.h	/^static uint64_t hwetrace_stat_get_field($/;"	f
+hwetrace_stat_get	include/hwetrace_stat_internal.h	/^const struct hwetrace_stat * hwetrace_stat_get()$/;"	f
+hwetrace_stat_nb_fields	include/hwetrace_stat.h	/^static const unsigned hwetrace_stat_nb_fields = _HWE_TOTAL;$/;"	v
+hwetrace_stat	include/hwetrace_stat.h	/^struct hwetrace_stat {$/;"	s
+id_array	source/hwetrace_read.c	/^struct id_array {$/;"	s	file:
+id	include/events/hwe_common.h	/^   hwe_id_t       id;                  \/\/ whole id$/;"	m	struct:hwe_head_cont
+id	include/hwe_handle_header.h	/^   unsigned id;$/;"	m	struct:comp_t
+id	source/hwetrace_read.c	/^   hwe_id_dev_t id;    \/\/ id of component$/;"	m	struct:comp_t	file:
+ids_pool	source/hwetrace_read.c	/^	ids_pool_t  ids_pool;$/;"	m	struct:mainstruct	file:
+ids	source/hwetrace_read.c	/^	hwe_id_t ids[HWE_REF_MAX];$/;"	m	struct:id_array	file:
+idx	include/hwetrace_par.h	/^	unsigned idx;$/;"	m	struct:hwepar_local
+ifetch	include/hwetrace_stat.h	/^		uint64_t ifetch;$/;"	m	struct:hwetrace_stat::__anon5
+imem	include/events/hwe_inst.h	/^   unsigned    imem:4;    \/**< Number of instruction cache access      *\/$/;"	m	struct:hwe_inst32_t
+index	include/events/hwe_common.h	/^   hwe_id_ind_t index;  \/\/ index inside device events$/;"	m	struct:hwe_id_t
+index	source/hwetrace.c	/^   hwe_id_ind_t  index;$/;"	m	struct:hwe_port_t	file:
+info	include/events/hwe_events.h	/^   hwe_info_cont   info;$/;"	m	union:hwe_cont
+info	include/hwetrace_stat.h	/^		uint64_t info;$/;"	m	struct:hwetrace_stat::__anon4
+init_fifo	include/hwe_handle_header.h	/^	evfifo_t init_fifo;$/;"	m	struct:comp_t
+init	include/hwe_handle_header.h	/^	struct event_stage init;$/;"	m	struct:event_t	typeref:struct:event_t::event_stage
+init	include/hwe_handle_header.h	/^   void (*init)(event_t *);$/;"	m	struct:comp_t
+insert_event	source/hwetrace_read.c	/^static rhwe_t* insert_event(struct mainstruct *ms, hwe_cont *hwe)$/;"	f	file:
+instfifo	source/hwetrace_order.c	/^static evfifo_t instfifo;$/;"	v	file:
+inst	include/events/hwe_events.h	/^   hwe_inst_cont   inst;$/;"	m	union:hwe_cont
+inst	include/events/hwe_inst.h	/^   uint32_t   inst:1;   \/**< Access to instruction or data *\/$/;"	m	struct:hwe_cpu32_t
+inst	include/events/hwe_mem.h	/^   unsigned  inst:1;       \/\/ instruction access (ie: not data)$/;"	m	struct:hwe_mem32_t
+inst	include/hwetrace_stat.h	/^		uint64_t inst;$/;"	m	struct:hwetrace_stat::__anon5
+instr	include/events/hwe_inst.h	/^   uint32_t    instr;     \/**< Instruction                                   *\/$/;"	m	struct:hwe_inst32_t
+inval	include/hwetrace_stat.h	/^		uint64_t inval;$/;"	m	struct:hwetrace_stat::__anon5
+inval	include/hwetrace_stat.h	/^		uint64_t inval;$/;"	m	struct:hwetrace_stat::__anon7
+io_mem	include/events/hwe_inst.h	/^   uint32_t   io_mem:1; \/**< MEMORY OR IO *\/$/;"	m	struct:hwe_cpu32_t
+jump_pc	include/events/hwe_inst.h	/^   uint32_t      jump_pc; \/\/ present if jump==1$/;"	m	struct:hwe_inst_cont
+jump	include/events/hwe_inst.h	/^   unsigned    jump:1;    \/**< tell if next instruction follow  this one or not*\/$/;"	m	struct:hwe_inst32_t
+key	utils/include/avl.h	/^   AVL_key_t       key;$/;"	m	struct:AVL_node_t
+lastid	include/hwe_handle_header.h	/^	hwe_id_ind_t lastid;$/;"	m	struct:comp_t
+lastid	source/hwetrace_write.c	/^   hwe_id_ind_t  lastid;$/;"	m	struct:comp_data_t	file:
+last	utils/include/avl.h	/^   AVL_node_t     *last;$/;"	m	struct:AVL_tree_t
+ld	include/hwetrace_stat.h	/^		uint64_t ld;$/;"	m	struct:hwetrace_stat::__anon5
+list	include/hwe_handle_implem.h	/^	event_t *list;$/;"	m	struct:__anon2
+list	utils/include/avl.h	/^   AVL_node_t  *list; \/* linked list (using father field) of free node *\/$/;"	m	struct:AVL_pool_t
+list	utils/include/pool.h	/^   POOL_union_t *list;     \/\/ linked list of free elements$/;"	m	struct:POOL_t
+ll	include/hwetrace_stat.h	/^		uint64_t ll;$/;"	m	struct:hwetrace_stat::__anon5
+log_cond	include/hwetrace_par.h	/^	unsigned log_cond;$/;"	m	struct:hwepar_local
+log_next	include/hwetrace_par.h	/^	unsigned log_next;$/;"	m	struct:hwepar_local
+log_sign	include/hwetrace_par.h	/^	unsigned log_sign;$/;"	m	struct:hwepar_local
+log_sync	include/hwetrace_par.h	/^	unsigned log_sync;$/;"	m	struct:hwepar_local
+log_wait	include/hwetrace_par.h	/^	unsigned log_wait;$/;"	m	struct:hwepar_local
+main	source/hwetrace_print.c	/^int main (int argc, char **argv)$/;"	f
+main	source/hwetrace_read.c	/^int main (int argc, char **argv)$/;"	f
+mainstruct	source/hwetrace_read.c	/^struct mainstruct {$/;"	s	file:
+maxcomp	include/hwe_handle_implem.h	/^static unsigned maxcomp = 16;$/;"	v
+max	utils/include/avl.h	/^   AVL_key_t       max;$/;"	m	struct:AVL_node_t
+max	source/hwe_handle_nop.c	/^static unsigned cnt, max;$/;"	v	file:
+mem32	include/events/hwe_mem.h	/^      hwe_mem32_t     mem32;$/;"	m	union:hwe_mem_cont::__anon3
+mem	include/events/hwe_events.h	/^   hwe_mem_cont    mem;$/;"	m	union:hwe_cont
+memory	include/events/hwe_device.h	/^   hwe_memory_t     memory;$/;"	m	union:hwe_devices_u
+memory	include/hwetrace_stat.h	/^	} memory;$/;"	m	struct:hwetrace_stat	typeref:struct:hwetrace_stat::__anon8
+miss_exp	source/hwetrace_read.c	/^   int       miss_exp;\/\/number of remaining ref ptr to this event to solve (before delete)$/;"	m	struct:rhwe_t	file:
+miss_ref	source/hwetrace_read.c	/^   int       miss_ref;\/\/count of remaining ref ptr to solve for this event (before commit)$/;"	m	struct:rhwe_t	file:
+missed	include/hwetrace_stat.h	/^		uint64_t missed;$/;"	m	struct:hwetrace_stat::__anon4
+missfol	include/hwe_handle_header.h	/^   int      missfol;$/;"	m	struct:event_t
+missref	include/hwe_handle_header.h	/^   int missref;$/;"	m	struct:event_t
+nalloc	utils/include/pool.h	/^   unsigned int  nalloc;   \/\/ number of allocated elements$/;"	m	struct:POOL_t
+name	include/events/hwe_info.h	/^   char          name[HWE_INFO_NAME_MAX + 1]; \/\/ name$/;"	m	struct:hwe_info_cont
+name	include/hwe_handle_header.h	/^   char *name;$/;"	m	struct:comp_t
+name	source/hwetrace.c	/^   char          name[32];$/;"	m	struct:hwe_port_t	file:
+name	source/hwetrace.c	/^   char        *name;$/;"	m	struct:hwe_trace_t	file:
+nb	include/hwe_handle_implem.h	/^	unsigned nb;$/;"	m	struct:__anon2
+nbnode	utils/include/avl.h	/^   unsigned int nbnode;$/;"	m	struct:AVL_pool_t
+nbnode	utils/include/avl.h	/^   unsigned int nbnode;$/;"	m	struct:AVL_tree_t
+nchild	include/events/hwe_common.h	/^   unsigned     nchild:16;$/;"	m	struct:hwe_head_t
+ncomp	source/hwetrace_read.c	/^   unsigned      ncomp;\/\/size of the arrays$/;"	m	struct:mainstruct	file:
+ndates	include/events/hwe_common.h	/^   unsigned     ndates:2;$/;"	m	struct:hwe_head_t
+neighbor	utils/include/avl.h	/^   AVL_node_t     *neighbor[2];$/;"	m	struct:AVL_node_t
+nevents	source/hwetrace.c	/^	uint64_t     nevents;$/;"	m	struct:hwe_trace_t	file:
+next	include/hwe_handle_def.h	/^   evptr_t *next;$/;"	m	struct:evptr_t
+next	include/hwe_handle_header.h	/^	event_t *next;$/;"	m	struct:event_t
+next	source/hwetrace_read.c	/^   ref_t    *next;$/;"	m	struct:ref_t	file:
+next	source/hwetrace_read.c	/^   rhwe_t   *next;  \/\/ next in component linked list$/;"	m	struct:rhwe_t	file:
+next	utils/include/avl.h	/^   AVL_array_t *next;$/;"	m	struct:AVL_array_t
+next	utils/include/pool.h	/^   POOL_array_t *next;$/;"	m	struct:POOL_array_t
+next	utils/include/pool.h	/^   POOL_union_t *next;$/;"	m	union:POOL_union_t
+nodes	utils/include/avl.h	/^   AVL_node_t   nodes[AVL_POOL_ARRAY_SIZE];$/;"	m	struct:AVL_array_t
+nports	source/hwetrace.c	/^   unsigned     nports;\/\/number of currently opened ports$/;"	m	struct:hwe_trace_t	file:
+nread	source/hwetrace_read.c	/^   unsigned long long nread;$/;"	m	struct:mainstruct	file:
+nrefs	include/events/hwe_common.h	/^   unsigned     nrefs:6;$/;"	m	struct:hwe_head_t
+nrefs	include/hwe_handle_header.h	/^	int nrefs;$/;"	m	struct:event_t
+nregs	include/events/hwe_inst.h	/^   unsigned    nregs;     \/**< number of used registers                      *\/$/;"	m	struct:hwe_inst32_t
+nsize	include/events/hwe_info.h	/^   uint8_t       nsize;    \/\/ size of the name (excluding '\\0' chararcter)$/;"	m	struct:hwe_info_t
+null	include/hwetrace_stat.h	/^		uint64_t null;$/;"	m	struct:hwetrace_stat::__anon4
+numbyte	include/events/hwe_device.h	/^   uint16_t numbyte;\/\/ number -1 of bytes per line$/;"	m	struct:hwe_cache_t
+numline	include/events/hwe_device.h	/^   uint16_t numline;\/\/ number -1 of lines per set$/;"	m	struct:hwe_cache_t
+numset	include/events/hwe_device.h	/^   uint16_t numset;\/\/ number -1 of sets$/;"	m	struct:hwe_cache_t
+nused	utils/include/pool.h	/^   unsigned int  nused;    \/\/ nummber of currently used elements$/;"	m	struct:POOL_t
+order_t	source/hwetrace_order.c	/^}order_t;$/;"	t	typeref:struct:__anon1	file:
+order	source/hwetrace_order.c	/^order_t *order = NULL;$/;"	v
+p0	include/hwetrace_par.h	/^	char p0[HWEPAR_ALIGN];$/;"	m	struct:hwepar_fifo
+p2	include/hwetrace_par.h	/^	char p2[HWEPAR_ALIGN];$/;"	m	struct:hwepar_fifo
+pad0	include/hwetrace_par_cirbuf.h	/^	char pad0[HWEPAR_ALIGN];$/;"	m	struct:hwepar
+pad1	include/hwetrace_par_cirbuf.h	/^	char pad1[HWEPAR_ALIGN];$/;"	m	struct:hwepar
+pad2	include/hwetrace_par_cirbuf.h	/^	char pad2[HWEPAR_ALIGN];$/;"	m	struct:hwepar
+padding	include/hwetrace_par_cirbuf.h	/^	char padding[(((sizeof(struct hwepar_buffer) - 1) \/ HWEPAR_ALIGN) + 1) * HWEPAR_ALIGN];$/;"	m	union:hwepar_buffer_align
+parent	include/events/hwe_common.h	/^   hwe_head_cont *parent;$/;"	m	struct:hwe_head_cont
+pc	include/events/hwe_inst.h	/^   uint32_t    pc;        \/**< access address                                 *\/$/;"	m	struct:hwe_inst32_t
+peripheral	include/events/hwe_device.h	/^   hwe_peripheral_t peripheral;$/;"	m	union:hwe_devices_u
+pool	utils/include/avl.h	/^   AVL_pool_t *pool;$/;"	m	struct:AVL_tree_t
+ports	source/hwetrace.c	/^   hwe_port_t **ports;$/;"	m	struct:hwe_trace_t	file:
+pos	source/hwetrace_read.c	/^   unsigned  pos;  \/\/ ref index in the array [0;HWE_REF_MAX[$/;"	m	struct:ref_t	file:
+previd	source/hwetrace_read.c	/^   hwe_id_ind_t *previd;\/\/array containing the id of the last event for each component$/;"	m	struct:mainstruct	file:
+print_usage	source/hwetrace_print.c	/^void print_usage(FILE *f, char *arg0)$/;"	f
+process_component	source/hwetrace_check.c	/^void process_component(comp_t *comp, event_t *e)$/;"	f
+process_component	source/hwetrace_order.c	/^void process_component(comp_t *comp, event_t *e)$/;"	f
+process_component	source/hwetrace_write.c	/^void process_component(comp_t *comp, event_t *e)$/;"	f
+process_init	source/hwetrace_check.c	/^void process_init(const char *tracename, int nopt, char * const opt[])$/;"	f
+process_init	source/hwetrace_order.c	/^void process_init(const char *tracename, int nopt, char * const opt[])$/;"	f
+process_init	source/hwetrace_write.c	/^void process_init(const char *tracename, int nopt, char * const opt[])$/;"	f
+process_start	source/hwetrace_check.c	/^void process_start()$/;"	f
+process_start	source/hwetrace_order.c	/^void process_start()$/;"	f
+process_start	source/hwetrace_write.c	/^void process_start()$/;"	f
+process_stop	source/hwetrace_check.c	/^void process_stop()$/;"	f
+process_stop	source/hwetrace_order.c	/^void process_stop()$/;"	f
+process_stop	source/hwetrace_write.c	/^void process_stop()$/;"	f
+processor	include/events/hwe_device.h	/^   hwe_processor_t  processor;$/;"	m	union:hwe_devices_u
+ptrpool	include/hwe_handle_implem.h	/^static evptr_pool_t ptrpool;$/;"	v
+put_infifo_go	include/hwe_handle_implem.h	/^void put_infifo_go(evfifo_t *f, event_t *e)$/;"	f
+put_infifo_ret	include/hwe_handle_implem.h	/^void put_infifo_ret(evfifo_t *f, event_t *e)$/;"	f
+put_infifo	include/hwe_handle_implem.h	/^static inline void put_infifo(evfifo_t *fifo, event_t *ev, enum stage_t stg)$/;"	f
+queue	include/hwe_handle_def.h	/^   event_t *queue;$/;"	m	struct:evfifo_t
+rcond	include/hwetrace_par.h	/^	pthread_cond_t  rcond;$/;"	m	struct:hwepar_fifo
+rcvack	include/events/hwe_mem.h	/^   unsigned  rcvack:1;     \/\/ tell if the request event receives the ack$/;"	m	struct:hwe_mem32_t
+read_ack	include/hwetrace_stat.h	/^		uint64_t read_ack;$/;"	m	struct:hwetrace_stat::__anon6
+read_container	source/hwetrace_read.c	/^static bool read_container(struct mainstruct *ms, hwe_cont *cont, struct id_array *ids)$/;"	f	file:
+ref2id	source/hwetrace_print.c	/^static hwe_id_t ref2id(hwe_ref_t ref) {$/;"	f	file:
+ref2id	source/hwetrace_read.c	/^static hwe_id_t ref2id(hwe_ref_t ref)$/;"	f	file:
+ref_pool	source/hwetrace_read.c	/^   ref_pool_t  ref_pool;$/;"	m	struct:mainstruct	file:
+ref_t	source/hwetrace_read.c	/^struct ref_t {$/;"	s	file:
+ref_t	source/hwetrace_read.c	/^typedef struct ref_t ref_t;$/;"	t	typeref:struct:ref_t	file:
+reflast	include/events/hwe_common.h	/^   hwe_head_cont *reflast;$/;"	m	struct:hwe_head_cont
+refnext	include/events/hwe_common.h	/^   hwe_head_cont *refnext;$/;"	m	struct:hwe_head_cont
+refs	include/events/hwe_common.h	/^   hwe_ref_t      refs[HWE_REF_MAX];$/;"	m	struct:hwe_head_cont
+reg_data	include/events/hwe_inst.h	/^   uint32_t      reg_data[HWE_INST_REG_MAX]; \/\/ data of modified registers$/;"	m	struct:hwe_inst_cont
+reg_id	include/events/hwe_inst.h	/^   uint8_t       reg_id[HWE_INST_REG_MAX];   \/\/ id of modified registers$/;"	m	struct:hwe_inst_cont
+regdata	include/events/hwe_inst.h	/^   unsigned    regdata:1; \/**< tell if register's new values is present in the event*\/$/;"	m	struct:hwe_inst32_t
+regdst	include/events/hwe_inst.h	/^   uint32_t    regdst;    \/**< src or dst registers                          *\/$/;"	m	struct:hwe_inst32_t
+rep_cnext	include/hwe_handle_header.h	/^   event_t *rep_cnext;$/;"	m	struct:event_t
+rep_cprev	include/hwe_handle_header.h	/^   event_t *rep_cprev;$/;"	m	struct:event_t
+rep_head	include/hwe_handle_header.h	/^   event_t *rep_head;$/;"	m	struct:comp_t
+rep_head	include/hwe_handle_implem.h	/^static event_t *rep_head, *rep_queue;$/;"	v
+rep_nevcur	include/hwe_handle_implem.h	/^static unsigned rep_nevcur;$/;"	v
+rep_nevhdl	include/hwe_handle_header.h	/^   unsigned long rep_nevhdl;$/;"	m	struct:comp_t
+rep_nevhdl	include/hwe_handle_implem.h	/^static unsigned long rep_nevhdl;$/;"	v
+rep_next	include/hwe_handle_header.h	/^   event_t *rep_next;$/;"	m	struct:event_t
+rep_prev	include/hwe_handle_header.h	/^   event_t *rep_prev;$/;"	m	struct:event_t
+rep_queue	include/hwe_handle_header.h	/^   event_t *rep_queue;$/;"	m	struct:comp_t
+rep_queue	include/hwe_handle_implem.h	/^static event_t *rep_head, *rep_queue;$/;"	v
+req_update	include/hwetrace_stat.h	/^		uint64_t req_update;$/;"	m	struct:hwetrace_stat::__anon6
+req	include/hwetrace_stat.h	/^		uint64_t req;$/;"	m	struct:hwetrace_stat::__anon8
+request	include/hwetrace_stat.h	/^		uint64_t request;$/;"	m	struct:hwetrace_stat::__anon6
+ret	include/hwe_handle_header.h	/^   struct event_stage ret;$/;"	m	struct:event_t	typeref:struct:event_t::event_stage
+retpc	include/events/hwe_inst.h	/^   uint32_t    retpc;       \/\/ pc which will be used to return from exception$/;"	m	struct:hwe_excep32_t
+rhwe_pool	source/hwetrace_read.c	/^   rhwe_pool_t rhwe_pool;$/;"	m	struct:mainstruct	file:
+rhwe_t	source/hwetrace_read.c	/^struct rhwe_t {$/;"	s	file:
+rhwe_t	source/hwetrace_read.c	/^typedef struct rhwe_t rhwe_t;$/;"	t	typeref:struct:rhwe_t	file:
+rhwe	source/hwetrace_read.c	/^   rhwe_t   *rhwe; \/\/ waiting node$/;"	m	struct:ref_t	file:
+rid	include/events/hwe_common.h	/^   int          rid:4;$/;"	m	struct:hwe_head_t
+ridx	include/hwetrace_par.h	/^	volatile unsigned ridx;$/;"	m	struct:hwepar_fifo
+rm_frfifo	include/hwe_handle_implem.h	/^static inline void rm_frfifo(evfifo_t *fifo, event_t *ev)$/;"	f
+rmutex	include/hwetrace_par.h	/^	pthread_mutex_t rmutex;$/;"	m	struct:hwepar_fifo
+root	utils/include/avl.h	/^   AVL_node_t *root;$/;"	m	struct:AVL_tree_t
+sc_ko	include/hwetrace_stat.h	/^		uint64_t sc_ko;$/;"	m	struct:hwetrace_stat::__anon5
+sc	include/hwetrace_stat.h	/^		uint64_t sc;$/;"	m	struct:hwetrace_stat::__anon5
+self	include/events/hwe_common.h	/^   hwe_ref_t      self;$/;"	m	struct:hwe_head_cont
+set_barrier_go_to_go	include/hwe_handle_implem.h	/^void set_barrier_go_to_go(event_t *s, event_t *d)$/;"	f
+set_barrier_go_to_ret	include/hwe_handle_implem.h	/^inline void set_barrier_go_to_ret(event_t *s, event_t *d)$/;"	f
+set_barrier_ret_to_go	include/hwe_handle_implem.h	/^inline void set_barrier_ret_to_go(event_t *s, event_t *d)$/;"	f
+set_barrier_ret_to_ret	include/hwe_handle_implem.h	/^inline void set_barrier_ret_to_ret(event_t *s, event_t *d)$/;"	f
+set_barrier	include/hwe_handle_implem.h	/^static inline void set_barrier($/;"	f
+set_cb_go	include/hwe_handle_header.h	/^static inline void set_cb_go(event_t *e, void (*cb) (event_t *))$/;"	f
+set_cb_init	include/hwe_handle_header.h	/^static inline void set_cb_init(comp_t *c, void (*cb) (event_t *)) {$/;"	f
+set_cb_ret	include/hwe_handle_header.h	/^static inline void set_cb_ret(event_t *e, void (*cb) (event_t *))$/;"	f
+side	utils/include/avl.h	/^   enum avl_side_t side:8;     \/\/ side of this node in father node$/;"	m	struct:AVL_node_t	typeref:enum:AVL_node_t::avl_side_t
+solve_pending_ref	source/hwetrace_read.c	/^static void solve_pending_ref(struct mainstruct *ms, rhwe_t *rhwe)$/;"	f	file:
+spread1	include/hwetrace_stat.h	/^		uint64_t spread1;$/;"	m	struct:hwetrace_stat::__anon7
+spread2	include/hwetrace_stat.h	/^		uint64_t spread2;$/;"	m	struct:hwetrace_stat::__anon7
+spread	include/hwetrace_stat.h	/^		uint64_t spread;$/;"	m	struct:hwetrace_stat::__anon6
+stage_t	include/hwe_handle_def.h	/^enum stage_t {$/;"	g
+stage	include/hwe_handle_def.h	/^   enum stage_t stage;$/;"	m	struct:evfifo_t	typeref:enum:evfifo_t::stage_t
+stage	include/hwe_handle_def.h	/^   enum stage_t stage;$/;"	m	struct:evptr_t	typeref:enum:evptr_t::stage_t
+state	source/hwetrace_read.c	/^   int       state;\/\/0:unread; 1:read; 2;commited$/;"	m	struct:rhwe_t	file:
+st	include/hwetrace_stat.h	/^		uint64_t st;$/;"	m	struct:hwetrace_stat::__anon5
+str	include/events/hwe_inst.h	/^   unsigned    str:1;     \/**< Did it trigger a write allocate (write-back only) ? *\/$/;"	m	struct:hwe_inst32_t
+sync	include/hwetrace_stat.h	/^		uint64_t sync;$/;"	m	struct:hwetrace_stat::__anon5
+trace_start	source/hwetrace.c	/^static void trace_start()$/;"	f	file:
+trace_stop	source/hwetrace.c	/^static void trace_stop()$/;"	f	file:
+tracer_buff	include/hwetrace_par_cirbuf.h	/^static uint64_t tracer_buff;$/;"	v
+tracer_condattr	include/hwetrace_par_cirbuf.h	/^	pthread_condattr_t tracer_condattr;$/;"	m	struct:hwepar
+tracer_cond	include/hwetrace_par_cirbuf.h	/^	pthread_cond_t tracer_cond;$/;"	m	struct:hwepar
+tracer_idx	include/hwetrace_par_cirbuf.h	/^	volatile unsigned tracer_idx;$/;"	m	struct:hwepar
+tracer_mutex	include/hwetrace_par_cirbuf.h	/^	pthread_mutex_t tracer_mutex;$/;"	m	struct:hwepar
+tracer_sign	include/hwetrace_par_cirbuf.h	/^static uint64_t tracer_sign;$/;"	v
+tracer_sync	include/hwetrace_par_cirbuf.h	/^static uint64_t tracer_sync;$/;"	v
+tracer_wait	include/hwetrace_par_cirbuf.h	/^static uint64_t tracer_wait;$/;"	v
+trace	source/hwetrace.c	/^static hwe_trace_t trace = {$/;"	v	file:
+tree	source/hwetrace_read.c	/^   rhwe_tree_t  tree;  \/\/ avl of event$/;"	m	struct:comp_t	file:
+try_commit	source/hwetrace_read.c	/^static bool try_commit(struct mainstruct *ms, rhwe_t *rhwe)$/;"	f	file:
+try_delete	source/hwetrace_read.c	/^static bool try_delete(rhwe_t *rhwe)$/;"	f	file:
+try_solve_our_ref	source/hwetrace_read.c	/^static void try_solve_our_ref(struct mainstruct *ms, rhwe_t *rhwe)$/;"	f	file:
+type	include/events/hwe_common.h	/^   hwe_type_t   type:4;$/;"	m	struct:hwe_head_t
+type	include/hwe_handle_header.h	/^   hwe_device_t type;$/;"	m	struct:comp_t
+type	source/hwetrace.c	/^	hwe_device_t  type;$/;"	m	struct:hwe_port_t	file:
+unalign	include/events/hwe_inst.h	/^   unsigned    unalign:1;  \/**< Is it an aligned access ?               *\/$/;"	m	struct:hwe_inst32_t
+update_previd	source/hwetrace_read.c	/^static void update_previd(struct mainstruct *ms, hwe_id_t id)$/;"	f	file:
+usedata	include/events/hwe_mem.h	/^   unsigned  usedata:1;    \/\/ tell if data is present in the event$/;"	m	struct:hwe_mem32_t
+usrfol	include/hwe_handle_header.h	/^   evptr_t *usrfol;$/;"	m	struct:event_stage
+version	include/events/hwe_info.h	/^   uint16_t      version;  \/\/ version used$/;"	m	struct:hwe_info_t
+vlvl	source/hwetrace_read.c	/^static unsigned vlvl = 0;$/;"	v	file:
+waiting	source/hwetrace_read.c	/^   ref_t    *waiting; \/\/ list of waiting nodes (for ref)$/;"	m	struct:rhwe_t	file:
+wcond	include/hwetrace_par.h	/^	pthread_cond_t  wcond;$/;"	m	struct:hwepar_fifo
+width	include/events/hwe_inst.h	/^   unsigned    width:4;   \/**< width of the instruction - 1 in bytes          *\/$/;"	m	struct:hwe_inst32_t
+width	include/events/hwe_mem.h	/^   uint8_t   width;        \/\/ access width - 1 in bytes$/;"	m	struct:hwe_ack_t
+width	include/events/hwe_mem.h	/^   uint8_t   width;        \/\/ access width - 1 in bytes$/;"	m	struct:hwe_mem32_t
+widx	include/hwetrace_par.h	/^	volatile unsigned widx;$/;"	m	struct:hwepar_fifo
+wmutex	include/hwetrace_par.h	/^	pthread_mutex_t wmutex;$/;"	m	struct:hwepar_fifo
+write_ack	include/hwetrace_stat.h	/^		uint64_t write_ack;$/;"	m	struct:hwetrace_stat::__anon6

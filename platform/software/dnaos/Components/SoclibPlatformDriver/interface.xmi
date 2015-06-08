@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<APES:Interface
+  xmlns:xmi="http://www.omg.org/XMI"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:APES="http://www.ocm.org/APES"
+  xsi:schemaLocation="http://www.ocm.org/APES APESInterface.ecore"
+  author="xavier.guerin@imag.fr"
+  unique="false"
+  wrapper="false">
+
+  <id name="SoclibPlatformDriver" version="1.0"/>
+
+  <provide>
+    <context name="Driver">
+      <variable name="soclib_platform_module" type="driver_t"/>
+    </context>
+  </provide>
+
+  <require>
+    <type name="driver_t"/>
+    <type name="device_cmd_t"/>
+
+    <type name="soclib_aicu_port_t"/>
+    <type name="soclib_aicu_slot_t"/>
+    <type name="soclib_ipi_port_t"/>
+    <type name="soclib_timer_port_t"/>
+
+    <method name="cpu_write" result="">
+      <argument name="size" type="int32_t" direction="In"/>
+      <argument name="address" type="access" direction="In"/>
+      <argument name="value" type="access" direction="In"/>
+    </method>
+
+    <method name="kernel_malloc" result="access">
+      <argument name="size" type="int32_t" direction="In"/>
+      <argument name="erase" type="boolean" direction="In"/>
+    </method>
+
+    <method name="interrupt_attach" result="status_t">
+      <argument name="id" type="interrupt_id_t" direction="In"/>
+      <argument name="mode" type="uint32_t" direction="In"/>
+      <argument name="handler" type="interrupt_handler_t" direction="In"/>
+      <argument name="bypass_demux" type="boolean" direction="In"/>
+    </method>
+
+    <method name="semaphore_create" result="int32_t">
+      <argument name="name" type="string" direction="In"/>
+      <argument name="tokens" type="int32_t" direction="In"/>
+    </method>
+
+    <method name="semaphore_acquire" result="status_t">
+      <argument name="sid" type="int32_t" direction="In"/>
+      <argument name="tokens" type="int32_t" direction="In"/>
+      <argument name="flags" type="int32_t" direction="In"/>
+      <argument name="timeout" type="bigtime_t" direction="In"/>
+    </method>
+
+    <method name="semaphore_release" result="status_t">
+      <argument name="sid" type="int32_t" direction="In"/>
+      <argument name="n_tokens" type="int32_t" direction="In"/>
+      <argument name="flags" type="int32_t" direction="In"/>
+    </method>
+
+  </require>
+
+</APES:Interface>

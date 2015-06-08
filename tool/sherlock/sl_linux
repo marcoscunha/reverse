@@ -1,0 +1,6 @@
+#!/bin/bash
+
+#cp ../../Rabbits/platforms/bunny/mem_init .
+cp ../../Rabbits/platforms/jessica/mem_shared .
+
+./sherlock --pg watson ../../Rabbits/platforms/jessica/RABBITS.hwe --elf /work/cunha/devel/Rabbits/platforms/roger/soft/linux/linux/vmlinux

@@ -1,0 +1,124 @@
+file 109fe80 kalloc 109fe68
+file 10a0c20 kalloc 10a0c08
+file 10a19c0 kalloc 10a19a8
+
+Ocean simulation with W-cycle multigrid solver
+    Processors                         : 2
+    Grid size                          : 18 x 18
+    Grid resolution (meters)           : 20000.00
+    Time between relaxations (seconds) : 28800
+    Error tolerance                    : 1e-07
+
+MUTEX=1f57b0a0
+MUTEX=1f57b0e0
+MUTEX=1f57b120
+MUTEX=1f57b160
+MUTEX=1f57b1a0
+MUTEX=1f57b1e0
+&locks             0x1034e9c
+locks              0x1f57b0a0
+&locks->idlock     0x1f57b0a0 2162722
+&locks->psiailock  0x1f57b0e0 2228259
+&locks->psibilock  0x1f57b120 2293796
+&locks->donelock   0x1f57b160 2359333
+&locks->error_lock 0x1f57b1a0 2424870
+&locks->bar_lock   0x1f57b1e0 2490407
+MUTEX=1f57b240
+
+&bars              0x1034ed8
+&bars->barrier     0x1f57b240
+                       MULTIGRID OUTPUTS
+@@@@@ @@@@@
+INIT THREAD X
+[1] 107ad44 thread->id         50331652
+[1] 107ad28 thread->lock       1
+[1] 107ad2c thread->link       0
+@@@@@@@@@@ locks->idlock 2162722
+[1] 107ad30 thread->wait.lock  0
+succ  save switch [1]
+CPU(1) << RUNNING
+########## GET Frist Lock X
+[1] thread->context[0] = 0x107ad9c
+[1] thread->context[1] = 0x1f57b378
+########## END Frist Lock X
+[1] thread->context[2] = 0x8000
+[1] thread->context[3] = 0x1b634
+########### PASSED in Frist Lock X
+[1] thread->context[4] = 0x107ad9c
+[1] thread->context[5] = 0x0
+[1] thread->context[6] = 0x5708
+[1] thread->context[7] = 0xffffffff
+[1] thread->context[8] = 0x0
+@@@@@@@@@@ bars->barrier 2555944
+[1] thread->context[9] = 0x107ad28
+@@@@@ @@@@@
+[1] thread->context[10] = 0x107aab0
+[0] 107aad4 thread->id         1
+[0] 107aab8 thread->[l1o]c kt h r e a d - >1c
+ontext[11] = 0x60000113
+[0] 107aabc thread->link       0
+[1] thread->context[12] = 0x1099338
+[0] 107aac0 thread->wait.lock  0
+succ  save switch [0]
+[1] thread-C>PcUo(n0t)e x>t>[R1E3A]D Y=
+ 0x1f583370
+[0] thread->context[0] = 0x107ab2c
+[1] thread->context[14] = 0x1b634
+[0] thread->context[1] = 0x1081488
+[1] thread->context[15] = 0x600001d3
+[0] thread->context[2] = 0x8000
+[1] thread->context[16] = 0x0
+[0] thread->context[3] = 0x1b634
+[1] thread->context[17] = 0x0
+[0] thread->context[4] = 0x107ab2c
+[0] thread->context[5] = 0x0
+[1] thread->context[18] = 0x0
+start load switch [1]
+[0] thread->context[6] = 0x19ab8
+[0] thread->context[7] = 0x0
+INIT THREAD X
+[0] thread->context[8] = 0x0
+[0] thread->context[9] = 0x107aab8
+[0] thread->context[10] = 0x107aab0
+[0] thread->context[11] = 0x60000113
+@@@@@@@@@@ locks->idlock 2162722
+[0] thread->context[12] = 0x1081468
+########## GET Frist Lock X
+[0] thread->context[13] = 0x1089480
+[0] thread->context[14] = 0x1b634
+########## END Frist Lock X
+[0] thread->context[15] = 0x1d3
+[0] thread->context[16] = 0x0
+########### PASSED in Frist Lock X
+[0] thread->context[17] = 0x0
+[0] thread->context[18] = 0x0
+start load switch [0]
+@@@@@@@@@@ bars->barrier 2555944
+PASSED in First Barrier X
+@@@@@ @@@@@
+[1] 107aba4 thread->id         16777218
+[1] 107ab88 thread->lock       1
+[1] 107ab8c thread->link       0
+[1] 107ab90 thread->wait.lock  0
+succ  save switch [1]
+CPU(1) >>READY
+[1] thread->context[0] = 0x107ac0c
+[1] thread->context[1] = 0x1c050
+[1] thread->context[2] = 0xbb5c2e
+[1] thread->context[3] = 0x0
+[1] thread->context[4] = 0xbb5c2e
+[1] thread->context[5] = 0xffffbeef
+[1] thread->context[6] = 0x8
+[1] thread->context[7] = 0x107e108
+[1] thread->context[8] = 0x107dec8
+[1] thread->context[9] = 0x107ab88
+[1] thread->context[10] = 0x107ad28
+[1] thread->context[11] = 0x1
+[1] thread->context[12] = 0x10912b0
+[1] thread->context[13] = 0x10913e8
+[1] thread->context[14] = 0x1c050
+[1] thread->context[15] = 0x1d3
+[1] thread->context[16] = 0x0
+[1] thread->context[17] = 0x0
+[1] thread->context[18] = 0x0
+start load switch [1]

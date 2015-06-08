@@ -1,0 +1,158 @@
+
+ifndef HWE_HANDLER_LIB_DIR
+ifndef HWE_HANDLER_BIN_DIR
+ifndef HWE_HANDLER_NOCRY
+$(warning makefile.handler is used with nothing to build)
+$(warning Some variables should be defined)
+$(warning -> To build an executable handler (that reads a trace\'s file\))
+$(warning  + HWE_HANDLER_BIN_DIR   (where will be put the executable\))
+$(warning  + HWE_HANDLER_BIN_NAME  (its name\))
+$(warning -> To build trace librairies (to do on the fly trace analysis\))
+$(warning  + HWE_HANDLER_LIB_DIR   (destination library path\))
+$(warning -> In both case) 
+$(warning  + HWE_HANDLER_OBJS   (objects that implement the trace handler\))
+$(warning -> This variable is defined by makefile.handler)
+$(warning  + HWE_HANDLER_INC   (handler api headers\))
+$(error )
+endif
+endif
+endif
+
+ifeq ($(HWETRACE),)
+	$(error HWETRACE variable is undefined)
+endif
+
+hwetrace_objs:
+
+
+HWETRACE_CFLAGS:= -g -Wall #-Werror
+HWETRACE_CFLAGS+= -std=gnu99
+HWETRACE_CFLAGS+= -fPIC -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64
+HWETRACE_CFLAGS+= -O3
+HWETRACE_CFLAGS+= $(HWETRACE_CFLAGS_ADD)
+
+HWETRACE_LDFLAGS:= $(HWETRACE_LDFLAGS_ADD)
+
+#statistics
+HWETRACE_CFLAGS_S:= -DHWETRACE_STAT
+HWETRACE_LDFLAGS_S:=
+#parrallel
+HWETRACE_CFLAGS_P:= -DHWETRACE_PARALLEL -DHWEPAR_MODE=3
+HWETRACE_CFLAGS_P+= -DHWEPAR_NBBUF=8 -DHWEPAR_BUFSIZE=100 -DHWEPAR_BUFSTART=6
+HWETRACE_LDFLAGS_P:= -lpthread
+#debug (disable inline fct, programme that uses the library should use the same CFLAGS as above)
+
+HWETRACE_OBJ_DIR=$(HWETRACE)/obj
+HWETRACE_SRC_DIR=$(HWETRACE)/source
+HWETRACE_INC_DIR=$(HWETRACE)/include
+HWETRACE_CFLAGS+= -I$(HWETRACE_INC_DIR)
+
+HWE_EVENTS_INC:=$(wildcard $(HWETRACE_INC_DIR)/events/*.h)
+
+HWE_UTILS_DIR:=$(HWETRACE)/utils/include
+HWE_UTILS_INC:=$(wildcard $(HWE_UTILS_DIR)/*.h)
+HWETRACE_CFLAGS+= -I$(HWE_UTILS_DIR)
+
+HWE_HANDLER_INC:= $(addprefix $(HWETRACE_INC_DIR)/, hwe_handle_main.h hwe_handle_def.h hwe_handle_implem.h hwe_handle_header.h hwe_handle.h)
+HWE_HANDLER_INC+= $(HWE_EVENTS_INC) $(HWE_UTILS_INC)
+
+P_TAG:=.p
+S_TAG:=.s
+PS_TAG:=.ps
+NO_TAG:=
+#syntax $(call tags_list,prefix,suffis)
+tags_list= $(1)$(2) $(addsuffix $(2), $(addprefix $(1), $(P_TAG) $(S_TAG) $(PS_TAG)))
+
+HWETRACE_INC:= $(addprefix $(HWETRACE_INC_DIR)/, hwetrace.h hwetrace_api.h)
+HWETRACE_INC+= $(addprefix $(HWETRACE_INC_DIR)/, hwetrace_stat.h hwetrace_stat_internal.h)
+HWETRACE_INC+= $(addprefix $(HWETRACE_INC_DIR)/, hwetrace_par_cirbuf.h)
+
+HWETRACE_OBJS:= $(call tags_list, $(HWETRACE_OBJ_DIR)/hwetrace,.o)
+
+HWETRACE_OBJS_ALL:= $(HWETRACE_OBJS)
+HWETRACE_OBJS_ALL+= $(HWETRACE_OBJ_DIR)/hwetrace_read.o
+
+$(HWETRACE_OBJS_ALL): $(HWETRACE)/makefile.handler | $(HWETRACE_OBJ_DIR)
+$(HWETRACE_OBJS_ALL): $(HWE_EVENTS_INC) $(HWE_UTILS_INC)
+$(HWETRACE_OBJS_ALL): $(HWETRACE_INC_DIR)/hwe_handle.h
+$(HWETRACE_OBJS): $(HWETRACE_INC)
+
+$(HWETRACE_OBJ_DIR)/hwetrace$(S_TAG).o: HWETRACE_CFLAGS+= $(HWETRACE_CFLAGS_S)
+$(HWETRACE_OBJ_DIR)/hwetrace$(P_TAG).o: HWETRACE_CFLAGS+= $(HWETRACE_CFLAGS_P)
+$(HWETRACE_OBJ_DIR)/hwetrace$(PS_TAG).o: HWETRACE_CFLAGS+= $(HWETRACE_CFLAGS_P) $(HWETRACE_CFLAGS_S)
+
+hwetrace_objs: $(HWETRACE_OBJS_ALL)
+
+$(HWETRACE_OBJS): $(HWETRACE_SRC_DIR)/hwetrace.c
+	@echo "Compiling $@"
+	@gcc -c -o $@ $< $(HWETRACE_CFLAGS)
+
+$(HWETRACE_OBJ_DIR)/hwetrace_read.o: $(HWETRACE_SRC_DIR)/hwetrace_read.c
+	@echo "Compiling $@"
+	@gcc -c -o $@ $< $(HWETRACE_CFLAGS)
+
+$(HWETRACE_OBJ_DIR):
+	@mkdir $@
+
+hwetrace_clean:
+	rm -f $(HWETRACE_OBJS)
+
+.PHONY: hwetrace_clean hwetrace_objs hwetrace_handler
+
+ifdef HWE_HANDLER_LIB_DIR
+
+ifeq ($(strip $(HWE_HANDLER_OBJS)),)
+	$(error HWE_HANDLER_OBJS empty)
+endif
+
+HWE_HANDLER_DIR_LIST:=$(call tags_list, $(HWE_HANDLER_LIB_DIR), )
+HWE_HANDLER_DYNA_LIST:=$(addsuffix /libhwetrace.so, $(HWE_HANDLER_DIR_LIST))
+HWE_HANDLER_STAT_LIST:=$(addsuffix /libhwetrace.a, $(HWE_HANDLER_DIR_LIST))
+HWE_HANDLER_STAT_LINK_LIST:=$(addsuffix /static/libhwetrace.a, $(HWE_HANDLER_DIR_LIST))
+
+hwetrace_handler: $(HWE_HANDLER_DYNA_LIST) $(HWE_HANDLER_STAT_LIST) $(HWE_HANDLER_STAT_LINK_LIST)
+
+$(HWE_HANDLER_LIB_DIR)$(P_TAG)/libhwetrace.so: HWETRACE_LDFLAGS+= $(HWETRACE_LDFLAGS_P)
+$(HWE_HANDLER_LIB_DIR)$(S_TAG)/libhwetrace.so: HWETRACE_LDFLAGS+= $(HWETRACE_LDFLAGS_S)
+$(HWE_HANDLER_LIB_DIR)$(PS_TAG)/libhwetrace.so: HWETRACE_LDFLAGS+= $(HWETRACE_LDFLAGS_P) $(HWETRACE_LDFLAGS_S)
+
+$(HWE_HANDLER_DYNA_LIST): $(HWE_HANDLER_LIB_DIR)%/libhwetrace.so: $(HWETRACE_OBJ_DIR)/hwetrace%.o $(HWE_HANDLER_OBJS) | $(HWE_HANDLER_LIB_DIR)%
+	@echo "Building $@"
+	@gcc -shared -o $@ $(filter %.o, $^) -Wl,-soname,libhwetrace.so $(HWETRACE_LDFLAGS)
+
+$(HWE_HANDLER_STAT_LIST): $(HWE_HANDLER_LIB_DIR)%/libhwetrace.a:  $(HWETRACE_OBJ_DIR)/hwetrace%.o $(HWE_HANDLER_OBJS) | $(HWE_HANDLER_LIB_DIR)%
+	@echo "Building $@"
+	@ar rcs $@ $(filter %.o, $^)
+
+# to be able to use the static library with soclib-cc (need .a file alone in the directory)
+$(HWE_HANDLER_STAT_LINK_LIST): %/static/libhwetrace.a: %/libhwetrace.a | %/static
+	@ln -sf ../libhwetrace.a $@
+
+$(HWE_HANDLER_DIR_LIST) $(addsuffix /static, $(HWE_HANDLER_DIR_LIST)):
+	@mkdir -p $@
+
+endif
+
+ifdef HWE_HANDLER_BIN_DIR
+
+ifeq ($(strip $(HWE_HANDLER_OBJS)),)
+	$(error HWE_HANDLER_OBJS empty)
+endif
+ifeq ($(HWE_HANDLER_BIN_NAME),)
+	$(error HWE_HANDLER_OBJS empty)
+endif
+
+HWE_HANDLER_EXEC:=$(HWE_HANDLER_BIN_DIR)/$(HWE_HANDLER_BIN_NAME)
+
+hwetrace_handler: $(HWE_HANDLER_EXEC)
+
+$(HWE_HANDLER_EXEC): $(HWETRACE_OBJ_DIR)/hwetrace_read.o $(HWE_HANDLER_OBJS) | $(HWE_HANDLER_BIN_DIR)
+	@echo "Building $@"
+	@gcc -o $@ $(filter %.o, $^) $(LDFLAGS)
+
+$(HWE_HANDLER_BIN_DIR):
+	@mkdir -p $@
+
+endif
+
+

@@ -1,0 +1,88 @@
+/*
+ *  Copyright (c) 2010 TIMA Laboratory
+ *
+ *  This file is part of Rabbits.
+ *
+ *  Rabbits is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  Rabbits is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with Rabbits.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+#ifndef _SERIAL_SOCKET_DEVICE_H_
+#define _SERIAL_SOCKET_DEVICE_H_
+
+#include <slave_device.h>
+
+#define SERIAL_SOCKET_READ_BUF_SIZE 16192
+
+typedef struct
+{
+    unsigned long       int_enabled;
+    unsigned long       int_level;
+    unsigned long       read_buf[SERIAL_SOCKET_READ_BUF_SIZE];
+    unsigned long       read_pos;
+    unsigned long       read_count;
+    unsigned long       read_trigger;
+} serial_socket_state;
+
+class serial_socket_device : public slave_device
+{
+public:
+    SC_HAS_PROCESS (serial_socket_device);
+    serial_socket_device (sc_module_name _name, const char *path);
+    virtual ~serial_socket_device ();
+
+public:
+    /*
+     *   Obtained from father
+     *   void send_rsp (bool bErr);
+     */
+    virtual void rcv_rqst (uint32_t ofs, uint8_t be,
+                           uint8_t *data, bool bWrite);
+
+private:
+    void write (uint32_t ofs, uint8_t be, uint8_t *data, bool &bErr);
+    void read  (uint32_t ofs, uint8_t be, uint8_t *data, bool &bErr);
+
+    sc_event irq_update;
+    //void irq_update ();
+    void read_thread ();
+    void irq_update_thread();
+
+public:
+    //ports
+    sc_out<bool>        irq_line;
+
+private:
+    sc_event                evRead;
+
+    int                     pin;
+    int                     pout;
+    serial_socket_state     state;
+    char                    *m_path;
+};
+
+#endif
+
+
+/*
+ * Vim standard variables
+ * vim:set ts=4 expandtab tw=80 cindent syntax=c:
+ *
+ * Emacs standard variables
+ * Local Variables:
+ * mode: c
+ * tab-width: 4
+ * c-basic-offset: 4
+ * indent-tabs-mode: nil
+ * End:
+ */

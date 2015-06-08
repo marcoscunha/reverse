@@ -1,0 +1,8 @@
+#/bin/bash
+export APES_ROOT=/work/cunha/devel/Rabbits/platforms/bunny/soft/Apes
+export APES_COMPONENT_PATH=$APES_ROOT/Components
+
+
+export RUBYLIB=$RUBYLIB:$APES_ROOT/Tools/Ruby/lib
+export PATH=$PATH:$APES_ROOT/Tools/Ruby/bin
+export PATH=$PATH:$APES_ROOT/Tools/Shell/bin

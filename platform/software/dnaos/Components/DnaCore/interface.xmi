@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<APES:Interface
+  xmlns:xmi="http://www.omg.org/XMI"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:APES="http://www.ocm.org/APES"
+  xsi:schemaLocation="http://www.ocm.org/APES APESInterface.ecore"
+  author="xavier.guerin@imag.fr"
+  unique="true"
+  wrapper="false">
+
+  <id name="DnaCore" version="1.0"/>
+
+  <restrict>
+    <id name="DnaTools" version="1.0"/>
+  </restrict>
+
+  <provide>
+    <context name="LifeCycle">
+      <method name="core_create" result="status_t"/>
+      <method name="core_destroy" result="status_t"/>
+      <method name="core_start" result="status_t"/>
+      <method name="core_stop" result="status_t"/>
+    </context>
+
+    <context name="Interrupt">
+      <method name="interrupt_attach" result="status_t">
+        <argument name="id" type="interrupt_id_t" direction="In"/>
+        <argument name="mode" type="uint32_t" direction="In"/>
+        <argument name="handler" type="interrupt_handler_t" direction="In"/>
+        <argument name="bypass_demux" type="boolean" direction="In"/>
+      </method>
+
+      <method name="interrupt_detach" result="status_t">
+        <argument name="id" type="interrupt_id_t" direction="In"/>
+        <argument name="handler" type="interrupt_handler_t" direction="In"/>
+      </method>
+
+      <method name="ipi_callback" result="">
+        <argument name="command" type="int32_t" direction="In"/>
+        <argument name="data" type="access" direction="In"/>
+      </method>
+    </context>
+
+    <context name="Lock">
+      <type name="spinlock_t"/>
+
+      <method name="lock_create" result="status_t">
+        <argument name="lock" type="spinlock_t" direction="Out"/>
+      </method>
+
+      <method name="lock_destroy" result="void">
+        <argument name="lock" type="spinlock_t" direction="Out"/>
+      </method>
+
+      <method name="lock_acquire" result="void">
+        <argument name="lock" type="spinlock_t" direction="InOut"/>
+      </method>
+
+      <method name="lock_release" result="void">
+        <argument name="lock" type="spinlock_t" direction="InOut"/>
+      </method>
+    </context>
+
+    <context name="Semaphore">
+      <type name="semaphore_info_t"/>
+
+      <definition name="DNA_NO_RESCHEDULE"/>
+      <definition name="DNA_RELATIVE_TIMER"/>
+      <definition name="DNA_ABSOLUTE_TIMER"/>
+
+      <method name="semaphore_create" result="int32_t">
+        <argument name="name" type="string" direction="In"/>
+        <argument name="tokens" type="int32_t" direction="In"/>
+      </method>
+
+      <method name="semaphore_destroy" result="status_t">
+        <argument name="sid" type="int32_t" direction="In"/>
+      </method>
+
+      <method name="semaphore_acquire" result="status_t">
+        <argument name="sid" type="int32_t" direction="In"/>
+        <argument name="tokens" type="int32_t" direction="In"/>
+        <argument name="flags" type="int32_t" direction="In"/>
+        <argument name="timeout" type="bigtime_t" direction="In"/>
+      </method>
+
+      <method name="semaphore_release" result="status_t">
+        <argument name="sid" type="int32_t" direction="In"/>
+        <argument name="n_tokens" type="int32_t" direction="In"/>
+        <argument name="flags" type="int32_t" direction="In"/>
+      </method>
+
+      <method name="semaphore_get_info" result="status_t">
+        <argument name="sid" type="int32_t" direction="In"/>
+        <argument name="info" type="semaphore_info_t" direction="Out"/>
+      </method>
+    </context>
+
+    <context name="Thread">
+      <type name="thread_info_t"/>
+      <type name="thread_handler_t"/>
+
+      <method name="thread_create" result="status_t">
+        <argument name="handler" type="thread_handler_t" direction="In"/>
+        <argument name="arguments" type="void" direction="In"/>
+        <argument name="name" type="string" direction="In"/>
+        <argument name="info" type="thread_info_t" direction="In"/>
+        <argument name="tid" type="int32_t" direction="Out"/>
+      </method>
+
+      <method name="thread_snooze" result="status_t">
+        <argument name="value" type="bigtime_t" direction="In"/>
+      </method>
+
+      <method name="thread_suspend" result="status_t">
+        <argument name="id" type="int32_t" direction="In"/>
+      </method>
+
+      <method name="thread_resume" result="status_t">
+        <argument name="id" type="int32_t" direction="In"/>
+      </method>
+
+      <method name="thread_wait" result="status_t">
+        <argument name="id" type="int32_t" direction="In"/>
+        <argument name="value" type="int32_t" direction="Out"/>
+      </method>
+
+      <method name="thread_yield" result="status_t">
+      </method>
+
+      <method name="thread_exit" result="void">
+        <argument name="value" type="int32_t" direction="In"/>
+      </method>
+
+      <method name="thread_find" result="status_t">
+        <argument name="name" type="string" direction="In"/>
+      </method>
+
+      <method name="thread_get_info" result="status_t">
+        <argument name="id" type="int32_t" direction="In"/>
+        <argument name="info" type="thread_info_t" direction="Out"/>
+      </method>
+    </context>
+
+    <context name="Alarm">
+      <type name="alarm_callback_t"/>
+
+      <definition name="DNA_PERIODIC_ALARM"/>
+      <definition name="DNA_ONE_SHOT_ALARM"/>
+      <definition name="DNA_RELATIVE_ALARM"/>
+      <definition name="DNA_ABSOLUTE_ALARM"/>
+
+      <method name="alarm_create" result="status_t">
+        <argument name="deadline" type="bigtime_t" direction="In"/>
+        <argument name="mode" type="int32_t" direction="In"/>
+        <argument name="callback" type="alarm_callback_t" direction="In"/>
+        <argument name="data" type="access" direction="In"/>
+      </method>
+
+      <method name="alarm_destroy" result="status_t">
+        <argument name="alarm" type="int32_t" direction="In"/>
+      </method>
+
+      <method name="timer_callback" result=""/>
+    </context>
+
+    <context name="Port">
+      <type name="port_info_t"/>
+
+      <method name="port_create" result="status_t">
+        <argument name="name" type="string" direction="In"/>
+        <argument name="queue_length" type="int32_t" direction="In"/>
+        <argument name="p_id" type="int32_t" direction="Out"/>
+      </method>
+
+      <method name="port_destroy" result="status_t">
+        <argument name="id" type="int32_t" direction="In"/>
+      </method>
+
+      <method name="port_close" result="status_t">
+        <argument name="id" type="int32_t" direction="In"/>
+      </method>
+
+      <method name="port_find" result="status_t">
+        <argument name="name" type="string" direction="In"/>
+        <argument name="p_id" type="int32_t" direction="Out"/>
+      </method>
+
+      <method name="port_poll" result="status_t">
+        <argument name="id" type="int32_t" direction="In"/>
+        <argument name="flags" type="int32_t" direction="In"/>
+        <argument name="timeout" type="bigtime_t" direction="In"/>
+        <argument name="p_size" type="int32_t" direction="Out"/>
+      </method>
+
+      <method name="port_read" result="status_t">
+        <argument name="id" type="int32_t" direction="In"/>
+        <argument name="p_code" type="int32_t" direction="Out"/>
+        <argument name="buffer" type="access" direction="In"/>
+        <argument name="size" type="int32_t" direction="In"/>
+        <argument name="flags" type="int32_t" direction="In"/>
+        <argument name="timeout" type="bigtime_t" direction="In"/>
+      </method>
+
+      <method name="port_write" result="status_t">
+        <argument name="id" type="int32_t" direction="In"/>
+        <argument name="code" type="int32_t" direction="In"/>
+        <argument name="buffer" type="access" direction="In"/>
+        <argument name="size" type="int32_t" direction="In"/>
+        <argument name="flags" type="int32_t" direction="In"/>
+        <argument name="timeout" type="bigtime_t" direction="In"/>
+      </method>
+
+      <method name="port_get_info" result="status_t">
+        <argument name="id" type="int32_t" direction="In"/>
+        <argument name="p_info" type="port_info_t" direction="Out"/>
+      </method>
+    </context>
+  </provide>
+
+  <require>
+
+    <!-- Types -->
+
+    <type name="component_t"/>
+    <type name="interrupt_id_t"/>
+    <type name="interrupt_status_t"/>
+    <type name="interrupt_handler_t"/>
+    <type name="exception_id_t"/>
+    <type name="exception_handler_t"/>
+
+    <!-- Definitions -->
+
+    <definition name="CPU_N_IT"/>
+    <definition name="DNA_NAME_LENGTH"/>
+ 
+    <!-- Methods -->
+
+    <method name="cpu_context_init" result="">
+      <argument name="context" type="cpu_context_t" direction="Out"/>
+      <argument name="stack" type="access" direction="In"/>
+      <argument name="size" type="int32_t" direction="In"/>
+      <argument name="entry" type="access function" direction="In"/>
+      <argument name="arguments" type="access generic" direction="In"/>
+    </method>
+
+    <method name="cpu_context_load" result="">
+      <argument name="context" type="cpu_context_t" direction="In"/>
+    </method>
+
+    <method name="cpu_context_save" result="">
+      <argument name="context" type="cpu_context_t" direction="Out"/>
+    </method>
+
+    <method name="cpu_trap_attach_esr" result="">
+      <argument name="id" type="exception_id_t" direction="In"/>
+      <argument name="handler" type="exception_handler_t" direction="In"/>
+    </method>
+
+    <method name="cpu_trap_attach_isr" result="">
+      <argument name="id" type="interrupt_id_t" direction="In"/>
+      <argument name="handler" type="interrupt_handler_t" direction="In"/>
+    </method>
+
+    <method name="cpu_trap_mask_and_backup" result="interrupt_status_t"/>
+
+    <method name="cpu_trap_restore" result="">
+      <argument name="status" type="interrupt_status_t" direction="In"/>
+    </method>
+
+    <method name="cpu_trap_enable" result="">
+      <argument name="id" type="interrupt_id_t" direction="In"/>
+    </method>
+
+    <method name="cpu_trap_disable" result="">
+      <argument name="id" type="interrupt_id_t" direction="In"/>
+    </method>
+
+    <method name="cpu_mp_count" result="int32_t"/>
+
+    <method name="cpu_mp_id" result="int32_t"/>
+
+    <method name="cpu_test_and_set" result="int32_t">
+      <argument name="lock" type="int32_t" direction="InOut"/>
+    </method>
+
+    <method name="cpu_power_wake_on_interrupt" result=""/>
+
+    <method name="kernel_malloc" result="access">
+      <argument name="size" type="int32_t" direction="In"/>
+      <argument name="erase" type="boolean" direction="In"/>
+    </method>
+
+    <method name="kernel_free" result="status_t">
+      <argument name="area" type="access" direction="In"/>
+    </method>
+
+  </require>
+
+</APES:Interface>

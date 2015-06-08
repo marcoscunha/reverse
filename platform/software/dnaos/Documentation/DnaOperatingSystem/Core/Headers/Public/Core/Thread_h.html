@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1" />
+<link rel="stylesheet" href="../../../robodoc.css" type="text/css" />
+<title>./Core/Headers/Public/Core/Thread.h</title>
+<!-- Source: ./Core/Headers/Public/Core/Thread.h -->
+</head>
+<body>
+<div id="logo">
+<a name="robo_top_of_doc">DNA-OS Core Component</a>
+</div> <!-- logo -->
+<div id="navigation">
+<a class="menuitem" href="../../../toc_index.html#top">Table of Contents</a>
+<a class="menuitem" href="../../../sources.html#top">Source files</a>
+<a class="menuitem" href="../../../index.html#top">Index Page</a>
+<a class="menuitem" href="../../../robo_definitions.html#top">Definitions</a>
+<a class="menuitem" href="../../../robo_functions.html#top">Functions</a>
+<a class="menuitem" href="../../../robo_modules.html#top">Modules</a>
+<a class="menuitem" href="../../../robo_types.html#top">Types</a>
+<a class="menuitem" href="../../../robo_variables.html#top">Variables</a>
+</div> <!-- navigation -->
+<div id="content">
+<hr />
+<a name="Core2fThread"></a>
+<a name="robo5"></a><h2>Core/Thread [ Modules ]</h2>
+
+<p>[ <a href="#robo_top_of_doc">Top</a> ] [ <a href="./Core_h.html#robo13">Core</a> ] [ <a href="../../../robo_modules.html#robo_top_of_doc">Modules</a> ]</p>
+<p class="item_name">SUMMARY</p>
+<p> <strong>Thread</strong> management.
+</p>
+
+<hr />
+<a name="Thread2fDNA5fKERNEL5fGROUP"></a>
+<a name="robo71"></a><h2>Thread/DNA_KERNEL_GROUP [ Definitions ]</h2>
+
+<p>[ <a href="#robo_top_of_doc">Top</a> ] [ <a href="#robo5">Thread</a> ] [ <a href="../../../robo_definitions.html#robo_top_of_doc">Definitions</a> ]</p>
+<p class="item_name">SUMMARY</p>
+<p> <a href="#robo5">Thread</a> kernel group constant.
+</p>
+<p class="item_name">SOURCE</p>
+<pre class="source"><span class="line_number">37 </span><span class="sign">#</span>define <strong>DNA_KERNEL_GROUP</strong>  0
+</pre>
+
+<hr />
+<a name="Thread2fDNA5fNO5fAFFINITY"></a>
+<a name="robo72"></a><h2>Thread/DNA_NO_AFFINITY [ Definitions ]</h2>
+
+<p>[ <a href="#robo_top_of_doc">Top</a> ] [ <a href="#robo5">Thread</a> ] [ <a href="../../../robo_definitions.html#robo_top_of_doc">Definitions</a> ]</p>
+<p class="item_name">SUMMARY</p>
+<p> <a href="#robo5">Thread</a> no-affinity constant.
+</p>
+<p class="item_name">SOURCE</p>
+<pre class="source"><span class="line_number">49 </span><span class="sign">#</span>define <strong>DNA_NO_AFFINITY</strong>  0xFFFFFFFF
+</pre>
+
+<hr />
+<a name="Thread2fthread5fhandler5ft"></a>
+<a name="robo78"></a><h2>Thread/thread_handler_t [ Types ]</h2>
+
+<p>[ <a href="#robo_top_of_doc">Top</a> ] [ <a href="#robo5">Thread</a> ] [ <a href="../../../robo_types.html#robo_top_of_doc">Types</a> ]</p>
+<p class="item_name">SUMMARY</p>
+<p> <a href="#robo5">Thread</a> handler type.
+</p>
+<p class="item_name">SOURCE</p>
+<pre class="source"><span class="line_number">101 </span><span class="keyword">typedef</span> <span class="keyword">int32_t</span> <span class="comment">(* <strong>thread_handler_t</strong>) (void * args);
+</pre>
+
+<hr />
+<a name="Thread2fthread5finfo5ft"></a>
+<a name="robo79"></a><h2>Thread/thread_info_t [ Types ]</h2>
+
+<p>[ <a href="#robo_top_of_doc">Top</a> ] [ <a href="#robo5">Thread</a> ] [ <a href="../../../robo_types.html#robo_top_of_doc">Types</a> ]</p>
+<p class="item_name">SUMMARY</p>
+<p> <a href="#robo5">Thread</a> information type.
+</p>
+<p class="item_name">SOURCE</p>
+<pre class="source"><span class="line_number">113 </span><span class="keyword">typedef</span> <span class="keyword">struct</span> _thread_info
+<span class="line_number">114 </span><span class="sign">{</span>
+<span class="line_number">115 </span>  <span class="keyword">char</span> name<span class="sign">[</span>DNA_NAME_LENGTH<span class="sign">]</span><span class="sign">;</span>
+<span class="line_number">116 </span>
+<span class="line_number">117 </span>  <span class="keyword">int32_t</span> cpu_id<span class="sign">;</span>
+<span class="line_number">118 </span>  <span class="keyword">int32_t</span> affinity<span class="sign">;</span>
+<span class="line_number">119 </span>  <span class="keyword">int32_t</span> priority<span class="sign">;</span>
+<span class="line_number">120 </span>  <span class="keyword">int32_t</span> sem_tokens<span class="sign">;</span>
+<span class="line_number">121 </span>
+<span class="line_number">122 </span>  <a href="#robo83">thread_status_t</a> status<span class="sign">;</span>
+<span class="line_number">123 </span>  <a href="#robo80">thread_resource_t</a> resource<span class="sign">;</span>
+<span class="line_number">124 </span>  <span class="keyword">int32_t</span> resource_id<span class="sign">;</span>
+<span class="line_number">125 </span>
+<span class="line_number">126 </span>  bigtime_t kernel_time<span class="sign">;</span>
+<span class="line_number">127 </span>  bigtime_t user_time<span class="sign">;</span>
+<span class="line_number">128 </span><span class="sign">}</span>
+<span class="line_number">129 </span><strong>thread_info_t</strong><span class="sign">;</span>
+</pre>
+
+<hr />
+<a name="Thread2fthread5fresource5ft"></a>
+<a name="robo80"></a><h2>Thread/thread_resource_t [ Types ]</h2>
+
+<p>[ <a href="#robo_top_of_doc">Top</a> ] [ <a href="#robo5">Thread</a> ] [ <a href="../../../robo_types.html#robo_top_of_doc">Types</a> ]</p>
+<p class="item_name">SUMMARY</p>
+<p> Type of the resource for which a thread can wait.
+</p>
+<p class="item_name">SOURCE</p>
+<pre class="source"><span class="line_number">83 </span><span class="keyword">typedef</span> enum
+<span class="line_number">84 </span><span class="sign">{</span>
+<span class="line_number">85 </span>  DNA_NO_RESOURCE<span class="sign">,</span>
+<span class="line_number">86 </span>  DNA_RESOURCE_SEMAPHORE<span class="sign">,</span>
+<span class="line_number">87 </span>  DNA_RESOURCE_THREAD
+<span class="line_number">88 </span><span class="sign">}</span>
+<span class="line_number">89 </span><strong>thread_resource_t</strong><span class="sign">;</span>
+</pre>
+
+<hr />
+<a name="Thread2fthread5fstatus5ft"></a>
+<a name="robo83"></a><h2>Thread/thread_status_t [ Types ]</h2>
+
+<p>[ <a href="#robo_top_of_doc">Top</a> ] [ <a href="#robo5">Thread</a> ] [ <a href="../../../robo_types.html#robo_top_of_doc">Types</a> ]</p>
+<p class="item_name">SUMMARY</p>
+<p> Available thread status.
+</p>
+<p class="item_name">SOURCE</p>
+<pre class="source"><span class="line_number">61 </span><span class="keyword">typedef</span> enum _thread_status
+<span class="line_number">62 </span><span class="sign">{</span>
+<span class="line_number">63 </span>  DNA_THREAD_READY      <span class="sign">=</span> 0xFACE<span class="sign">,</span>
+<span class="line_number">64 </span>  DNA_THREAD_RUNNING    <span class="sign">=</span> 0xBEEF<span class="sign">,</span>
+<span class="line_number">65 </span>  DNA_THREAD_SLEEPING   <span class="sign">=</span> 0xBEDD<span class="sign">,</span>
+<span class="line_number">66 </span>  DNA_THREAD_SUSPENDED  <span class="sign">=</span> 0xD15A<span class="sign">,</span>
+<span class="line_number">67 </span>  DNA_THREAD_WAITING    <span class="sign">=</span> 0xB10C<span class="sign">,</span>
+<span class="line_number">68 </span>  DNA_THREAD_ENDED     <span class="sign">=</span> 0xDEAD<span class="sign">,</span>
+<span class="line_number">69 </span>  DNA_THREAD_NOSTATUS   <span class="sign">=</span> 0xEEEE<span class="sign">,</span>
+<span class="line_number">70 </span><span class="sign">}</span>
+<span class="line_number">71 </span><strong>thread_status_t</strong><span class="sign">;</span>
+</pre>
+
+</div> <!-- content -->
+<div id="footer">
+<p>Generated from ./Core/Headers/Public/Core/Thread.h on Mon Mar 01 2010 13:57:34
+</p>
+</div> <!-- footer -->
+</body>
+</html>
