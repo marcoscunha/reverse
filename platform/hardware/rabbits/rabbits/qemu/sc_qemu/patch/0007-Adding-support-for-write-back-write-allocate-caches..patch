@@ -1,0 +1,585 @@
+>From d6f640e1234bc7fc09b8d9ee57ec6688e8cd1357 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Fr=C3=A9d=C3=A9ric=20P=C3=A9trot?= <Frederic.Petrot@imag.fr>
+Date: Sat, 21 Mar 2015 13:42:47 +0100
+Subject: [PATCH 7/7] Adding support for write-back/write-allocate caches.
+ Quite tricky because of SystemC synchronization issues.
+
+---
+ rabbits/cfg.h            |  23 ++++++-
+ rabbits/fc_annotations.c | 166 +++++++++++++++++++++++++++++++----------------
+ rabbits/qemu_encap.h     |  18 ++++-
+ rabbits/qemu_systemc.c   |  48 +++++++++-----
+ rabbits/save_rest_env.h  |   6 +-
+ 5 files changed, 182 insertions(+), 79 deletions(-)
+
+diff --git a/rabbits/cfg.h b/rabbits/cfg.h
+index c52f965..84c5617 100644
+--- a/rabbits/cfg.h
++++ b/rabbits/cfg.h
+@@ -2,6 +2,7 @@
+ #define _RABBITS_CFG_H_
+ 
+ #define IMPLEMENT_FULL_CACHES
++
+ //#define IMPLEMENT_LATE_CACHES
+ //#define ONE_MEMORY_MODULE
+ 
+@@ -23,21 +24,39 @@
+ #endif
+ 
+ #ifdef RABBITS_IMPLEMENT_CACHES
++
++    /* Cache strategies :
++     * write-through or write-back
++     * write-allocate or no write-allocate
++     * write-update or write-invalidate
++     *
++     * *AS OF NOW*
++     * WT is coherent with write-through invalidate protocol
++     * WB is *not* coherent, so it will work only for uniprocessor system or mp system with sw coherency
++     */
++
++
+     #ifdef IMPLEMENT_LATE_CACHES
+         #define NS_ICACHE_MISS                  10
+         #define NS_DCACHE_MISS                  10
+         #define NS_WRITE_ACCESS                 1
++    #else /* IMPLEMENT_FULL_CACHES */
++        #if 1
++           #define CACHE_IS_WB
++        #else
++           #define CACHE_IS_WT
++        #endif
+     #endif
+ 
+     #define DCACHE_LINES        1024
+-    #define DCACHE_ASSOC_BITS   0
++    #define DCACHE_ASSOC_BITS   1
+     #define DCACHE_LINE_BITS    5
+     #define DCACHE_LINE_WORDS   (1 << (DCACHE_LINE_BITS - 2))
+     #define DCACHE_LINE_BYTES   (1 << DCACHE_LINE_BITS)
+     #define DCACHE_LINE_MASK    ((1 << DCACHE_LINE_BITS) - 1)
+ 
+     #define ICACHE_LINES        1024
+-    #define ICACHE_ASSOC_BITS   0
++    #define ICACHE_ASSOC_BITS   1
+     #define ICACHE_LINE_BITS    5
+     #define ICACHE_LINE_WORDS   (1 << (ICACHE_LINE_BITS - 2))
+     #define ICACHE_LINE_BYTES   (1 << ICACHE_LINE_BITS)
+diff --git a/rabbits/fc_annotations.c b/rabbits/fc_annotations.c
+index 486254c..91d15fd 100644
+--- a/rabbits/fc_annotations.c
++++ b/rabbits/fc_annotations.c
+@@ -35,7 +35,7 @@ static inline int dcache_line_present (int cpu, int start_idx, unsigned long tag
+ {
+     int idx, last_idx = start_idx + (1 << DCACHE_ASSOC_BITS);
+     for (idx = start_idx; idx < last_idx; idx++)
+-        if (tag == crt_qemu_instance->m_cpu_dcache[cpu][idx])
++        if (tag == crt_qemu_instance->m_cpu_dcache_tag[cpu][idx])
+             return idx;
+ 
+     return -1;
+@@ -45,7 +45,7 @@ static inline int dcache_line_replace (int cpu, int start_idx)
+ {
+     int idx, last_idx = start_idx + (1 << DCACHE_ASSOC_BITS);
+     for (idx = start_idx; idx < last_idx; idx++)
+-        if (-1 == crt_qemu_instance->m_cpu_dcache[cpu][idx])
++        if (crt_qemu_instance->m_cpu_dcache_flags[cpu][idx].valid == 0)
+             return idx;
+ 
+     return start_idx + (((1 << DCACHE_ASSOC_BITS) - 1) & random ());
+@@ -55,7 +55,7 @@ static inline int icache_line_present (int cpu, int start_idx, unsigned long tag
+ {
+     int idx, last_idx = start_idx + (1 << ICACHE_ASSOC_BITS);
+     for (idx = start_idx; idx < last_idx; idx++)
+-        if (tag == crt_qemu_instance->m_cpu_icache[cpu][idx])
++        if (tag == crt_qemu_instance->m_cpu_icache_tag[cpu][idx])
+             return idx;
+ 
+     return -1;
+@@ -65,7 +65,7 @@ static inline int icache_line_replace (int cpu, int start_idx)
+ {
+     int idx, last_idx = start_idx + (1 << ICACHE_ASSOC_BITS);
+     for (idx = start_idx; idx < last_idx; idx++)
+-        if (-1 == crt_qemu_instance->m_cpu_icache[cpu][idx])
++        if (crt_qemu_instance->m_cpu_icache_flags[cpu][idx].valid == 0)
+             return idx;
+ 
+     return start_idx + (((1 << ICACHE_ASSOC_BITS) - 1) & random ());
+@@ -84,9 +84,19 @@ static inline void *get_host_address (unsigned long addr)
+ void 
+ dcache_invalidate(unsigned long addr)
+ {
+-
+ #ifdef IMPLEMENT_FULL_CACHES
+-	 qemu_invalidate_address(crt_qemu_instance, addr, cpu_single_env->cpu_index);
++    int cpu, idx, start_idx;
++    unsigned long tag;
++
++    fprintf(stderr, "@@@@@@@@");
++
++    cpu = cpu_single_env->cpu_index;
++    tag = addr >> DCACHE_LINE_BITS;
++    start_idx = tag & (DCACHE_LINES - 1) & ~((1 << DCACHE_ASSOC_BITS) - 1);
++    idx = dcache_line_present(cpu, start_idx, tag);
++
++    if (idx != -1)
++        crt_qemu_instance->m_cpu_dcache_flags[cpu][idx].valid = 0;
+ #endif /* IMPLEMENT_FULL_CACHES */
+ 
+ }
+@@ -95,10 +105,22 @@ void
+ dcache_flush(unsigned long addr)
+ {
+ 
+-#ifdef IMPLEMENT_FULL_CACHES
+-	 /* TODO: Flush line containing addr from the current cache.  */
+-	 /* Write modified data to memory and invalidate line.        */
+-	 /* Internally only. No need to propagate to other processors */
++#if defined(IMPLEMENT_FULL_CACHES) && defined(CACHE_IS_WB)
++    int cpu, idx, start_idx;
++    unsigned long tag;
++
++    cpu = cpu_single_env->cpu_index;
++    tag = addr >> DCACHE_LINE_BITS;
++    start_idx = tag & (DCACHE_LINES - 1) & ~((1 << DCACHE_ASSOC_BITS) - 1);
++    idx = dcache_line_present(cpu, start_idx, tag);
++
++    if (idx != -1 && crt_qemu_instance->m_cpu_dcache_flags[cpu][idx].valid == 1 && crt_qemu_instance->m_cpu_dcache_flags[cpu][idx].dirty == 1) {
++        /* Actual update of the memory using a backdoor access */
++        memcpy (get_host_address(addr & ~DCACHE_LINE_MASK),
++                crt_qemu_instance->m_cpu_dcache_data[cpu][idx],
++                DCACHE_LINE_BYTES);
++    }
++    crt_qemu_instance->m_cpu_dcache_flags[cpu][idx].dirty = 0;
+ #endif /* IMPLEMENT_FULL_CACHES */
+ 
+ }
+@@ -108,10 +130,9 @@ dcache_flush(unsigned long addr)
+  * SystemC read access is cache line aligned, so we have no hardware alignemnt problem
+  */
+ void * REGPARM
+-dcache_read (unsigned long addr)
++dcache_read(unsigned long addr)
+ {
+-    if (!cpu_single_env || cpu_single_env->rabbits.b_use_backdoor)
+-    {
++    if (!cpu_single_env || cpu_single_env->rabbits.b_use_backdoor) {
+         fprintf (stderr, "Error in %s, env=0x%lx, backdoor=%d\n",
+             __FUNCTION__, (unsigned long) cpu_single_env,
+             cpu_single_env ? (int) cpu_single_env->rabbits.b_use_backdoor : 0);
+@@ -120,8 +141,7 @@ dcache_read (unsigned long addr)
+ 
+     #ifdef IMPLEMENT_FULL_CACHES
+     int no_cycles = g_crt_no_cycles_instr;
+-    if (no_cycles > 0)
+-    {
++    if (no_cycles > 0) {
+         g_crt_no_cycles_instr = 0;
+         crt_qemu_instance->m_counters.no_cycles += no_cycles;
+         SAVE_ENV_BEFORE_CONSUME_SYSTEMC ();
+@@ -137,25 +157,47 @@ dcache_read (unsigned long addr)
+     cpu = cpu_single_env->cpu_index;
+     tag = addr >> DCACHE_LINE_BITS;
+     start_idx = tag & (DCACHE_LINES - 1) & ~((1 << DCACHE_ASSOC_BITS) - 1);
+-    idx = dcache_line_present (cpu, start_idx, tag);
++    idx = dcache_line_present(cpu, start_idx, tag);
+ 
+-    if (idx == -1)
+-    {
++    if (idx == -1) { /* cache miss */
+         crt_qemu_instance->m_counters.no_dcache_miss++;
+ 
+         idx = dcache_line_replace (cpu, start_idx);
+-        crt_qemu_instance->m_cpu_dcache[cpu][idx] = tag;
+ 
+         #ifdef IMPLEMENT_FULL_CACHES
++#ifdef CACHE_IS_WB
++        /* This is the victim we have to evict, if valid and dirty, copy back to memory, otherwise, do nothing */
++        if (crt_qemu_instance->m_cpu_dcache_flags[cpu][idx].valid == 1 && crt_qemu_instance->m_cpu_dcache_flags[cpu][idx].dirty == 1) {
++            /* Rebuild the address in which to copy the data back : hopefully tag contains exactly this */
++            unsigned long cached_tag = crt_qemu_instance->m_cpu_dcache_tag[cpu][idx];
++            unsigned long cached_addr = cached_tag << DCACHE_LINE_BITS;
++            /* Actual update of the memory using a backdoor access */
++            /* Very tricky stuff, ... */
++            memcpy (get_host_address(cached_addr),
++                    crt_qemu_instance->m_cpu_dcache_data[cpu][idx],
++                    DCACHE_LINE_BYTES);
++            SAVE_ENV_BEFORE_CONSUME_SYSTEMC ();
++            _save_crt_qemu_instance->m_systemc.systemc_qemu_write_memory (
++                _save_cpu_single_env->rabbits.sc_obj, cached_addr, _save_crt_qemu_instance->m_cpu_dcache_data[cpu][idx][0], 1, 0);
++            RESTORE_ENV_AFTER_CONSUME_SYSTEMC ();
++        }
++#endif
+         SAVE_ENV_BEFORE_CONSUME_SYSTEMC ();
+ 	    _save_crt_qemu_instance->
+                 m_systemc.systemc_qemu_read_memory(_save_cpu_single_env->rabbits.sc_obj,
+                                                    addr & ~DCACHE_LINE_MASK,
+                                                    DCACHE_LINE_BYTES, 0);
+         RESTORE_ENV_AFTER_CONSUME_SYSTEMC ();
+-        memcpy (crt_qemu_instance->m_cpu_dcache_data[cpu][idx],
+-                get_host_address(addr & ~DCACHE_LINE_MASK),
+-                DCACHE_LINE_BYTES);
++
++        crt_qemu_instance->m_cpu_dcache_tag[cpu][idx]         = tag;
++        crt_qemu_instance->m_cpu_dcache_flags[cpu][idx].valid = 1;
++#ifdef CACHE_IS_WB
++        crt_qemu_instance->m_cpu_dcache_flags[cpu][idx].dirty = 0;
++#endif
++
++        memcpy(crt_qemu_instance->m_cpu_dcache_data[cpu][idx],
++               get_host_address(addr & ~DCACHE_LINE_MASK),
++               DCACHE_LINE_BYTES);
+         #else //IMPLEMENT_LATE_CACHES
+         g_crt_ns_misses += NS_DCACHE_MISS;
+         #endif //IMPLEMENT_LATE_CACHES
+@@ -201,10 +243,10 @@ dcache_read (unsigned long addr)
+ unsigned long long
+ dcache_read_q (unsigned long addr)
+ {
+-    unsigned long   low, hi;
++    unsigned long low, hi;
+ 
+-    low = *(unsigned long *)dcache_read_l(addr);
+-    hi  = *(unsigned long *)dcache_read_l(addr + 4);
++    low = dcache_read_l(addr);
++    hi  = dcache_read_l(addr + 4);
+ 
+     return (((unsigned long long) hi) << 32) + low;
+ }
+@@ -220,12 +262,12 @@ dcache_read_l(unsigned long addr)
+         } else { /* We are crossing a cache line boundary now, take care of it */
+             uint32_t x, y, z;
+             if (addr & 1) {
+-                z = dcache_read_b(addr);
++                z = dcache_read_b(addr + 0);
+                 y = dcache_read_w(addr + 1); /* half word aligned for sure, next cache line if 3 */
+                 x = dcache_read_b(addr + 3); /* on next cache line */
+                 return (x << 24) | (y << 8) | z;
+             } else {
+-                y = dcache_read_w(addr);     /* half word aligned for sure */
++                y = dcache_read_w(addr + 0);     /* half word aligned for sure */
+                 x = dcache_read_w(addr + 2); /* half word aligned on next cache line */
+                 return (x << 16) | y;
+             }
+@@ -243,7 +285,7 @@ dcache_read_w(unsigned long addr)
+             return *(unsigned short *)dcache_read(addr);
+         else {
+             unsigned int x, y;
+-            y = dcache_read_b(addr);
++            y = dcache_read_b(addr + 0);
+             x = dcache_read_b(addr + 1);
+             return (x << 8) | y;
+         }
+@@ -251,28 +293,28 @@ dcache_read_w(unsigned long addr)
+ }
+ 
+ unsigned char
+-dcache_read_b (unsigned long addr)
++dcache_read_b(unsigned long addr)
+ {
+-    return *(unsigned char *) dcache_read (addr);
++    return *(unsigned char *)dcache_read(addr);
+ }
+ 
+ signed short
+-dcache_read_signed_w (unsigned long addr)
++dcache_read_signed_w(unsigned long addr)
+ {
+     if ((addr & 1) == 0) /* Aligned half word access, normal case */
+        return *(signed short *)dcache_read(addr);
+     else {
+         unsigned int x, y;
+-        y = dcache_read_b(addr);
++        y = dcache_read_b(addr + 0);
+         x = dcache_read_b(addr + 1);
+         return (x << 8) | y;
+     }
+ }
+ 
+ signed char
+-dcache_read_signed_b (unsigned long addr)
++dcache_read_signed_b(unsigned long addr)
+ {
+-    return * (signed  char *) dcache_read (addr);
++    return *(signed  char *)dcache_read(addr);
+ }
+ 
+ /*
+@@ -285,26 +327,23 @@ dcache_read_signed_b (unsigned long addr)
+  */
+ 
+ void REGPARM
+-dcache_write (unsigned long addr, int nb, unsigned long val)
++dcache_write(unsigned long addr, int nb, unsigned long val)
+ {
+     #if HOST_LONG_BITS == 64
+-    if (nb == 8)
+-    {
++    if (nb == 8) {
+         dcache_write_q (addr, val);
+         return;
+     }
+     #endif
+ 
+-    if (!cpu_single_env || cpu_single_env->rabbits.b_use_backdoor)
+-    {
++    if (!cpu_single_env || cpu_single_env->rabbits.b_use_backdoor) {
+         fprintf (stderr, "Error in %s, env=0x%lx, backdoor=%d\n",
+             __FUNCTION__, (unsigned long) cpu_single_env,
+             cpu_single_env ? (int) cpu_single_env->rabbits.b_use_backdoor : 0);
+         exit (1);
+     }
+   
+-    if (addr >= cpu_single_env->rabbits.ram_size)
+-    {
++    if (addr >= cpu_single_env->rabbits.ram_size) {
+         fprintf (stderr, "Bad address 0x%lx in qemu.%s!\n",
+             addr, __FUNCTION__);
+         exit (1);
+@@ -373,19 +412,17 @@ dcache_write (unsigned long addr, int nb, unsigned long val)
+     start_idx = tag & (DCACHE_LINES - 1) & ~((1 << DCACHE_ASSOC_BITS) - 1);
+     idx = dcache_line_present(cpu, start_idx, tag);
+ 
+-    if (idx != -1) /* addr in cache -> update */
+-    {
+-        switch (nb)
+-        {
++    if (idx != -1) { /* addr in cache -> update */
++        switch (nb) {
+         case 1:
+             *((uint8_t *)&crt_qemu_instance->m_cpu_dcache_data[cpu][idx][ofs]) =
+                 (uint8_t)(val & 0x000000ff);
+             break;
+         case 2:
+-            if ((ofs & 1) == 0) /* Halfword aligned write, simple case */
++            if ((ofs & 1) == 0) { /* Halfword aligned write, simple case */
+                 *((uint16_t *)&crt_qemu_instance->m_cpu_dcache_data[cpu][idx][ofs]) =
+                     (uint16_t)(val & 0x0000ffff);
+-            else { /* Unaligned */
++            } else { /* Unaligned */
+                 dcache_write(addr + 0, 1, (val >> 0) & 0x000000ff);
+                 dcache_write(addr + 1, 1, (val >> 8) & 0x000000ff);
+                 skip_sysc = true;
+@@ -413,13 +450,22 @@ dcache_write (unsigned long addr, int nb, unsigned long val)
+             exit(1);
+         }
+         if (!skip_sysc) { /* I am sure the address is aligned with the type now */
++#ifdef CACHE_IS_WT
+             SAVE_ENV_BEFORE_CONSUME_SYSTEMC ();
+             _save_crt_qemu_instance->m_systemc.systemc_qemu_write_memory (
+                 _save_cpu_single_env->rabbits.sc_obj, addr, val, nb, 0);
+             RESTORE_ENV_AFTER_CONSUME_SYSTEMC ();
++#else /* CACHE_IS_WB */
++            /* We now have a dirty copy (no cache coherency yet) */
++            crt_qemu_instance->m_cpu_dcache_flags[cpu][idx].dirty = 1;
++            /* Dirty hack so that it works at the end of the day, but I don't understand why and this sucks ! */
++            memcpy (get_host_address(addr), &val, nb);
++#endif
+         }
+-    } else { /* Need to align writes missing the cache.
+-                Must be careful on cache line boundary as it may hit afterwards */
++    } else { /* addr not cached */
++#ifdef CACHE_IS_WT
++        /* Need to align writes missing the cache.
++           Must be careful on cache line boundary as it may hit afterwards */
+         switch (nb) {
+         case 1:
+             SAVE_ENV_BEFORE_CONSUME_SYSTEMC ();
+@@ -450,7 +496,7 @@ dcache_write (unsigned long addr, int nb, unsigned long val)
+                     _save_crt_qemu_instance->m_systemc.systemc_qemu_write_memory(_save_cpu_single_env->rabbits.sc_obj, addr, val & 0x000000ff, 1, 0);
+                     RESTORE_ENV_AFTER_CONSUME_SYSTEMC ();
+                     dcache_write(addr + 1, 2, (val >> 8)  & 0x0000ffff); /* half word aligned for sure, maybe next cache line */
+-                    dcache_write(addr + 3, 1, (val >> 24) & 0x000000ff); /* on next cache line */
++                    dcache_write(addr + 3, 1, (val >> 24) & 0x000000ff); /* maybe on next cache line */
+                 } else {
+                     SAVE_ENV_BEFORE_CONSUME_SYSTEMC ();
+                     _save_crt_qemu_instance->m_systemc.systemc_qemu_write_memory(_save_cpu_single_env->rabbits.sc_obj, addr, val & 0x0000ffff, 2, 0);
+@@ -463,6 +509,13 @@ dcache_write (unsigned long addr, int nb, unsigned long val)
+             printf("QEMU, function %s, invalid number of bytes %d\n", __func__, nb);
+             exit(1);
+         }
++#else /* CACHE_IS_WB */
++        /* Assuming write-back is write allocate for now */
++        /* Fetch the line from memory, doing whatever eviction is necessary */
++        (void)dcache_read(addr & ~DCACHE_LINE_MASK);
++        /* And now update the fetched line */
++        dcache_write(addr, nb, val);
++#endif
+     }
+ 
+     #else //!IMPLEMENT_FULL_CACHES
+@@ -493,7 +546,7 @@ void icache_access (target_ulong addr)
+         crt_qemu_instance->m_counters.no_icache_miss++;
+ 
+         idx = icache_line_replace (cpu, start_idx);
+-        crt_qemu_instance->m_cpu_icache[cpu][idx] = tag;
++        crt_qemu_instance->m_cpu_icache_tag[cpu][idx] = tag;
+ 
+         #ifdef IMPLEMENT_FULL_CACHES
+         int no_cycles = g_crt_no_cycles_instr;
+@@ -568,13 +621,12 @@ qemu_invalidate_address (qemu_instance *instance, uint32_t addr, int src_idx)
+     int                     i;
+ 
+     crt_qemu_instance = instance;
+-    for (i = 0; i < instance->m_NOCPUs; i++)
+-    {
+-        if (i != src_idx && (didx = dcache_line_present (i, dstart_idx, dtag)) != -1)
+-            instance->m_cpu_dcache[i][didx] = (unsigned long) -1;
++    for (i = 0; i < instance->m_NOCPUs; i++) {
++        if (i != src_idx && (didx = dcache_line_present(i, dstart_idx, dtag)) != -1)
++            instance->m_cpu_dcache_flags[i][didx].valid = 0;
+ 
+-        if ((iidx = icache_line_present (i, istart_idx, itag)) != -1)
+-            instance->m_cpu_icache[i][iidx] = (unsigned long) -1;
++        if ((iidx = icache_line_present(i, istart_idx, itag)) != -1)
++            instance->m_cpu_icache_flags[i][iidx].valid = 0;
+     }
+     crt_qemu_instance = old_instance;
+     #endif
+diff --git a/rabbits/qemu_encap.h b/rabbits/qemu_encap.h
+index 816c8f5..5ce96f4 100644
+--- a/rabbits/qemu_encap.h
++++ b/rabbits/qemu_encap.h
+@@ -13,15 +13,29 @@ typedef struct qemu_instance qemu_instance;
+ #include "rabbits/systemc_imports.h"
+ #include "../../components/qemu_wrapper/qemu_imported.h"
+ 
++#ifdef RABBITS_IMPLEMENT_CACHES
++typedef struct {
++   uint8_t valid:1;
++   uint8_t dirty:1;
++   uint8_t state:3;
++} dline_flags;
++
++typedef struct {
++   uint8_t valid:1;
++} iline_flags;
++#endif
++
+ struct qemu_instance 
+ {
+     int                     m_id;
+     int                     m_NOCPUs;
+ 
+     #ifdef RABBITS_IMPLEMENT_CACHES
+-    unsigned long           (*m_cpu_dcache)[DCACHE_LINES];
+-    unsigned long           (*m_cpu_icache)[ICACHE_LINES];
++    dline_flags             (*m_cpu_dcache_flags)[DCACHE_LINES];
++    unsigned long           (*m_cpu_dcache_tag)[DCACHE_LINES];
+     unsigned char           (*m_cpu_dcache_data)[DCACHE_LINES][DCACHE_LINE_BYTES];
++    iline_flags             (*m_cpu_icache_flags)[ICACHE_LINES];
++    unsigned long           (*m_cpu_icache_tag)[ICACHE_LINES];
+     unsigned char           (*m_cpu_icache_data)[ICACHE_LINES][ICACHE_LINE_BYTES];
+     #endif
+ 
+diff --git a/rabbits/qemu_systemc.c b/rabbits/qemu_systemc.c
+index cbd5ac0..ee29e9e 100644
+--- a/rabbits/qemu_systemc.c
++++ b/rabbits/qemu_systemc.c
+@@ -6,6 +6,8 @@
+ #include "rabbits/qemu_systemc.h"
+ #include "rabbits/save_rest_env.h"
+ 
++static int nested;
++
+ unsigned long   g_crt_no_cycles_instr = 0;
+ unsigned long   g_crt_ns_misses = 0;
+ 
+@@ -284,38 +286,54 @@ int flush_orphan_tb (void)
+ 
+ #ifdef RABBITS_IMPLEMENT_CACHES
+ void
+-qemu_init_caches (void)
++qemu_init_caches(void)
+ {
+-    int line, cpu;
++    int line, cpu, w;
+ 
+-    crt_qemu_instance->m_cpu_dcache = malloc (crt_qemu_instance->m_NOCPUs *
++    crt_qemu_instance->m_cpu_dcache_tag = malloc(crt_qemu_instance->m_NOCPUs *
+         DCACHE_LINES * sizeof (unsigned long));
++    /* Not really useful but may trigger an error in case of illegal access */
+     for (cpu = 0; cpu < crt_qemu_instance->m_NOCPUs; cpu++)
+         for (line = 0; line < DCACHE_LINES; line++)
+-            crt_qemu_instance->m_cpu_dcache[cpu][line] = (unsigned long) -1;
++            crt_qemu_instance->m_cpu_dcache_tag[cpu][line] = 0x8BADF00D;
+ 
+-    crt_qemu_instance->m_cpu_icache = malloc (crt_qemu_instance->m_NOCPUs *
+-        ICACHE_LINES * sizeof (unsigned long));
++    crt_qemu_instance->m_cpu_dcache_flags = malloc(crt_qemu_instance->m_NOCPUs *
++        DCACHE_LINES * sizeof (uint8_t));
+     for (cpu = 0; cpu < crt_qemu_instance->m_NOCPUs; cpu++)
+-        for (line = 0; line < ICACHE_LINES; line++)
+-            crt_qemu_instance->m_cpu_icache[cpu][line] = (unsigned long) -1;
++        for (line = 0; line < DCACHE_LINES; line++) {
++            crt_qemu_instance->m_cpu_dcache_flags[cpu][line].valid = 0;
++            crt_qemu_instance->m_cpu_dcache_flags[cpu][line].dirty = 0;
++            crt_qemu_instance->m_cpu_dcache_flags[cpu][line].state = 0;
++        }
+ 
+-    int         w;
+-    crt_qemu_instance->m_cpu_dcache_data = malloc (crt_qemu_instance->m_NOCPUs *
++    crt_qemu_instance->m_cpu_dcache_data = malloc(crt_qemu_instance->m_NOCPUs *
+         DCACHE_LINES * DCACHE_LINE_BYTES * sizeof (unsigned char));
+     for (cpu = 0; cpu < crt_qemu_instance->m_NOCPUs; cpu++)
+         for (line = 0; line < DCACHE_LINES; line++)
+             for (w = 0; w < DCACHE_LINE_WORDS; w++)
+-                ((uint32_t *) crt_qemu_instance->m_cpu_dcache_data[cpu][line])[w] =
+-                    (uint32_t) 0xDEADBEAF;
++                ((uint32_t *)crt_qemu_instance->m_cpu_dcache_data[cpu][line])[w] =
++                    (uint32_t)0xDEADBEEF;
++
++    crt_qemu_instance->m_cpu_icache_tag = malloc(crt_qemu_instance->m_NOCPUs *
++        ICACHE_LINES * sizeof (unsigned long));
++    for (cpu = 0; cpu < crt_qemu_instance->m_NOCPUs; cpu++)
++        for (line = 0; line < ICACHE_LINES; line++)
++            crt_qemu_instance->m_cpu_icache_tag[cpu][line] = 0x8BADF00D;
++
++    crt_qemu_instance->m_cpu_icache_flags = malloc(crt_qemu_instance->m_NOCPUs *
++        DCACHE_LINES * sizeof (uint8_t));
++    for (cpu = 0; cpu < crt_qemu_instance->m_NOCPUs; cpu++)
++        for (line = 0; line < DCACHE_LINES; line++) {
++            crt_qemu_instance->m_cpu_dcache_flags[cpu][line].valid = 0;
++        }
+ 
+-    crt_qemu_instance->m_cpu_icache_data = malloc (crt_qemu_instance->m_NOCPUs *
++    crt_qemu_instance->m_cpu_icache_data = malloc(crt_qemu_instance->m_NOCPUs *
+         ICACHE_LINES * ICACHE_LINE_BYTES * sizeof (unsigned char));
+     for (cpu = 0; cpu < crt_qemu_instance->m_NOCPUs; cpu++)
+         for (line = 0; line < ICACHE_LINES; line++)
+             for (w = 0; w < ICACHE_LINE_WORDS; w++)
+-                ((uint32_t *) crt_qemu_instance->m_cpu_icache_data[cpu][line])[w] =
+-                    (uint32_t) 0xDEADBEAF;
++                ((uint32_t *)crt_qemu_instance->m_cpu_icache_data[cpu][line])[w] =
++                    (uint32_t)0xDEADBEEF;
+ }
+ 
+ void call_wait_wb_empty (void)
+diff --git a/rabbits/save_rest_env.h b/rabbits/save_rest_env.h
+index 489388f..68304dd 100644
+--- a/rabbits/save_rest_env.h
++++ b/rabbits/save_rest_env.h
+@@ -2,16 +2,16 @@
+ #define _SAVE_RESTORE_ENV_H_
+ 
+ #define SAVE_ENV_BEFORE_CONSUME_SYSTEMC() \
+-    do{\
++    do {\
+         qemu_instance   *_save_crt_qemu_instance = crt_qemu_instance; \
+         CPUState        *_save_cpu_single_env = cpu_single_env; \
+         crt_qemu_instance = NULL; \
+-        cpu_single_env = NULL;
++        cpu_single_env = NULL
+ 
+ #define RESTORE_ENV_AFTER_CONSUME_SYSTEMC() \
+         crt_qemu_instance = _save_crt_qemu_instance; \
+         cpu_single_env = _save_cpu_single_env; \
+-    }while (0)
++    } while (0)
+ 
+ #ifdef IMPLEMENT_LATE_CACHES
+ #define CACHE_LATE_SYNC_MISSES() \
+-- 
+2.1.4
+

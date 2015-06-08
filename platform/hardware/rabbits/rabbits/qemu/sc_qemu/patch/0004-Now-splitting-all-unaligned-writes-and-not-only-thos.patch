@@ -1,0 +1,170 @@
+>From 61d87cf0c3169b4ce9d5dc36b3c82e4bc319cf39 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Fr=C3=A9d=C3=A9ric=20P=C3=A9trot?= <Frederic.Petrot@imag.fr>
+Date: Fri, 17 Oct 2014 17:36:49 +0200
+Subject: [PATCH 4/7] Now splitting all unaligned writes and not only those
+ which cross cache line boundaries as the SystemC access is not authorized
+ (and this is right) with an unaligned access
+
+---
+ rabbits/fc_annotations.c | 81 +++++++++++++++++++++++++++---------------------
+ 1 file changed, 45 insertions(+), 36 deletions(-)
+
+diff --git a/rabbits/fc_annotations.c b/rabbits/fc_annotations.c
+index 108c2de..0ee1621 100644
+--- a/rabbits/fc_annotations.c
++++ b/rabbits/fc_annotations.c
+@@ -9,6 +9,13 @@
+ #include "rabbits/gdb_srv.h"
+ #include "rabbits/save_rest_env.h"
+ 
++/*
++ * FIXME: Work to be done on the cache model, which is currently a write through update physically addressed cache.
++ *        - use target_phys_addr_t for the addresses and tag types
++ *        - use target_ulong as type for the data within the cache
++ *        - update the cache model to support 8 bytes access if TARGET_LONG_SIZE == 8
++ */
++
+ void tb_start (TranslationBlock *tb)
+ {
+ //    printf ("tb_start pc 0x%x, size 0x%x\n", tb->pc, tb->size);
+@@ -96,6 +103,10 @@ dcache_flush(unsigned long addr)
+ 
+ }
+ 
++/*
++ * Helper to read from dcache, fills up the cache line on miss.
++ * SystemC read access is cache line aligned, so we have no hardware alignemnt problem
++ */
+ void * REGPARM
+ dcache_read (unsigned long addr)
+ {
+@@ -137,12 +148,14 @@ dcache_read (unsigned long addr)
+ 
+         #ifdef IMPLEMENT_FULL_CACHES
+         SAVE_ENV_BEFORE_CONSUME_SYSTEMC ();
+-	    _save_crt_qemu_instance->m_systemc.systemc_qemu_read_memory (
+-            _save_cpu_single_env->rabbits.sc_obj, addr & ~DCACHE_LINE_MASK,
+-            1 << DCACHE_LINE_BITS, 0);
++	    _save_crt_qemu_instance->
++                m_systemc.systemc_qemu_read_memory(_save_cpu_single_env->rabbits.sc_obj,
++                                                   addr & ~DCACHE_LINE_MASK,
++                                                   DCACHE_LINE_BYTES, 0);
+         RESTORE_ENV_AFTER_CONSUME_SYSTEMC ();
+         memcpy (crt_qemu_instance->m_cpu_dcache_data[cpu][idx],
+-            get_host_address (addr & ~DCACHE_LINE_MASK), DCACHE_LINE_BYTES);
++                get_host_address(addr & ~DCACHE_LINE_MASK),
++                DCACHE_LINE_BYTES);
+         #else //IMPLEMENT_LATE_CACHES
+         g_crt_ns_misses += NS_DCACHE_MISS;
+         #endif //IMPLEMENT_LATE_CACHES
+@@ -178,7 +191,11 @@ dcache_read (unsigned long addr)
+  * only used for ldrexd which *must* be aligned on ARM, but if we reuse this for
+  * other architectures, we may need to support looser constraints.
+  *
+- * FIXME: use the C99 types instead of the original C types
++ * Note that read and write are *not* symmetrical: indeed, when reading the access to
++ * the hardware is done with a cache line granularity (and alignment), whereas when
++ * writting we *must* be aligned
++ *
++ * FIXME: use the qemu types instead of the old school original K&R C types
+  */
+ 
+ unsigned long long
+@@ -187,7 +204,7 @@ dcache_read_q (unsigned long addr)
+     unsigned long   low, hi;
+ 
+     low = *(unsigned long *)dcache_read_l(addr);
+-    hi = *(unsigned long *)dcache_read_l(addr + 4);
++    hi  = *(unsigned long *)dcache_read_l(addr + 4);
+ 
+     return (((unsigned long long) hi) << 32) + low;
+ }
+@@ -197,11 +214,11 @@ dcache_read_l(unsigned long addr)
+ {
+     if ((addr & 3) == 0) /* Aligned word access, normal case, lets do it now and fast */
+         return *(unsigned long *)dcache_read(addr);
+-    else {/* Let's handle the no so tricky case first: unaligned but not at a cache line boundary */
+-        if ((addr & DCACHE_LINE_MASK & ~3) != (DCACHE_LINE_MASK & ~3))
++    else {               /* Let's handle the no so tricky case first: unaligned but not at a cache line boundary */
++        if ((addr & DCACHE_LINE_MASK & ~3) != (DCACHE_LINE_MASK & ~3)) {
+             return *(unsigned long *)dcache_read(addr);
+-        else { /* We are crossing a cache line boundary now, take care of it */
+-            unsigned int x, y, z;
++        } else { /* We are crossing a cache line boundary now, take care of it */
++            uint32_t x, y, z;
+             if (addr & 1) {
+                 z = dcache_read_b(addr);
+                 y = dcache_read_w(addr + 1); /* half word aligned for sure, next cache line if 3 */
+@@ -221,8 +238,8 @@ dcache_read_w(unsigned long addr)
+ {
+     if ((addr & 1) == 0) /* Aligned half word access, normal case */
+        return *(unsigned short *)dcache_read(addr);
+-    else {/* Unaligned but not at a cache line boundary */
+-        if ((addr & DCACHE_LINE_MASK & ~1) != (DCACHE_LINE_MASK & ~1))
++    else {/* Unaligned but not at a cache line boundary, we're safe doing the access */
++        if ((addr & DCACHE_LINE_MASK) != DCACHE_LINE_MASK)
+             return *(unsigned short *)dcache_read(addr);
+         else {
+             unsigned int x, y;
+@@ -367,34 +384,26 @@ dcache_write (unsigned long addr, int nb, unsigned long val)
+                 *((uint16_t *)&crt_qemu_instance->m_cpu_dcache_data[cpu][idx][ofs]) =
+                     (uint16_t)(val & 0x0000ffff);
+             else { /* Unaligned */
+-                   /* But not at a cache line boundary */
+-                if ((addr & DCACHE_LINE_MASK & ~1) != (DCACHE_LINE_MASK & ~1))
+-                    *((uint16_t *)&crt_qemu_instance->m_cpu_dcache_data[cpu][idx][ofs]) =
+-                        (uint16_t)(val & 0x0000ffff);
+-                else { /* Crossing line boundary */
+-                    *((uint8_t *) &crt_qemu_instance->m_cpu_dcache_data[cpu][idx][ofs]) =
+-                        (uint8_t)(val & 0x000000ff);
+-                    dcache_write(addr + 1, 1, (val >> 8));
+-                }
++                *((uint8_t *) &crt_qemu_instance->m_cpu_dcache_data[cpu][idx][ofs]) =
++                    (uint8_t)(val & 0x000000ff);
++                dcache_write(addr + 1, 1, (val >> 8) & 0x000000ff);
+             }
+         break;
+         case 4:
+-            if ((ofs & 3) == 0) /* Normal, aligned word access */
++            if ((ofs & 3) == 0) { /* Normal, aligned word access */
+                 *((uint32_t *)  &crt_qemu_instance->m_cpu_dcache_data[cpu][idx][ofs]) = 
+                     (uint32_t) (val & 0xffffffff);
+-            else { /* Even though not aligned, we are within a cache line */
+-                if ((addr & DCACHE_LINE_MASK & ~3) != (DCACHE_LINE_MASK & ~3))
+-                    *((uint32_t *)  &crt_qemu_instance->m_cpu_dcache_data[cpu][idx][ofs]) = 
+-                        (uint32_t) (val & 0xffffffff);
+-                else { /* We are crossing a cache line boundary now, take care of it */
+-                    if (addr & 1) {
+-                        dcache_write(addr,     1, (val >> 0)  & 0x000000ff);
+-                        dcache_write(addr + 1, 2, (val >> 8)  & 0x0000ffff); /* half word aligned for sure, next cache line if 3 */
+-                        dcache_write(addr + 3, 1, (val >> 24) & 0x000000ff); /* on next cache line */
+-                    } else {
+-                        dcache_write(addr,     2, (val >> 0)  & 0x0000ffff); /* half word aligned, same cache line */
+-                        dcache_write(addr + 2, 2, (val >> 16) & 0x0000ffff); /* half word aligned, next cache line if 3 */
+-                    }
++            } else {
++                /* No optimization when within cache line as I believe the systemc_qemu_write_memory fails on unaligned accesses */
++                if (ofs & 1) {
++                    *((uint8_t *) &crt_qemu_instance->m_cpu_dcache_data[cpu][idx][ofs]) =
++                        (uint8_t)(val & 0x000000ff);
++                    dcache_write(addr + 1, 2, (val >> 8)  & 0x0000ffff); /* half word aligned for sure, maybe next cache line */
++                    dcache_write(addr + 3, 1, (val >> 24) & 0x000000ff); /* on next cache line */
++                } else {
++                    *((uint8_t *) &crt_qemu_instance->m_cpu_dcache_data[cpu][idx][ofs]) =
++                        (uint8_t)(val & 0x000000ff);                     /* half word aligned, same cache line */
++                    dcache_write(addr + 2, 2, (val >> 16) & 0x0000ffff); /* half word aligned, maybe next cache line */
+                 }
+             }
+         break;
+@@ -452,7 +461,7 @@ void icache_access (target_ulong addr)
+ 
+         (void)_save_crt_qemu_instance->m_systemc.systemc_qemu_read_memory (
+             _save_cpu_single_env->rabbits.sc_obj,
+-            addr & ~ICACHE_LINE_MASK, 1 << ICACHE_LINE_BITS, 0);
++            addr & ~ICACHE_LINE_MASK, ICACHE_LINE_BYTES, 0);
+ 
+         RESTORE_ENV_AFTER_CONSUME_SYSTEMC ();
+         #else //cache late configuration
+-- 
+2.1.4
+

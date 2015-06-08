@@ -1,0 +1,72 @@
+--- qemu_systemc.c
++++ qemu_systemc.c
+@@ -449,38 +449,54 @@
+ 
+ #ifdef RABBITS_IMPLEMENT_CACHES
+ void
+-qemu_init_caches (void)
++qemu_init_caches(void)
+ {
+-    int line, cpu;
++    int line, cpu, w;
+ 
+-    crt_qemu_instance->m_cpu_dcache = malloc (crt_qemu_instance->m_NOCPUs *
++    crt_qemu_instance->m_cpu_dcache_tag = malloc(crt_qemu_instance->m_NOCPUs *
+         DCACHE_LINES * sizeof (unsigned long));
++    /* Not really useful but may trigger an error in case of illegal access */
+     for (cpu = 0; cpu < crt_qemu_instance->m_NOCPUs; cpu++)
+         for (line = 0; line < DCACHE_LINES; line++)
+-            crt_qemu_instance->m_cpu_dcache[cpu][line] = (unsigned long) -1;
++            crt_qemu_instance->m_cpu_dcache_tag[cpu][line] = 0x8BADF00D;
+ 
+-    crt_qemu_instance->m_cpu_icache = malloc (crt_qemu_instance->m_NOCPUs *
+-        ICACHE_LINES * sizeof (unsigned long));
++    crt_qemu_instance->m_cpu_dcache_flags = malloc(crt_qemu_instance->m_NOCPUs *
++        DCACHE_LINES * sizeof (uint8_t));
+     for (cpu = 0; cpu < crt_qemu_instance->m_NOCPUs; cpu++)
+-        for (line = 0; line < ICACHE_LINES; line++)
+-            crt_qemu_instance->m_cpu_icache[cpu][line] = (unsigned long) -1;
++        for (line = 0; line < DCACHE_LINES; line++) {
++            crt_qemu_instance->m_cpu_dcache_flags[cpu][line].valid = 0;
++            crt_qemu_instance->m_cpu_dcache_flags[cpu][line].dirty = 0;
++            crt_qemu_instance->m_cpu_dcache_flags[cpu][line].state = 0;
++        }
+ 
+-    int         w;
+-    crt_qemu_instance->m_cpu_dcache_data = malloc (crt_qemu_instance->m_NOCPUs *
++    crt_qemu_instance->m_cpu_dcache_data = malloc(crt_qemu_instance->m_NOCPUs *
+         DCACHE_LINES * DCACHE_LINE_BYTES * sizeof (unsigned char));
+     for (cpu = 0; cpu < crt_qemu_instance->m_NOCPUs; cpu++)
+         for (line = 0; line < DCACHE_LINES; line++)
+             for (w = 0; w < DCACHE_LINE_WORDS; w++)
+-                ((uint32_t *) crt_qemu_instance->m_cpu_dcache_data[cpu][line])[w] =
+-                    (uint32_t) 0xDEADBEAF;
++                ((uint32_t *)crt_qemu_instance->m_cpu_dcache_data[cpu][line])[w] =
++                    (uint32_t)0xDEADBEEF;
++
++    crt_qemu_instance->m_cpu_icache_tag = malloc(crt_qemu_instance->m_NOCPUs *
++        ICACHE_LINES * sizeof (unsigned long));
++    for (cpu = 0; cpu < crt_qemu_instance->m_NOCPUs; cpu++)
++        for (line = 0; line < ICACHE_LINES; line++)
++            crt_qemu_instance->m_cpu_icache_tag[cpu][line] = 0x8BADF00D;
++
++    crt_qemu_instance->m_cpu_icache_flags = malloc(crt_qemu_instance->m_NOCPUs *
++        DCACHE_LINES * sizeof (uint8_t));
++    for (cpu = 0; cpu < crt_qemu_instance->m_NOCPUs; cpu++)
++        for (line = 0; line < DCACHE_LINES; line++) {
++            crt_qemu_instance->m_cpu_dcache_flags[cpu][line].valid = 0;
++        }
+ 
+-    crt_qemu_instance->m_cpu_icache_data = malloc (crt_qemu_instance->m_NOCPUs *
++    crt_qemu_instance->m_cpu_icache_data = malloc(crt_qemu_instance->m_NOCPUs *
+         ICACHE_LINES * ICACHE_LINE_BYTES * sizeof (unsigned char));
+     for (cpu = 0; cpu < crt_qemu_instance->m_NOCPUs; cpu++)
+         for (line = 0; line < ICACHE_LINES; line++)
+             for (w = 0; w < ICACHE_LINE_WORDS; w++)
+-                ((uint32_t *) crt_qemu_instance->m_cpu_icache_data[cpu][line])[w] =
+-                    (uint32_t) 0xDEADBEAF;
++                ((uint32_t *)crt_qemu_instance->m_cpu_icache_data[cpu][line])[w] =
++                    (uint32_t)0xDEADBEEF;
+ }
+ 
+ void call_wait_wb_empty (void)

@@ -1,0 +1,75 @@
+>From 8b624e11952c5aa93f3eb7cc011d395dabd01905 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Fr=C3=A9d=C3=A9ric=20P=C3=A9trot?= <Frederic.Petrot@imag.fr>
+Date: Fri, 3 Oct 2014 18:35:58 +0200
+Subject: [PATCH 1/3] Adding first corrections to support full caches
+
+---
+ rabbits/cfg.h            |  8 ++++----
+ rabbits/fc_annotations.c | 11 +++++------
+ 2 files changed, 9 insertions(+), 10 deletions(-)
+
+diff --git a/rabbits/cfg.h b/rabbits/cfg.h
+index 82e498e..e0fb8ba 100644
+--- a/rabbits/cfg.h
++++ b/rabbits/cfg.h
+@@ -1,8 +1,8 @@
+ #ifndef _RABBITS_CFG_H_
+ #define _RABBITS_CFG_H_
+ 
+-//#define IMPLEMENT_FULL_CACHES
+-#define IMPLEMENT_LATE_CACHES
++#define IMPLEMENT_FULL_CACHES
++//#define IMPLEMENT_LATE_CACHES
+ #define ONE_MEMORY_MODULE
+ 
+ #define RABBITS_GDB_ENABLED
+@@ -10,8 +10,8 @@
+ //#define RABBITS_LOG_INFO
+ 
+ //assure a consistent configuration
+-#if defined(IMPLEMENT_FULL_CACHES) && defined(ONE_MEM_MODULE)
+-    #undef ONE_MEM_MODULE
++#if defined(IMPLEMENT_FULL_CACHES) && defined(ONE_MEMORY_MODULE)
++    #undef ONE_MEMORY_MODULE
+ #endif
+ 
+ #if defined(IMPLEMENT_FULL_CACHES) && defined(IMPLEMENT_LATE_CACHES)
+diff --git a/rabbits/fc_annotations.c b/rabbits/fc_annotations.c
+index aabe8da..34ecb61 100644
+--- a/rabbits/fc_annotations.c
++++ b/rabbits/fc_annotations.c
+@@ -67,9 +67,9 @@ static inline void *get_host_address (unsigned long addr)
+ {
+     #ifdef ONE_MEMORY_MODULE
+     return (void *) (addr + cpu_single_env->rabbits.sc_mem_host_addr);
+-    #else //ONE_MEMORY_MODULE
+-    return crt_qemu_instance->m_systemc.systemc_get_mem_addr (
+-            cpu_single_env->rabbits.sc_obj, addr);
++    #else //!ONE_MEMORY_MODULE
++    return (void *)crt_qemu_instance->m_systemc.systemc_get_mem_addr (
++            cpu_single_env->rabbits.sc_obj, crt_qemu_instance->m_systemc.subsystem, addr);
+     #endif //ONE_MEMORY_MODULE
+ }
+ 
+@@ -246,7 +246,7 @@ dcache_write (unsigned long addr, int nb, unsigned long val)
+     host_addr = (void *) (addr + cpu_single_env->rabbits.sc_mem_host_addr);
+     #else
+     host_addr = (void *) crt_qemu_instance->m_systemc.systemc_get_mem_addr (
+-            cpu_single_env->rabbits.sc_obj, addr);
++            cpu_single_env->rabbits.sc_obj, crt_qemu_instance->m_systemc.subsystem, addr);
+     #endif
+ 
+     switch (nb)
+@@ -375,8 +375,7 @@ void icache_access (target_ulong addr)
+                 _save_cpu_single_env->rabbits.sc_obj, no_cycles);
+         }
+ 
+-        unsigned long junk;
+-        junk = _save_crt_qemu_instance->m_systemc.systemc_qemu_read_memory (
++        (void)_save_crt_qemu_instance->m_systemc.systemc_qemu_read_memory (
+             _save_cpu_single_env->rabbits.sc_obj,
+             addr & ~ICACHE_LINE_MASK, 1 << ICACHE_LINE_BITS, 0);
+ 
+-- 
+2.1.1
+

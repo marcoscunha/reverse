@@ -1,0 +1,263 @@
+--- fc_annotations.c
++++ fc_annotations.c
+@@ -84,9 +84,19 @@
+ void 
+ dcache_invalidate(unsigned long addr)
+ {
+-
+ #ifdef IMPLEMENT_FULL_CACHES
+-	 qemu_invalidate_address(crt_qemu_instance, addr, cpu_single_env->cpu_index);
++    int cpu, idx, start_idx;
++    unsigned long tag;
++
++    fprintf(stderr, "@@@@@@@@");
++
++    cpu = cpu_single_env->cpu_index;
++    tag = addr >> DCACHE_LINE_BITS;
++    start_idx = tag & (DCACHE_LINES - 1) & ~((1 << DCACHE_ASSOC_BITS) - 1);
++    idx = dcache_line_present(cpu, start_idx, tag);
++
++    if (idx != -1)
++        crt_qemu_instance->m_cpu_dcache_flags[cpu][idx].valid = 0;
+ #endif /* IMPLEMENT_FULL_CACHES */
+ 
+ }
+@@ -95,10 +105,22 @@
+ dcache_flush(unsigned long addr)
+ {
+ 
+-#ifdef IMPLEMENT_FULL_CACHES
+-	 /* TODO: Flush line containing addr from the current cache.  */
+-	 /* Write modified data to memory and invalidate line.        */
+-	 /* Internally only. No need to propagate to other processors */
++#if defined(IMPLEMENT_FULL_CACHES) && defined(CACHE_IS_WB)
++    int cpu, idx, start_idx;
++    unsigned long tag;
++
++    cpu = cpu_single_env->cpu_index;
++    tag = addr >> DCACHE_LINE_BITS;
++    start_idx = tag & (DCACHE_LINES - 1) & ~((1 << DCACHE_ASSOC_BITS) - 1);
++    idx = dcache_line_present(cpu, start_idx, tag);
++
++    if (idx != -1 && crt_qemu_instance->m_cpu_dcache_flags[cpu][idx].valid == 1 && crt_qemu_instance->m_cpu_dcache_flags[cpu][idx].dirty == 1) {
++        /* Actual update of the memory using a backdoor access */
++        memcpy (get_host_address(addr & ~DCACHE_LINE_MASK),
++                crt_qemu_instance->m_cpu_dcache_data[cpu][idx],
++                DCACHE_LINE_BYTES);
++    }
++    crt_qemu_instance->m_cpu_dcache_flags[cpu][idx].dirty = 0;
+ #endif /* IMPLEMENT_FULL_CACHES */
+ 
+ }
+@@ -136,25 +156,47 @@
+     cpu = cpu_single_env->cpu_index;
+     tag = addr >> DCACHE_LINE_BITS;
+     start_idx = tag & (DCACHE_LINES - 1) & ~((1 << DCACHE_ASSOC_BITS) - 1);
+-    idx = dcache_line_present (cpu, start_idx, tag);
++    idx = dcache_line_present(cpu, start_idx, tag);
+ 
+-    if (idx == -1)
+-    {
++    if (idx == -1) { /* cache miss */
+         crt_qemu_instance->m_counters.no_dcache_miss++;
+ 
+         idx = dcache_line_replace (cpu, start_idx);
+-        crt_qemu_instance->m_cpu_dcache[cpu][idx] = tag;
+ 
+         #ifdef IMPLEMENT_FULL_CACHES
++#ifdef CACHE_IS_WB
++        /* This is the victim we have to evict, if valid and dirty, copy back to memory, otherwise, do nothing */
++        if (crt_qemu_instance->m_cpu_dcache_flags[cpu][idx].valid == 1 && crt_qemu_instance->m_cpu_dcache_flags[cpu][idx].dirty == 1) {
++            /* Rebuild the address in which to copy the data back : hopefully tag contains exactly this */
++            unsigned long cached_tag = crt_qemu_instance->m_cpu_dcache_tag[cpu][idx];
++            unsigned long cached_addr = cached_tag << DCACHE_LINE_BITS;
++            /* Actual update of the memory using a backdoor access */
++            /* Very tricky stuff, ... */
++            memcpy (get_host_address(cached_addr),
++                    crt_qemu_instance->m_cpu_dcache_data[cpu][idx],
++                    DCACHE_LINE_BYTES);
++            SAVE_ENV_BEFORE_CONSUME_SYSTEMC ();
++            _save_crt_qemu_instance->m_systemc.systemc_qemu_write_memory (
++                _save_cpu_single_env->rabbits.sc_obj, cached_addr, _save_crt_qemu_instance->m_cpu_dcache_data[cpu][idx][0], 1, 0);
++            RESTORE_ENV_AFTER_CONSUME_SYSTEMC ();
++        }
++#endif
+         SAVE_ENV_BEFORE_CONSUME_SYSTEMC ();
+ 	    _save_crt_qemu_instance->
+                 m_systemc.systemc_qemu_read_memory(_save_cpu_single_env->rabbits.sc_obj,
+                                                    addr & ~DCACHE_LINE_MASK,
+                                                    DCACHE_LINE_BYTES, 0);
+         RESTORE_ENV_AFTER_CONSUME_SYSTEMC ();
+-        memcpy (crt_qemu_instance->m_cpu_dcache_data[cpu][idx],
+-                get_host_address(addr & ~DCACHE_LINE_MASK),
+-                DCACHE_LINE_BYTES);
++
++        crt_qemu_instance->m_cpu_dcache_tag[cpu][idx]         = tag;
++        crt_qemu_instance->m_cpu_dcache_flags[cpu][idx].valid = 1;
++#ifdef CACHE_IS_WB
++        crt_qemu_instance->m_cpu_dcache_flags[cpu][idx].dirty = 0;
++#endif
++
++        memcpy(crt_qemu_instance->m_cpu_dcache_data[cpu][idx],
++               get_host_address(addr & ~DCACHE_LINE_MASK),
++               DCACHE_LINE_BYTES);
+         #else //IMPLEMENT_LATE_CACHES
+         g_crt_ns_misses += NS_DCACHE_MISS;
+         #endif //IMPLEMENT_LATE_CACHES
+@@ -200,10 +242,10 @@
+ unsigned long long
+ dcache_read_q (unsigned long addr)
+ {
+-    unsigned long   low, hi;
++    unsigned long low, hi;
+ 
+-    low = *(unsigned long *)dcache_read_l(addr);
+-    hi  = *(unsigned long *)dcache_read_l(addr + 4);
++    low = dcache_read_l(addr);
++    hi  = dcache_read_l(addr + 4);
+ 
+     return (((unsigned long long) hi) << 32) + low;
+ }
+@@ -242,7 +284,7 @@
+             return *(unsigned short *)dcache_read(addr);
+         else {
+             unsigned int x, y;
+-            y = dcache_read_b(addr);
++            y = dcache_read_b(addr + 0);
+             x = dcache_read_b(addr + 1);
+             return (x << 8) | y;
+         }
+@@ -250,28 +292,28 @@
+ }
+ 
+ unsigned char
+-dcache_read_b (unsigned long addr)
++dcache_read_b(unsigned long addr)
+ {
+-    return *(unsigned char *) dcache_read (addr);
++    return *(unsigned char *)dcache_read(addr);
+ }
+ 
+ signed short
+-dcache_read_signed_w (unsigned long addr)
++dcache_read_signed_w(unsigned long addr)
+ {
+     if ((addr & 1) == 0) /* Aligned half word access, normal case */
+        return *(signed short *)dcache_read(addr);
+     else {
+         unsigned int x, y;
+-        y = dcache_read_b(addr);
++        y = dcache_read_b(addr + 0);
+         x = dcache_read_b(addr + 1);
+         return (x << 8) | y;
+     }
+ }
+ 
+ signed char
+-dcache_read_signed_b (unsigned long addr)
++dcache_read_signed_b(unsigned long addr)
+ {
+-    return * (signed  char *) dcache_read (addr);
++    return *(signed  char *)dcache_read(addr);
+ }
+ 
+ /*
+@@ -284,26 +326,23 @@
+  */
+ 
+ void REGPARM
+-dcache_write (unsigned long addr, int nb, unsigned long val)
++dcache_write(unsigned long addr, int nb, unsigned long val)
+ {
+     #if HOST_LONG_BITS == 64
+-    if (nb == 8)
+-    {
++    if (nb == 8) {
+         dcache_write_q (addr, val);
+         return;
+     }
+     #endif
+ 
+-    if (!cpu_single_env || cpu_single_env->rabbits.b_use_backdoor)
+-    {
++    if (!cpu_single_env || cpu_single_env->rabbits.b_use_backdoor) {
+         fprintf (stderr, "Error in %s, env=0x%lx, backdoor=%d\n",
+             __FUNCTION__, (unsigned long) cpu_single_env,
+             cpu_single_env ? (int) cpu_single_env->rabbits.b_use_backdoor : 0);
+         exit (1);
+     }
+   
+-    if (addr >= cpu_single_env->rabbits.ram_size)
+-    {
++    if (addr >= cpu_single_env->rabbits.ram_size) {
+         fprintf (stderr, "Bad address 0x%lx in qemu.%s!\n",
+             addr, __FUNCTION__);
+         exit (1);
+@@ -372,19 +411,17 @@
+     start_idx = tag & (DCACHE_LINES - 1) & ~((1 << DCACHE_ASSOC_BITS) - 1);
+     idx = dcache_line_present(cpu, start_idx, tag);
+ 
+-    if (idx != -1) /* addr in cache -> update */
+-    {
+-        switch (nb)
+-        {
++    if (idx != -1) { /* addr in cache -> update */
++        switch (nb) {
+         case 1:
+             *((uint8_t *)&crt_qemu_instance->m_cpu_dcache_data[cpu][idx][ofs]) =
+                 (uint8_t)(val & 0x000000ff);
+             break;
+         case 2:
+-            if ((ofs & 1) == 0) /* Halfword aligned write, simple case */
++            if ((ofs & 1) == 0) { /* Halfword aligned write, simple case */
+                 *((uint16_t *)&crt_qemu_instance->m_cpu_dcache_data[cpu][idx][ofs]) =
+                     (uint16_t)(val & 0x0000ffff);
+-            else { /* Unaligned */
++            } else { /* Unaligned */
+                 dcache_write(addr + 0, 1, (val >> 0) & 0x000000ff);
+                 dcache_write(addr + 1, 1, (val >> 8) & 0x000000ff);
+                 skip_sysc = true;
+@@ -412,13 +449,22 @@
+             exit(1);
+         }
+         if (!skip_sysc) { /* I am sure the address is aligned with the type now */
++#ifdef CACHE_IS_WT
+             SAVE_ENV_BEFORE_CONSUME_SYSTEMC ();
+             _save_crt_qemu_instance->m_systemc.systemc_qemu_write_memory (
+                 _save_cpu_single_env->rabbits.sc_obj, addr, val, nb, 0);
+             RESTORE_ENV_AFTER_CONSUME_SYSTEMC ();
++#else /* CACHE_IS_WB */
++            /* We now have a dirty copy (no cache coherency yet) */
++            crt_qemu_instance->m_cpu_dcache_flags[cpu][idx].dirty = 1;
++            /* Dirty hack so that it works at the end of the day, but I don't understand why and this sucks ! */
++            memcpy (get_host_address(addr), &val, nb);
++#endif
+         }
+-    } else { /* Need to align writes missing the cache.
+-                Must be careful on cache line boundary as it may hit afterwards */
++    } else { /* addr not cached */
++#ifdef CACHE_IS_WT
++        /* Need to align writes missing the cache.
++           Must be careful on cache line boundary as it may hit afterwards */
+         switch (nb) {
+         case 1:
+             SAVE_ENV_BEFORE_CONSUME_SYSTEMC ();
+@@ -574,13 +627,12 @@
+     int                     i;
+ 
+     crt_qemu_instance = instance;
+-    for (i = 0; i < instance->m_NOCPUs; i++)
+-    {
+-        if (i != src_idx && (didx = dcache_line_present (i, dstart_idx, dtag)) != -1)
+-            instance->m_cpu_dcache[i][didx] = (unsigned long) -1;
++    for (i = 0; i < instance->m_NOCPUs; i++) {
++        if (i != src_idx && (didx = dcache_line_present(i, dstart_idx, dtag)) != -1)
++            instance->m_cpu_dcache_flags[i][didx].valid = 0;
+ 
+-        if ((iidx = icache_line_present (i, istart_idx, itag)) != -1)
+-            instance->m_cpu_icache[i][iidx] = (unsigned long) -1;
++        if ((iidx = icache_line_present(i, istart_idx, itag)) != -1)
++            instance->m_cpu_icache_flags[i][iidx].valid = 0;
+     }
+     crt_qemu_instance = old_instance;
+     #endif

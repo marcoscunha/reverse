@@ -1,0 +1,35 @@
+diff a/rabbits/qemu_encap.h b/rabbits/qemu_encap.h	(rejected hunks)
+--- a/rabbits/qemu_encap.h
++++ b/rabbits/qemu_encap.h 
+@@ -13,15 +13,29 @@ typedef struct qemu_instance qemu_instance;
+ #include "rabbits/systemc_imports.h"
+ #include "../../components/qemu_wrapper/qemu_imported.h"
+ 
++#ifdef RABBITS_IMPLEMENT_CACHES
++typedef struct {
++   uint8_t valid:1;
++   uint8_t dirty:1;
++   uint8_t state:3;
++} dline_flags;
++
++typedef struct {
++   uint8_t valid:1;
++} iline_flags;
++#endif
++
+ struct qemu_instance 
+ {
+     int                     m_id;
+     int                     m_NOCPUs;
+ 
+     #ifdef RABBITS_IMPLEMENT_CACHES
+-    unsigned long           (*m_cpu_dcache)[DCACHE_LINES];
+-    unsigned long           (*m_cpu_icache)[ICACHE_LINES];
++    dline_flags             (*m_cpu_dcache_flags)[DCACHE_LINES];
++    unsigned long           (*m_cpu_dcache_tag)[DCACHE_LINES];
+     unsigned char           (*m_cpu_dcache_data)[DCACHE_LINES][DCACHE_LINE_BYTES];
++    iline_flags             (*m_cpu_icache_flags)[ICACHE_LINES];
++    unsigned long           (*m_cpu_icache_tag)[ICACHE_LINES];
+     unsigned char           (*m_cpu_icache_data)[ICACHE_LINES][ICACHE_LINE_BYTES];
+     #endif
+ 

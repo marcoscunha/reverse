@@ -1,0 +1,25 @@
+>From 93a13297944e2f4c8b474ba372e43ece88cd01ef Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Fr=C3=A9d=C3=A9ric=20P=C3=A9trot?= <Frederic.Petrot@imag.fr>
+Date: Wed, 15 Oct 2014 22:54:59 +0200
+Subject: [PATCH 2/3] Corrected unconsistency in config
+
+---
+ rabbits/cfg.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/rabbits/cfg.h b/rabbits/cfg.h
+index e0fb8ba..c52f965 100644
+--- a/rabbits/cfg.h
++++ b/rabbits/cfg.h
+@@ -3,7 +3,7 @@
+ 
+ #define IMPLEMENT_FULL_CACHES
+ //#define IMPLEMENT_LATE_CACHES
+-#define ONE_MEMORY_MODULE
++//#define ONE_MEMORY_MODULE
+ 
+ #define RABBITS_GDB_ENABLED
+ //#define RABBITS_SOFT_DEBUG_ENABLED
+-- 
+2.1.1
+

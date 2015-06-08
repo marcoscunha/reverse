@@ -1,0 +1,267 @@
+target-arm/helper.c:        if(cpu_single_env->rabbits.tr_id != NULL){
+target-arm/helper.c:        if(cpu_single_env->rabbits.tr_id != NULL){
+target-arm/op_helper.c:    unsigned char save_b_use_backdoor = cpu_single_env->rabbits.b_use_backdoor;
+target-arm/op_helper.c:    cpu_single_env->rabbits.b_use_backdoor = 1;
+target-arm/op_helper.c:        cpu_single_env->rabbits.b_use_backdoor = save_b_use_backdoor;
+target-arm/op_helper.c:    cpu_single_env->rabbits.b_use_backdoor = save_b_use_backdoor;
+hw/pc.c:        return cpu_single_env->apic_state;
+hw/openpic.c:  return cpu_single_env->cpu_index;
+hw/armv7m_nvic.c:        return cpu_single_env->cp15.c0_cpuid;
+hw/armv7m_nvic.c:        return cpu_single_env->v7m.vecbase;
+hw/armv7m_nvic.c:        cpu_single_env->v7m.vecbase = value & 0xffffff80;
+hw/mpcore.c:  return cpu_single_env->cpu_index;
+target-i386/translate.c:        if (CODE64(s) && cpu_single_env->cpuid_vendor1 != CPUID_VENDOR_INTEL_1)
+target-i386/translate.c:        if (CODE64(s) && cpu_single_env->cpuid_vendor1 != CPUID_VENDOR_INTEL_1)
+target-i386/kvm.c:            if (cpu_single_env->singlestep_enabled) {
+target-i386/kvm.c:                        cpu_single_env->watchpoint_hit = &hw_watchpoint;
+target-i386/kvm.c:                        cpu_single_env->watchpoint_hit = &hw_watchpoint;
+target-i386/kvm.c:        assert(cpu_single_env->exception_injected == -1);
+target-i386/kvm.c:        cpu_single_env->exception_injected = arch_info->exception;
+target-i386/kvm.c:        cpu_single_env->has_error_code = 0;
+cpu-exec.c:    cpu_single_env->rabbits.b_use_backdoor = 1;
+cpu-exec.c:                                cpu_single_env->cpu_index,
+cpu-exec.c:                    cpu_single_env->rabbits.b_use_backdoor = 0;
+cpu-exec.c:                    cpu_single_env->rabbits.b_use_backdoor = 1;
+cpu-exec.c:            cpu_single_env->rabbits.b_use_backdoor = 1;
+rabbits/fc_annotations.c:    cpu_single_env->rabbits.flush_last_tb = tb;
+rabbits/fc_annotations.c:    return (void *) (addr + cpu_single_env->rabbits.sc_mem_host_addr);
+rabbits/fc_annotations.c:            cpu_single_env->rabbits.sc_obj, crt_qemu_instance->m_systemc.subsystem, addr);
+rabbits/fc_annotations.c:    int i, cpu = cpu_single_env->cpu_index;
+rabbits/fc_annotations.c:    int cpu = cpu_single_env->cpu_index;
+rabbits/fc_annotations.c:        hwe_cont* hwe_src = cpu_single_env->rabbits.tr_id;
+rabbits/fc_annotations.c:    cpu = cpu_single_env->cpu_index;
+rabbits/fc_annotations.c:    hwe_cont* hwe_proc = cpu_single_env->rabbits.tr_id;
+rabbits/fc_annotations.c:                    _save_cpu_single_env->rabbits.sc_obj, cached_addr,
+rabbits/fc_annotations.c:                    _save_cpu_single_env->rabbits.sc_obj, cached_addr,
+rabbits/fc_annotations.c:    cpu = cpu_single_env->cpu_index;
+rabbits/fc_annotations.c:        hwe_src = tr_wr_str_event(cpu, cpu_single_env->rabbits.tr_id, addr & ~dcache_line_mask,
+rabbits/fc_annotations.c:        if(_save_cpu_single_env->rabbits.tr_id != NULL){ // trace enabled 
+rabbits/fc_annotations.c:                    _save_cpu_single_env->rabbits.sc_obj);
+rabbits/fc_annotations.c:                _save_cpu_single_env->rabbits.sc_obj, addr & ~DCACHE_LINE_MASK,
+rabbits/fc_annotations.c:                _save_cpu_single_env->rabbits.sc_obj, addr & ~DCACHE_LINE_MASK,
+rabbits/fc_annotations.c:    if (!cpu_single_env || cpu_single_env->rabbits.b_use_backdoor) {
+rabbits/fc_annotations.c:            cpu_single_env ? (int) cpu_single_env->rabbits.b_use_backdoor : 0);
+rabbits/fc_annotations.c:        if(_save_cpu_single_env->rabbits.tr_id != NULL){ // trace enabled 
+rabbits/fc_annotations.c:                _save_cpu_single_env->rabbits.sc_obj);
+rabbits/fc_annotations.c:                _save_cpu_single_env->rabbits.sc_obj, no_cycles);
+rabbits/fc_annotations.c:            _save_cpu_single_env->rabbits.sc_obj, no_cycles);
+rabbits/fc_annotations.c:    hwe_cont* hwe_src   = cpu_single_env->rabbits.tr_id;
+rabbits/fc_annotations.c:    uint8_t *read_size = &cpu_single_env->rabbits.read_size; 
+rabbits/fc_annotations.c:    cpu = cpu_single_env->cpu_index;
+rabbits/fc_annotations.c:                    TR_EVNT_DCACHE_REPL, cpu_single_env->rabbits.tr_id, 0);
+rabbits/fc_annotations.c:            hwe_src = tr_wr_str_event(cpu, cpu_single_env->rabbits.tr_id, cached_addr,
+rabbits/fc_annotations.c:            if(_save_cpu_single_env->rabbits.tr_id != NULL){ // Trace Enabled
+rabbits/fc_annotations.c:                        _save_cpu_single_env->rabbits.sc_obj); // TRACE BUFFER
+rabbits/fc_annotations.c:                _save_cpu_single_env->rabbits.sc_obj, cached_addr, _save_crt_qemu_instance->m_cpu_dcache_data[cpu][idx][0], 1, 0,hwe_src);
+rabbits/fc_annotations.c:        hwe_src = tr_wr_req_event(cpu, cpu_single_env->rabbits.tr_id, addr & ~dcache_line_mask,
+rabbits/fc_annotations.c:            if(*read_size != 0 && !cpu_single_env->rabbits.tr_id->inst.body.str){
+rabbits/fc_annotations.c:                _save_cpu_single_env->rabbits.sc_obj); // consume the events
+rabbits/fc_annotations.c:                    _save_cpu_single_env->rabbits.sc_obj, addr & ~dcache_line_mask,
+rabbits/fc_annotations.c:            _save_cpu_single_env->rabbits.sc_obj, addr & ~dcache_line_mask,
+rabbits/fc_annotations.c:    if(cpu_single_env->rabbits.tr_id != NULL){
+rabbits/fc_annotations.c:            printf("@@@@@ 1 here DIRECT addr = 0x%08x @@@@@ m_size %d size %x @0x%08x!!!\n",(int)addr,1 << (size & 3), size, cpu_single_env->rabbits.tr_id->inst.body.pc);
+rabbits/fc_annotations.c:            printf("@@@@@ 2 here DIRECT addr = 0x%08x @@@@@  m_size %d size %x @0x%08x!!!\n",(int)addr, 1 << (size & 3),size,cpu_single_env->rabbits.tr_id->inst.body.pc);
+rabbits/fc_annotations.c:    cpu_single_env->rabbits.read_size = 1 << (size & 3);
+rabbits/fc_annotations.c:    fprintf(stderr, "@@@@@@ %s(0x%08ld,%d,%d)\n", __func__, addr, size, cpu_single_env->rabbits.read_size);
+rabbits/fc_annotations.c:        cpu_single_env->rabbits.read_size = 4; 
+rabbits/fc_annotations.c:            cpu_single_env->rabbits.read_size = 4;
+rabbits/fc_annotations.c:        cpu_single_env->rabbits.read_size = 2; 
+rabbits/fc_annotations.c:    cpu_single_env->rabbits.read_size = 1; 
+rabbits/fc_annotations.c:        cpu_single_env->rabbits.read_size = 2; 
+rabbits/fc_annotations.c:    cpu_single_env->rabbits.read_size = 1; 
+rabbits/fc_annotations.c:    if (!cpu_single_env || cpu_single_env->rabbits.b_use_backdoor)
+rabbits/fc_annotations.c:            cpu_single_env ? (int) cpu_single_env->rabbits.b_use_backdoor : 0);
+rabbits/fc_annotations.c:    if (addr >= cpu_single_env->rabbits.ram_size)
+rabbits/fc_annotations.c:    if(_save_cpu_single_env->rabbits.tr_id != NULL){ // Trace Enabled
+rabbits/fc_annotations.c:                _save_cpu_single_env->rabbits.sc_obj); // TRACE BUFFER
+rabbits/fc_annotations.c:            _save_cpu_single_env->rabbits.sc_obj, no_cycles);
+rabbits/fc_annotations.c:            _save_cpu_single_env->rabbits.sc_obj, no_cycles);
+rabbits/fc_annotations.c:    int                 cpu = cpu_single_env->cpu_index;
+rabbits/fc_annotations.c:    hwe_cont* hwe_src = cpu_single_env->rabbits.tr_id;
+rabbits/fc_annotations.c:                _save_cpu_single_env->rabbits.sc_obj, addr, val, nb, 0,hwe_src);
+rabbits/fc_annotations.c:                _save_cpu_single_env->rabbits.sc_obj, addr, val, nb, 0);
+rabbits/fc_annotations.c:            if(cpu_single_env->rabbits.excl){
+rabbits/fc_annotations.c:                cpu_single_env->rabbits.excl =  0;
+rabbits/fc_annotations.c:                        _save_cpu_single_env->rabbits.sc_obj, addr, val, nb, 0,hwe_src);
+rabbits/fc_annotations.c:                        _save_cpu_single_env->rabbits.sc_obj, addr, val, nb, 0);
+rabbits/fc_annotations.c:            _save_crt_qemu_instance->m_systemc.systemc_qemu_write_memory(_save_cpu_single_env->rabbits.sc_obj, addr, val, nb, 0,hwe_src);
+rabbits/fc_annotations.c:            _save_crt_qemu_instance->m_systemc.systemc_qemu_write_memory(_save_cpu_single_env->rabbits.sc_obj, addr, val, nb, 0); 
+rabbits/fc_annotations.c:                _save_crt_qemu_instance->m_systemc.systemc_qemu_write_memory(_save_cpu_single_env->rabbits.sc_obj, addr, val, nb, 0,hwe_src);
+rabbits/fc_annotations.c:                _save_crt_qemu_instance->m_systemc.systemc_qemu_write_memory(_save_cpu_single_env->rabbits.sc_obj, addr, val, nb, 0);
+rabbits/fc_annotations.c:                        _save_cpu_single_env->rabbits.sc_obj, addr, val & 0x000000ff, 1, 0,hwe_src);
+rabbits/fc_annotations.c:                        _save_cpu_single_env->rabbits.sc_obj, addr, val & 0x000000ff, 1, 0);
+rabbits/fc_annotations.c:                _save_crt_qemu_instance->m_systemc.systemc_qemu_write_memory(_save_cpu_single_env->rabbits.sc_obj, addr, val, nb, 0,hwe_src);
+rabbits/fc_annotations.c:                _save_crt_qemu_instance->m_systemc.systemc_qemu_write_memory(_save_cpu_single_env->rabbits.sc_obj, addr, val, nb, 0);
+rabbits/fc_annotations.c:                    _save_crt_qemu_instance->m_systemc.systemc_qemu_write_memory(_save_cpu_single_env->rabbits.sc_obj, addr, val & 0x000000ff, 1, 0,hwe_src);
+rabbits/fc_annotations.c:                    _save_crt_qemu_instance->m_systemc.systemc_qemu_write_memory(_save_cpu_single_env->rabbits.sc_obj, addr, val & 0x000000ff, 1, 0);
+rabbits/fc_annotations.c:                    _save_crt_qemu_instance->m_systemc.systemc_qemu_write_memory(_save_cpu_single_env->rabbits.sc_obj, addr, val & 0x0000ffff, 2, 0,hwe_src);
+rabbits/fc_annotations.c:                    _save_crt_qemu_instance->m_systemc.systemc_qemu_write_memory(_save_cpu_single_env->rabbits.sc_obj, addr, val & 0x0000ffff, 2, 0);
+rabbits/fc_annotations.c:        if( cpu_single_env->rabbits.tr_id != NULL ){
+rabbits/fc_annotations.c:            cpu_single_env->rabbits.tr_id->inst.body.str = 1;
+rabbits/fc_annotations.c:            cpu_single_env->rabbits.read_size = 0;
+rabbits/fc_annotations.c:    qemu_invalidate_address (crt_qemu_instance, addr, cpu_single_env->cpu_index);
+rabbits/fc_annotations.c:    int             cpu = cpu_single_env->cpu_index;
+rabbits/fc_annotations.c:    cpu_single_env->rabbits.tr_id = NULL;
+rabbits/fc_annotations.c:                _save_cpu_single_env->rabbits.sc_obj, no_cycles);
+rabbits/fc_annotations.c:            _save_cpu_single_env->rabbits.sc_obj,
+rabbits/fc_annotations.c:            _save_cpu_single_env->rabbits.sc_obj,
+rabbits/fc_annotations.c:    int             cpu = cpu_single_env->cpu_index;
+rabbits/fc_annotations.c:    cpu_single_env->rabbits.tr_id = hwe_src;
+rabbits/fc_annotations.c:             _save_cpu_single_env->rabbits.sc_obj);
+rabbits/fc_annotations.c:                    _save_cpu_single_env->rabbits.sc_obj,
+rabbits/fc_annotations.c:    int         cpu  = cpu_single_env->cpu_index ;
+rabbits/fc_annotations.c:    cpu_single_env->rabbits.tr_id = hwe_src;
+rabbits/fc_annotations.c:    int             cpu = cpu_single_env->cpu_index;
+rabbits/fc_annotations.c:    hwe_inst_src = cpu_single_env->rabbits.tr_id ;
+rabbits/fc_annotations.c:                       _save_cpu_single_env->rabbits.sc_obj);
+rabbits/fc_annotations.c:                        _save_cpu_single_env->rabbits.sc_obj,
+rabbits/fc_annotations.c:    target_ulong    physaddr = get_phys_addr_gdb (cpu_single_env->exclusive_addr);
+rabbits/fc_annotations.c:    hwe_cont* hwe = cpu_single_env->rabbits.tr_id; 
+rabbits/fc_annotations.c:    cpu_single_env->rabbits.excl = 1;
+rabbits/fc_annotations.c:		 cpu_single_env->cpu_index, physaddr);
+rabbits/fc_annotations.c:    if (cpu_single_env->exclusive_addr == -1)
+rabbits/fc_annotations.c:    target_ulong    physaddr = get_phys_addr_gdb (cpu_single_env->exclusive_addr);
+rabbits/fc_annotations.c:		 cpu_single_env->cpu_index, physaddr);
+rabbits/fc_annotations.c:    target_ulong    physaddr = get_phys_addr_gdb (cpu_single_env->exclusive_addr);
+rabbits/fc_annotations.c:		 cpu_single_env->cpu_index, physaddr);
+rabbits/fc_annotations.c:    cpu_single_env->rabbits.gdb_pc = addr;
+rabbits/fc_annotations.c:    if (cpu_single_env->rabbits.sw_single_step > 0)
+rabbits/fc_annotations.c:        cpu_single_env->rabbits.sw_single_step--;
+rabbits/fc_annotations.c:        if (cpu_single_env->rabbits.sw_single_step == 0)
+rabbits/fc_annotations.c:            cpu_single_env->exception_index = EXCP_BKPT;
+rabbits/fc_annotations.c:            cpu_single_env->regs[15] = cpu_single_env->rabbits.gdb_pc;
+rabbits/fc_annotations.c:    if (cpu_single_env->rabbits.sw_single_step < 0)
+rabbits/fc_annotations.c:        cpu_single_env->rabbits.sw_single_step =- 
+rabbits/fc_annotations.c:            cpu_single_env->rabbits.sw_single_step;
+rabbits/fc_annotations.c:    if (cpu_single_env->cpu_index != 0 || crt_qemu_instance->m_log_cnt_instr++ > 100000)
+rabbits/fc_annotations.c:        (unsigned int) addr, cpu_single_env->cpu_index);
+rabbits/trace_power.c:        fprintf(fdump, "spsr = 0x%08x\n", cpu_single_env->spsr);
+rabbits/trace_power.c:            fprintf(fdump, "reg[%d] = 0x%08x\n", i, cpu_single_env->regs[i]);
+rabbits/trace_power.c:            fprintf(fdump, "banked_r13[%d]  = 0x%08x\n", i, cpu_single_env->banked_r13[i]);
+rabbits/trace_power.c:            fprintf(fdump, "banked_r14[%d]  = 0x%08x\n", i, cpu_single_env->banked_r14[i]);
+rabbits/trace_power.c:            fprintf(fdump, "banked_spsr[%d] = 0x%08x\n", i, cpu_single_env->banked_spsr[i]);
+rabbits/trace_power.c:            fprintf(fdump, "fiq_regs[%d] = 0x%08x\n", i, cpu_single_env->fiq_regs[i]);
+rabbits/trace_power.c:            fprintf(fdump, "usr_regs[%d] = 0x%08x\n", i, cpu_single_env->usr_regs[i]);
+rabbits/trace_power.c:    DGB_SET_COMMIT(cpu_single_env->cpu_index,hwe_inst);
+rabbits/trace_power.c:    hwe_cont *hwe_tr_inst = cpu_single_env->rabbits.tr_id;
+rabbits/trace_power.c:                HWE_CPU_inst_set_regdata(hwe_tr_inst, i, cpu_single_env->regs[reg]);
+rabbits/trace_power.c:                HWE_CPU_inst_set_regdata(hwe_tr_inst, i, cpu_single_env->spsr);
+rabbits/trace_power.c:                    HWE_CPU_inst_set_regdata(hwe_tr_inst, i, cpu_single_env->regs[reg]);
+rabbits/trace_power.c:                    HWE_CPU_inst_set_regdata(hwe_tr_inst, i, cpu_single_env->usr_regs[reg-8]);
+rabbits/trace_power.c:                    HWE_CPU_inst_set_regdata(hwe_tr_inst, i, cpu_single_env->banked_r13[0]);
+rabbits/trace_power.c:                    HWE_CPU_inst_set_regdata(hwe_tr_inst, i, cpu_single_env->banked_r14[0]);
+rabbits/trace_power.c:                    HWE_CPU_inst_set_regdata(hwe_tr_inst, i, cpu_single_env->regs[reg]);
+rabbits/trace_power.c:                    HWE_CPU_inst_set_regdata(hwe_tr_inst, i, cpu_single_env->fiq_regs[reg-8]);
+rabbits/trace_power.c:                    HWE_CPU_inst_set_regdata(hwe_tr_inst, i, cpu_single_env->banked_r13[5]);
+rabbits/trace_power.c:                    HWE_CPU_inst_set_regdata(hwe_tr_inst, i, cpu_single_env->banked_r14[5]);
+rabbits/trace_power.c:                       HWE_CPU_inst_set_regdata(hwe_tr_inst, i, cpu_single_env->regs[j]);
+rabbits/trace_power.c:            HWE_CPU_inst_set_regdata(hwe_tr_inst, i, cpu_single_env->regs[13]);
+rabbits/trace_power.c:            HWE_CPU_inst_set_regdata(hwe_tr_inst, i, cpu_single_env->regs[14]);
+rabbits/trace_power.c:            HWE_CPU_inst_set_regdata(hwe_tr_inst, i, cpu_single_env->spsr);
+rabbits/trace_power.c:    int cpu = cpu_single_env->cpu_index;
+rabbits/trace_power.c:    DBG_TEST_COMMIT(cpu_single_env->cpu_index);
+rabbits/trace_power.c:    DBG_CLR_COMMIT(cpu_single_env->cpu_index);
+rabbits/trace_power.c:        pc = cpu_single_env->regs[15];
+rabbits/trace_power.c:        pc = cpu_single_env->regs[15];
+rabbits/trace_power.c:        pc = cpu_single_env->regs[15]; // To be confirmed
+rabbits/trace_power.c:        pc = cpu_single_env->regs[15]; // To be confirmed
+rabbits/trace_power.c:           addr = cpu_single_env->regs[rn]; // TODO: Verify why the registers are not executed yet
+rabbits/trace_power.c:                    val = cpu_single_env->regs[rm];
+rabbits/trace_power.c:                val = cpu_single_env->regs[rm];
+rabbits/trace_power.c:                tmp2 = cpu_single_env->regs[rm];
+rabbits/trace_power.c:                tmp = cpu_single_env->regs[rn];
+rabbits/trace_power.c:                    HWE_CPU_inst_set_jump(hwe_inst, cpu_single_env->regs[rn]);
+rabbits/trace_power.c:                   val = cpu_single_env->regs[rm];
+rabbits/trace_power.c:                    HWE_CPU_inst_set_jump(hwe_inst,cpu_single_env->regs[rm]);
+rabbits/trace_power.c:        return !cpu_single_env->ZF;
+rabbits/trace_power.c:        return cpu_single_env->ZF;
+rabbits/trace_power.c:        return cpu_single_env->CF;
+rabbits/trace_power.c:        return !cpu_single_env->CF;
+rabbits/trace_power.c:        return cpu_single_env->NF && (1 << 31);
+rabbits/trace_power.c:        return !(cpu_single_env->NF & (1 << 31));
+rabbits/trace_power.c:        return (cpu_single_env->VF & (1 << 31));
+rabbits/trace_power.c:        return !(cpu_single_env->VF & (1 << 31));
+rabbits/trace_power.c:        return (cpu_single_env->CF && cpu_single_env->ZF);
+rabbits/trace_power.c:        return (!cpu_single_env->CF || !cpu_single_env->ZF);
+rabbits/trace_power.c:        return ((cpu_single_env->VF & (1 << 31)) ==
+rabbits/trace_power.c:                (cpu_single_env->NF & (1 << 31)));
+rabbits/trace_power.c:        return ((cpu_single_env->VF & (1 << 31)) !=
+rabbits/trace_power.c:                (cpu_single_env->NF & (1 << 31)));
+rabbits/trace_power.c:        return ( cpu_single_env->ZF &&
+rabbits/trace_power.c:           ((cpu_single_env->VF & (1 << 31)) ==
+rabbits/trace_power.c:            (cpu_single_env->NF & (1 << 31))));
+rabbits/trace_power.c:        return ( !cpu_single_env->ZF ||
+rabbits/trace_power.c:           ((cpu_single_env->VF & (1 << 31)) !=
+rabbits/trace_power.c:            (cpu_single_env->NF & (1 << 31))));
+rabbits/trace_power.c:   if(cpu_single_env->rabbits.tr_id != NULL){
+rabbits/trace_power.c:      HWE_CPU_inst_inc_dmem(cpu_single_env->rabbits.tr_id,1);   
+rabbits/trace_power.c:      HWE_CPU_inst_set_unalign(cpu_single_env->rabbits.tr_id);
+rabbits/qemu_systemc.c:    if (cpu_single_env->rabbits.tr_id != NULL){
+rabbits/qemu_systemc.c:        int insn = cpu_single_env->rabbits.tr_id->inst.body.instr;
+rabbits/qemu_systemc.c:        hwe_cont* hwe_src = cpu_single_env->rabbits.tr_id;
+rabbits/qemu_systemc.c:    hwe_cont* hwe_src = cpu_single_env->rabbits.tr_id;
+rabbits/qemu_systemc.c:    cpu = cpu_single_env->cpu_index;
+rabbits/qemu_systemc.c:        _save_cpu_single_env->rabbits.sc_obj);
+rabbits/qemu_systemc.c:        _save_cpu_single_env->rabbits.sc_obj, addr, nbytes, bIO, 0);
+rabbits/qemu_systemc.c:            _save_cpu_single_env->rabbits.sc_obj, no_cycles);
+rabbits/qemu_systemc.c:            _save_cpu_single_env->rabbits.sc_obj, addr, nbytes, bIO);
+rabbits/qemu_systemc.c:    if (cpu_single_env->rabbits.tr_id != NULL){
+rabbits/qemu_systemc.c:        int insn = cpu_single_env->rabbits.tr_id->inst.body.instr;
+rabbits/qemu_systemc.c:        hwe_cont* hwe_src = cpu_single_env->rabbits.tr_id;
+rabbits/qemu_systemc.c:        cpu_single_env->rabbits.sw_single_step = 2 + value;
+rabbits/qemu_systemc.c:    int cpu = cpu_single_env->cpu_index;
+rabbits/qemu_systemc.c:    uint32_t src_id = cpu_single_env->rabbits.tr_id;
+rabbits/qemu_systemc.c:    if( _save_cpu_single_env->rabbits.tr_id != NULL){
+rabbits/qemu_systemc.c:            _save_cpu_single_env->rabbits.sc_obj);
+rabbits/qemu_systemc.c:                _save_cpu_single_env->rabbits.sc_obj, no_cycles);
+rabbits/qemu_systemc.c:            _save_cpu_single_env->rabbits.sc_obj, addr, value, nbytes, bIO, 0);
+rabbits/qemu_systemc.c:            _save_cpu_single_env->rabbits.sc_obj, no_cycles);
+rabbits/qemu_systemc.c:        _save_cpu_single_env->rabbits.sc_obj, addr, value, nbytes, bIO);
+rabbits/qemu_systemc.c:        if( _save_cpu_single_env->rabbits.tr_id != NULL){
+rabbits/qemu_systemc.c:            _save_cpu_single_env->rabbits.sc_obj);
+rabbits/qemu_systemc.c:                _save_cpu_single_env->rabbits.sc_obj, no_cycles);
+rabbits/qemu_systemc.c:            _save_cpu_single_env->rabbits.sc_obj, no_cycles);
+rabbits/qemu_systemc.c:    if (cpu_single_env->rabbits.flush_last_tb == NULL)
+rabbits/qemu_systemc.c:    TranslationBlock    *tb = cpu_single_env->rabbits.flush_last_tb;
+rabbits/qemu_systemc.c:    cpu_single_env->rabbits.flush_last_tb = NULL;
+rabbits/qemu_systemc.c:    if (!cpu_single_env->rabbits.need_flush)
+rabbits/qemu_systemc.c:            __FUNCTION__, cpu_single_env->rabbits.need_flush,
+rabbits/qemu_systemc.c:            tb->rabbits.flush_cnt, cpu_single_env->cpu_index,
+rabbits/qemu_systemc.c:    if (tb_idx != cpu_single_env->rabbits.flush_idx_blocked_tb)
+rabbits/qemu_systemc.c:            __FUNCTION__, cpu_single_env->rabbits.flush_idx_blocked_tb, tb_idx);
+rabbits/qemu_systemc.c:        cpu_single_env->cpu_index,
+rabbits/qemu_systemc.c:    if (cpu_single_env->cpu_index==0 && tb_idx==143 && tb->pc==0xc00605f8)
+rabbits/qemu_systemc.c:    cpu_single_env->rabbits.need_flush = 0;
+rabbits/qemu_systemc.c:    cpu_single_env->rabbits.flush_idx_blocked_tb = -1;
+rabbits/qemu_systemc.c:    if( _save_cpu_single_env->rabbits.tr_id != NULL){
+rabbits/qemu_systemc.c:        _save_cpu_single_env->rabbits.sc_obj);
+rabbits/qemu_systemc.c:        _save_cpu_single_env->rabbits.sc_obj);
+rabbits/gdb_srv.c:            GDB_SIGNAL_TRAP, cpu_single_env->cpu_index + 1);
+rabbits/gdb_srv.c:				  cpu_single_env->rabbits.sc_obj, 
+rabbits/gdb_srv.c:			 cpu_single_env->rabbits.sc_obj,
+rabbits/gdb_srv.c:            sprintf (buf, "QC%x", cpu_single_env->cpu_index + 1);
+rabbits/gdb_srv.c:        cpu_single_env->rabbits.b_use_backdoor;
+rabbits/gdb_srv.c:    cpu_single_env->rabbits.b_use_backdoor = 1;
+rabbits/gdb_srv.c:        memtohex (reg[0], (uint8_t*) &cpu_single_env->rabbits.gdb_pc, 4); // pc
+rabbits/gdb_srv.c:        memtohex (reg[1], (uint8_t*) &cpu_single_env->regs[13], 4); //sp
+rabbits/gdb_srv.c:        memtohex (reg[3], (uint8_t*) &cpu_single_env->regs[14], 4); //lr
+rabbits/gdb_srv.c:        sprintf (buf1, "thread:%x;", cpu_single_env->cpu_index + 1);
+rabbits/gdb_srv.c:        cpu_single_env->rabbits.b_use_backdoor = save_b_use_backdoor;
+rabbits/gdb_srv.c:    s->g_cpu_index = cpu_single_env->cpu_index;
+rabbits/gdb_srv.c:    cpu_single_env->rabbits.b_use_backdoor = save_b_use_backdoor;
+rabbits/gdb_srv.c:    if (cpu_single_env->cpu_index != gdbcpu && gdbcpu != - 1)
+exec.c:        cpu_single_env->cpu_index, i, (unsigned long) pc);
+exec.c:    unsigned char save_b_use_backdoor = cpu_single_env->rabbits.b_use_backdoor;
+exec.c:    cpu_single_env->rabbits.b_use_backdoor = 1;
+exec.c:        cpu_single_env->rabbits.b_use_backdoor = save_b_use_backdoor;
+exec.c:    cpu_single_env->rabbits.b_use_backdoor = save_b_use_backdoor;
+exec.c:                  cpu_single_env->mem_io_vaddr, len,
+exec.c:                  cpu_single_env->eip,
+exec.c:                  cpu_single_env->eip + (long)cpu_single_env->segs[R_CS].base);
+exec.c:        tlb_set_dirty(cpu_single_env, cpu_single_env->mem_io_vaddr);
+exec.c:        tlb_set_dirty(cpu_single_env, cpu_single_env->mem_io_vaddr);
+exec.c:        tlb_set_dirty(cpu_single_env, cpu_single_env->mem_io_vaddr);
+cpus.c:    if (!cpu_single_env->thread_kicked) {
+cpus.c:        cpu_single_env->thread_kicked = true;
+cpus.c:        cpu_single_env->stop = 0;
+cpus.c:        cpu_single_env->stopped = 1;

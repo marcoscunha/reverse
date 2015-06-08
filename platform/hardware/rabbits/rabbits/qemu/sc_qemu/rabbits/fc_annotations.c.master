@@ -1,0 +1,591 @@
+/*
+ * vim:sw=4:tw=0:
+ */
+#include "rabbits/cfg.h"
+#include "qemu-common.h"
+#include "cpu.h"
+#include "rabbits/fc_annotations.h"
+#include "rabbits/qemu_systemc.h"
+#include "rabbits/gdb_srv.h"
+#include "rabbits/save_rest_env.h"
+
+/*
+ * FIXME: Work to be done on the cache model, which is currently a write through update physically addressed cache.
+ *        - use target_phys_addr_t for the addresses and tag types
+ *        - use target_ulong as type for the data within the cache
+ *        - update the cache model to support 8 bytes access if TARGET_LONG_SIZE == 8
+ */
+
+void tb_start (TranslationBlock *tb)
+{
+//    printf ("tb_start pc 0x%x, size 0x%x\n", tb->pc, tb->size);
+
+    cpu_single_env->rabbits.flush_last_tb = tb;
+
+    if (g_crt_no_cycles_instr > 2000)
+    {
+        just_synchronize ();
+    }
+
+}
+
+#ifdef RABBITS_IMPLEMENT_CACHES
+
+static inline int dcache_line_present (int cpu, int start_idx, unsigned long tag)
+{
+    int idx, last_idx = start_idx + (1 << DCACHE_ASSOC_BITS);
+    for (idx = start_idx; idx < last_idx; idx++)
+        if (tag == crt_qemu_instance->m_cpu_dcache[cpu][idx])
+            return idx;
+
+    return -1;
+}
+
+static inline int dcache_line_replace (int cpu, int start_idx)
+{
+    int idx, last_idx = start_idx + (1 << DCACHE_ASSOC_BITS);
+    for (idx = start_idx; idx < last_idx; idx++)
+        if (-1 == crt_qemu_instance->m_cpu_dcache[cpu][idx])
+            return idx;
+
+    return start_idx + (((1 << DCACHE_ASSOC_BITS) - 1) & random ());
+}
+
+static inline int icache_line_present (int cpu, int start_idx, unsigned long tag)
+{
+    int idx, last_idx = start_idx + (1 << ICACHE_ASSOC_BITS);
+    for (idx = start_idx; idx < last_idx; idx++)
+        if (tag == crt_qemu_instance->m_cpu_icache[cpu][idx])
+            return idx;
+
+    return -1;
+}
+
+static inline int icache_line_replace (int cpu, int start_idx)
+{
+    int idx, last_idx = start_idx + (1 << ICACHE_ASSOC_BITS);
+    for (idx = start_idx; idx < last_idx; idx++)
+        if (-1 == crt_qemu_instance->m_cpu_icache[cpu][idx])
+            return idx;
+
+    return start_idx + (((1 << ICACHE_ASSOC_BITS) - 1) & random ());
+}
+
+static inline void *get_host_address (unsigned long addr)
+{
+    #ifdef ONE_MEMORY_MODULE
+    return (void *) (addr + cpu_single_env->rabbits.sc_mem_host_addr);
+    #else //!ONE_MEMORY_MODULE
+    return (void *)crt_qemu_instance->m_systemc.systemc_get_mem_addr (
+            cpu_single_env->rabbits.sc_obj, crt_qemu_instance->m_systemc.subsystem, addr);
+    #endif //ONE_MEMORY_MODULE
+}
+
+void 
+dcache_invalidate(unsigned long addr)
+{
+
+#ifdef IMPLEMENT_FULL_CACHES
+	 qemu_invalidate_address(crt_qemu_instance, addr, cpu_single_env->cpu_index);
+#endif /* IMPLEMENT_FULL_CACHES */
+
+}
+
+void 
+dcache_flush(unsigned long addr)
+{
+
+#ifdef IMPLEMENT_FULL_CACHES
+	 /* TODO: Flush line containing addr from the current cache.  */
+	 /* Write modified data to memory and invalidate line.        */
+	 /* Internally only. No need to propagate to other processors */
+#endif /* IMPLEMENT_FULL_CACHES */
+
+}
+
+/*
+ * Helper to read from dcache, fills up the cache line on miss.
+ * SystemC read access is cache line aligned, so we have no hardware alignemnt problem
+ */
+void * REGPARM
+dcache_read (unsigned long addr)
+{
+    if (!cpu_single_env || cpu_single_env->rabbits.b_use_backdoor)
+    {
+        fprintf (stderr, "Error in %s, env=0x%lx, backdoor=%d\n",
+            __FUNCTION__, (unsigned long) cpu_single_env,
+            cpu_single_env ? (int) cpu_single_env->rabbits.b_use_backdoor : 0);
+        exit (1);
+    }
+
+    #ifdef IMPLEMENT_FULL_CACHES
+    int no_cycles = g_crt_no_cycles_instr;
+    if (no_cycles > 0)
+    {
+        g_crt_no_cycles_instr = 0;
+        crt_qemu_instance->m_counters.no_cycles += no_cycles;
+        SAVE_ENV_BEFORE_CONSUME_SYSTEMC ();
+        _save_crt_qemu_instance->m_systemc.systemc_qemu_consume_instruction_cycles (
+            _save_cpu_single_env->rabbits.sc_obj, no_cycles);
+        RESTORE_ENV_AFTER_CONSUME_SYSTEMC ();
+    }
+    #endif //IMPLEMENT_FULL_CACHES
+
+    int cpu, idx, start_idx;
+    unsigned long tag;
+
+    cpu = cpu_single_env->cpu_index;
+    tag = addr >> DCACHE_LINE_BITS;
+    start_idx = tag & (DCACHE_LINES - 1) & ~((1 << DCACHE_ASSOC_BITS) - 1);
+    idx = dcache_line_present (cpu, start_idx, tag);
+
+    if (idx == -1)
+    {
+        crt_qemu_instance->m_counters.no_dcache_miss++;
+
+        idx = dcache_line_replace (cpu, start_idx);
+        crt_qemu_instance->m_cpu_dcache[cpu][idx] = tag;
+
+        #ifdef IMPLEMENT_FULL_CACHES
+        SAVE_ENV_BEFORE_CONSUME_SYSTEMC ();
+	    _save_crt_qemu_instance->
+                m_systemc.systemc_qemu_read_memory(_save_cpu_single_env->rabbits.sc_obj,
+                                                   addr & ~DCACHE_LINE_MASK,
+                                                   DCACHE_LINE_BYTES, 0);
+        RESTORE_ENV_AFTER_CONSUME_SYSTEMC ();
+        memcpy (crt_qemu_instance->m_cpu_dcache_data[cpu][idx],
+                get_host_address(addr & ~DCACHE_LINE_MASK),
+                DCACHE_LINE_BYTES);
+        #else //IMPLEMENT_LATE_CACHES
+        g_crt_ns_misses += NS_DCACHE_MISS;
+        #endif //IMPLEMENT_LATE_CACHES
+    }
+
+    #ifdef RABBITS_GDB_ENABLED
+    if(crt_qemu_instance->m_gdb)
+    {
+    int                 i, nb = crt_qemu_instance->m_gdb->watchpoints.nb;
+    struct watch_el_t   *pwatch = crt_qemu_instance->m_gdb->watchpoints.watch;
+
+    for (i = 0; i < nb; i++)
+        if (addr >= pwatch[i].begin_address && addr < pwatch[i].end_address &&
+            (pwatch[i].type == GDB_WATCHPOINT_READ || pwatch[i].type == GDB_WATCHPOINT_ACCESS)
+            )
+        {
+            gdb_loop (i, 0, 0);
+            break;
+        }
+    }
+    #endif //RABBITS_GDB_ENABLED
+
+    #ifdef IMPLEMENT_FULL_CACHES
+    return &crt_qemu_instance->m_cpu_dcache_data[cpu][idx][addr & DCACHE_LINE_MASK];
+    #else //!IMPLEMENT_FULL_CACHES
+    return get_host_address(addr);
+    #endif //IMPLEMENT_FULL_CACHES
+}
+
+/*
+ * Cache access needs to handle unaligned loads, which complexifies a bit the thing
+ * I assume that all read accesses can be unaligned, even though doublewords are
+ * only used for ldrexd which *must* be aligned on ARM, but if we reuse this for
+ * other architectures, we may need to support looser constraints.
+ *
+ * Note that read and write are *not* symmetrical: indeed, when reading the access to
+ * the hardware is done with a cache line granularity (and alignment), whereas when
+ * writting we *must* be aligned
+ *
+ * FIXME: use the qemu types instead of the old school original K&R C types
+ */
+
+unsigned long long
+dcache_read_q (unsigned long addr)
+{
+    unsigned long   low, hi;
+
+    low = *(unsigned long *)dcache_read_l(addr);
+    hi  = *(unsigned long *)dcache_read_l(addr + 4);
+
+    return (((unsigned long long) hi) << 32) + low;
+}
+
+unsigned long
+dcache_read_l(unsigned long addr)
+{
+    if ((addr & 3) == 0) /* Aligned word access, normal case, lets do it now and fast */
+        return *(unsigned long *)dcache_read(addr);
+    else {               /* Let's handle the no so tricky case first: unaligned but not at a cache line boundary */
+        if ((addr & DCACHE_LINE_MASK & ~3) != (DCACHE_LINE_MASK & ~3)) {
+            return *(unsigned long *)dcache_read(addr);
+        } else { /* We are crossing a cache line boundary now, take care of it */
+            uint32_t x, y, z;
+            if (addr & 1) {
+                z = dcache_read_b(addr);
+                y = dcache_read_w(addr + 1); /* half word aligned for sure, next cache line if 3 */
+                x = dcache_read_b(addr + 3); /* on next cache line */
+                return (x << 24) | (y << 8) | z;
+            } else {
+                y = dcache_read_w(addr);     /* half word aligned for sure */
+                x = dcache_read_w(addr + 2); /* half word aligned on next cache line */
+                return (x << 16) | y;
+            }
+        }
+    }
+}
+
+unsigned short
+dcache_read_w(unsigned long addr)
+{
+    if ((addr & 1) == 0) /* Aligned half word access, normal case */
+       return *(unsigned short *)dcache_read(addr);
+    else {/* Unaligned but not at a cache line boundary, we're safe doing the access */
+        if ((addr & DCACHE_LINE_MASK) != DCACHE_LINE_MASK)
+            return *(unsigned short *)dcache_read(addr);
+        else {
+            unsigned int x, y;
+            y = dcache_read_b(addr);
+            x = dcache_read_b(addr + 1);
+            return (x << 8) | y;
+        }
+    }
+}
+
+unsigned char
+dcache_read_b (unsigned long addr)
+{
+    return *(unsigned char *) dcache_read (addr);
+}
+
+signed short
+dcache_read_signed_w (unsigned long addr)
+{
+    if ((addr & 1) == 0) /* Aligned half word access, normal case */
+       return *(signed short *)dcache_read(addr);
+    else {
+        unsigned int x, y;
+        y = dcache_read_b(addr);
+        x = dcache_read_b(addr + 1);
+        return (x << 8) | y;
+    }
+}
+
+signed char
+dcache_read_signed_b (unsigned long addr)
+{
+    return * (signed  char *) dcache_read (addr);
+}
+
+/*
+ * dcache_write: write data within the abstract (or not so abstract) cache model
+ *
+ * When encountering unaligned accesses that cross a cache line boundary, we recursively
+ * call the function so that the next location in the cache is computed as it should.
+ * Recursion is at most done one, and should occur quite seldom and it reuses cached code
+ * TODO: Make sure this is Ok from a SystemC point of view
+ */
+
+void REGPARM
+dcache_write (unsigned long addr, int nb, unsigned long val)
+{
+    #if HOST_LONG_BITS == 64
+    if (nb == 8)
+    {
+        dcache_write_q (addr, val);
+        return;
+    }
+    #endif
+
+    if (!cpu_single_env || cpu_single_env->rabbits.b_use_backdoor)
+    {
+        fprintf (stderr, "Error in %s, env=0x%lx, backdoor=%d\n",
+            __FUNCTION__, (unsigned long) cpu_single_env,
+            cpu_single_env ? (int) cpu_single_env->rabbits.b_use_backdoor : 0);
+        exit (1);
+    }
+  
+    if (addr >= cpu_single_env->rabbits.ram_size)
+    {
+        fprintf (stderr, "Bad address 0x%lx in qemu.%s!\n",
+            addr, __FUNCTION__);
+        exit (1);
+    }
+
+    #ifndef IMPLEMENT_FULL_CACHES
+    void   *host_addr = get_host_address(addr);
+
+    switch (nb)
+    {
+    case 1:
+        *((uint8_t *)host_addr)  = (uint8_t)(val & 0x000000ff);
+    break;
+    case 2:
+        *((uint16_t *)host_addr) = (uint16_t)(val & 0x0000ffff);
+    break;
+    case 4:
+        *((uint32_t *)host_addr) = (uint32_t)(val & 0xffffffff);
+    break;
+    default:
+        printf ("QEMU, function %s, invalid nb %d\n", __FUNCTION__, nb);
+        exit (1);
+    }
+    #ifdef IMPLEMENT_LATE_CACHES
+    g_crt_ns_misses += NS_WRITE_ACCESS;
+    #endif //IMPLEMENT_LATE_CACHES
+    #endif //!IMPLEMENT_FULL_CACHES
+
+    #ifdef IMPLEMENT_FULL_CACHES
+    int no_cycles = g_crt_no_cycles_instr;
+    if (no_cycles > 0)
+    {
+        g_crt_no_cycles_instr = 0;
+        crt_qemu_instance->m_counters.no_cycles += no_cycles;
+        SAVE_ENV_BEFORE_CONSUME_SYSTEMC ();
+        _save_crt_qemu_instance->m_systemc.systemc_qemu_consume_instruction_cycles (
+            _save_cpu_single_env->rabbits.sc_obj, no_cycles);
+        RESTORE_ENV_AFTER_CONSUME_SYSTEMC ();
+    }
+    #endif //IMPLEMENT_FULL_CACHES
+
+    #ifdef RABBITS_GDB_ENABLED
+    {
+    int                 i, nb = crt_qemu_instance->m_gdb->watchpoints.nb;
+    struct watch_el_t   *pwatch = crt_qemu_instance->m_gdb->watchpoints.watch;
+
+    for (i = 0; i < nb; i++)
+        if (addr >= pwatch[i].begin_address && addr < pwatch[i].end_address &&
+            (pwatch[i].type == GDB_WATCHPOINT_WRITE || pwatch[i].type == GDB_WATCHPOINT_ACCESS)
+            )
+        {
+            gdb_loop (i, 1, val);
+            break;
+        }
+    }
+    #endif //RABBITS_GDB_ENABLED
+
+    #ifdef IMPLEMENT_FULL_CACHES
+
+    int                 cpu = cpu_single_env->cpu_index;
+    unsigned long       tag = addr >> DCACHE_LINE_BITS;
+    unsigned long       ofs = addr & DCACHE_LINE_MASK;
+    int                 idx, start_idx;
+    start_idx = tag & (DCACHE_LINES - 1) & ~((1 << DCACHE_ASSOC_BITS) - 1);
+    idx = dcache_line_present (cpu, start_idx, tag);
+
+    if (idx != -1) /* addr in cache -> update */
+    {
+        switch (nb)
+        {
+        case 1:
+            *((uint8_t *) &crt_qemu_instance->m_cpu_dcache_data[cpu][idx][ofs]) =
+                (uint8_t)(val & 0x000000ff);
+        break;
+        case 2:
+            if ((ofs & 1) == 0) /* Halfword aligned write, simple case */
+                *((uint16_t *)&crt_qemu_instance->m_cpu_dcache_data[cpu][idx][ofs]) =
+                    (uint16_t)(val & 0x0000ffff);
+            else { /* Unaligned */
+                *((uint8_t *) &crt_qemu_instance->m_cpu_dcache_data[cpu][idx][ofs]) =
+                    (uint8_t)(val & 0x000000ff);
+                dcache_write(addr + 1, 1, (val >> 8) & 0x000000ff);
+            }
+        break;
+        case 4:
+            if ((ofs & 3) == 0) { /* Normal, aligned word access */
+                *((uint32_t *)  &crt_qemu_instance->m_cpu_dcache_data[cpu][idx][ofs]) = 
+                    (uint32_t) (val & 0xffffffff);
+            } else {
+                /* No optimization when within cache line as I believe the systemc_qemu_write_memory fails on unaligned accesses */
+                if (ofs & 1) {
+                    *((uint8_t *) &crt_qemu_instance->m_cpu_dcache_data[cpu][idx][ofs]) =
+                        (uint8_t)(val & 0x000000ff);
+                    dcache_write(addr + 1, 2, (val >> 8)  & 0x0000ffff); /* half word aligned for sure, maybe next cache line */
+                    dcache_write(addr + 3, 1, (val >> 24) & 0x000000ff); /* on next cache line */
+                } else {
+                    *((uint8_t *) &crt_qemu_instance->m_cpu_dcache_data[cpu][idx][ofs]) =
+                        (uint8_t)(val & 0x000000ff);                     /* half word aligned, same cache line */
+                    dcache_write(addr + 2, 2, (val >> 16) & 0x0000ffff); /* half word aligned, maybe next cache line */
+                }
+            }
+        break;
+        default:
+            printf ("QEMU, function %s, invalid nb %d\n", __FUNCTION__, nb);
+            exit (1);
+        }
+    }
+
+    SAVE_ENV_BEFORE_CONSUME_SYSTEMC ();
+    _save_crt_qemu_instance->m_systemc.systemc_qemu_write_memory (
+        _save_cpu_single_env->rabbits.sc_obj, addr, val, nb, 0);
+    RESTORE_ENV_AFTER_CONSUME_SYSTEMC ();
+    #else //!IMPLEMENT_FULL_CACHES
+    qemu_invalidate_address (crt_qemu_instance, addr, cpu_single_env->cpu_index);
+    #endif //IMPLEMENT_FULL_CACHES
+}
+
+void
+dcache_write_q (unsigned long addr, unsigned long long val)
+{
+    dcache_write(addr + 0, 4, (unsigned long)(val & 0xffffffff));
+    crt_qemu_instance->m_counters.no_mem_write--;
+    dcache_write(addr + 4, 4, (unsigned long)(val >> 32));
+}
+
+
+void icache_access (target_ulong addr)
+{
+    int             cpu = cpu_single_env->cpu_index;
+    unsigned long   tag = addr >> ICACHE_LINE_BITS;
+    int             idx, start_idx;
+
+    start_idx = tag & (ICACHE_LINES - 1) & ~((1 << ICACHE_ASSOC_BITS) - 1);
+    idx = icache_line_present (cpu, start_idx, tag);
+
+    if (idx == -1)
+    {
+        crt_qemu_instance->m_counters.no_icache_miss++;
+
+        idx = icache_line_replace (cpu, start_idx);
+        crt_qemu_instance->m_cpu_icache[cpu][idx] = tag;
+
+        #ifdef IMPLEMENT_FULL_CACHES
+        int no_cycles = g_crt_no_cycles_instr;
+
+        SAVE_ENV_BEFORE_CONSUME_SYSTEMC ();
+        if (no_cycles > 0)
+        {
+            g_crt_no_cycles_instr = 0;
+            _save_crt_qemu_instance->m_counters.no_cycles += no_cycles;
+            _save_crt_qemu_instance->m_systemc.systemc_qemu_consume_instruction_cycles (
+                _save_cpu_single_env->rabbits.sc_obj, no_cycles);
+        }
+
+        (void)_save_crt_qemu_instance->m_systemc.systemc_qemu_read_memory (
+            _save_cpu_single_env->rabbits.sc_obj,
+            addr & ~ICACHE_LINE_MASK, ICACHE_LINE_BYTES, 0);
+
+        RESTORE_ENV_AFTER_CONSUME_SYSTEMC ();
+        #else //cache late configuration
+        g_crt_ns_misses += NS_ICACHE_MISS;
+        #endif
+    }
+}
+
+void icache_access_n (target_ulong addr, int32_t n)
+{
+   int i;
+    for (i = 0; i < n; i++)
+        icache_access (addr + i * 4);
+}
+
+void helper_mark_exclusive (void)
+{
+    target_ulong    physaddr = get_phys_addr_gdb (cpu_single_env->exclusive_addr);
+    crt_qemu_instance->m_systemc.memory_mark_exclusive (
+		 crt_qemu_instance->m_systemc.subsystem,
+		 cpu_single_env->cpu_index, physaddr);
+}
+
+void helper_clrex (void)
+{
+    if (cpu_single_env->exclusive_addr == -1)
+        return;
+
+    target_ulong    physaddr = get_phys_addr_gdb (cpu_single_env->exclusive_addr);
+    crt_qemu_instance->m_systemc.memory_clear_exclusive (
+		 crt_qemu_instance->m_systemc.subsystem,
+		 cpu_single_env->cpu_index, physaddr);
+}
+
+int32_t helper_test_exclusive (void)
+{
+    target_ulong    physaddr = get_phys_addr_gdb (cpu_single_env->exclusive_addr);
+    
+    return !crt_qemu_instance->m_systemc.memory_test_exclusive (
+		 crt_qemu_instance->m_systemc.subsystem,
+		 cpu_single_env->cpu_index, physaddr);
+}
+#endif
+
+void
+qemu_invalidate_address (qemu_instance *instance, uint32_t addr, int src_idx)
+{
+    #ifdef RABBITS_IMPLEMENT_CACHES
+    unsigned long           dtag = addr >> DCACHE_LINE_BITS;
+    int                     didx, dstart_idx = dtag & (DCACHE_LINES - 1) &
+                                ~((1 << DCACHE_ASSOC_BITS) - 1);
+    unsigned long           itag = addr >> ICACHE_LINE_BITS;
+    int                     iidx, istart_idx = itag & (ICACHE_LINES - 1) &
+                                ~((1 << ICACHE_ASSOC_BITS) - 1);
+    qemu_instance           *old_instance = crt_qemu_instance;
+    int                     i;
+
+    crt_qemu_instance = instance;
+    for (i = 0; i < instance->m_NOCPUs; i++)
+    {
+        if (i != src_idx && (didx = dcache_line_present (i, dstart_idx, dtag)) != -1)
+            instance->m_cpu_dcache[i][didx] = (unsigned long) -1;
+
+        if ((iidx = icache_line_present (i, istart_idx, itag)) != -1)
+            instance->m_cpu_icache[i][iidx] = (unsigned long) -1;
+    }
+    crt_qemu_instance = old_instance;
+    #endif
+}
+
+#ifdef RABBITS_GDB_ENABLED
+void gdb_verify (target_ulong addr)
+{
+    //update the un-updated registers
+    cpu_single_env->rabbits.gdb_pc = addr;
+
+    if (cpu_single_env->rabbits.sw_single_step > 0)
+    {
+        cpu_single_env->rabbits.sw_single_step--;
+        if (cpu_single_env->rabbits.sw_single_step == 0)
+        {
+            cpu_single_env->exception_index = EXCP_BKPT;
+            cpu_single_env->regs[15] = cpu_single_env->rabbits.gdb_pc;
+            cpu_loop_exit (cpu_single_env);
+            return;
+        }
+    }
+
+    crt_qemu_instance->m_counters.no_instructions ++;
+
+    if (!gdb_condition (addr))
+        return;
+
+    gdb_loop (-1, 0, 0);
+}
+
+void restore_single_step (void)
+{
+    if (cpu_single_env->rabbits.sw_single_step < 0)
+        cpu_single_env->rabbits.sw_single_step =- 
+            cpu_single_env->rabbits.sw_single_step;
+}
+
+#endif //RABBITS_GDB_ENABLED
+
+#ifdef RABBITS_LOG_INFO
+void log_pc (target_ulong addr)
+{
+    if (cpu_single_env->cpu_index != 0 || crt_qemu_instance->m_log_cnt_instr++ > 100000)
+        return;
+  
+    if (crt_qemu_instance->m_fim == NULL)
+    {
+        if (NULL == (crt_qemu_instance->m_fim = fopen ("qemu_fim.lst", "w")))
+        {
+            fprintf (stderr, "Cannot open the log file for output.\n");
+            exit (1);
+        }
+    }
+
+    fprintf (crt_qemu_instance->m_fim, "pc= %x\tcpu= %d\n",
+        (unsigned int) addr, cpu_single_env->cpu_index);
+
+    fflush (crt_qemu_instance->m_fim);
+}
+#endif //RABBITS_LOG_INFO
+

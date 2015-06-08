@@ -1,0 +1,2 @@
+nm `dirname $0`/../arm-softmmu/libqemu-system-arm.so|grep -i ' u '|grep -v GLIBC
+

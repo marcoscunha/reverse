@@ -24,7 +24,6 @@ platforms/roger/soft/linux/linux.asm
 rabbits/libs/
 
 rabbits/qemu/logs/
-rabbits/qemu/sc_qemu/
 rabbits/hwetrace
 
 rabbits/tools/ramdac/build/

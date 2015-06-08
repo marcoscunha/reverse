@@ -1,0 +1,131 @@
+>From 137c897ee0f67b07908ac489659f77642f2aeb04 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Fr=C3=A9d=C3=A9ric=20P=C3=A9trot?= <Frederic.Petrot@imag.fr>
+Date: Tue, 21 Oct 2014 13:53:32 +0200
+Subject: [PATCH] Now handling unaligned writes that do a miss in the cache
+
+---
+ rabbits/fc_annotations.c | 73 ++++++++++++++++++++++++++++++++++++++----------
+ 1 file changed, 59 insertions(+), 14 deletions(-)
+
+diff --git a/rabbits/fc_annotations.c b/rabbits/fc_annotations.c
+index 5ef4a64..486254c 100644
+--- a/rabbits/fc_annotations.c
++++ b/rabbits/fc_annotations.c
+@@ -367,11 +367,11 @@ dcache_write (unsigned long addr, int nb, unsigned long val)
+     int                 cpu = cpu_single_env->cpu_index;
+     unsigned long       tag = addr >> DCACHE_LINE_BITS;
+     unsigned long       ofs = addr & DCACHE_LINE_MASK;
++    bool                skip_sysc = false;
+     int                 idx, start_idx;
+-    start_idx = tag & (DCACHE_LINES - 1) & ~((1 << DCACHE_ASSOC_BITS) - 1);
+-    idx = dcache_line_present (cpu, start_idx, tag);
+ 
+-    bool                skip_sysc = false;
++    start_idx = tag & (DCACHE_LINES - 1) & ~((1 << DCACHE_ASSOC_BITS) - 1);
++    idx = dcache_line_present(cpu, start_idx, tag);
+ 
+     if (idx != -1) /* addr in cache -> update */
+     {
+@@ -380,7 +380,7 @@ dcache_write (unsigned long addr, int nb, unsigned long val)
+         case 1:
+             *((uint8_t *)&crt_qemu_instance->m_cpu_dcache_data[cpu][idx][ofs]) =
+                 (uint8_t)(val & 0x000000ff);
+-        break;
++            break;
+         case 2:
+             if ((ofs & 1) == 0) /* Halfword aligned write, simple case */
+                 *((uint16_t *)&crt_qemu_instance->m_cpu_dcache_data[cpu][idx][ofs]) =
+@@ -390,15 +390,15 @@ dcache_write (unsigned long addr, int nb, unsigned long val)
+                 dcache_write(addr + 1, 1, (val >> 8) & 0x000000ff);
+                 skip_sysc = true;
+             }
+-        break;
++            break;
+         case 4:
+             if ((ofs & 3) == 0) { /* Normal, aligned word access */
+-                *((uint32_t *) &crt_qemu_instance->m_cpu_dcache_data[cpu][idx][ofs]) = 
++                *((uint32_t *)&crt_qemu_instance->m_cpu_dcache_data[cpu][idx][ofs]) = 
+                     (uint32_t)(val & 0xffffffff);
+             } else {
+                 /* No optimization when within cache line as I believe the systemc_qemu_write_memory fails on unaligned accesses */
+                 if (ofs & 1) {
+-                    dcache_write(addr + 0, 1, (val >> 0)  & 0x000000ff); /* on next cache line */
++                    dcache_write(addr + 0, 1, (val >> 0)  & 0x000000ff); /* on current cache line */
+                     dcache_write(addr + 1, 2, (val >> 8)  & 0x0000ffff); /* half word aligned for sure, maybe next cache line */
+                     dcache_write(addr + 3, 1, (val >> 24) & 0x000000ff); /* on next cache line */
+                 } else {
+@@ -407,19 +407,64 @@ dcache_write (unsigned long addr, int nb, unsigned long val)
+                 }
+                 skip_sysc = true;
+             }
+-        break;
++            break;
++        default:
++            printf("QEMU, function %s, invalid number of bytes %d\n", __func__, nb);
++            exit(1);
++        }
++        if (!skip_sysc) { /* I am sure the address is aligned with the type now */
++            SAVE_ENV_BEFORE_CONSUME_SYSTEMC ();
++            _save_crt_qemu_instance->m_systemc.systemc_qemu_write_memory (
++                _save_cpu_single_env->rabbits.sc_obj, addr, val, nb, 0);
++            RESTORE_ENV_AFTER_CONSUME_SYSTEMC ();
++        }
++    } else { /* Need to align writes missing the cache.
++                Must be careful on cache line boundary as it may hit afterwards */
++        switch (nb) {
++        case 1:
++            SAVE_ENV_BEFORE_CONSUME_SYSTEMC ();
++            _save_crt_qemu_instance->m_systemc.systemc_qemu_write_memory(_save_cpu_single_env->rabbits.sc_obj, addr, val, nb, 0);
++            RESTORE_ENV_AFTER_CONSUME_SYSTEMC ();
++            break;
++        case 2:
++            if ((ofs & 1) == 0) { /* Halfword aligned write, simple case */
++                SAVE_ENV_BEFORE_CONSUME_SYSTEMC ();
++                _save_crt_qemu_instance->m_systemc.systemc_qemu_write_memory(_save_cpu_single_env->rabbits.sc_obj, addr, val, nb, 0);
++                RESTORE_ENV_AFTER_CONSUME_SYSTEMC ();
++            } else { /* Unaligned */
++                SAVE_ENV_BEFORE_CONSUME_SYSTEMC ();
++                _save_crt_qemu_instance->m_systemc.systemc_qemu_write_memory(_save_cpu_single_env->rabbits.sc_obj, addr, val & 0x000000ff, 1, 0);
++                RESTORE_ENV_AFTER_CONSUME_SYSTEMC ();
++                dcache_write(addr + 1, 1, (val >> 8) & 0x000000ff);
++            }
++            break;
++        case 4:
++            if ((ofs & 3) == 0) { /* Normal, aligned word access */
++                SAVE_ENV_BEFORE_CONSUME_SYSTEMC ();
++                _save_crt_qemu_instance->m_systemc.systemc_qemu_write_memory(_save_cpu_single_env->rabbits.sc_obj, addr, val, nb, 0);
++                RESTORE_ENV_AFTER_CONSUME_SYSTEMC ();
++            } else {
++                /* No optimization when within cache line as I believe the systemc_qemu_write_memory fails on unaligned accesses */
++                if (ofs & 1) {
++                    SAVE_ENV_BEFORE_CONSUME_SYSTEMC ();
++                    _save_crt_qemu_instance->m_systemc.systemc_qemu_write_memory(_save_cpu_single_env->rabbits.sc_obj, addr, val & 0x000000ff, 1, 0);
++                    RESTORE_ENV_AFTER_CONSUME_SYSTEMC ();
++                    dcache_write(addr + 1, 2, (val >> 8)  & 0x0000ffff); /* half word aligned for sure, maybe next cache line */
++                    dcache_write(addr + 3, 1, (val >> 24) & 0x000000ff); /* on next cache line */
++                } else {
++                    SAVE_ENV_BEFORE_CONSUME_SYSTEMC ();
++                    _save_crt_qemu_instance->m_systemc.systemc_qemu_write_memory(_save_cpu_single_env->rabbits.sc_obj, addr, val & 0x0000ffff, 2, 0);
++                    RESTORE_ENV_AFTER_CONSUME_SYSTEMC ();
++                    dcache_write(addr + 2, 2, (val >> 16) & 0x0000ffff); /* half word aligned, maybe next cache line */
++                }
++            }
++            break;
+         default:
+             printf("QEMU, function %s, invalid number of bytes %d\n", __func__, nb);
+             exit(1);
+         }
+     }
+ 
+-    if (!skip_sysc) {
+-        SAVE_ENV_BEFORE_CONSUME_SYSTEMC ();
+-        _save_crt_qemu_instance->m_systemc.systemc_qemu_write_memory (
+-            _save_cpu_single_env->rabbits.sc_obj, addr, val, nb, 0);
+-        RESTORE_ENV_AFTER_CONSUME_SYSTEMC ();
+-    }
+     #else //!IMPLEMENT_FULL_CACHES
+     qemu_invalidate_address (crt_qemu_instance, addr, cpu_single_env->cpu_index);
+     #endif //IMPLEMENT_FULL_CACHES
+-- 
+2.1.1
+

@@ -1,0 +1,66 @@
+#ifndef _RABBITS_CFG_H_
+#define _RABBITS_CFG_H_
+
+//#define RABBITS
+#define IMPLEMENT_FULL_CACHES
+//#define IMPLEMENT_LATE_CACHES
+//#define ONE_MEMORY_MODULE
+
+#define RABBITS_GDB_ENABLED
+//#define RABBITS_SOFT_DEBUG_ENABLED
+//#define RABBITS_LOG_INFO
+
+//assure a consistent configuration
+#if defined(IMPLEMENT_FULL_CACHES) && defined(ONE_MEMORY_MODULE)
+    #undef ONE_MEMORY_MODULE
+#endif
+
+#if defined(IMPLEMENT_FULL_CACHES) && defined(IMPLEMENT_LATE_CACHES)
+    #error Configuration error: IMPLEMENT_FULL_CACHES and IMPLEMENT_LATE_CACHES are both defined!
+#endif
+
+#if defined(IMPLEMENT_FULL_CACHES) || defined(IMPLEMENT_LATE_CACHES)
+    #define RABBITS_IMPLEMENT_CACHES
+#endif
+
+#ifdef IMPLEMENT_FULL_CACHES
+	#define RABBITS_TRACE_EVENT //Trace support for QEMU and SystemC
+	#define RABBITS_GEN_TRACE_EVENT // Generate the trace events 
+    #define RABBITS_TRACE_EVENT_CPU_REQ // Generate cpu request events
+    #define RABBITS_TRACE_EVENT_CACHE   // Generate cache events
+    #define HWE_CPU_ARM
+#endif
+
+#define RABBITS_PERF
+
+#ifdef RABBITS_IMPLEMENT_CACHES
+    #ifdef IMPLEMENT_LATE_CACHES
+        #define NS_ICACHE_MISS                  10
+        #define NS_DCACHE_MISS                  10
+        #define NS_WRITE_ACCESS                 1
+    #else
+        #if 0
+           #define CACHE_IS_WB
+        #else
+           #define CACHE_IS_WT
+        #endif
+    #endif
+
+
+    #define DCACHE_LINES        1024
+    #define DCACHE_ASSOC_BITS   0
+    #define DCACHE_LINE_BITS    5
+    #define DCACHE_LINE_WORDS   (1 << (DCACHE_LINE_BITS - 2))
+    #define DCACHE_LINE_BYTES   (1 << DCACHE_LINE_BITS)
+    #define DCACHE_LINE_MASK    ((1 << DCACHE_LINE_BITS) - 1)
+
+    #define ICACHE_LINES        1024
+    #define ICACHE_ASSOC_BITS   0
+    #define ICACHE_LINE_BITS    5
+    #define ICACHE_LINE_WORDS   (1 << (ICACHE_LINE_BITS - 2))
+    #define ICACHE_LINE_BYTES   (1 << ICACHE_LINE_BITS)
+    #define ICACHE_LINE_MASK    ((1 << ICACHE_LINE_BITS) - 1)
+
+#endif
+
+#endif //_RABBITS_CFG_H_

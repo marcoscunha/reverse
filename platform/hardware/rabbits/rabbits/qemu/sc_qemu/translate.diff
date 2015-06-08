@@ -1,0 +1,360 @@
+28a29,33
+> 
+> #ifdef RABBITS_TRACE_EVENT
+> #include "../rabbits/trace_power.h"
+> #endif
+> 
+105a111,112
+> extern target_ulong icache_line_mask; // Defined at libmain.c
+> 
+109a117,139
+> //#define DEBUG_COMMIT
+> 
+> #ifdef DEBUG_COMMIT
+> uint8_t commit;
+> uint32_t instruc;
+> bool condjmp;
+> #define INST_COMMIT(i) instruc = i
+> #define SET_COMMIT commit++
+> #define CLEAR_COMMIT commit = 0
+> #define CONDJMP_COMMIT(i) condjmp = i
+> #define TEST_COMMIT if (commit != 1) { if (!(commit == 2 && condjmp)){ printf("%s: %d: Error decoding 0x%x with %d commits \n", __FUNCTION__, __LINE__, instruc, commit); exit(1);}}
+> #else
+> #define INST_COMMIT(i)
+> #define SET_COMMIT
+> #define CLEAR_COMMIT
+> #define CONDJMP_COMMIT(i)
+> #define TEST_COMMIT
+> #endif
+> 
+> bool enable_trace  = false;
+> bool trigger_trace = false;
+> 
+> 
+1433c1463
+<                     } else {				/* WLDRW wRd */
+---
+>                     } else {                /* WLDRW wRd */
+1437c1467
+<                     if (insn & (1 << 22)) {		/* WLDRH */
+---
+>                     if (insn & (1 << 22)) {     /* WLDRH */
+1439c1469
+<                     } else {				/* WLDRB */
+---
+>                     } else {                /* WLDRB */
+1450c1480
+<             if ((insn >> 28) == 0xf) {			/* WSTRW wCx */
+---
+>             if ((insn >> 28) == 0xf) {          /* WSTRW wCx */
+1457c1487
+<                     if (insn & (1 << 22)) {		/* WSTRD */
+---
+>                     if (insn & (1 << 22)) {     /* WSTRD */
+1460c1490
+<                     } else {				/* WSTRW wRd */
+---
+>                     } else {                /* WSTRW wRd */
+1465c1495
+<                     if (insn & (1 << 22)) {		/* WSTRH */
+---
+>                     if (insn & (1 << 22)) {     /* WSTRH */
+1468c1498
+<                     } else {				/* WSTRB */
+---
+>                     } else {                /* WSTRB */
+1483c1513
+<     case 0x000:						/* WOR */
+---
+>     case 0x000:                     /* WOR */
+1494c1524
+<     case 0x011:						/* TMCR */
+---
+>     case 0x011:                     /* TMCR */
+2665a2696
+>     // TODO: To implement Clean and Invalidate Cache instruction
+2682a2714
+> //        #ifndef RABBITS_TRACE_EVENT
+2683a2716
+> //        #endif
+3599a3633,3635
+> /*        #ifdef RABBITS_TRACE_EVENT
+>         gen_op_tr_commit(dest);
+>         #endif*/
+3604a3641,3643
+> /*        #ifdef RABBITS_TRACE_EVENT
+>         gen_op_tr_commit(0);
+>         #endif*/
+3614a3654
+>         // NOT SUPPORTED FOR TRACE (JUST ARM INSTRUCTIONS ARE SUPPORTED)
+3618a3659
+>         #ifndef RABBITS_TRACE_EVENT
+3620d3660
+<         #endif
+3621a3662,3668
+>         #else
+>         gen_op_icache_tr_jmp_access (s->last_decoded_pc_addr + 4, dest, DISAS_TB_JUMP);
+>         gen_op_inc_crt_nr_cycles (s->env, ARM_JUMP); // No effect when trace is enabled
+>         SET_COMMIT;
+>         gen_op_tr_commit(dest, DISAS_TB_JUMP);
+>         #endif
+>         #endif
+3623d3669
+<         
+3745a3792
+>     // TODO: Verify the how to trace this jump instruction
+6698a6746
+> 
+6701a6750
+> 
+6793c6842,6843
+<     insn = ldl_code(s->pc);
+---
+>     insn = ldl_code(s->pc); // Get the code
+>     INST_COMMIT(insn);
+6798a6849
+> 
+6800,6803c6851
+<    // printf ("%lx - %lx\n", (unsigned long) s->pc, (unsigned long) insn);
+<     //fflush (stdout);
+<     //if (s->pc == 0x24)
+<     //    printf ("stop\n");
+---
+> 
+6811c6859,6860
+<     if (((paddr & ICACHE_LINE_MASK) == 0) || s->b_first_instruction_in_tb)
+---
+> 	#ifndef RABBITS_TRACE_EVENT
+>     if (((paddr & icache_line_mask) == 0) || s->b_first_instruction_in_tb)
+6813c6862
+<         s->b_first_instruction_in_tb = 0;
+---
+>     	s->b_first_instruction_in_tb = 0;
+6815a6865,6885
+>     #else // RABBITS_TRACE_EVENT
+> /*    if (s->pc == 0xc00260f4){// Hard coded trigger address (function: free_initrd_mem  - Linux kernel)
+>         printf("trigged\n");
+>         trigger_trace = true;
+>     }
+> 
+>     if(s->b_first_instruction_in_tb && trigger_trace){
+>        printf("enable trace\n");
+>        enable_trace  = true;
+>        trigger_trace = false;
+>     }*/
+>     
+>     if (((paddr & icache_line_mask) == 0) || s->b_first_instruction_in_tb)
+> 	{
+>         
+> 		s->b_first_instruction_in_tb = 0;
+> 		gen_op_icache_tr_tb_access  (paddr, insn, TR_ARM_NORMAL_INSTRUCTION);
+> 	}else{
+> 	    gen_op_icache_tr_inst_access(s->pc, insn, TR_ARM_NORMAL_INSTRUCTION);
+> 	}
+> 	#endif
+6943a7014,7017
+>             #ifdef RABBITS_TRACE_EVENT
+>             SET_COMMIT;
+>             gen_op_tr_commit(s->pc, s->is_jmp);
+>             #endif
+7017c7091
+<             if (IS_USER(s))
+---
+>             if (IS_USER(s)){
+7018a7093,7094
+>             }
+> 
+7177,7179c7253,7257
+<                 #ifdef RABBITS
+<                 gen_op_inc_crt_nr_cycles (env, ARM_SIGNED_MUL);
+<                 #endif
+---
+>             #ifdef RABBITS
+> //            #ifndef RABBITS_TRACE_EVENT
+>             gen_op_inc_crt_nr_cycles (env, ARM_SIGNED_MUL);
+> //            #endif
+>             #endif
+7187a7266
+> //                #ifndef RABBITS_TRACE_EVENT
+7188a7268
+> //                #endif
+7210a7291
+> //                #ifndef RABBITS_TRACE_EVENT
+7211a7293
+> //                #endif
+7268a7351
+> //                #ifndef RABBITS_TRACE_EVENT
+7270a7354
+> //                #endif
+7444a7529
+> //                        #ifndef RABBITS_TRACE_EVENT
+7445a7531
+> //                        #endif
+7454a7541
+> //                            #ifndef RABBITS_TRACE_EVENT
+7455a7543
+> //                            #endif
+7463a7552
+> //                            #ifndef RABBITS_TRACE_EVENT
+7464a7554
+> //                            #endif
+7476,7478c7566,7570
+<                             #ifdef RABBITS
+<                             gen_op_inc_crt_nr_cycles (env, ARM_MUL64);
+<                             #endif
+---
+>                         #ifdef RABBITS
+> //                        #ifndef RABBITS_TRACE_EVENT
+>                         gen_op_inc_crt_nr_cycles (env, ARM_MUL64);
+> //                        #endif
+>                         #endif
+7491,7493c7583,7587
+<                             #ifdef RABBITS
+<                             gen_op_inc_crt_nr_cycles (env, ARM_MUL64);
+<                             #endif
+---
+>                         #ifdef RABBITS
+> //                        #ifndef RABBITS_TRACE_EVENT
+>                         gen_op_inc_crt_nr_cycles (env, ARM_MUL64);
+> //                        #endif
+>                         #endif
+7502a7597
+> //                            #ifndef RABBITS_TRACE_EVENT
+7503a7599
+> //                            #endif
+7567a7664
+> //                        #ifndef RABBITS_TRACE_EVENT
+7568a7666
+> //                        #endif
+7673a7772
+> 
+7763c7862,7864
+<                         default: goto illegal_op;
+---
+>                         default:
+> 
+>                             goto illegal_op;
+7968a8070
+> //                #ifndef RABBITS_TRACE_EVENT
+7969a8072
+> //                #endif
+7971d8073
+< 
+7979a8082
+> //                #ifndef RABBITS_TRACE_EVENT
+7980a8084
+> //                #endif
+8027c8131
+<                 
+---
+> 
+8028a8133
+> //                #ifndef RABBITS_TRACE_EVENT
+8030c8135
+<                 int nc = n * env->rabbits.instr_cycles[ARM_MULTI_TRANSFER_PER_REGISTER] 
+---
+>                 int nc = n * env->rabbits.instr_cycles[ARM_MULTI_TRANSFER_PER_REGISTER]
+8032c8137
+<                     (insn & (1 << 20)) ? ARM_MULTI_TRANSFER_LOAD_OP : 
+---
+>                     (insn & (1 << 20)) ? ARM_MULTI_TRANSFER_LOAD_OP :
+8036a8142
+> //                #endif
+8152a8259
+> //            #ifndef RABBITS_TRACE_EVENT
+8153a8261
+> //            #endif
+8161d8268
+<             gen_set_pc_im(s->pc);
+10106a10214
+> //        #ifndef RABBITS_TRACE_EVENT
+10107a10216
+> //        #endif
+10171a10281
+>             CLEAR_COMMIT;
+10174a10285,10286
+>         CONDJMP_COMMIT(dc->condjmp);
+> 
+10179a10292,10299
+>         #ifdef RABBITS_TRACE_EVENT
+>         if(!dc->is_jmp) {
+>             SET_COMMIT;
+>             gen_op_tr_commit(dc->pc, dc->is_jmp);
+>             TEST_COMMIT;
+>         }
+>         #endif
+> 
+10247,10250c10367,10369
+<             #ifdef RABBITS
+<             #ifdef RABBITS_IMPLEMENT_CACHES
+<             gen_op_icache_access_n (dc->last_decoded_pc_addr + 4, JUMP_EXTRA_LOADED_INSTRUCTIONS);
+<             #endif //RABBITS_IMPLEMENT_CACHES
+---
+>             #if defined RABBITS && defined RABBITS_IMPLEMENT_CACHES
+>             #ifndef RABBITS_TRACE_EVENT
+>             gen_op_icache_access_n(dc->last_decoded_pc_addr + 4, JUMP_EXTRA_LOADED_INSTRUCTIONS);
+10251a10371,10374
+>             #else
+>             gen_op_icache_tr_jmp_access (dc->last_decoded_pc_addr + 4, 0, dc->is_jmp);
+>             gen_op_inc_crt_nr_cycles (env, ARM_JUMP);
+>             #endif
+10256c10379
+<             #endif
+---
+>             #endif //RABBITS && RABBITS_IMPLEMENT_CACHES
+10257a10381,10384
+>             #ifdef RABBITS_TRACE_EVENT
+>             SET_COMMIT;
+>             gen_op_tr_commit(dc->pc, dc->is_jmp);
+>             #endif
+10264,10265c10391,10392
+<             #ifdef RABBITS
+<             #ifdef RABBITS_IMPLEMENT_CACHES
+---
+>             #if defined RABBITS && defined RABBITS_IMPLEMENT_CACHES
+>             #ifndef  RABBITS_TRACE_EVENT
+10267c10394,10396
+<             #endif //RABBITS_IMPLEMENT_CACHES
+---
+>             gen_op_inc_crt_nr_cycles (env, ARM_JUMP);
+>             #else
+>             gen_op_icache_tr_jmp_access (dc->last_decoded_pc_addr + 4, 0, dc->is_jmp);
+10270c10399,10403
+<             
+---
+>             #endif //RABBITS && RABBITS_IMPLEMENT_CACHES
+>             #ifdef RABBITS_TRACE_EVENT
+>             SET_COMMIT;
+>             gen_op_tr_commit(dc->pc,dc->is_jmp);
+>             #endif
+10274,10275c10407,10408
+<             #ifdef RABBITS
+<             #ifdef RABBITS_IMPLEMENT_CACHES
+---
+>             #if defined RABBITS && defined RABBITS_IMPLEMENT_CACHES
+>             #ifndef RABBITS_TRACE_EVENT
+10277d10409
+<             #endif //RABBITS_IMPLEMENT_CACHES
+10278a10411,10415
+>             #else
+>             gen_op_icache_tr_jmp_access (dc->last_decoded_pc_addr + 4, 0, dc->is_jmp);
+>             gen_op_inc_crt_nr_cycles (env, ARM_JUMP);
+>             SET_COMMIT;
+>             gen_op_tr_commit(dc->pc, dc->is_jmp);
+10280c10417
+< 
+---
+>             #endif //RABBITS && RABBITS_IMPLEMENT_CACHES
+10287c10424,10428
+<             gen_goto_tb(dc, 1, dc->pc);
+---
+>             #ifdef RABBITS_TRACE_EVENT
+>             SET_COMMIT;
+>             gen_op_tr_commit(dc->pc,dc->is_jmp);
+>             #endif
+>             gen_goto_tb(dc, 1, dc->pc); // function tr_commit inside
+10291a10433,10434
+> 
+> 
+10292a10436
+>     TEST_COMMIT;

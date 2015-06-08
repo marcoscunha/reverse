@@ -1,0 +1,51 @@
+diff a/rabbits/cfg.h b/rabbits/cfg.h	(rejected hunks)
+@@ -2,6 +2,7 @@
+ #define _RABBITS_CFG_H_
+ 
+ #define IMPLEMENT_FULL_CACHES
++
+ //#define IMPLEMENT_LATE_CACHES
+ //#define ONE_MEMORY_MODULE
+ 
+@@ -23,21 +24,39 @@
+ #endif
+ 
+ #ifdef RABBITS_IMPLEMENT_CACHES
++
++    /* Cache strategies :
++     * write-through or write-back
++     * write-allocate or no write-allocate
++     * write-update or write-invalidate
++     *
++     * *AS OF NOW*
++     * WT is coherent with write-through invalidate protocol
++     * WB is *not* coherent, so it will work only for uniprocessor system or mp system with sw coherency
++     */
++
++
+     #ifdef IMPLEMENT_LATE_CACHES
+         #define NS_ICACHE_MISS                  10
+         #define NS_DCACHE_MISS                  10
+         #define NS_WRITE_ACCESS                 1
++    #else /* IMPLEMENT_FULL_CACHES */
++        #if 1
++           #define CACHE_IS_WB
++        #else
++           #define CACHE_IS_WT
++        #endif
+     #endif
+ 
+     #define DCACHE_LINES        1024
+-    #define DCACHE_ASSOC_BITS   0
++    #define DCACHE_ASSOC_BITS   1
+     #define DCACHE_LINE_BITS    5
+     #define DCACHE_LINE_WORDS   (1 << (DCACHE_LINE_BITS - 2))
+     #define DCACHE_LINE_BYTES   (1 << DCACHE_LINE_BITS)
+     #define DCACHE_LINE_MASK    ((1 << DCACHE_LINE_BITS) - 1)
+ 
+     #define ICACHE_LINES        1024
+-    #define ICACHE_ASSOC_BITS   0
++    #define ICACHE_ASSOC_BITS   1
+     #define ICACHE_LINE_BITS    5
+     #define ICACHE_LINE_WORDS   (1 << (ICACHE_LINE_BITS - 2))
+     #define ICACHE_LINE_BYTES   (1 << ICACHE_LINE_BITS)

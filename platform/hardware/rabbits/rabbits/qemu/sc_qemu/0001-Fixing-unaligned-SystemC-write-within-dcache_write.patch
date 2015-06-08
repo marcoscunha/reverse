@@ -1,0 +1,87 @@
+>From 74f8f255b4cfe97ef4f04ad814ece0e426a466c8 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Fr=C3=A9d=C3=A9ric=20P=C3=A9trot?= <Frederic.Petrot@imag.fr>
+Date: Sat, 18 Oct 2014 05:07:20 +0200
+Subject: [PATCH] Fixing unaligned SystemC write within dcache_write
+
+---
+ rabbits/fc_annotations.c | 33 ++++++++++++++++++---------------
+ 1 file changed, 18 insertions(+), 15 deletions(-)
+
+diff --git a/rabbits/fc_annotations.c b/rabbits/fc_annotations.c
+index 0ee1621..5ef4a64 100644
+--- a/rabbits/fc_annotations.c
++++ b/rabbits/fc_annotations.c
+@@ -371,12 +371,14 @@ dcache_write (unsigned long addr, int nb, unsigned long val)
+     start_idx = tag & (DCACHE_LINES - 1) & ~((1 << DCACHE_ASSOC_BITS) - 1);
+     idx = dcache_line_present (cpu, start_idx, tag);
+ 
++    bool                skip_sysc = false;
++
+     if (idx != -1) /* addr in cache -> update */
+     {
+         switch (nb)
+         {
+         case 1:
+-            *((uint8_t *) &crt_qemu_instance->m_cpu_dcache_data[cpu][idx][ofs]) =
++            *((uint8_t *)&crt_qemu_instance->m_cpu_dcache_data[cpu][idx][ofs]) =
+                 (uint8_t)(val & 0x000000ff);
+         break;
+         case 2:
+@@ -384,39 +386,40 @@ dcache_write (unsigned long addr, int nb, unsigned long val)
+                 *((uint16_t *)&crt_qemu_instance->m_cpu_dcache_data[cpu][idx][ofs]) =
+                     (uint16_t)(val & 0x0000ffff);
+             else { /* Unaligned */
+-                *((uint8_t *) &crt_qemu_instance->m_cpu_dcache_data[cpu][idx][ofs]) =
+-                    (uint8_t)(val & 0x000000ff);
++                dcache_write(addr + 0, 1, (val >> 0) & 0x000000ff);
+                 dcache_write(addr + 1, 1, (val >> 8) & 0x000000ff);
++                skip_sysc = true;
+             }
+         break;
+         case 4:
+             if ((ofs & 3) == 0) { /* Normal, aligned word access */
+-                *((uint32_t *)  &crt_qemu_instance->m_cpu_dcache_data[cpu][idx][ofs]) = 
+-                    (uint32_t) (val & 0xffffffff);
++                *((uint32_t *) &crt_qemu_instance->m_cpu_dcache_data[cpu][idx][ofs]) = 
++                    (uint32_t)(val & 0xffffffff);
+             } else {
+                 /* No optimization when within cache line as I believe the systemc_qemu_write_memory fails on unaligned accesses */
+                 if (ofs & 1) {
+-                    *((uint8_t *) &crt_qemu_instance->m_cpu_dcache_data[cpu][idx][ofs]) =
+-                        (uint8_t)(val & 0x000000ff);
++                    dcache_write(addr + 0, 1, (val >> 0)  & 0x000000ff); /* on next cache line */
+                     dcache_write(addr + 1, 2, (val >> 8)  & 0x0000ffff); /* half word aligned for sure, maybe next cache line */
+                     dcache_write(addr + 3, 1, (val >> 24) & 0x000000ff); /* on next cache line */
+                 } else {
+-                    *((uint8_t *) &crt_qemu_instance->m_cpu_dcache_data[cpu][idx][ofs]) =
+-                        (uint8_t)(val & 0x000000ff);                     /* half word aligned, same cache line */
++                    dcache_write(addr + 0, 2, (val >> 0)  & 0x0000ffff); /* half word aligned, same cache line */
+                     dcache_write(addr + 2, 2, (val >> 16) & 0x0000ffff); /* half word aligned, maybe next cache line */
+                 }
++                skip_sysc = true;
+             }
+         break;
+         default:
+-            printf ("QEMU, function %s, invalid nb %d\n", __FUNCTION__, nb);
+-            exit (1);
++            printf("QEMU, function %s, invalid number of bytes %d\n", __func__, nb);
++            exit(1);
+         }
+     }
+ 
+-    SAVE_ENV_BEFORE_CONSUME_SYSTEMC ();
+-    _save_crt_qemu_instance->m_systemc.systemc_qemu_write_memory (
+-        _save_cpu_single_env->rabbits.sc_obj, addr, val, nb, 0);
+-    RESTORE_ENV_AFTER_CONSUME_SYSTEMC ();
++    if (!skip_sysc) {
++        SAVE_ENV_BEFORE_CONSUME_SYSTEMC ();
++        _save_crt_qemu_instance->m_systemc.systemc_qemu_write_memory (
++            _save_cpu_single_env->rabbits.sc_obj, addr, val, nb, 0);
++        RESTORE_ENV_AFTER_CONSUME_SYSTEMC ();
++    }
+     #else //!IMPLEMENT_FULL_CACHES
+     qemu_invalidate_address (crt_qemu_instance, addr, cpu_single_env->cpu_index);
+     #endif //IMPLEMENT_FULL_CACHES
+-- 
+2.1.1
+
