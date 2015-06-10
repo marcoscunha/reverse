@@ -1,6 +1,12 @@
 #!/bin/bash
 
-OCEAN_DIR=$RABBITS_DIR/platforms/bunny/soft/splash-2/codes/apps/ocean/contiguous_partitions
+if [ -z $INSTALL_BASE ]; then
+    echo "Configure the environment: INSTALL_BASE is null"
+    exit 1
+fi
+
+
+OCEAN_DIR=$INSTALL_BASE/platform/software/splash-2/codes/apps/ocean/contiguous_partitions
 
 function d2h
 {
@@ -31,7 +37,7 @@ change_code $1
 change_ldscript $1
 echo "Setting up the environment..."
 cd $OCEAN_DIR
-. $RABBITS_DIR/platforms/bunny/soft/Apes/install.sh
+. $INSTALL_BASE/platform/software/dnaos/install.sh
 . $OCEAN_DIR/install.sh
 echo "Compiling..."
 make

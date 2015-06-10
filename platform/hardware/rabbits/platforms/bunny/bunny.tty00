@@ -1,105 +1,18 @@
 @@@@@@@@@@@@@@@@@@@@@@@@@@
 @@@@@@@@@@@@@@@@@@@@@@@@@@
-file 261340 kalloc 261328
-file 2622e0 kalloc 2622c8
-file 263280 kalloc 263268
-Using 12 procs on 3 steps of 64 mols
-Other parameters:
-	TSTEP = 1.50e-16
-	NORDER = 6
-	NSAVE = -1
-	NRST = 3000
-	NPRINT = 3
-	NFMC = 0
-	CUTOFF = 4.000000
-
-27 boxes with 12 processors
-
-
-TEMPERATURE                =   298.00 K
-DENSITY                    =  0.99800 G/C.C.
-NUMBER OF MOLECULES        =       64
-NUMBER OF PROCESSORS       =       12
-TIME STEP                  = 1.50e-01 SEC
-ORDER USED TO SOLVE F=MA   =        6 
-NO. OF TIME STEPS          =        3 
-FREQUENCY OF DATA SAVING   =       -1 
-FREQUENCY TO WRITE RST FILE=     3000 
-xprocs = 2	yprocs = 2	zprocs = 3
-x_inc = 1	 y_inc = 1	 z_inc = 1
-x_left = 1	 y_left = 1	 z_left = 0
-SPHERICAL CUTOFF RADIUS    =   4.0000 ANGSTROM
-
-NS = 3.9999999999999893
-BOXL =  12.425505
-CUTOFF =   4.000000
-BOX_LENGTH =   4.141835
-BOX_PER_SIDE = 3
-XS =   3.106376
-ZERO = 1.55319
-WCOS = 0.585882
-WSIN = 0.756950
-***** NEW RUN STARTING FROM REGULAR LATTICE *****
----[MDMAIN: B0 ok 
----[MDMAIN: Step : 1
----[MDMAIN: Step : 1
----[MDMAIN: Step : 1
----[MDMAIN: Step : 1
----[MDMAIN: Step : 1
----[MDMAIN: Step : 1
----[MDMAIN: Step : 1
----[MDMAIN: Step : 1
----[MDMAIN: Step : 1
----[MDMAIN: Step : 1
----[MDMAIN: Step : 1
----[MDMAIN: B1 ok 
----[MDMAIN: Step : 1
----[MDMAIN: B2 ok 
----[MDMAIN: B3 ok 
----[MDMAIN: B4 ok 
----[MDMAIN: Step : 2
----[MDMAIN: Step : 2
----[MDMAIN: Step : 2
----[MDMAIN: Step : 2
----[MDMAIN: Step : 2
----[MDMAIN: Step : 2
----[MDMAIN: Step : 2
----[MDMAIN: Step : 2
----[MDMAIN: Step : 2
----[MDMAIN: Step : 2
----[MDMAIN: B6 ok 
----[MDMAIN: Step : 2
----[MDMAIN: Step : 2
----[MDMAIN: B2 ok 
----[MDMAIN: B3 ok 
----[MDMAIN: B4 ok 
----[MDMAIN: Step : 3
----[MDMAIN: Step : 3
----[MDMAIN: Step : 3
----[MDMAIN: Step : 3
----[MDMAIN: Step : 3
----[MDMAIN: B6 ok 
----[MDMAIN: Step : 3
----[MDMAIN: Step : 3
----[MDMAIN: Step : 3
----[MDMAIN: Step : 3
----[MDMAIN: Step : 3
----[MDMAIN: Step : 3
----[MDMAIN: Step : 3
----[MDMAIN: B2 ok 
----[MDMAIN: B3 ok 
----[MDMAIN: B4 ok 
----[MDMAIN: B5 ok 
-         3     3130.77175    572.34876      1.43781      0.17084 
-         3704.729     742469.16238       -168.80797
----[MDMAIN: B6 ok 
-COMPUTESTART (after initialization) = 536871187
-COMPUTEEND = 536871187
-COMPUTETIME (after initialization) = 0
-Measured Time (2nd timestep onward) = 0
-Intramolecular time only (2nd timestep onward) = 0
-Intermolecular time only (2nd timestep onward) = 0
-Other time (2nd timestep onward) = 0
-
-Exited Happily with XTT = 3704.73 (note: XTT value is garbage if NPRINT > NSTEP)
-************* END OF MAIN ****************
+file 100a00 kalloc 1009e8
+file 1019a0 kalloc 101988
+file 102940 kalloc 102928
+file 103f80 kalloc 103f68
+file 1055c0 kalloc 1055a8
+file 10b9a0 kalloc 10b988
+file 110d60 kalloc 110d48
+file 1161c0 kalloc 1161a8
+file 11b220 kalloc 11b208
+Create dispatcher thread.
+Create decoder thread 0.
+Create serializer thread.
+[dispatcher] Found SOI
+[dispatcher] Found EOI
+[dispatcher] Flushing data to the decoder
+[dispatcher] Found SOI

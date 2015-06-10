@@ -1,5 +1,9 @@
-export HWETRACE=/work/cunha/devel/Decopus/trace
-export DEBUGHELPER=/work/cunha/devel/debughelper/debughelperlib
+if [ -z $INSTALL_BASE ]; then
+    echo "Environment not configured: INSTALL_BASE is null"
+    exit 1
+fi
 
-source ../../Rabbits/platforms/bunny/soft/Apes/install.sh
+export HWETRACE=$INSTALL_BASE/lib/decopus/trace/
+export DEBUGHELPER=$INSTALL_BASE/lib/debughelper/debughelperlib
+
 

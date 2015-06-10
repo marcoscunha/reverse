@@ -1,6 +1,12 @@
 #!/bin/bash
 
-PARALLELMJPEG_DIR=$RABBITS_DIR/platforms/bunny/soft/ParallelMjpeg
+if [ -z $INSTALL_BASE ]; then 
+    echo "Configure the environment: INSTALL_BASE is null"
+    exit 1
+fi
+
+
+PARALLELMJPEG_DIR=$INSTALL_BASE/platform/software/parallelmjpeg
 
 function d2h
 {
@@ -73,8 +79,8 @@ change_ldscript $1
 
 echo "setting environment"
 cd $PARALLELMJPEG_DIR
-. $PARALLELMJPEG_DIR/../Apes/soft_env
-. $PARALLELMJPEG_DIR/../Apes/install.sh
+. $PARALLELMJPEG_DIR/../dnaos/soft_env
+. $PARALLELMJPEG_DIR/../dnaos/install.sh
 . $PARALLELMJPEG_DIR/install.sh
 echo Compiling
 #apes-cache -p && apes-compose -c && apes-compose

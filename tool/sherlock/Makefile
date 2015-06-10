@@ -56,7 +56,7 @@ install:
 	@echo " Installing"
 	@echo "=================="
 	@make -s -C src/loader install
-#	@make -s -C src/delorean install 
+	@make -s -C src/delorean install 
 	@make -s -C src/watson install 
 
 

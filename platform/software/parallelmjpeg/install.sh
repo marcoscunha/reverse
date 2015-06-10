@@ -4,7 +4,7 @@
 export APES_CC_FLAGS="-gdwarf-3 -Wall -Werror -Wno-format -std=c99 "
 #export APES_CC_FLAGS="-Wall -Werror -Wno-format -std=c99 -DDNA_ENABLE_LOG=3"
 export APES_AS_FLAGS="-gdwarf-3 -Wall -Werror -Wno-format -std=c99 "
-export MJPEG_CC_FLAGS="-DNB_DECODER=12 -DDISPATCH_TIME -DINFO -DVERBOSE"
+export MJPEG_CC_FLAGS="-DNB_DECODER=1 -DDISPATCH_TIME -DINFO -DVERBOSE"
 
 APES_CC_OPTIMIZATIONS="-g3 -mlittle-endian -O3 -march=armv6zk"
 # -march=armv6zk -mfpu=fpa

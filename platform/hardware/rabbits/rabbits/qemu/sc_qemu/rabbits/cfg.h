@@ -25,7 +25,7 @@
 
 #ifdef IMPLEMENT_FULL_CACHES
 	#define RABBITS_TRACE_EVENT //Trace support for QEMU and SystemC
-//#define RABBITS_GEN_TRACE_EVENT // Generate the trace events 
+    #define RABBITS_GEN_TRACE_EVENT // Generate the trace events 
     /*#define RABBITS_TRACE_EVENT_CPU_REQ*/ // Generate cpu request events
     #define RABBITS_TRACE_EVENT_CACHE   // Generate cache events
     #define HWE_CPU_ARM

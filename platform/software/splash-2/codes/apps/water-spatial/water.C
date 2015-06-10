@@ -63,7 +63,7 @@ MAIN_ENV
 #include "global.h"
 
 #define NMOLS 64 // Change this parameter to support more boxes and consequently more processors
-#define NB_P  12
+#define NB_P  1
 long NATOMS;
 long I2;
 long NMOL,NORDER,NATMO,NATMO3,NMOL1;

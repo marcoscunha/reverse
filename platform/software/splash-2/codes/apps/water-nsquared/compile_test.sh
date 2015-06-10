@@ -1,6 +1,11 @@
 #!/bin/bash
 
-WATERN_DIR=$RABBITS_DIR/platforms/bunny/soft/splash-2/codes/apps/water-nsquared
+if [ -z $INSTALL_BASE ]; then
+    echo "Configure the environment: INSTALL_BASE is null"
+    exit 1
+fi
+
+WATERN_DIR=$INSTALL_BASE/platform/software/splash-2/codes/apps/water-nsquared
 
 
 function change_code
@@ -26,7 +31,7 @@ change_code $1
 change_ldscript $1
 echo "Setting up the environment..."
 cd $WATERN_DIR
-. $RABBITS_DIR/platforms/bunny/soft/Apes/install.sh
+. $INSTALL_BASE/platform/software/dnaos/install.sh
 . $WATERN_DIR/install.sh
 echo "Compiling..."
 make

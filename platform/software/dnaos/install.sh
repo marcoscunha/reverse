@@ -1,5 +1,5 @@
 #!/bin/sh
-export APES_ROOT=/work/cunha/devel/Rabbits/platforms/bunny/soft/Apes
+export APES_ROOT=/home/cunha/devel/TIMA/reverse/reverse/platform/software/dnaos
 export APES_COMPONENT_PATH=$APES_ROOT/Components
 
 

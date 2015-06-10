@@ -60,7 +60,7 @@ MAIN_ENV
 #include "global.h"
 
 #define NMOLS 125
-#define NB_P  12
+#define NB_P  1
 
 long NMOL,NORDER,NATMO,NATMO3,NMOL1;
 long NATOMS;

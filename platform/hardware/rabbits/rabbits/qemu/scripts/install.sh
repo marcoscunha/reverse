@@ -29,26 +29,28 @@ LOG_DIR=${HERE}/../logs
 
 QEMU_DIR=sc_qemu
 QEMU_BRANCH=stable-1.0-rabbits
-SLS_REPO=git://git-sls.imag.fr/qemu.git
+#SLS_REPO=git://git-sls.imag.fr/qemu.git
 
 cd ${HERE}/..
 mkdir -p ${LOG_DIR}
 rm -fr ../libs
 mkdir -p ../libs
 
-if [ -e ${QEMU_DIR} ]; then
-    echo "Pulling git (sls_repository)"
-    cd ${QEMU_DIR}
-    git pull -q origin ${QEMU_BRANCH}
-else
-    echo "Cloning git (sls_repository)"
-    git clone -q ${SLS_REPO} -b ${QEMU_BRANCH} ${QEMU_DIR}
-    cd ${QEMU_DIR}
-fi
+#if [ -e ${QEMU_DIR} ]; then
+#    echo "Pulling git (sls_repository)"
+#    cd ${QEMU_DIR}
+#    git pull -q origin ${QEMU_BRANCH}
+#else
+#    echo "Cloning git (sls_repository)"
+#    git clone -q ${SLS_REPO} -b ${QEMU_BRANCH} ${QEMU_DIR}
+#    cd ${QEMU_DIR}
+#fi
 
+cd ${QEMU_DIR}
 echo "Configuring Qemu ..."
 ./rabbits/compile_arm.sh &> ${LOG_DIR}/config.log   || failwith "Configure QEmu failed. Please read the log for details:\n%s\n" "${LOG_DIR}/config.log"
 
 echo "Compiling and installing Qemu ..."
 make &> ${LOG_DIR}/make.log          || failwith "Compilation of QEmu failed. Please read the log for details:\n%s\n" "${LOG_DIR}/make.log"
 
+cp ../sc_qemu/arm-softmmu/libqemu-system-arm.so ../../libs

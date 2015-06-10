@@ -13,11 +13,14 @@ OBJ_c=    $(SRC_C:%.C=%.c)
 OBJ_h=    $(SRC_H:%.H=%.h)
 
 OBJ=    $(OBJ_c:%.c=$(BUILDDIR)/%.o)
-BASEDIR := $(RABBITS_DIR)/platforms/bunny/soft/splash-2/codes
+BASEDIR := $(INSTALL_BASE)/platform/software/splash-2/codes
 MACRO_FILE := $(BASEDIR)/null_macros/c.m4.null.POSIX_DNA_OS
 TARGET_M4 :=  m4 -s -Ulen -Uindex
 
+
+
 default: $(OBJ_c) $(OBJ_h)
+	mkdir -p Headers Sources
 	mv *.h Headers; mv *.c Sources
 	apes-compose -c
 	apes-compose  

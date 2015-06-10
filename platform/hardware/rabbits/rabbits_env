@@ -1,10 +1,15 @@
+
+if [ -z "${INSTALL_BASE}" ]; then 
+   echo "You should edit the env.sh to set the INSTALL_BASE variable"
+fi
+
 # Place here the Path to this dir
-export RABBITS_DIR=
+export RABBITS_DIR=$INSTALL_BASE/platform/hardware/rabbits
 # Place here the Path to your SystemC install
-export RABBITS_SYSTEMC=
+export RABBITS_SYSTEMC=/opt/systemc-2.3.0/
 export PATH=$PATH:${RABBITS_DIR}/rabbits/tools
 
-export DECOPUS=
+export DECOPUS=$INSTALL_BASE/lib/decopus
 
 if [ -z "${RABBITS_DIR}" ]; then 
    echo "You should edit the rabbits_env to set the RABBITS_DIR variable"
@@ -12,8 +17,4 @@ fi
 
 if [ -z "${RABBITS_SYSTEMC}" ]; then
    echo "You should edit the rabbits_env file to set the RABBITS_SYSTEMC variable"
-fi
-
-if [ -z "${RABBITS_SYSTEMC}" ]; then
-   echo "You should edit the rabbits_env file to set the DECOPUS variable"
 fi

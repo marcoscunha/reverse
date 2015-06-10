@@ -38,6 +38,7 @@ export PATH=$PWD/../../rabbits/tools:$PATH
 #cp soft/splash-2/codes/apps/ocean/contiguous_partitions/ocean /work/cunha/devel/Decopus/sherlock/vmlinux
 #./run.x -cpu arm11mpcore -kernel soft/splash-2/codes/apps/ocean/contiguous_partitions/ocean "$@"
 
-cp soft/splash-2/codes/apps/water-nsquared/waternsquared /work/cunha/devel/Decopus/sherlock/vmlinux
-./run.x -cpu arm11mpcore -kernel soft/splash-2/codes/apps/water-nsquared/waternsquared "$@"
+#cp soft/splash-2/codes/apps/water-nsquared/waternsquared /work/cunha/devel/Decopus/sherlock/vmlinux
+#./run.x -cpu arm11mpcore -kernel soft/splash-2/codes/apps/water-nsquared/waternsquared "$@"
+./run.x -cpu arm11mpcore "$@"
 
